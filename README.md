@@ -6,7 +6,21 @@
 
 **OrangeERP** es una Aplicación en la nube, enmarcada en la metodología SAAS (Software as a Service, por sus siglas en Inglés). **OrangeERP** es un aplicación multiempresa y multiusuario.
 
-## Contenido - Servicios Ofrecidos ##
+## Módulos - Servicios Ofrecidos
+
+- [Inventarios](inventarios/readme.md)
+- [Compras](compras/readme.md)
+- [Gastos](gastos/readme.md)
+- [Ventas](ventas/readme.md)
+- [Cartera](cartera/readme.md)
+- [Tesorería](tesoreria/readme.md)
+- [Talento Humano](talento-humano/readme.md)
+- [Producción](produccion/readme.md)
+- [Calidad](calidad/readme.md)
+- [Contabilidad](contabilidad/readme.md)
+- [Administrativos](administrativos/readme.md)
+- [Documentación](documentacion/readme.md)
+- [Configuración](configuracion/readme.md)
 
 ## Estructura General
 
@@ -28,21 +42,7 @@
 
 **Documentación:** Permite almacenas manuales, funciones o procedimientos relacionados con el módulo, para que la empresa tenga un repositorio centralizado de su documentación.
 
-## Módulos
 
-- [Inventarios](inventarios/readme.md)
-- [Compras](compras/readme.md)
-- [Gastos](gastos/readme.md)
-- [Ventas](ventas/readme.md)
-- [Cartera](cartera/readme.md)
-- [Tesorería](tesoreria/readme.md)
-- [Talento Humano](talento-humano/readme.md)
-- [Producción](produccion/readme.md)
-- [Calidad](calidad/readme.md)
-- [Contabilidad](contabilidad/readme.md)
-- [Administrativos](administrativos/readme.md)
-- [Documentación](documentacion/readme.md)
-- [Configuración](configuracion/readme.md)
 
 ## Releases
 
