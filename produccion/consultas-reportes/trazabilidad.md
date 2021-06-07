@@ -55,6 +55,11 @@ Aquí se lista los siguientes datos:
 - Porcentaje Descuento
 - Subtotal 
 
+**NOTA:** 
+- El Valor de Costos TOTALES es la sumatoria de los movimentos que en [Tipos de Movimientos](../../configuracion/seguridad/tipos-de-movimento.md) que *NO* estan marcados como
+ **PRODUCCION**
+- El Costo Unitario es: COSTOS TOTALES divido CANTIDADES TOTALES
+
 ## Operaciones
 
 ![Operaciones](../recursos/img/trazabilidad-parte4.png)
