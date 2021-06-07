@@ -1,4 +1,4 @@
-[Regresar a Producción](../README.MD)
+[Regresar a Producción](../README.md)
 
 ---
 # ORDENES DE PRODUCCIÓN

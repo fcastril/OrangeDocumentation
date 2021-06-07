@@ -30,19 +30,19 @@
 
 ## Módulos
 
-- [Inventarios](inventarios/readme.md)
-- [Compras](compras/readme.md)
-- [Gastos](gastos/readme.md)
-- [Ventas](ventas/readme.md)
-- [Cartera](cartera/readme.md)
-- [Tesorería](tesoreria/readme.md)
-- [Talento Humano](talento-humano/readme.md)
-- [Producción](produccion/readme.md)
-- [Calidad](calidad/readme.md)
-- [Contabilidad](contabilidad/readme.md)
-- [Administrativos](administrativos/readme.md)
-- [Documentación](documentacion/readme.md)
-- [Configuración](configuracion/readme.md)
+- [Inventarios](inventarios/README.md)
+- [Compras](compras/README.md)
+- [Gastos](gastos/README.md)
+- [Ventas](ventas/README.md)
+- [Cartera](cartera/README.md)
+- [Tesorería](tesoreria/README.md)
+- [Talento Humano](talento-humano/README.md)
+- [Producción](produccion/README.md)
+- [Calidad](calidad/README.md)
+- [Contabilidad](contabilidad/README.md)
+- [Administrativos](administrativos/README.md)
+- [Documentación](documentacion/README.md)
+- [Configuración](configuracion/README.md)
 
 ## Releases
 

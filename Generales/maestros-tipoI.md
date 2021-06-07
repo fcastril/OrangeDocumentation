@@ -1,4 +1,4 @@
-[Regresar al Inicio](../README.MD)
+[Regresar al Inicio](../README.md)
 
 ---
 # MAESTROS TIPO I

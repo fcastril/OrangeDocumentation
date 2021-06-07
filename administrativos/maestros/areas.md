@@ -1,4 +1,4 @@
-[Regresar al Inicio](../readme.md)
+[Regresar al Inicio](../README.md)
 
 ---
 # AREAS

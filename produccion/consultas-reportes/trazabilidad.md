@@ -1,4 +1,4 @@
-[Regresar a Producción](../readme.md)
+[Regresar a Producción](../README.md)
 
 ---
 # TRAZABILIDAD DE ORDENES DE PRODUCCIÓN
