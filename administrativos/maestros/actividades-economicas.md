@@ -1,4 +1,4 @@
-[Regresar al Inicio](../readme.MD)
+[Regresar al Inicio](../readme.md)
 
 ---
 # ACTIVIDADES ECONOMICAS
