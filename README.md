@@ -40,7 +40,7 @@
 - [Producción](produccion/readme.md)
 - [Calidad](calidad/readme.md)
 - [Contabilidad](contabilidad/readme.md)
-- [Administrativos](administrativos/readme.md)
+- [Administrativos](administracion/readme.md)
 - [Documentación](documentacion/readme.md)
 - [Configuración](configuracion/readme.md)
 
