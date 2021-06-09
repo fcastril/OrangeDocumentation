@@ -40,3 +40,8 @@ Por medio de la cuadrícula de consulta de la información se permite
 3. Ordenar por las columnas
 
 ![datatable](../recursos/img/datatable.png)
+
+En la parte inferior derecha se puede visualizar un link de la Versión del Sistema y al darle clic este refiere a las notas de la versión
+
+
+![Versión](../recursos/img/version.png)
