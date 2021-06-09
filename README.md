@@ -30,6 +30,10 @@
 
 ![Estructura Menús](recursos/img/estructura-menu.png)
 
+> Se pueden abrir varias pestañas para poder realizar varias tareas al tiempo, esto se puede realizar seleccionando la opción sosteniendo la tecla *CTRL + Clic del Mouse*, o darle *Boton derecho del MOUSE* y *Abrir vínculo en una nueva pestaña*
+
+
+
 **Dashboard:** Informes gráficos del módulo (para los que se encuentran habilitados).
 
 **Maestros:** Aquí se ubican los maestros necesarios para que el módulo tenga la información necesaria para funcional.
