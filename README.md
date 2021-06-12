@@ -26,6 +26,7 @@
 
 ![Estructura General](recursos/img/estructura-general.png)
 
+
 ## Estructura de los menús de la opciones
 
 ![Estructura Menús](recursos/img/estructura-menu.png)
@@ -49,5 +50,9 @@
 
 
 ## Releases
+
+Identificador de la Versión el cual dirige a las notas de la versión y  la actualización.
+
+![Versión](recursos/img/version.png)
 
 - [2021-06](releases/2021-06.md)
