@@ -56,3 +56,4 @@ Identificador de la Versión el cual dirige a las notas de la versión y  la act
 ![Versión](recursos/img/version.png)
 
 - [2021-06](releases/2021-06.md)
+- [2021-07](releases/2021-07.md)
