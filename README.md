@@ -47,7 +47,9 @@
 
 **Documentación:** Permite almacenas manuales, funciones o procedimientos relacionados con el módulo, para que la empresa tenga un repositorio centralizado de su documentación.
 
+## Procedimiento para reportar errores
 
+Al momento de realizar un reporte de inconsistencias o errores, en lo posible presentarlo o explicarlo con el paso, se recomienda utilizar la [Herramienta proporcionada por Microsoft en Windows](https://support.microsoft.com/es-es/windows/grabar-pasos-para-reproducir-un-problema-46582a9b-620f-2e36-00c9-04e25d784e47)
 
 ## Releases
 
