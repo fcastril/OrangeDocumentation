@@ -27,6 +27,7 @@ Este módulo permite administrar la parte básica del manejo de inventarios, cre
 - [Inventarios por Bodega](consultas/inventarios-por-bodega.md)
 - [Kardex de Inventarios](consultas/kardex-de-inventarios.md)
 - [Reporte de Inventarios](consultas/reporte-de-inventarios.md)
+- [Listas de Precios](consultas/listas-precios.md)
 
 ## Procesos
 
