@@ -53,15 +53,9 @@ Al momento de realizar un reporte de inconsistencias o errores, en lo posible pr
 
 ## Releases
 
-Identificador de la Versión el cual dirige a las notas de la versión y  la actualización.
+Identificador de la Versión el cual dirige a las notas de la versión y la actualización.
 
 ![Versión](recursos/img/version.png)
 
-- [2021-06](releases/2021-06.md)
-- [2021-07](releases/2021-07.md)
-- [2021-08](releases/2021-08.md)
-- [2021-09](releases/2021-09.md)
-- [2021-10](releases/2021-10.md)
-- [2021-11](releases/2021-11.md)
-- [2021-12](releases/2021-12.md)
-- [2022-01](releases/2022-01.md)
+- [2025-11](releases/2025-11.md)
+
