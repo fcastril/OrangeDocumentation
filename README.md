@@ -57,5 +57,5 @@ Identificador de la Versión el cual dirige a las notas de la versión y la actu
 
 ![Versión](recursos/img/version.png)
 
-- [2025-11](releases/2025-11.md)
+- [2026-01](releases/2026-01.md)
 
