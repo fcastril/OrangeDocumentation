@@ -72,7 +72,7 @@ graph TD
 1. En el menú lateral izquierdo, ubique el módulo **Inventarios**
 2. Haga clic en la opción **Referencias** (identificada con el ícono 🔄)
 
-![Ruta de acceso a Referencias](ruta-acceso-referencias.png)
+![Ruta de acceso a Referencias](./../recursos/img/ruta-acceso-referencias.png)
 
 ### Elementos de la Interfaz
 
@@ -93,7 +93,7 @@ graph TD
 
 Una vez en el módulo de Referencias, verá una interfaz con:
 
-![Búsqueda de Referencias](buscar-referencia.png)
+![Búsqueda de Referencias](./../recursos/img/buscar-referencia.png)
 
 ### Elementos de la Pantalla
 
@@ -136,7 +136,7 @@ Subgrupo: BERMUDA
 
 Al editar una referencia, se abrirá un formulario con múltiples pestañas. Los campos de porcentajes se encuentran en la pestaña de configuración general de la referencia.
 
-![Porcentajes de Indirectos y Utilidad](porcentajes-indirectos-utilidad.png)
+![Porcentajes de Indirectos y Utilidad](./../recursos/img/porcentajes-indirectos-utilidad.png)
 
 ### Campos de Configuración
 
@@ -208,7 +208,7 @@ Precio Sugerido = Costo Directo × (1 + Indirectos/100) × (1 + Indirectos Vt/10
 
 Dentro del formulario de edición de la referencia, seleccione la pestaña **"Hoja de Consumos"**
 
-![Hoja de Consumos General](hoja-consumos-general.png)
+![Hoja de Consumos General](./../recursos/img/hoja-consumos-general.png)
 
 ### Estructura de la Interfaz
 
@@ -329,7 +329,7 @@ Utilice esta opción cuando:
 - Diferentes combinaciones de atributos requieren diferentes materiales
 - Las cantidades cambian según características específicas
 
-![Hoja de Consumos Particular](hoja-consumos-particular.png)
+![Hoja de Consumos Particular](./../recursos/img/hoja-consumos-particular.png)
 
 ### Estructura de la Interfaz
 
