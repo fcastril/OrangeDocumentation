@@ -4,6 +4,162 @@
 
 # Referencias
 
+## Manual de Usuario
+
+### Objetivo
+
+Esta guia describe el uso completo del maestro de Referencias, incluyendo creacion, edicion, atributos, costos, precios, consumos, proveedores, operaciones e inventarios.
+
+### Acceso y permisos
+
+- Ruta: Inventarios > Maestros > Referencias.
+- Permisos requeridos:
+  - Ver: consultar listado.
+  - Crear: crear referencias y copiar.
+  - Actualizar: editar referencias.
+  - Eliminar: borrar referencias.
+
+### Pantalla principal (Listado)
+
+![Listado de Referencias](../recursos/img/referencias/listado_referencias_pantalla_principal.png)
+
+En el listado puedes:
+
+- Buscar por codigo o nombre usando el cuadro de busqueda.
+- Filtrar con los encabezados de columna.
+- Abrir una referencia para editar.
+- Copiar referencias tipo R.
+- Eliminar referencias (si tienes permiso).
+
+### Crear una referencia (paso a paso)
+
+1. Ingresa a Inventarios > Maestros > Referencias.
+2. Clic en Crear.
+3. Completa la pestana Referencia.
+   ![Referencia - Pestaña vacía](../recursos/img/referencias/referencia_nueva_vacia.png)
+4. Completa Configuracion contable.
+5. Agrega Atributos (si aplica).
+6. Guarda.
+7. (Opcional) Configura Inventarios, Proveedores, Consumos y Operaciones.
+
+**Resultado final - Pestaña Referencia completa:**
+![Referencia - Pestaña completa](../recursos/img/referencias/referencia_nueva_llena.png)
+
+### Editar una referencia (paso a paso)
+
+1. En el listado, clic en el icono Editar.
+2. Modifica los campos necesarios.
+3. Guarda los cambios.
+
+### Pestaña Referencia
+
+Campos habituales:
+
+- Codigo de Referencia y Codigo Alterno.
+- Nombre y Nombre Alterno.
+- Grupo y Subgrupo.
+- Unidad de Medida.
+- Impuestos y configuracion de IVA.
+- Costo Esperado y Costo Calculado (si aplica).
+
+Recomendaciones:
+
+- Mantener codigos unicos.
+- Usar nombres claros y consistentes para reportes.
+
+### Pestaña Configuracion contable
+
+Define la relacion contable:
+
+- Cuentas de Inventarios, Costos, Ventas, Descuentos, IVA.
+- Naturaleza de cuentas segun la politica contable.
+
+![Configuración Contable](../recursos/img/referencias/configuracion_contable.png)
+
+### Pestaña Atributos
+
+Permite crear combinaciones de atributos y definir precios por atributo.
+
+**Listado de atributos:**
+![Atributos - Listado](../recursos/img/referencias/atributos-listado.png)
+
+Acciones frecuentes:
+
+- Agregar Atributo Principal y Secundario.
+- Definir unidad de medida y cantidades.
+- Asignar EAN8 y EAN13.
+- Configurar precios y costos.
+
+**Formulario de atributo:**
+![Atributos - Formulario](../recursos/img/referencias/atributos-formulario.png)
+
+#### Calculo de costo y precios (un solo boton)
+
+El boton Calcular precios de venta realiza el calculo completo en este orden:
+
+1. **Costo Calculado**: se calcula desde **Costo Esperado** usando el porcentaje de empresa **PorCostoCalculado**.
+2. **Precios de venta (Precio 1 a 5)**: se calculan con base en el **Costo Calculado**.
+
+Formula de referencia:
+
+- CostoCalculado = CostoEsperado / (1 - PorCostoCalculado / 100)
+- PrecioN = CostoCalculado / (1 - PorPrecioN / 100)
+
+**Antes del cálculo:**
+![Cálculo de Precios - Antes](../recursos/img/referencias/calculo-precios-antes.png)
+
+**Después del cálculo (Costo Calculado y Precios generados):**
+![Cálculo de Precios - Después](../recursos/img/referencias/calculo-precios-despues.png)
+
+### Pestaña Inventarios (si aplica)
+
+Disponible cuando la referencia maneja inventarios.
+
+- Consulta saldos y movimientos relacionados.
+- Verifica ubicaciones, bodegas y lotes si aplica.
+
+![Inventarios](../recursos/img/referencias/inventarios.png)
+
+### Referencias por Proveedor
+
+- Asocia proveedores a la referencia.
+- Define codigos alternos del proveedor.
+- Configura precios por proveedor.
+
+![Referencias por Proveedor](../recursos/img/referencias/referencias-proveedor.png)
+
+### Hoja de Consumos
+
+- Define materiales consumidos.
+- Configura cantidades por unidad de referencia.
+
+![Hoja de Consumos](../recursos/img/referencias/hoja-consumos.png)
+
+### Hoja de Consumos por Atributos
+
+- Define consumos especificos por combinacion de atributos.
+
+![Hoja de Consumos por Atributos](../recursos/img/referencias/hoja-consumos-atributos.png)
+
+### Operaciones
+
+- Registra operaciones de produccion.
+- Define secuencia y tiempo.
+
+![Operaciones](../recursos/img/referencias/operaciones.png)
+
+### Guardar y validaciones
+
+- Campos obligatorios deben estar completos.
+- Codigos deben ser unicos.
+- Si hay errores, el sistema mostrara mensajes en pantalla.
+
+### Buenas practicas
+
+- Crear primero la referencia y luego configurar atributos y consumos.
+- Validar costos antes de calcular precios.
+- Mantener consistencia de codigos en proveedores.
+
 ## Copiar Referencias
 
 La funcionalidad de **Copiar Referencias** permite duplicar una referencia existente junto con toda su configuración, facilitando la creación de referencias similares sin tener que configurar cada elemento manualmente.
@@ -12,7 +168,7 @@ La funcionalidad de **Copiar Referencias** permite duplicar una referencia exist
 
 1. Navegar a **Inventarios > Maestros > Referencias**
 2. En el listado de referencias, localizar la referencia que desea copiar
-3. En la columna de acciones, hacer clic en el botón azul con ícono de copiar ![icono copiar](../../inventarios/recursos/img/referencias/copiar-referencia.png)
+3. En la columna de acciones, hacer clic en el botón azul con ícono de copiar ![icono copiar](../recursos/img/referencias/copiar-referencia.png)
 
 > **Nota:** El botón de copiar solo está disponible para referencias de tipo 'R' (Referencias) y requiere el permiso de **Crear** en el módulo de Referencias.
 
