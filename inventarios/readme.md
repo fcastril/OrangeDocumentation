@@ -28,6 +28,7 @@ Este módulo permite administrar la parte básica del manejo de inventarios, cre
 - [Kardex de Inventarios](consultas/kardex-de-inventarios.md)
 - [Reporte de Inventarios](consultas/reporte-de-inventarios.md)
 - [Listas de Precios](consultas/listas-precios.md)
+- [Inventarios Físicos](consultas/inventarios-fisicos.md)
 
 ## Procesos
 

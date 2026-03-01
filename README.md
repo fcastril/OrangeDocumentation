@@ -57,5 +57,6 @@ Identificador de la Versión el cual dirige a las notas de la versión y la actu
 
 ![Versión](recursos/img/version.png)
 
-- [2026-01](releases/2026-01.md)
+- [Última versión: 2026-03](releases/2026-03.md)
+- [Histórico de releases](releases/README.md)
 
