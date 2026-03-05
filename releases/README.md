@@ -9,6 +9,7 @@
 ### Implementaciones
 
 - **Inventarios Físicos (Consulta/Reporte):** Se implementa la nueva opción de consulta en Inventarios para revisar encabezados y detalle de conteos físicos en modo solo lectura. Ver manual: [Inventarios Físicos](../inventarios/consultas/inventarios-fisicos.md).
+- **Comparativo de Inventarios Físicos:** Se implementa la opción en Inventarios → Procesos con filtros por fecha de corte y bodega, tabla paginada, exportación a Excel y exportación a PDF. Ver manual: [Comparativo de Inventarios Físicos](../inventarios/procesos/comparativo-inventarios-fisicos.md).
 
 ### Bugs
 

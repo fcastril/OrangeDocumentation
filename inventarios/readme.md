@@ -33,6 +33,7 @@ Este módulo permite administrar la parte básica del manejo de inventarios, cre
 ## Procesos
 
 - [Recálculo de Costos](procesos/recalculo-de-costos.md)
+- [Comparativo de Inventarios Físicos](procesos/comparativo-inventarios-fisicos.md)
 
 ## Documentación 
 
