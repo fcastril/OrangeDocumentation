@@ -29,6 +29,7 @@ El sistema agrupa la orden de producción presentando los siguiente campos:
 - [Atributo Principal](../../inventarios/maestros/atributos-principales.md)
 - [Atributo Secundario ](../../inventarios/maestros/atributos-secundarios.md)
 - Fecha
+- Fecha Entrega
 - [Operación](../maestros/operaciones.md)
 - Cantidad
 

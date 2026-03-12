@@ -36,6 +36,8 @@ Se lista los movimientos asociados a la orden:
 - [Tipo de Movimiento](../../configuracion/seguridad/tipos-de-movimiento.md)
 - Consecutivo
 - Fecha
+- Fecha de Entrega
+- Fecha de Entrega Real
 - [Tercero / Proveedor](../../contabilidad/maestros/terceros.md)
 - Documento Referencia
 - Observaciones 
