@@ -11,6 +11,7 @@
 - **Inventarios Físicos (Consulta/Reporte):** Se implementa la nueva opción de consulta en Inventarios para revisar encabezados y detalle de conteos físicos en modo solo lectura. Ver manual: [Inventarios Físicos](../inventarios/consultas/inventarios-fisicos.md).
 - **Comparativo de Inventarios Físicos:** Se implementa la opción en Inventarios → Procesos con filtros por fecha de corte y bodega, tabla paginada, exportación a Excel y exportación a PDF. Ver manual: [Comparativo de Inventarios Físicos](../inventarios/procesos/comparativo-inventarios-fisicos.md).
 - **Movimientos y trazabilidad de Producción:** Se incorporan los campos **Fecha de Entrega** y **Fecha de Entrega Real** en consultas de movimientos, se agrega **Fecha de Entrega** al formulario de Movimientos de Producción con validación (obligatoria y mayor a la fecha del movimiento), y se añade **Fecha de Entrega** en el reporte de Estado de Órdenes. Ver manuales: [Movimientos de Producción](../produccion/movimientos/movimientos-produccion.md), [Trazabilidad](../produccion/consultas-reportes/trazabilidad.md), [Estado Órdenes de Producción](../produccion/consultas-reportes/estado-ordenes-produccion.md).
+- **Integración SwiftBots (WhatsApp ↔ Producción):** Se agregan en Compañías los campos **UrlBaseDatosAutomatizacion** y **ApiKeyBaseDatosAutomatizacion**, se implementa sincronización desde Movimientos de Producción hacia base externa vía API y se toma siempre el movimiento en **ENTREGA** como origen del payload.
 
 ### Bugs
 
