@@ -29,6 +29,15 @@ En el listado se visualizan los campos:
 - Tipo de movimiento
 - Estado
 
+## Impresión PDF del movimiento
+
+En la impresión del movimiento de producción (`PrintMovts`) el encabezado muestra:
+
+- **Fecha** del movimiento.
+- **Fecha de Entrega** ubicada al lado de la fecha del movimiento para lectura inmediata.
+
+La **Fecha de Entrega** se visualiza con mayor tamaño, en negrilla y color azul para mejorar visibilidad en el documento impreso.
+
 ### Visualización de Operación (ícono + color)
 
 La columna **Operación** usa la configuración definida en el maestro de Operaciones:
