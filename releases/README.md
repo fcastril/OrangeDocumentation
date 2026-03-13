@@ -19,6 +19,7 @@
 ### Bugs
 
 - **Trazabilidad de Órdenes de Producción (Movimientos):** Se corrige la inconsistencia entre la cantidad del encabezado y el detalle. Ahora ambas vistas calculan y muestran la cantidad con el mismo criterio para evitar diferencias.
+- **Referencias (Atributos):** Se corrige el BUG que ocurría al eliminar atributos en Referencias.
 
 
 ## Tabla de contenidos
