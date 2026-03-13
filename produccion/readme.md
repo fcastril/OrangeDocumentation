@@ -21,7 +21,8 @@ Permite administrar y controlas las distintas ordenes de producción que la empr
 - [Trazabilidad](consultas-reportes/trazabilidad.md)
 - [Control Ordenes de Producción](consultas-reportes/control-ordenes-produccion.md)
 - [Estado Ordenes de Producción](consultas-reportes/estado-ordenes-produccion.md)
-- [Hojas de Costos](consultas-reportes/hojas-de-consultas.md)
+- [Reporte Órdenes Producción Resumen](consultas-reportes/reporte-ordenes-produccion-resumen.md)
+- [Hojas de Costos](consultas-reportes/hoja-de-costos.md)
 
 
 

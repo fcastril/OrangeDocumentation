@@ -71,3 +71,12 @@ Información de los [Movimientos de las Ordenes de Producción](../movimientos/m
 - [Operación](../maestros/operacion.md)
 - Fecha
 - [Responsable](../../contabilidad/maestros/terceros.md)
+
+### Visualización de Operación (ícono + color)
+
+En la pestaña **Operaciones**, cada registro se visualiza con:
+
+- Ícono de la operación.
+- Texto de operación en el color configurado.
+
+La visualización toma la configuración del maestro de Operaciones de Producción.

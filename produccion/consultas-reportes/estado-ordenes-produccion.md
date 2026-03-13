@@ -47,3 +47,28 @@ El sistema agrupa la orden de producción presentando los siguiente campos:
 
 - Excel
 - PDF
+
+## Visualización de Operación (ícono + color)
+
+En las vistas **Detallado** y **Resumido** la columna **Operación** se presenta con:
+
+- Ícono de operación (Font Awesome).
+- Texto de operación en el color configurado.
+
+La visualización usa la configuración definida en el maestro de Operaciones de Producción.
+
+## Resumen por operación (dinámico)
+
+En la vista **Resumido** se muestra, encima de la tabla, un resumen visual por operación integrado al formulario.
+
+Características del resumen:
+
+- Se presenta como chips redondeados con el color configurado de la operación.
+- Cada chip incluye ícono de operación, nombre de operación, **Cantidad** y **Lotes**.
+- El contenido es dinámico: cambia automáticamente de acuerdo con la búsqueda y filtros aplicados en el DataTable resumido.
+
+Notas de funcionamiento:
+
+- **Cantidad:** suma de cantidades de los registros visibles según el filtro actual.
+- **Lotes:** número de registros/lotes visibles para cada operación según el filtro actual.
+- Si no hay resultados para el filtro aplicado, el resumen muestra que no hay datos para visualizar.

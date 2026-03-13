@@ -29,6 +29,19 @@ En el listado se visualizan los campos:
 - Tipo de movimiento
 - Estado
 
+### Visualización de Operación (ícono + color)
+
+La columna **Operación** usa la configuración definida en el maestro de Operaciones:
+
+- Ícono Font Awesome de la operación.
+- Texto de operación con color configurado.
+
+Este comportamiento aplica en:
+
+- **Index** de Movimientos de Producción.
+- **Crear/Editar** en el selector de Operación.
+- Tabla de **Operación Actual** dentro de Crear/Editar.
+
 ## Relación con Trazabilidad y Reportes
 
 - En Trazabilidad, pestaña Movimientos, se muestran Fecha Entrega y Fecha Entrega Real.

@@ -148,6 +148,24 @@ Disponible cuando la referencia maneja inventarios.
 
 ![Operaciones](../recursos/img/referencias/operaciones.png)
 
+#### Visualización de ícono y color en Operaciones
+
+En la pestaña **Operaciones** de Referencias, la operación seleccionada se presenta con formato visual:
+
+- Ícono de la operación (Font Awesome).
+- Texto de la operación en el color configurado.
+
+Aplica en:
+
+- **Dropdown Operación**.
+- **Dropdown Operación Dependiente**.
+- **Tabla de operaciones** dentro de la pestaña.
+
+Reglas:
+
+- Si la operación no tiene configuración de ícono/color, se usa ícono por defecto y color negro.
+- Si **Operación Dependiente** está vacía, no se muestra ícono por defecto en esa celda.
+
 ### Guardar y validaciones
 
 - Campos obligatorios deben estar completos.
