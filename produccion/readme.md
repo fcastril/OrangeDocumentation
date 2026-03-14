@@ -23,6 +23,7 @@ Permite administrar y controlas las distintas ordenes de producción que la empr
 - [Estado Ordenes de Producción](consultas-reportes/estado-ordenes-produccion.md)
 - [Reporte Órdenes Producción Resumen](consultas-reportes/reporte-ordenes-produccion-resumen.md)
 - [Hojas de Costos](consultas-reportes/hoja-de-costos.md)
+- [Gantt de Producción](consultas-reportes/gantt.md)
 
 
 
