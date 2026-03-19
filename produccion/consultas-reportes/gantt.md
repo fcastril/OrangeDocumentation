@@ -42,7 +42,11 @@ Al seleccionar un responsable se muestra el calendario con:
 - Escala de fechas (eje de calendario) para visualizar el rango temporal.
 - Barras por asignación con color de la operación.
 - Texto de barra en formato OP-Consecutivo y Documento Referencia.
-- Tooltip con detalle de OP, operación, cantidad, inicio y fin.
+- Línea vertical de fecha de corte sobre el eje de calendario y sobre cada fila para ubicar visualmente el corte.
+- Primera columna con detalle resumido en 2 líneas:
+	- Línea 1: información de la OP (OP-Consecutivo y Documento Referencia).
+	- Línea 2: fechas (inicio-fin) y cantidad.
+- Tooltip breve de apoyo en la barra (operación, cantidad, inicio y fin).
 - Scroll vertical en la sección para facilitar navegación cuando hay muchas asignaciones.
 
 ## Visualización de operación
