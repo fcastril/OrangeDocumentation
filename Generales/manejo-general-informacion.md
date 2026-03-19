@@ -45,3 +45,20 @@ En la parte inferior derecha se puede visualizar un link de la Versión del Sist
 
 
 ![Versión](../recursos/img/version.png)
+
+## Accesos directos (Favoritos)
+
+El sistema permite marcar opciones como favoritas desde el menú lateral mediante una estrella junto a cada opción navegable.
+
+- **Estrella activa:** indica que la opción ya está guardada como favorito.
+- **Estrella inactiva:** indica que la opción aún no está en favoritos.
+- Al hacer clic sobre la estrella se agrega o elimina el favorito para el **usuario** en la **empresa activa**.
+
+### Visualización de favoritos
+
+- **Dashboard principal:** los favoritos se muestran en formato de **recuadros grandes**, con el ícono centrado en la parte superior y el texto en la parte inferior.
+- **Resto de opciones del sistema:** se muestra una barra compacta superior de favoritos, en formato discreto y de menor tamaño para no invadir la pantalla.
+
+### Nota de comportamiento
+
+Los favoritos se guardan por usuario y por empresa, por lo que al cambiar de compañía pueden variar según la configuración realizada en cada una.
