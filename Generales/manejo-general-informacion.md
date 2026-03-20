@@ -46,6 +46,19 @@ En la parte inferior derecha se puede visualizar un link de la Versión del Sist
 
 ![Versión](../recursos/img/version.png)
 
+## Indicadores de Carga
+
+Cuando realiza operaciones en el sistema (búsquedas, guardado de datos, generación de reportes), verá un indicador visual de carga. Este indicador le informa que la aplicación está procesando su solicitud.
+
+**Espere a que desaparezca antes de cerrar la página o realizar nuevas acciones críticas.**
+
+El indicador de carga:
+- Aparece automáticamente en consultas, formularios y operaciones especiales
+- Muestra un mensaje describiendo qué se está procesando
+- Desaparece cuando se completa la operación
+- En algunos servidores lentos, puede permanecer visible más tiempo (normal)
+- No bloquea completamente la navegación en la mayoría de casos
+
 ## Accesos directos (Favoritos)
 
 El sistema permite marcar opciones como favoritas desde el menú lateral mediante una estrella junto a cada opción navegable.
