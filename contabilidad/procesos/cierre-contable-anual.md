@@ -52,3 +52,16 @@ Si alguna validación falla, se muestra un mensaje de advertencia indicando los 
 - Ejecutar el cierre con un usuario autorizado de Contabilidad.
 - Verificar previamente que los tipos de movimiento y cuentas PUC correspondan a la parametrización contable de la empresa.
 - Realizar el proceso fuera de horas pico, ya que puede tardar según el volumen de información.
+
+## Reproceso del cierre anual
+
+Si se requiere volver a ejecutar el cierre anual y ya existe un cierre realizado para el mismo año y tipos de movimiento:
+
+1. Ingrese a **Contabilidad → Movimientos → Asientos Contables** (o la consulta de movimientos contables habilitada en su perfil).
+2. Ubique los **dos movimientos contables de cierre** generados en la ejecución anterior (cierre actual y cierre anterior).
+3. Realice la acción correspondiente según políticas de la empresa:
+  - **Anular** los dos movimientos, o
+  - **Eliminar** los dos movimientos.
+4. Una vez anulados/eliminados ambos movimientos de cierre, vuelva al formulario de **Cierre Contable Anual** y ejecute nuevamente el proceso.
+
+> Nota: si solo se anula/elimina uno de los dos movimientos, el sistema puede seguir bloqueando la nueva ejecución por validación de cierre previo.
