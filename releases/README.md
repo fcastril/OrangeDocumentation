@@ -4,30 +4,14 @@
 
 # Releases Orange ERP
 
-## 2026-03
+## 2026-04
 
 ### Implementaciones
 
-- **Cierre Contable Anual (Contabilidad → Procesos):** Se implementa la ejecución del cierre anual usando el proceso de Cierres Contables con parámetros de año, tipos de movimiento y cuentas PUC (actual/anterior). Incluye selectores con búsqueda/paginación (Select2), validación previa de parámetros obligatorios y control para evitar cierres duplicados del mismo año/tipos de movimiento con base en movimientos contables. Ver manual: [Cierre Contable Anual](../contabilidad/procesos/cierre-contable-anual.md).
-- **Observaciones en Órdenes de Producción (API):** Se habilita el endpoint para registrar observaciones sobre una OP existente, incluyendo **relevancia**, **fecha/hora del servidor** y respuesta JSON estandarizada. Cuando el usuario se resuelve desde el token, el texto guardado deja trazabilidad visible del reportante dentro de la observación. Ver manual: [Órdenes de Producción](../produccion/movimientos/ordenes-produccion.md).
-- **Accesos Directos (Favoritos por usuario/empresa):** Se implementa la marcación de opciones favoritas desde el menú lateral mediante estrella (activa/inactiva por color), persistencia por **usuario + empresa**, visualización en el dashboard principal como **recuadros grandes** (ícono superior y texto inferior), y barra compacta de favoritos en el resto de vistas. Incluye validación de compañía activa para evitar guardar favoritos en una empresa incorrecta.
-- **Inventarios Físicos (Consulta/Reporte):** Se implementa la nueva opción de consulta en Inventarios para revisar encabezados y detalle de conteos físicos en modo solo lectura. Ver manual: [Inventarios Físicos](../inventarios/consultas/inventarios-fisicos.md).
-- **Comparativo de Inventarios Físicos:** Se implementa la opción en Inventarios → Procesos con filtros por fecha de corte y bodega, tabla paginada, exportación a Excel y exportación a PDF. Ver manual: [Comparativo de Inventarios Físicos](../inventarios/procesos/comparativo-inventarios-fisicos.md).
-- **Movimientos y trazabilidad de Producción:** Se incorporan los campos **Fecha de Entrega** y **Fecha de Entrega Real** en consultas de movimientos, se agrega **Fecha de Entrega** al formulario de Movimientos de Producción con validación (obligatoria y mayor a la fecha del movimiento), y se añade **Fecha de Entrega** en el reporte de Estado de Órdenes. Ver manuales: [Movimientos de Producción](../produccion/movimientos/movimientos-produccion.md), [Trazabilidad](../produccion/consultas-reportes/trazabilidad.md), [Estado Órdenes de Producción](../produccion/consultas-reportes/estado-ordenes-produccion.md).
-- **Integración SwiftBots (WhatsApp ↔ Producción):** Se agregan en Compañías los campos **UrlBaseDatosAutomatizacion** y **ApiKeyBaseDatosAutomatizacion**, se implementa sincronización desde Movimientos de Producción hacia base externa vía API y se toma siempre el movimiento en **ENTREGA** como origen del payload.
-- **UI de operaciones con ícono y color (Producción/Inventarios):** Se estandariza la visualización de operaciones para mostrar ícono Font Awesome y texto con color configurado en Operaciones. El ajuste aplica en **Operaciones**, **Referencias (tab Operaciones)**, **Movimientos de Producción**, **Trazabilidad**, **Estado de Órdenes de Producción** y **Reporte Órdenes Producción Resumen**. Ver manuales: [Operaciones](../produccion/maestros/operaciones.md), [Referencias](../inventarios/maestros/referencias.md), [Movimientos de Producción](../produccion/movimientos/movimientos-produccion.md), [Trazabilidad](../produccion/consultas-reportes/trazabilidad.md), [Estado Órdenes de Producción](../produccion/consultas-reportes/estado-ordenes-produccion.md), [Reporte Órdenes Producción Resumen](../produccion/consultas-reportes/reporte-ordenes-produccion-resumen.md).
-- **Estado de Órdenes de Producción (resumen visual por operación):** Se agrega resumen por operación integrado al formulario en formato de chips redondeados con color de fondo por operación, ícono y texto en blanco en negrita. Cada chip muestra **Cantidad** y **Lotes**, y se actualiza dinámicamente según los filtros y búsquedas aplicados en la tabla resumida.
-- **Impresión PDF en Movimientos de Producción:** En el formato de impresión (`PrintMovts`) se incorpora **Fecha de Entrega** junto a la **Fecha** del encabezado para facilitar lectura operativa; además se resalta el valor en mayor tamaño, negrilla y color azul.
-- **Consulta Gantt de Producción:** Se implementa y ajusta la consulta Gantt con resumen por operación (ícono/color, cantidad y lotes), tabla principal de responsables paginada a 10 registros, calendario inferior con eje de fechas y scroll, y visualización de OP en formato **OP-Consecutivo**. Además, se adiciona la línea vertical de **Fecha de Corte** en el calendario y se mejora el detalle en la primera columna a un formato de 2 líneas (información de OP y línea de fechas/cantidad), para evitar recortes de información en tablas pequeñas. Ver manual: [Gantt de Producción](../produccion/consultas-reportes/gantt.md).
-
-### Bugs
-
-- **Trazabilidad de Órdenes de Producción (Movimientos):** Se corrige la inconsistencia entre la cantidad del encabezado y el detalle. Ahora ambas vistas calculan y muestran la cantidad con el mismo criterio para evitar diferencias.
-- **Referencias (Atributos):** Se corrige el BUG que ocurría al eliminar atributos en Referencias.
-
+- **Ajuste de Inventario Físico:** Nuevo módulo para realizar ajustes automáticos de inventario con base en el comparativo físico/teórico. Permite valores unitarios en cero solo desde este proceso, valida automáticamente el tercero de la empresa y muestra mensajes claros de validación. Ver manual: [Ajuste de Inventario Físico](../inventarios/procesos/ajuste-inventario-fisico.md).
 
 ## Tabla de contenidos
-
+- [2026-04](#2026-04)
 - [2026-03](#2026-03)
 - [2026-02](#2026-02)
 - [2026-01](#2026-01)
@@ -46,6 +30,29 @@
 - [2021-06](#2021-06)
 
 ---
+
+
+## 2026-03
+
+### Implementaciones
+- **Cierre Contable Anual (Contabilidad → Procesos):** Se implementa la ejecución del cierre anual usando el proceso de Cierres Contables con parámetros de año, tipos de movimiento y cuentas PUC (actual/anterior). Incluye selectores con búsqueda/paginación (Select2), validación previa de parámetros obligatorios y control para evitar cierres duplicados del mismo año/tipos de movimiento con base en movimientos contables. Ver manual: [Cierre Contable Anual](../contabilidad/procesos/cierre-contable-anual.md).
+- **Observaciones en Órdenes de Producción (API):** Se habilita el endpoint para registrar observaciones sobre una OP existente, incluyendo **relevancia**, **fecha/hora del servidor** y respuesta JSON estandarizada. Cuando el usuario se resuelve desde el token, el texto guardado deja trazabilidad visible del reportante dentro de la observación. Ver manual: [Órdenes de Producción](../produccion/movimientos/ordenes-produccion.md).
+- **Accesos Directos (Favoritos por usuario/empresa):** Se implementa la marcación de opciones favoritas desde el menú lateral mediante estrella (activa/inactiva por color), persistencia por **usuario + empresa**, visualización en el dashboard principal como **recuadros grandes** (ícono superior y texto inferior), y barra compacta de favoritos en el resto de vistas. Incluye validación de compañía activa para evitar guardar favoritos en una empresa incorrecta.
+- **Inventarios Físicos (Consulta/Reporte):** Se implementa la nueva opción de consulta en Inventarios para revisar encabezados y detalle de conteos físicos en modo solo lectura. Ver manual: [Inventarios Físicos](../inventarios/consultas/inventarios-fisicos.md).
+- **Comparativo de Inventarios Físicos:** Se implementa la opción en Inventarios → Procesos con filtros por fecha de corte y bodega, tabla paginada, exportación a Excel y exportación a PDF. Ver manual: [Comparativo de Inventarios Físicos](../inventarios/procesos/comparativo-inventarios-fisicos.md).
+- **Movimientos y trazabilidad de Producción:** Se incorporan los campos **Fecha de Entrega** y **Fecha de Entrega Real** en consultas de movimientos, se agrega **Fecha de Entrega** al formulario de Movimientos de Producción con validación (obligatoria y mayor a la fecha del movimiento), y se añade **Fecha de Entrega** en el reporte de Estado de Órdenes. Ver manuales: [Movimientos de Producción](../produccion/movimientos/movimientos-produccion.md), [Trazabilidad](../produccion/consultas-reportes/trazabilidad.md), [Estado Órdenes de Producción](../produccion/consultas-reportes/estado-ordenes-produccion.md).
+- **Integración SwiftBots (WhatsApp ↔ Producción):** Se agregan en Compañías los campos **UrlBaseDatosAutomatizacion** y **ApiKeyBaseDatosAutomatizacion**, se implementa sincronización desde Movimientos de Producción hacia base externa vía API y se toma siempre el movimiento en **ENTREGA** como origen del payload.
+- **UI de operaciones con ícono y color (Producción/Inventarios):** Se estandariza la visualización de operaciones para mostrar ícono Font Awesome y texto con color configurado en Operaciones. El ajuste aplica en **Operaciones**, **Referencias (tab Operaciones)**, **Movimientos de Producción**, **Trazabilidad**, **Estado de Órdenes de Producción** y **Reporte Órdenes Producción Resumen**. Ver manuales: [Operaciones](../produccion/maestros/operaciones.md), [Referencias](../inventarios/maestros/referencias.md), [Movimientos de Producción](../produccion/movimientos/movimientos-produccion.md), [Trazabilidad](../produccion/consultas-reportes/trazabilidad.md), [Estado Órdenes de Producción](../produccion/consultas-reportes/estado-ordenes-produccion.md), [Reporte Órdenes Producción Resumen](../produccion/consultas-reportes/reporte-ordenes-produccion-resumen.md).
+- **Estado de Órdenes de Producción (resumen visual por operación):** Se agrega resumen por operación integrado al formulario en formato de chips redondeados con color de fondo por operación, ícono y texto en blanco en negrita. Cada chip muestra **Cantidad** y **Lotes**, y se actualiza dinámicamente según los filtros y búsquedas aplicados en la tabla resumida.
+- **Impresión PDF en Movimientos de Producción:** En el formato de impresión (`PrintMovts`) se incorpora **Fecha de Entrega** junto a la **Fecha** del encabezado para facilitar lectura operativa; además se resalta el valor en mayor tamaño, negrilla y color azul.
+- **Consulta Gantt de Producción:** Se implementa y ajusta la consulta Gantt con resumen por operación (ícono/color, cantidad y lotes), tabla principal de responsables paginada a 10 registros, calendario inferior con eje de fechas y scroll, y visualización de OP en formato **OP-Consecutivo**. Además, se adiciona la línea vertical de **Fecha de Corte** en el calendario y se mejora el detalle en la primera columna a un formato de 2 líneas (información de OP y línea de fechas/cantidad), para evitar recortes de información en tablas pequeñas. Ver manual: [Gantt de Producción](../produccion/consultas-reportes/gantt.md).
+
+### Bugs
+
+- **Trazabilidad de Órdenes de Producción (Movimientos):** Se corrige la inconsistencia entre la cantidad del encabezado y el detalle. Ahora ambas vistas calculan y muestran la cantidad con el mismo criterio para evitar diferencias.
+- **Referencias (Atributos):** Se corrige el BUG que ocurría al eliminar atributos en Referencias.
+
+
 
 ## 2026-02
 
