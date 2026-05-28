@@ -4,6 +4,12 @@
 
 # Releases Orange ERP
 
+## 2026-05
+
+### Implementaciones
+
+- **Importación de Pedidos desde Excel (Ventas > Movimientos > Pedidos):** Se implementa y estabiliza el flujo de validación e importación por archivo para el detalle de pedidos, con verificación de maestros (referencia, atributos, IVA, bodega, centro de costos), control de errores por fila y recarga del formulario sobre la URL del `idMovimiento` retornado por el procedimiento de importación. Ver manual: [Pedidos e Importar Pedidos](../ventas/movimientos/pedidos-e-importar-pedidos.md).
+
 ## 2026-04
 
 ### Implementaciones
@@ -11,6 +17,7 @@
 - **Ajuste de Inventario Físico:** Nuevo módulo para realizar ajustes automáticos de inventario con base en el comparativo físico/teórico. Permite valores unitarios en cero solo desde este proceso, valida automáticamente el tercero de la empresa y muestra mensajes claros de validación. Ver manual: [Ajuste de Inventario Físico](../inventarios/procesos/ajuste-inventario-fisico.md).
 
 ## Tabla de contenidos
+- [2026-05](#2026-05)
 - [2026-04](#2026-04)
 - [2026-03](#2026-03)
 - [2026-02](#2026-02)
