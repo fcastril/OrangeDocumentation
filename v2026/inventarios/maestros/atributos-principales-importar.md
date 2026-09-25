@@ -44,7 +44,7 @@ La importación tiene tres pasos: **Cargar archivo → Revisar → Resultado**.
 | Formato | Excel `.xlsx`. Solo se lee la **primera hoja**. |
 | Encabezado | La primera fila debe tener **Código**, **Nombre** y **Orden** (con o sin tilde, en mayúsculas o minúsculas). El orden de las columnas no importa. |
 | Tamaño | Hasta **1.000 filas** y **1 MB**. Si tiene más, divida el archivo. |
-| Filas vacías | Se ignoran. |
+| Filas vacías | Se ignoran; en **Revisar** se indica cuántas se omitieron ("Filas vacías omitidas"). |
 | Código | Hasta 5 caracteres: letras, números, guion y barra (`/`). Se guarda en mayúsculas. |
 | Nombre | Hasta 100 caracteres, sin comas ni punto y coma. |
 | Orden | **Obligatorio** en cada fila. Número entero de 0 a 9999; puede repetirse. Es la posición de la talla en informes y matrices. |

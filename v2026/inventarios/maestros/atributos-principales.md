@@ -106,7 +106,7 @@ Al guardar verá el mensaje **"Atributo principal … creado."** y el atributo a
 
 Para **reordenar** las tallas, edite el **Orden** de cada una. Los informes y matrices toman el nuevo orden de inmediato.
 
-Si otro usuario eliminó el atributo mientras lo editaba, verá **"Este atributo principal ya no existe"** y desaparecerá del listado.
+Si otro usuario eliminó el atributo mientras lo editaba, al guardar el diálogo se cierra, el atributo desaparece del listado y un aviso le indica **"Este atributo principal ya no existe"**.
 
 ---
 

@@ -97,7 +97,7 @@ Al guardar verá el mensaje **"Bodega … creada."** y la bodega aparece en el l
 
 > ⚠️ **Cambiar el código** está permitido, pero verá un aviso: las **restricciones de bodegas de los usuarios** se guardan por código y seguirán usando el código anterior. Revíselas después del cambio.
 
-Si otro usuario eliminó la bodega mientras la editaba, verá **"Esta bodega ya no existe"** y desaparecerá del listado.
+Si otro usuario eliminó la bodega mientras la editaba, al guardar el diálogo se cierra, la bodega desaparece del listado y un aviso le indica **"Esta bodega ya no existe"**.
 
 ---
 
