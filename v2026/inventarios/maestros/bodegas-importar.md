@@ -80,6 +80,8 @@ Use las pestañas **Todas / Nuevas / Se actualizan / Sin cambios / Con error** p
 
 > 💡 **Descargar filas con error** genera un Excel solo con esas filas y su motivo, para corregirlas y volver a cargarlas.
 
+> 🔄 Si mientras revisa otro usuario cambia bodegas, verá *"Otro usuario cambió bodegas mientras revisabas. Vuelve a validar antes de aplicar."* Haga clic en **Volver a validar** para que la revisión tenga en cuenta esos cambios.
+
 ---
 
 ## 3️⃣ Aplicar y resultado

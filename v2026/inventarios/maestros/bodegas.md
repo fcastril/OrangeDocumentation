@@ -40,6 +40,7 @@ En esta pantalla puede **consultar, crear, editar, eliminar, exportar e importar
 | Elemento | Para qué sirve |
 |----------|----------------|
 | **?** (junto al título) | Abre esta ayuda en un panel lateral, sin salir de la pantalla. |
+| **En vivo** | La pantalla está conectada: los cambios de otros usuarios aparecen solos. Ver *Cambios de otros usuarios* más abajo. |
 | **Nueva bodega** | Crea una bodega. |
 | **Buscar por código o nombre** | Filtra el listado mientras escribe. No distingue mayúsculas ni tildes: "transito" encuentra "Mercancía en tránsito". |
 | **Importar** | Crea o actualiza bodegas desde un archivo de Excel. Ver [Importar bodegas](bodegas-importar.md). |
@@ -125,6 +126,27 @@ Para crear muchas bodegas o cambiar sus nombres de una vez, use **Importar**. Ve
 
 ---
 
+## 🔄 Cambios de otros usuarios (en vivo)
+
+Si otra persona crea, modifica, elimina o importa bodegas mientras usted tiene abierta esta pantalla, **no tiene que recargar**: el listado se pone al día solo, sin perder lo que buscó, el orden ni la página.
+
+- Las filas nuevas o modificadas se **resaltan** unos segundos.
+- Abajo a la derecha aparece un aviso, por ejemplo *"Otro usuario creó la bodega Almacén sur."*
+- Junto a la descripción verá **En vivo** mientras la conexión esté activa. Si se interrumpe, dice **Reconectando…**; al volver, la pantalla se actualiza sola.
+
+**Si estaba editando esa misma bodega:**
+
+| Qué hizo el otro usuario | Qué verá | Qué puede hacer |
+|--------------------------|----------|-----------------|
+| La modificó | *"Otro usuario modificó esta bodega mientras la editabas. Si guardas, reemplazarás sus cambios."* | **Ver sus cambios** para cargar lo que él guardó, o **Guardar** para dejar lo suyo. |
+| La eliminó | *"Otro usuario eliminó esta bodega. Ya no se puede guardar."* | **Cancelar**. El botón Guardar queda deshabilitado. |
+
+Si estaba por confirmar la eliminación de una bodega que otro ya eliminó, el diálogo se cierra con el aviso *"Otro usuario ya eliminó la bodega…"*.
+
+> ℹ️ Los cambios que usted hace en esta misma pestaña no generan avisos. Los cambios hechos desde la versión anterior de OrangeERP no se avisan al instante: se reflejan al volver a esta pestaña después de un rato o al recargar.
+
+---
+
 ## ❓ Preguntas frecuentes
 
 **¿Por qué el código quedó en mayúsculas?**
@@ -132,6 +154,9 @@ Los códigos de bodega siempre se guardan en mayúsculas para que no haya dos bo
 
 **¿Por qué no encuentro una bodega que sí existe?**
 Revise que esté en la compañía correcta (título de la pestaña) y borre el texto del buscador con la **✕**.
+
+**No veo "En vivo".**
+La conexión en vivo no está disponible en este momento (por ejemplo, por la red de su empresa). La pantalla funciona igual; para ver cambios de otros usuarios, recargue la página.
 
 **La "Última modificación" de algunas bodegas muestra una hora distinta.**
 Las fechas se guardan en hora universal y se muestran en la hora de su equipo; algunas bodegas modificadas en la versión anterior pueden verse desplazadas hasta que se ajusten sus fechas.
