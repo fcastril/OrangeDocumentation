@@ -20,6 +20,8 @@ Las **bodegas** son los lugares, físicos o lógicos, donde la compañía guarda
 
 En esta pantalla puede **consultar, crear, editar, eliminar, exportar e importar** las bodegas de la compañía con la que está trabajando.
 
+> 📘 La búsqueda, el orden, la paginación, la exportación y la ayuda funcionan igual en todas las tablas: ver [Manejo general de la información](../../Generales/manejo-general-informacion.md).
+
 > 💡 Cada pestaña del navegador trabaja con **una compañía**. El nombre y el color de la compañía se ven en el título de la pestaña y en la barra superior.
 
 ---

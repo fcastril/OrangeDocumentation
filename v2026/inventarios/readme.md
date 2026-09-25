@@ -6,6 +6,8 @@
 
 Manuales de las pantallas de Inventarios en la nueva versión.
 
+- [Dashboard de Inventarios](dashboard.md)
+
 ## Maestros
 
 - [Bodegas](maestros/bodegas.md)
