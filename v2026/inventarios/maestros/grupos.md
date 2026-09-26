@@ -16,7 +16,7 @@
 
 ## 📋 Descripción
 
-Los **grupos** clasifican las referencias de inventario en familias amplias, por ejemplo `ALI` Alimentos, `ASE` Aseo o `PAP` Papelería. Cada grupo se divide en **subgrupos**, y las referencias pertenecen a un subgrupo.
+Los **grupos** clasifican las referencias de inventario en familias amplias, por ejemplo `ALI` Alimentos, `ASE` Aseo o `PAP` Papelería. Cada grupo se divide en **[subgrupos](subgrupos.md)**, y las referencias pertenecen a un subgrupo.
 
 Además de clasificar, cada grupo tiene su **configuración contable**: las cuentas en las que se contabilizan las ventas, el IVA, los descuentos, los costos, el inventario y las devoluciones de las referencias del grupo. Por eso un grupo **no se puede guardar sin sus 8 cuentas**.
 
