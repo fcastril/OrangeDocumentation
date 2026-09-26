@@ -12,6 +12,8 @@ Manuales de las pantallas de Inventarios en la nueva versión.
 
 - [Atributos principales](maestros/atributos-principales.md)
   - [Importar atributos principales desde Excel](maestros/atributos-principales-importar.md)
+- [Atributos secundarios](maestros/atributos-secundarios.md)
+  - [Importar atributos secundarios desde Excel](maestros/atributos-secundarios-importar.md)
 - [Bodegas](maestros/bodegas.md)
   - [Importar bodegas desde Excel](maestros/bodegas-importar.md)
 - [Grupos](maestros/grupos.md)
