@@ -20,6 +20,7 @@ Manuales de las pantallas de Inventarios en la nueva versión.
   - [Importar grupos desde Excel](maestros/grupos-importar.md)
 - [Referencias](maestros/referencias.md)
   - [Detalle de una referencia](maestros/referencias-detalle.md)
+  - [Importar referencias desde Excel](maestros/referencias-importar.md)
 - [Subgrupos](maestros/subgrupos.md)
   - [Importar subgrupos desde Excel](maestros/subgrupos-importar.md)
 - [Unidades de medida](maestros/unidades-medida.md)

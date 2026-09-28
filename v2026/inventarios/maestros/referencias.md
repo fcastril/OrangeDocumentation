@@ -10,7 +10,7 @@
 ![Static Badge](https://img.shields.io/badge/Opcion-Referencias-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
-![Static Badge](https://img.shields.io/badge/Actualizacion-20260927-yellow)
+![Static Badge](https://img.shields.io/badge/Actualizacion-20260928-yellow)
 
 ---
 
@@ -20,7 +20,7 @@ Las **referencias** son los productos y servicios que la compañía compra, prod
 
 Es el dato que más se usa en compras, ventas, punto de venta e inventario. Por eso en esta pantalla lo importante es **encontrar rápido** la referencia entre miles, sin tener que recorrer el listado.
 
-En esta pantalla puede **buscar, filtrar, consultar, crear, copiar, eliminar y exportar** las referencias de la compañía con la que está trabajando. Al crear o editar se abre la **página de detalle** de la referencia, que se explica en [Detalle de una referencia](referencias-detalle.md).
+En esta pantalla puede **buscar, filtrar, consultar, crear, copiar, eliminar, exportar e importar** las referencias de la compañía con la que está trabajando. Al crear o editar se abre la **página de detalle** de la referencia, que se explica en [Detalle de una referencia](referencias-detalle.md).
 
 > 📘 El orden, la paginación, la exportación y la ayuda funcionan como en las demás tablas: ver [Manejo general de la información](../../Generales/manejo-general-informacion.md). La diferencia es que aquí la búsqueda, los filtros y el orden **los resuelve el servidor**, página por página, porque una compañía puede tener más de 11.000 referencias.
 
@@ -49,6 +49,7 @@ En esta pantalla puede **buscar, filtrar, consultar, crear, copiar, eliminar y e
 | **Estado**, **Tipo**, **Subgrupo** | Filtros del listado. Ver *Filtrar el listado*. |
 | **Buscar por código, nombre o código de barras** | Busca mientras escribe. Ver *Buscar una referencia*. |
 | **Exportar a Excel** | Descarga las referencias que cumplen la búsqueda y los filtros. |
+| **Importar** | Crea o actualiza referencias y variantes desde un archivo de Excel. Ver [Importar referencias desde Excel](referencias-importar.md). |
 | **N registros** | Cuántas referencias cumplen la búsqueda y los filtros (no solo las de la página). |
 | **Lápiz** / **Copiar** / **Papelera** | Editar, copiar o eliminar la referencia de esa fila. Siempre están en la **primera columna**, visibles aunque la tabla tenga que desplazarse. |
 | **Código**, **Nombre**, **Subgrupo**, **Unidad**, **Variantes**, **Estado**, **Última modificación** | Columnas del listado. **Subgrupo** se muestra como `Código - Nombre` y, debajo, su grupo (`Grupo: ALI - Alimentos`). **Variantes** dice cuántas variantes tiene. **Estado** es *Activa* o *Inactiva*. |
@@ -65,7 +66,7 @@ En esta pantalla puede **buscar, filtrar, consultar, crear, copiar, eliminar y e
 | Crear | **Nueva referencia** y **Copiar** |
 | Actualizar | Modificar la referencia, sus variantes y sus proveedores. Sin este permiso el lápiz se cambia por un **ojo** (**Ver**) y el detalle se abre en solo consulta |
 | Eliminar | **Papelera** (eliminar) |
-| Exportar | **Exportar a Excel** |
+| Exportar | **Exportar a Excel** e **Importar** |
 
 ---
 
@@ -181,6 +182,7 @@ Si otra persona crea, modifica o elimina referencias mientras usted tiene abiert
 - Las filas nuevas o modificadas que estén en su página se **resaltan** unos segundos.
 - Abajo a la derecha aparece un aviso, por ejemplo *"Otro usuario creó la referencia Camiseta polo piqué."* o *"Otro usuario eliminó la referencia …"*. Si fueron varias, *"Otros usuarios modificaron N referencias."*
 - Agregar, cambiar o quitar variantes y proveedores también cuenta como una modificación de la referencia.
+- Si otro usuario aplica una **importación desde Excel**, verá un solo aviso: *"Otro usuario importó N referencias."*
 - Junto a la descripción verá **En vivo** mientras la conexión esté activa. Si se interrumpe, dice **Reconectando…**; al volver, la pantalla se actualiza sola.
 - Si estaba por confirmar la eliminación de una referencia que otro ya eliminó, el diálogo se cierra con el aviso *"Otro usuario ya eliminó la referencia …"*.
 
@@ -207,8 +209,8 @@ Tiene asignado un subgrupo que ya no existe en la compañía (suele pasar con re
 **Hay referencias con códigos con espacios o símbolos, como `OF 2019`.**
 Vienen de la versión anterior. Se listan y se editan normalmente; solo si cambia el código se exige el formato actual.
 
-**¿Dónde está Importar desde Excel?**
-La importación de referencias llegará en una próxima entrega de esta pantalla. Mientras tanto, use la opción de importación de la versión anterior de OrangeERP.
+**¿Cómo cargo muchas referencias o cambio muchos precios a la vez?**
+Con **Importar**: descargue la plantilla (o sus referencias en el formato de la plantilla), llénela y cárguela. Ver [Importar referencias desde Excel](referencias-importar.md).
 
 **No veo "En vivo".**
 La conexión en vivo no está disponible en este momento (por ejemplo, por la red de su empresa). La pantalla funciona igual; para ver cambios de otros usuarios, recargue la página.

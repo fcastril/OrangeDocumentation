@@ -10,7 +10,7 @@
 ![Static Badge](https://img.shields.io/badge/Opcion-Referencias-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
-![Static Badge](https://img.shields.io/badge/Actualizacion-20260927-yellow)
+![Static Badge](https://img.shields.io/badge/Actualizacion-20260928-yellow)
 
 ---
 
@@ -25,10 +25,16 @@ La **página de detalle** es donde se crea, se consulta y se modifica una refere
 | **Contabilidad** | Cuentas contables de ventas y de devoluciones. |
 | **Variantes** | Las combinaciones de la referencia (por ejemplo talla y color), cada una con su código de barras, precios y niveles de inventario. |
 | **Proveedores** | Los proveedores que venden la referencia, con su código y su valor. |
+| **Producción** | Solo en referencias **semielaboradas**: los materiales que consume, sus operaciones de fabricación y el costo estimado por unidad. |
+| **Inventario** | Solo si la referencia **maneja inventarios**: las existencias por bodega y por variante a una fecha. |
+| **Movimientos** | Solo si la referencia **maneja inventarios**: los documentos que movieron cada variante (kardex), con el saldo después de cada uno. |
+| **Foto y documentos** | La foto principal de la referencia y sus documentos adjuntos (fichas técnicas, certificados u otros archivos). |
 
-Las tres primeras pestañas forman la **cabecera** de la referencia y se guardan juntas con **Guardar referencia**. Las variantes y los proveedores se guardan **cada uno en su propio diálogo**, en el momento.
+Las tres primeras pestañas forman la **cabecera** de la referencia y se guardan juntas con **Guardar referencia**. Las variantes, los proveedores y las filas de producción se guardan **cada una en su propio diálogo**, en el momento; la foto y los documentos también se suben o se eliminan en el momento. **Inventario** y **Movimientos** son de consulta: no modifican nada.
 
-> 📘 Para buscar, copiar, eliminar o exportar referencias, vea [Referencias](referencias.md).
+Las pestañas **Producción**, **Inventario** y **Movimientos** aparecen solo cuando la referencia ya está guardada con *Semielaborada* o *Maneja inventarios (kardex)* marcadas. Si marca una de esas casillas, guarde la referencia para ver la pestaña.
+
+> 📘 Para buscar, copiar, eliminar o exportar referencias, vea [Referencias](referencias.md). Para crear o actualizar muchas a la vez, vea [Importar referencias desde Excel](referencias-importar.md).
 
 ---
 
@@ -49,10 +55,10 @@ Puede guardar el enlace de la página en favoritos o compartirlo: el enlace incl
 |----------|----------------|
 | **?** (junto al título) | Abre esta ayuda en un panel lateral. |
 | **Volver a referencias** | Regresa al listado. Si hay cambios sin guardar, le pregunta antes (ver *Salir sin guardar*). |
-| **Código y nombre** | Identifican la referencia que tiene abierta. |
+| **Foto, código y nombre** | Identifican la referencia que tiene abierta. Si tiene foto, se ve en miniatura: haga clic en ella para verla en grande. |
 | **Etiquetas** | Resumen de la referencia: **Activa** o **Inactiva**, **Maneja inventario**, **Comercializada**, **Material**, **Semielaborada**. Cambian en cuanto marca o desmarca las casillas. |
 | **En vivo** | La página está conectada y le avisa si otro usuario cambia esta referencia. |
-| **Pestañas** | Cambian la sección visible sin perder lo escrito. Una pestaña con errores muestra un **contador rojo**; **Variantes** muestra cuántas variantes hay. |
+| **Pestañas** | Cambian la sección visible sin perder lo escrito. Una pestaña con errores muestra un **contador rojo**; **Variantes** muestra cuántas variantes hay. Si no caben en una línea, pasan a una segunda. |
 | **Copiar** / **Eliminar** (abajo a la izquierda) | Solo al editar. Funcionan igual que en el listado: ver [Referencias](referencias.md). |
 | **Cancelar** / **Guardar referencia** (abajo a la derecha) | Descartan o guardan los cambios de la cabecera (General, Impuestos y costos, Contabilidad). La barra queda fija abajo mientras se desplaza. |
 
@@ -113,7 +119,7 @@ Si un dato que tenía la referencia ya no existe en la compañía, el campo apar
 
 Puede cambiar el código de una referencia existente. Verá el aviso *"Vas a cambiar el código … Los movimientos conservan la relación, pero los informes, las exportaciones y las plantillas de importación mostrarán o buscarán el código nuevo."* Si vuelve a escribir el código original, el aviso desaparece.
 
-> ℹ️ **Referencias semielaboradas:** en esta versión los **consumos** y las **operaciones de producción** de una referencia semielaborada se siguen gestionando en la **versión anterior de OrangeERP**. Al marcar *Semielaborada* verá un aviso que lo recuerda.
+> ℹ️ **Referencias semielaboradas:** al guardar la referencia con *Semielaborada* marcada aparece la pestaña **Producción** (ver más abajo). Si desmarca *Semielaborada* en una referencia que ya lo era, verá *"Si desmarcas Semielaborada, la pestaña Producción se oculta pero los consumos y las operaciones se conservan."*: nada se borra, y si la vuelve a marcar, recupera su producción.
 
 ---
 
@@ -196,7 +202,7 @@ Corrija los campos marcados en cada pestaña y vuelva a guardar. Lo que escribi�
 
 Cada **variante** es una combinación de **atributo principal** y **atributo secundario** (por ejemplo, talla *M - Mediana* y color *NEG - Negro*), con su propio código de barras, precios y niveles de inventario. La variante se nombra así: *Mediana / Negro*.
 
-La tabla muestra: Atributo principal · Atributo secundario · Unidad · Cantidad · EAN13 · Asignación EAN13 · Precio 1 · Costo esperado · Participación. Con el **lápiz** la edita y con la **papelera** la elimina.
+La tabla muestra: Atributo principal · Atributo secundario · Unidad · Cantidad · EAN13 · Asignación EAN13 · Precio 1 · Costo esperado · Participación. Con el **lápiz** la edita y con la **papelera** la elimina. Si la referencia maneja inventarios, **Ver movimientos** abre la pestaña **Movimientos** con esa variante.
 
 ### Agregar o editar una variante
 
@@ -287,6 +293,243 @@ Un proveedor no se puede repetir en la misma referencia: *"Este proveedor ya est
 
 ---
 
+## 🏭 Pestaña Producción
+
+![Pestaña Producción](../recursos/img/referencias/17-produccion.png)
+
+Aparece solo en las referencias **semielaboradas** (las que se fabrican). Aquí registra **qué materiales consume** una unidad de la referencia, **qué operaciones** se hacen para fabricarla y ve **cuánto cuesta** en materiales. Tiene cuatro secciones: **Hoja de consumos**, **Consumos por variante**, **Costo estimado por unidad** y **Operaciones**.
+
+Cada fila se guarda **al momento**, en su propio diálogo (**Guardar**), como las variantes: no hace falta **Guardar referencia**. Verá **"… agregado"**, **"… actualizado"** o **"… eliminado"** y la fila se resalta unos segundos.
+
+### Hoja de consumos
+
+Los materiales que consume **una unidad** de la referencia, **para todas sus variantes**. La tabla muestra **Material** (`Código - Nombre`), **Variante del material**, **Unidad**, **Cantidad** y **Costo** (cantidad × costo esperado de la variante del material). Debajo verá el *Costo estimado de materiales por unidad*.
+
+1. Haga clic en **Agregar consumo** (o en el **lápiz** de un consumo).
+2. En **Material o semielaborado**, busque por código o nombre. Solo aparecen referencias marcadas como material o como semielaboradas.
+3. Elija la **Variante del material** (por ejemplo, el color de la tela).
+4. Escriba la **Cantidad por unidad**: mayor que 0, hasta 2 decimales, **en la unidad del material** (por ejemplo, `1.20` metros de tela).
+5. Haga clic en **Guardar**.
+
+| Mensaje | Qué hacer |
+|---------|-----------|
+| Esa variante del material ya está en la hoja de consumos. | Edite la fila que ya existe en lugar de agregar otra. |
+| La referencia no puede consumirse a sí misma. | Elija otro material. |
+| Escribe una cantidad mayor que 0 con hasta 2 decimales. | Corrija la cantidad. |
+
+### Consumos por variante
+
+Para los materiales que **solo consumen algunas variantes**, o que consumen distinto (por ejemplo, más tela en las tallas grandes). La tabla muestra **Variante de la referencia**, **Material**, **Variante del material** y **Cantidad**.
+
+- Al **agregar** (**Agregar consumo por variante**), en **Variantes de la referencia** puede elegir **varias** a la vez: se crea una fila por cada variante.
+- Al **editar** una fila, cambia solo esa variante.
+- Si una variante ya consume ese material verá *"La variante … ya consume ese material."*
+
+### Costo estimado por unidad
+
+Una tabla con una fila por variante de la referencia: **Consumos comunes** (los de la hoja de consumos) + **Propios de la variante** (sus consumos por variante) = **Costo por unidad**. Arriba se ve el total de los consumos comunes.
+
+Se calcula con el **costo esperado** de cada variante del material y **se recalcula solo** cuando agrega, cambia o quita un consumo en cualquiera de las dos secciones; las variantes afectadas se resaltan unos segundos.
+
+### Operaciones
+
+La **ruta de fabricación**: las operaciones en orden de **secuencia**, con su **tiempo** y la operación de la que **dependen**. Arriba verá un resumen como *"7 operaciones · tiempo total 29 min · ruta crítica 25,75 min"*: el tiempo total suma todas las operaciones y la ruta crítica, solo las de la cadena más larga (ver *Diagrama de flujo*).
+
+1. Haga clic en **Agregar operación** (o en el **lápiz** de una operación).
+2. Llene el diálogo y haga clic en **Guardar**.
+
+| Campo | Reglas |
+|-------|--------|
+| **Operación** ✅ | Búsquela en el catálogo de operaciones. No se puede repetir en la ruta (*"Esa operación ya está en la ruta."*). |
+| **Secuencia** ✅ | Número entero mayor que 0; define el orden. Se propone la siguiente de 10 en 10. No se puede repetir (*"Ya hay una operación con la secuencia …"*). |
+| **Tiempo (min)** ✅ | Mayor que 0, hasta 2 decimales. |
+| **Depende de** | La operación que debe terminar antes. Solo se ofrecen operaciones **de esta referencia con secuencia menor**; se propone la última. Elija **Ninguna** si es la primera. |
+
+### Diagrama de flujo y ruta crítica
+
+![Diagrama de flujo de las operaciones](../recursos/img/referencias/18-diagrama.png)
+
+Haga clic en **Ver diagrama de flujo** para ver la ruta como un dibujo (con **Ocultar diagrama de flujo** lo cierra). El diagrama también se abre solo después de guardar una operación, para que vea dónde quedó.
+
+- Cada recuadro es una operación, con su icono y color, su secuencia, su nombre y su tiempo.
+- Las **flechas** van de la operación de la que se depende a la que depende de ella: lo que está a la izquierda se hace antes.
+- La **ruta crítica** (resaltada, con su leyenda) es la cadena de operaciones que **más tiempo suma**: si una de ellas se demora, se demora toda la fabricación.
+
+La tabla de abajo tiene los mismos datos que el diagrama.
+
+### Eliminar un consumo o una operación
+
+Haga clic en la **papelera** de la fila y confirme con **Eliminar**.
+
+**Una operación de la que otras dependen no se puede eliminar**: el diálogo dice *"No se puede eliminar: … dependen de esta operación. Cámbiales la dependencia y vuelve a intentarlo."* y no ofrece el botón **Eliminar**. Primero edite esas operaciones para que dependan de otra (o de **Ninguna**) y luego elimine la que quería. Esto también aplica si la operación la usa otra referencia: el aviso le dice cuáles.
+
+### Filas marcadas con **Revisar**
+
+Algunas filas vienen de la versión anterior con datos que hoy no se permiten. Se marcan con la etiqueta **Revisar** y arriba verá *"Hay filas marcadas con Revisar: vienen así de la versión anterior. Se conservan; al editarlas se aplican las reglas."* Al pasar sobre la etiqueta verá el motivo:
+
+| Motivo | Qué significa |
+|--------|---------------|
+| Material repetido en la hoja | La misma variante del material aparece dos veces. |
+| Depende de una operación de otra referencia | La dependencia apunta a una operación que no es de esta ruta. |
+| Secuencia repetida o dependencia con secuencia mayor | Dos operaciones tienen la misma secuencia, o una depende de otra que va después. |
+| La variante del material no corresponde al material | La variante guardada no es del material de la fila. |
+
+Estas filas **no impiden trabajar**: se conservan tal cual. Cuando edite una, se le piden los datos correctos. En el diagrama se dibujan con borde discontinuo y ⚠.
+
+---
+
+## 📦 Pestaña Inventario
+
+![Pestaña Inventario: saldos por bodega y variantes en lista](../recursos/img/referencias/13-inventario.png)
+
+Muestra las **existencias** de la referencia en cada bodega a una fecha. Es solo de consulta. Aparece si la referencia **maneja inventarios (kardex)**.
+
+La consulta se hace **al abrir la pestaña** (no al abrir la referencia), así que el resto del detalle carga rápido.
+
+| Elemento | Para qué sirve |
+|----------|----------------|
+| **Saldos a la fecha** | La fecha de corte. Por defecto, hoy; no admite fechas futuras. |
+| **Mostrar saldos en cero** | Apagado (por defecto), oculta las bodegas y variantes sin existencias. Enciéndalo para verlas todas. |
+| **Consultar** | Vuelve a consultar con la fecha y la casilla elegidas. Mientras consulta dice *Consultando…*. |
+| **Consultado a las HH:MM** | La hora de la consulta. Los saldos **no se actualizan solos**: son una foto de ese momento. Para ver lo último, haga clic en **Consultar**. |
+| **Saldo total**, **Valor del inventario**, **Bodegas con saldo**, **Variantes con saldo** | Resumen de la referencia a la fecha de corte. |
+| **Por bodega** | Una fila por bodega con **Saldo**, **Costo promedio** y **Valor**. Con **Ver** (el ojo) elige la bodega y la fila se resalta. |
+| **Variantes en …** | Las variantes de la bodega elegida, en **Lista** o **Matriz** (ver abajo). |
+
+### Ver las variantes en lista o en matriz
+
+Elija una bodega con **Ver** y, en **Vista**, cambie entre:
+
+- **Lista**: una fila por variante con **Atributo principal**, **Atributo secundario**, **Saldo**, **Costo unitario** y **Costo total**. El botón **Ver movimientos** de cada fila lo lleva a la pestaña **Movimientos** ya filtrada por esa variante y esa bodega.
+- **Matriz**: las filas son los atributos secundarios (por ejemplo, colores) y las columnas los atributos principales (por ejemplo, tallas), con totales por fila, por columna y general. Las celdas con saldo se resaltan, los saldos negativos se ven en rojo y las celdas vacías no tienen saldo. Cada celda **suma todos los lotes y ubicaciones** de la variante.
+
+![Variantes de una bodega en matriz](../recursos/img/referencias/14-inventario-matriz.png)
+
+Si la referencia no tiene existencias a esa fecha verá *"Sin saldos a esta fecha"*. Pruebe con otra fecha o encienda **Mostrar saldos en cero**.
+
+---
+
+## 🔁 Pestaña Movimientos
+
+![Pestaña Movimientos (kardex)](../recursos/img/referencias/15-movimientos.png)
+
+Es el **kardex** de la referencia: los documentos que movieron cada variante (facturas, compras, traslados, ajustes…) con el **saldo después de cada uno**. Es solo de consulta. Aparece si la referencia **maneja inventarios (kardex)**.
+
+Al abrir la pestaña se consulta **la primera variante**, en **todas las bodegas**, **este mes**. Cada cambio de filtro vuelve a consultar.
+
+| Filtro | Opciones |
+|--------|----------|
+| **Variante** ✅ | Una variante de la referencia, como *Pequeña / Negro · 7701234001018* (con su EAN13). Puede escribir para buscarla. |
+| **Bodega** | Vacía = **Todas las bodegas**. Búsquela por código o nombre; con la **✕** vuelve a todas. |
+| **Tipo** | Todos · Solo entradas · Solo salidas. |
+| **Periodo** | Atajos **Este mes** (por defecto), **Últimos 3 meses** y **Últimos 12 meses**, o las fechas **Desde** y **Hasta** (luego haga clic en **Consultar**). |
+
+> ⚠️ El periodo puede ser **de hasta 12 meses**. Si elige uno más largo verá *"El periodo puede ser de hasta 12 meses. Para periodos más largos usa el reporte Kardex de inventarios."* y no se consulta. Si *Desde* es posterior a *Hasta*, verá *"La fecha Desde debe ser anterior o igual a Hasta."*
+
+**Resumen del periodo**: **Saldo anterior** (al empezar el periodo) · **Entradas** · **Salidas** · **Saldo final**.
+
+**La tabla** muestra los documentos del más antiguo al más reciente (el mismo día, primero las entradas):
+
+| Columna | Qué muestra |
+|---------|-------------|
+| **Fecha** | Fecha del documento. |
+| **Documento** | Prefijo y consecutivo (por ejemplo `FV-10234`) y, debajo, el tipo de movimiento. Los documentos anulados llevan la etiqueta **Anulado** y no suman al saldo. |
+| **Tercero** | Cliente, proveedor u otro tercero del documento. |
+| **Bodega** | Bodega del movimiento. En los traslados, debajo dice *Traslado a …*. |
+| **Entradas** / **Salidas** | Cantidades que entraron o salieron. |
+| **Saldo** | Existencia de la variante **después** de ese documento (saldo corrido). |
+| **Costo unitario** | Costo del movimiento. |
+
+La tabla se pagina (20 filas por defecto); la hora de la consulta se ve en **Consultado a las HH:MM**, igual que en Inventario. Si no hay movimientos verá *"Sin movimientos en este periodo"*: cambie el periodo, la variante o la bodega.
+
+> 💡 También llega aquí desde **Ver movimientos** en la pestaña **Variantes** o en **Inventario**: la pestaña se abre con la variante (y la bodega) ya elegidas.
+
+### Ver un documento
+
+Haga clic en **Ver documento** (el ojo) de un movimiento. Se abre un diálogo con:
+
+![Detalle de un documento](../recursos/img/referencias/16-documento.png)
+
+- **Encabezado**: tipo de movimiento, número, fecha, estado (*Vigente* o *Anulado*), tercero, documento de referencia y observaciones.
+- **Líneas de …**: primero, **solo las líneas de esta referencia** (variante, bodega, cantidad, precio o costo y subtotal).
+- **Otras líneas del documento (N)**: el resto de las líneas, plegadas. Haga clic para desplegarlas; se muestran por páginas, porque un documento puede tener miles de líneas.
+- **Totales**: *Total cantidad* y el total del documento, rotulado **precio de venta** en los documentos de ventas o **costo** en los demás (compras, traslados, producción, ajustes…).
+
+Por ahora el documento solo se consulta aquí: se podrá abrir en su módulo cuando ese módulo esté disponible en esta versión.
+
+---
+
+## 🖼️ Pestaña Foto y documentos
+
+![Pestaña Foto y documentos](../recursos/img/referencias/19-foto-documentos.png)
+
+Aquí ve y cambia la **foto principal** de la referencia y sus **documentos adjuntos**. Aparece cuando la referencia ya está guardada (en una referencia nueva está deshabilitada hasta el primer guardado). Todo se sube o se elimina **en el momento**: no hace falta **Guardar referencia**.
+
+La foto y los documentos son los mismos que se ven en la versión anterior de OrangeERP: lo que agregue o quite aquí, se ve también allá.
+
+### Foto principal
+
+La foto se muestra en el catálogo y en el punto de venta, y en miniatura junto al nombre de la referencia, arriba en esta página. Al lado de la foto verá el nombre del archivo y su tamaño. Si la referencia no tiene foto, verá *"Esta referencia no tiene foto."*
+
+- **Ver la foto en grande**: haga clic en la foto (o en la miniatura de arriba).
+- **Cambiar la foto**: en **Nueva foto**, haga clic en **Seleccionar archivo** o arrastre la imagen al recuadro. Debe ser **JPG o PNG de hasta 2 MB**. Se sube de inmediato (verá *"Subiendo la foto…"*) y luego **"Foto de … actualizada"**. La nueva foto reemplaza a la anterior.
+- **Quitar la foto**: haga clic en **Quitar foto** y confirme. Verá **"Foto de … quitada"**; la referencia deja de mostrarse con foto en el catálogo y en el punto de venta.
+
+Si el archivo no sirve, se avisa al elegirlo y no se sube nada:
+
+| Mensaje | Qué hacer |
+|---------|-----------|
+| *"La foto debe ser JPG o PNG."* | Guarde la imagen como JPG o PNG. |
+| *"La foto pesa … ; el máximo es 2 MB."* | Reduzca la imagen (menos resolución o más compresión) y vuelva a elegirla. |
+
+### Documentos adjuntos
+
+Son fichas técnicas, certificados u otros archivos de la referencia. Se admiten **PDF, imágenes (JPG, PNG, GIF, BMP), Word y Excel**.
+
+Cada referencia tiene un **cupo de 10 MB** para sus documentos. La barra muestra cuánto va usado, por ejemplo *"2,4 MB de 10 MB usados"*; se pone roja cuando queda poco espacio. Los tamaños se muestran en **MB con un decimal** (los archivos muy pequeños, en KB). La foto no cuenta en este cupo.
+
+La tabla muestra **Descripción**, **Archivo**, **Tamaño** y **Agregado** (fecha y hora en que se subió), con dos botones en la primera columna:
+
+| Botón | Qué hace |
+|-------|----------|
+| **Ojo** (Abrir) | Los **PDF e imágenes** se abren en otra pestaña del navegador. Los archivos de **Word y Excel** se descargan a su equipo con su nombre. |
+| **Papelera** (Eliminar) | Elimina el documento (ver abajo). |
+
+Si el archivo ya no está disponible, verá *"No se pudo abrir el archivo. Es posible que ya no esté disponible."*
+
+**Agregar un documento**
+
+![Agregar documento](../recursos/img/referencias/20-agregar-documento.png)
+
+1. Haga clic en **Agregar documento**.
+2. En **Archivo**, haga clic en **Seleccionar archivo** o arrastre el archivo al recuadro. Debajo le indica cuánto espacio le queda (por ejemplo, *"Te quedan 7,6 MB de 10 MB."*).
+3. Revise la **Descripción** (obligatoria, hasta 200 caracteres): si estaba vacía, se propone con el nombre del archivo (`manual-de-lavado.pdf` → *manual de lavado*). Escriba qué es el archivo, por ejemplo *Ficha técnica*.
+4. Haga clic en **Subir documento**. Verá el avance (*"Subiendo… 45 %"*) y luego **"Documento … agregado"**. El documento aparece resaltado en la tabla.
+
+El archivo se revisa **al elegirlo**, sin esperar a que haga clic en **Subir documento**:
+
+| Mensaje | Qué hacer |
+|---------|-----------|
+| *"Ese tipo de archivo no se admite. Usa PDF, imagen, Word o Excel."* | Convierta el archivo a uno de esos formatos. |
+| *"El archivo pesa … y solo quedan … de los 10 MB de la referencia. Elimina documentos o reduce el archivo."* | Elimine documentos que ya no necesite o reduzca el archivo (por ejemplo, comprima el PDF). |
+| *"Elige el archivo."* / *"Escribe una descripción."* | Complete el campo marcado. |
+
+![Archivo que no cabe en el cupo](../recursos/img/referencias/21-cupo-excedido.png)
+
+**Eliminar un documento**: haga clic en la **papelera** del documento y confirme con **Eliminar documento**. Verá **"Documento … eliminado"** y la barra del cupo se actualiza. Esta acción no se puede deshacer.
+
+### Referencias que ya superan el cupo
+
+Algunas referencias traen de la versión anterior documentos que en total pesan **más de 10 MB**. Esos documentos **se conservan**: se ven, se abren y se eliminan normalmente. La barra aparece llena y verá el aviso:
+
+> *"Los documentos de esta referencia ya superan el cupo de 10 MB. Se conservan, pero para agregar otro debe eliminar alguno hasta quedar por debajo del cupo."*
+
+![Referencia por encima del cupo](../recursos/img/referencias/22-cupo-superado.png)
+
+Mientras la referencia esté por encima del cupo no se puede agregar otro documento: elimine los que ya no necesite hasta que el espacio libre alcance para el archivo nuevo.
+
+---
+
 ## 🚪 Salir sin guardar
 
 Si cambió algo de la cabecera (General, Impuestos y costos o Contabilidad) y sin guardar intenta irse —con **Volver a referencias**, **Cancelar**, las migas, otra opción del menú, o cerrando o recargando la pestaña del navegador—, aparece **"¿Salir sin guardar?"**:
@@ -300,7 +543,7 @@ No pregunta si no hay cambios, si ya guardó, o si solo trabajó en variantes o 
 
 ## 🔒 Solo consulta
 
-Si su perfil tiene permiso de **consultar** pero no de **actualizar** la opción Referencias, la página se abre con el aviso *"Solo consulta: tu perfil no permite modificar referencias."*: todos los campos son de solo lectura, no hay **Guardar referencia** y las tablas de variantes y proveedores no tienen botones para agregar, editar ni eliminar. **Copiar** y **Eliminar** aparecen solo si su perfil tiene esos permisos.
+Si su perfil tiene permiso de **consultar** pero no de **actualizar** la opción Referencias, la página se abre con el aviso *"Solo consulta: tu perfil no permite modificar referencias."*: todos los campos son de solo lectura, no hay **Guardar referencia** y las tablas de variantes, proveedores y producción no tienen botones para agregar, editar ni eliminar. En **Foto y documentos** puede ver y ampliar la foto y abrir los documentos, pero no aparecen **Nueva foto**, **Quitar foto**, **Agregar documento** ni la papelera. Las pestañas **Inventario** y **Movimientos** funcionan igual, porque son de consulta. **Copiar** y **Eliminar** aparecen solo si su perfil tiene esos permisos.
 
 ---
 
@@ -311,6 +554,11 @@ Si su perfil tiene permiso de **consultar** pero no de **actualizar** la opción
 | Modificó la referencia que usted tiene abierta | *"Otro usuario modificó esta referencia mientras la editabas. Si guardas, reemplazarás sus cambios."* | **Ver sus cambios** para cargar lo que la otra persona guardó (si usted tenía cambios sin guardar, le avisa que se perderán), o **Guardar referencia** para dejar lo suyo. |
 | Eliminó la referencia | *"Otro usuario eliminó esta referencia. Ya no se puede guardar."* | Volver al listado. Guardar y las acciones de las tablas quedan deshabilitados. |
 | Cambió variantes o proveedores | *"Otro usuario cambió las variantes o los proveedores; la lista se actualizó."* | Nada: la tabla se actualiza sola y resalta las filas. Si usted tenía un diálogo abierto, se actualiza al cerrarlo. |
+| Cambió consumos u operaciones (pestaña Producción) | *"Otro usuario cambió la producción de esta referencia; la lista se actualizó."* | Nada: la pestaña se actualiza sola y resalta las filas. Si usted tenía un diálogo abierto, se actualiza al cerrarlo. |
+| Cambió el costo de un material de la hoja de consumos | *"Otro usuario cambió el costo de …: se recalculó el costo por unidad."* | Nada: el costo estimado por unidad se recalcula y se resalta. |
+| Cambió la foto o agregó o eliminó documentos | *"Otro usuario cambió la foto o los documentos; la lista se actualizó."* | Nada: la pestaña **Foto y documentos** se actualiza sola y resalta los documentos nuevos. Mientras usted tenga un diálogo abierto o esté subiendo un archivo no se interrumpe; si quiere ver lo último después, recargue la página. |
+
+> ℹ️ **Inventario** y **Movimientos** no se actualizan solos: sus datos cambian por documentos de otros módulos (ventas, compras, traslados, ajustes). Por eso muestran **Consultado a las HH:MM**; haga clic en **Consultar** para ver lo más reciente.
 
 ---
 
@@ -332,10 +580,6 @@ Esta pantalla se entrega por partes. Mientras no se publiquen en la nueva versi�
 
 | Tarea | Dónde hacerla por ahora |
 |-------|-------------------------|
-| Consumos y operaciones de producción de las referencias semielaboradas | Versión anterior, pestañas de producción de la referencia. |
-| Consultar el inventario (saldos por bodega) y los movimientos (kardex) de la referencia | Versión anterior, detalle de la referencia. |
-| Foto principal y documentos adjuntos | Versión anterior. Los que ya tenga se **conservan** al editar la referencia aquí. Una referencia copiada aquí queda sin foto ni documentos. |
-| Importar referencias desde Excel | Versión anterior, opción de importación de referencias. |
 | Enviar el producto a **facturación electrónica** | La nueva versión **no** envía la referencia al proveedor de facturación electrónica al guardar. Si crea o modifica aquí una referencia que se factura electrónicamente, guárdela también desde la versión anterior para que se sincronice. |
 
 ---
@@ -365,6 +609,36 @@ Una referencia comercializada se compra y se vende sin transformarla, así que n
 
 **¿Qué pasa si desactivo "Liquida IVA"?**
 Al guardar se borran los tres impuestos y la marca de IVA incluido. Si la vuelve a activar, debe elegir de nuevo los tres impuestos.
+
+**No veo la pestaña Producción (o Inventario, o Movimientos).**
+**Producción** aparece solo si la referencia está guardada como *Semielaborada*; **Inventario** y **Movimientos**, solo si está guardada con *Maneja inventarios (kardex)*. Si acaba de marcar la casilla, haga clic en **Guardar referencia**. En una referencia nueva aparecen después del primer guardado.
+
+**El inventario no muestra una bodega que sí tiene la referencia.**
+Por defecto se ocultan los saldos en cero. Encienda **Mostrar saldos en cero** y haga clic en **Consultar**. Revise también la fecha de **Saldos a la fecha**.
+
+**¿Por qué el saldo del inventario no cambia aunque alguien acaba de facturar?**
+La consulta es una foto del momento indicado en **Consultado a las HH:MM**. Haga clic en **Consultar** para actualizarla.
+
+**Necesito el kardex de más de un año.**
+La pestaña **Movimientos** consulta hasta 12 meses a la vez. Para periodos más largos use el reporte **Kardex de inventarios**.
+
+**No puedo eliminar una operación.**
+Otras operaciones dependen de ella. El aviso le dice cuáles: edítelas para que dependan de otra operación (o de **Ninguna**) y vuelva a intentarlo.
+
+**¿Qué hago con las filas marcadas "Revisar"?**
+Vienen así de la versión anterior y no impiden trabajar. Cuando pueda, edítelas y corrija lo que indica el motivo (pase el cursor sobre la etiqueta).
+
+**¿Puedo cargar muchas referencias o variantes a la vez?**
+Sí, con [Importar referencias desde Excel](referencias-importar.md).
+
+**¿Por qué un documento de Word o Excel no se abre en el navegador?**
+Los PDF y las imágenes se abren en otra pestaña; los archivos de Word y Excel se **descargan** a su equipo para que los abra con su programa. Búsquelos en la carpeta de descargas.
+
+**No me deja agregar un documento: dice que no queda espacio.**
+Cada referencia tiene un cupo de 10 MB para sus documentos. Elimine los que ya no necesite o reduzca el archivo (por ejemplo, comprima el PDF o baje la resolución de la imagen).
+
+**¿Puedo subir la foto en otro formato, como GIF o WEBP?**
+No: la foto principal debe ser JPG o PNG de hasta 2 MB. Guarde la imagen en uno de esos formatos antes de subirla.
 
 **¿Por qué el código quedó en mayúsculas?**
 Los códigos siempre se guardan en mayúsculas para que no haya dos referencias "iguales" escritas distinto (`cam-01` y `CAM-01`).
