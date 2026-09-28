@@ -18,6 +18,8 @@ Manuales de las pantallas de Inventarios en la nueva versión.
   - [Importar bodegas desde Excel](maestros/bodegas-importar.md)
 - [Grupos](maestros/grupos.md)
   - [Importar grupos desde Excel](maestros/grupos-importar.md)
+- [Referencias](maestros/referencias.md)
+  - [Detalle de una referencia](maestros/referencias-detalle.md)
 - [Subgrupos](maestros/subgrupos.md)
   - [Importar subgrupos desde Excel](maestros/subgrupos-importar.md)
 - [Unidades de medida](maestros/unidades-medida.md)
