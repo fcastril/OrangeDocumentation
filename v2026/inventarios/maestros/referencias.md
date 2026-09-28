@@ -149,6 +149,8 @@ El código y el nombre nuevos siguen las mismas reglas que al crear: código de 
 
 Al eliminarla verá **"Referencia … eliminada"**. Desde el detalle, la pantalla vuelve al listado.
 
+Al eliminar la referencia también se borran **su foto y sus documentos adjuntos** (ver [Foto y documentos](referencias-detalle.md)). Si los necesita, ábralos y guárdelos antes de eliminarla.
+
 **Una referencia no se puede eliminar si ya se usó**: si alguna de sus variantes tiene movimientos de inventario, inventario físico, cortes de costo o de saldos, producción, clientes asociados, o si es material de otra referencia. En ese caso el diálogo cambia a:
 
 > *"No se puede eliminar … : tiene información relacionada en otros módulos. Si ya no la usas, márcala como inactiva."*

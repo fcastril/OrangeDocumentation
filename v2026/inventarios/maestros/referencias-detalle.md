@@ -488,7 +488,9 @@ Son fichas técnicas, certificados u otros archivos de la referencia. Se admiten
 
 Cada referencia tiene un **cupo de 10 MB** para sus documentos. La barra muestra cuánto va usado, por ejemplo *"2,4 MB de 10 MB usados"*; se pone roja cuando queda poco espacio. Los tamaños se muestran en **MB con un decimal** (los archivos muy pequeños, en KB). La foto no cuenta en este cupo.
 
-La tabla muestra **Descripción**, **Archivo**, **Tamaño** y **Agregado** (fecha y hora en que se subió), con dos botones en la primera columna:
+La tabla muestra **Descripción**, **Archivo**, **Tamaño** y **Agregado** (fecha y hora en que se subió), con dos botones en la primera columna. Si el nombre del archivo es muy largo se ve cortado con **«…»**; pase el mouse sobre él para ver el nombre completo.
+
+Los botones son:
 
 | Botón | Qué hace |
 |-------|----------|
@@ -556,7 +558,7 @@ Si su perfil tiene permiso de **consultar** pero no de **actualizar** la opción
 | Cambió variantes o proveedores | *"Otro usuario cambió las variantes o los proveedores; la lista se actualizó."* | Nada: la tabla se actualiza sola y resalta las filas. Si usted tenía un diálogo abierto, se actualiza al cerrarlo. |
 | Cambió consumos u operaciones (pestaña Producción) | *"Otro usuario cambió la producción de esta referencia; la lista se actualizó."* | Nada: la pestaña se actualiza sola y resalta las filas. Si usted tenía un diálogo abierto, se actualiza al cerrarlo. |
 | Cambió el costo de un material de la hoja de consumos | *"Otro usuario cambió el costo de …: se recalculó el costo por unidad."* | Nada: el costo estimado por unidad se recalcula y se resalta. |
-| Cambió la foto o agregó o eliminó documentos | *"Otro usuario cambió la foto o los documentos; la lista se actualizó."* | Nada: la pestaña **Foto y documentos** se actualiza sola y resalta los documentos nuevos. Mientras usted tenga un diálogo abierto o esté subiendo un archivo no se interrumpe; si quiere ver lo último después, recargue la página. |
+| Cambió la foto o agregó o eliminó documentos | *"Otro usuario cambió la foto o los documentos; la lista se actualizó."* | Nada: la pestaña **Foto y documentos** se actualiza sola y resalta los documentos nuevos. Si usted tenía un diálogo abierto o estaba subiendo un archivo, no se interrumpe: se actualiza al cerrarlo o al terminar la subida. |
 
 > ℹ️ **Inventario** y **Movimientos** no se actualizan solos: sus datos cambian por documentos de otros módulos (ventas, compras, traslados, ajustes). Por eso muestran **Consultado a las HH:MM**; haga clic en **Consultar** para ver lo más reciente.
 
