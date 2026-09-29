@@ -125,6 +125,32 @@ Si sabe que se registraron documentos con fecha pasada, haga clic en **Actualiza
 
 > ℹ️ Esta pantalla **no se actualiza en vivo**: no verá los movimientos nuevos hasta que la información se recalcule. Si mientras navega la información se recalcula (por ejemplo, porque otro usuario hizo clic en Actualizar), los indicadores y los rankings se recargan solos para que todo corresponda al mismo cálculo.
 
+### Cuando nadie ha calculado esa fecha todavía: "Calculando…"
+
+![Calculando el inventario en segundo plano](recursos/img/dashboard-gerencial/10-calculando-asincrono.png)
+
+Si es el **primer usuario del día** que consulta una fecha de corte (por ejemplo, nadie ha entrado todavía y el inventario de ayer aún no está calculado), o hace clic en **Actualizar** y ese cálculo tarda más de lo habitual, el dashboard no lo hace esperar: envía el cálculo a un **proceso en segundo plano** y muestra el aviso:
+
+> ℹ️ *"Calculando el inventario al 28 de septiembre de 2026; te avisamos cuando esté listo"*
+
+Mientras tanto puede:
+
+- **Salir de esta pantalla y seguir trabajando** en cualquier otra parte de OrangeERP; el cálculo sigue corriendo aunque usted no esté mirando el dashboard.
+- Esperar en la pantalla: en cuanto el cálculo termina, el dashboard se **recarga solo** con los indicadores, los rankings y el detalle ya listos, sin que tenga que hacer nada.
+
+Cuando el cálculo termina, recibe una **notificación** en la campana:
+
+- Si terminó bien: **"Inventario al {fecha} listo"**. Haga clic en ella para volver al dashboard (que ya mostrará la información calculada).
+- Si falló: un aviso de error con el botón **Reintentar**, visible solo para quien pidió el cálculo.
+
+> 💡 Si dos o más personas consultan la misma fecha mientras se está calculando, no se hacen dos cálculos: todas reciben el mismo aviso cuando termina.
+
+### Precálculo nocturno
+
+Todas las noches, entre las **3:00 a. m. y las 5:00 a. m.**, OrangeERP calcula por adelantado el inventario del día anterior de las compañías que tuvieron movimientos en los últimos **30 días**. Así, la mayoría de las veces que usted entra al dashboard en la mañana, la información ya está calculada y la ve de inmediato, sin pasar por el aviso *"Calculando…"*.
+
+> ℹ️ Si el servidor se reinició durante la noche, ese precálculo puede no haberse completado y el dashboard tenga que calcular de nuevo al primer ingreso del día: en ese caso verá el aviso *"Calculando…"* igual que un primer cálculo.
+
 ---
 
 ## 📊 Indicadores
@@ -294,6 +320,9 @@ Alguien acababa de recalcular esa fecha hace menos de un minuto; se usó ese cá
 
 **La carga tarda y dice "Calculando el inventario…".**
 Es el primer cálculo de esa fecha. Puede tardar unos segundos; las siguientes consultas de esa fecha son inmediatas.
+
+**Veo "Calculando…; te avisamos cuando esté listo": ¿tengo que esperar en la pantalla?**
+No. Puede salir y seguir trabajando; cuando el cálculo termine le llega una notificación por la campana ("Inventario al {fecha} listo"). Si se queda en la pantalla, se recarga sola al terminar. Ver *Cuando nadie ha calculado esa fecha todavía* más arriba.
 
 **¿Por qué el valor no coincide con el reporte gerencial anterior?**
 Porque este dashboard usa el costo promedio móvil, el mismo de la contabilidad y de la pestaña Inventario de las referencias. Ver *Diferencias con el Reporte Gerencial anterior* más arriba.
