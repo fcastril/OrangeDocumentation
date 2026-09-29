@@ -154,6 +154,7 @@ El sistema valida cada fila **sin guardar nada** y le muestra el resultado **por
 | Código: usa hasta 20 caracteres (letras, números y . _ / -), sin espacios. | Corrija el código. |
 | Nombre: hasta 100 caracteres, sin comas ni punto y coma. | Quite `,` y `;` o acorte el nombre. |
 | Falta el nombre / el subgrupo / la unidad (obligatorio al crear). | La referencia es nueva: complete la celda. Si quería actualizar una existente, revise que el código esté bien escrito. |
+| El código de producto … supera 30 caracteres o tiene espacios (facturación electrónica). | Solo en compañías con facturación electrónica y en variantes nuevas: el código *referencia-atributo principal-atributo secundario* no cabe en SIIGO. Use atributos con códigos más cortos o acorte el código de la referencia. |
 | Subgrupo …: no existe en la compañía. | Escriba el **código** del subgrupo (no el nombre). |
 | Liquida IVA es Sí: faltan … | Escriba los tres impuestos, o ponga *Liquida IVA* en No. |
 | Tercero …: no existe o está inactivo. | Escriba el documento de un tercero activo. |

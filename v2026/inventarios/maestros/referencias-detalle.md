@@ -120,6 +120,8 @@ Si un dato que tenía la referencia ya no existe en la compañía, el campo apar
 
 Puede cambiar el código de una referencia existente. Verá el aviso *"Vas a cambiar el código … Los movimientos conservan la relación, pero los informes, las exportaciones y las plantillas de importación mostrarán o buscarán el código nuevo."* Si vuelve a escribir el código original, el aviso desaparece.
 
+> ⚠️ **Compañías con facturación electrónica:** el código nuevo no puede dejar variantes con un código de producto de más de 30 caracteres (ver *Facturación electrónica* en la pestaña **Variantes**). Si pasa, el campo **Código** muestra *"Con este código, … variantes quedarían con un código de producto de más de 30 caracteres para SIIGO."* y no se puede guardar. Lo mismo aplica al **copiar** la referencia con un código nuevo.
+
 > ℹ️ **Referencias semielaboradas:** al guardar la referencia con *Semielaborada* marcada aparece la pestaña **Producción** (ver más abajo). Si desmarca *Semielaborada* en una referencia que ya lo era, verá *"Si desmarcas Semielaborada, la pestaña Producción se oculta pero los consumos y las operaciones se conservan."*: nada se borra, y si la vuelve a marcar, recupera su producción.
 
 ---
@@ -296,6 +298,8 @@ Cada variante se envía con este código: **código de la referencia - código d
 SIIGO solo acepta códigos de **máximo 30 caracteres y sin espacios**. Una variante cuyo código no cumple esa regla **no se envía** (ni al guardar ni con los botones): en la tabla se marca con un ⚠️ **triángulo de advertencia** junto al botón de enviar, que queda deshabilitado. Pase el cursor sobre el triángulo para ver el motivo: *"El código … no es válido para SIIGO (máximo 30 caracteres y sin espacios)."*
 
 ![Variante con un código que SIIGO no acepta](../recursos/img/referencias/26-fe-codigo-invalido.png)
+
+**Al crear o modificar.** En las compañías con facturación electrónica, la regla se aplica antes de guardar: al **agregar una variante** o **cambiarle el atributo principal o secundario**, si el código resultante no cabe, el campo *Atributo secundario* muestra *"El código de producto … tiene … caracteres; SIIGO acepta máximo 30 y sin espacios."* y la variante no se guarda. Elija atributos con códigos más cortos o acorte el código de la referencia. Las variantes que ya existían con un código largo se pueden seguir editando (precios, EAN13, etc.) mientras no les cambie los atributos; siguen marcadas y sin enviarse. Las compañías sin proveedor de facturación electrónica no tienen esta restricción.
 
 Para poder enviarla, acorte o quite los espacios de alguno de los códigos: el de la referencia (pestaña **General**, *Cambiar el código*) o el del atributo principal o secundario en su maestro.
 
