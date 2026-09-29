@@ -26,3 +26,5 @@ Manuales de las pantallas de Inventarios en la nueva versión.
   - [Importar subgrupos desde Excel](maestros/subgrupos-importar.md)
 - [Unidades de medida](maestros/unidades-medida.md)
   - [Importar unidades de medida desde Excel](maestros/unidades-medida-importar.md)
+- [Ubicaciones](maestros/ubicaciones.md)
+  - [Importar ubicaciones desde Excel](maestros/ubicaciones-importar.md)
