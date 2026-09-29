@@ -29,8 +29,9 @@ La **página de detalle** es donde se crea, se consulta y se modifica una refere
 | **Inventario** | Solo si la referencia **maneja inventarios**: las existencias por bodega y por variante a una fecha. |
 | **Movimientos** | Solo si la referencia **maneja inventarios**: los documentos que movieron cada variante (kardex), con el saldo después de cada uno. |
 | **Foto y documentos** | La foto principal de la referencia y sus documentos adjuntos (fichas técnicas, certificados u otros archivos). |
+| **Bitácora** | Solo para **administradores** de la compañía: quién cambió qué en la referencia, cuándo, y el valor antes y después. |
 
-Las tres primeras pestañas forman la **cabecera** de la referencia y se guardan juntas con **Guardar referencia**. Las variantes, los proveedores y las filas de producción se guardan **cada una en su propio diálogo**, en el momento; la foto y los documentos también se suben o se eliminan en el momento. **Inventario** y **Movimientos** son de consulta: no modifican nada.
+Las tres primeras pestañas forman la **cabecera** de la referencia y se guardan juntas con **Guardar referencia**. Las variantes, los proveedores y las filas de producción se guardan **cada una en su propio diálogo**, en el momento; la foto y los documentos también se suben o se eliminan en el momento. **Inventario**, **Movimientos** y **Bitácora** son de consulta: no modifican nada.
 
 Las pestañas **Producción**, **Inventario** y **Movimientos** aparecen solo cuando la referencia ya está guardada con *Semielaborada* o *Maneja inventarios (kardex)* marcadas. Si marca una de esas casillas, guarde la referencia para ver la pestaña.
 
@@ -532,6 +533,82 @@ Mientras la referencia esté por encima del cupo no se puede agregar otro docume
 
 ---
 
+## 🕵️ Pestaña Bitácora
+
+![Pestaña Bitácora](../recursos/img/referencias/23-bitacora.png)
+
+Muestra **los cambios registrados** de la referencia y de todo lo que depende de ella: sus variantes, proveedores, material, precios, producción, foto y documentos. Para cada cambio verá quién lo hizo, cuándo y qué campos cambiaron. Es solo de consulta.
+
+**Solo la ven los administradores** de la compañía, y solo en una referencia ya guardada. Si su usuario no es administrador, la pestaña no aparece. Si pierde ese nivel mientras la tiene abierta, verá *"Solo los administradores de la compañía pueden ver la bitácora."*
+
+También aparecen los cambios hechos desde la **versión anterior de OrangeERP**, con la etiqueta **Versión anterior** (ver más abajo).
+
+### Periodo y filtros
+
+| Filtro | Opciones |
+|--------|----------|
+| **Periodo** | **Último mes**, **Últimos 3 meses** (por defecto) o **Todo**. |
+| **Acción** | Todas · Creó · Modificó · Eliminó. |
+| **Sobre** | Todo · Referencia · Variante · Proveedor · Material · Precios · Producción · Foto y documentos. |
+| **Usuario** | Todos los usuarios, o uno de los que han hecho cambios en esta referencia. Puede escribir para buscarlo. |
+
+Debajo del periodo verá *"La bitácora conserva los cambios desde el …"*: es la fecha del cambio más antiguo que guarda la compañía. Con **Todo** verá desde esa fecha; lo anterior ya no está disponible.
+
+Cada cambio de filtro vuelve a consultar. Si no hay cambios con esos filtros verá *"No hay cambios en el periodo"* y *"Prueba con otro periodo u otros filtros."*
+
+### La tabla
+
+Los cambios se muestran del más reciente al más antiguo, por páginas (20 por defecto):
+
+| Columna | Qué muestra |
+|---------|-------------|
+| **Fecha y hora** | Cuándo se hizo el cambio, en la hora de su equipo. |
+| **Usuario** | Quién lo hizo. |
+| **Acción** | **Creó**, **Modificó** o **Eliminó**. |
+| **Sobre** | Qué se cambió (por ejemplo *Variante*) y, debajo, cuál: el código de la referencia, la variante (*Mediana / Negro*), el proveedor, la operación o el documento. |
+| **Campos que cambiaron** | Los campos modificados, por ejemplo *Nombre, Precio 1*. Cuando no se conocen de antemano (creaciones, eliminaciones y cambios de la versión anterior) dice *Ver el detalle*. |
+
+Cuando se aplican precios a todas las variantes, la bitácora muestra **un solo cambio** sobre **Precios** con el número de variantes (*6 variantes*), en lugar de uno por variante.
+
+Si la bitácora no se pudo consultar verá *"No se pudo consultar la bitácora"* con el botón **Reintentar**.
+
+### Ver el detalle de un cambio
+
+![Detalle de un cambio](../recursos/img/referencias/24-bitacora-detalle.png)
+
+Haga clic en el **ojo** del cambio. Se abre **Detalle del cambio** con la fecha y hora, el usuario, la acción y sobre qué fue, y una tabla **Campo · Antes · Después**:
+
+- En una **modificación** se ven los campos que cambiaron, con el valor anterior tachado y el nuevo resaltado. Active **Mostrar todos los campos** para ver también los que quedaron iguales.
+- En una **creación**, *Antes* aparece con **—**; en una **eliminación**, *Después* aparece con **—**.
+- En un cambio de **Precios** sobre varias variantes, cada campo lleva la variante entre paréntesis, por ejemplo *Precio 1 (Pequeña / Negro)*.
+
+Cómo se muestran los valores:
+
+| Tipo de dato | Ejemplo |
+|--------------|---------|
+| Precios, costos y valor del proveedor | Con la moneda: `$ 45.000` |
+| Cantidades, mínimos, pesos, tiempos y porcentajes | Con separador de miles y coma decimal: `45.000`, `1,5` |
+| Códigos (EAN13, EAN8, código en el proveedor, posición arancelaria…) | Tal cual, sin formato: `7701234001018` |
+| Casillas | **Sí** o **No** |
+| Datos de otras tablas (subgrupo, unidad, impuesto, cuenta…) | `Código - Nombre` |
+| Campo vacío | **—** |
+
+Abajo del detalle verá el número del registro de bitácora, por si tiene que consultarlo con soporte. Si el cambio ya se borró de la bitácora verá *"Este cambio ya no está en la bitácora."*
+
+### Cambios hechos desde la versión anterior
+
+Los cambios hechos en la versión anterior de OrangeERP llevan la etiqueta **Versión anterior**. En su detalle verá el aviso *"Registrado desde la versión anterior: se muestra lo que ella guardó…"*: la versión anterior guardaba menos información, así que el detalle muestra solo lo que ella registró.
+
+Cuando en la versión anterior se **actualizaron los precios de todas las variantes**, la bitácora solo guardó la **primera variante**; el detalle lo avisa (*"…al calcular precios solo guardó la primera variante, así que el detalle muestra solo esa."*). Los precios de las demás variantes sí cambiaron, aunque no aparezcan.
+
+### Cambios nuevos mientras la consulta
+
+Si **otro usuario** (o usted mismo desde otra pestaña o sesión) cambia la referencia mientras tiene la bitácora abierta, verá *"Hay cambios nuevos en esta referencia."* con el botón **Actualizar**. La lista **no se recarga sola**, para no moverle lo que está leyendo: haga clic en **Actualizar** cuando quiera ver los cambios nuevos.
+
+Los cambios que usted hace en esta misma página no muestran el aviso: aparecen en la bitácora al volver a abrir la pestaña o al cambiar un filtro. La bitácora se consulta al abrir la pestaña, no al abrir la referencia.
+
+---
+
 ## 🚪 Salir sin guardar
 
 Si cambió algo de la cabecera (General, Impuestos y costos o Contabilidad) y sin guardar intenta irse —con **Volver a referencias**, **Cancelar**, las migas, otra opción del menú, o cerrando o recargando la pestaña del navegador—, aparece **"¿Salir sin guardar?"**:
@@ -545,7 +622,7 @@ No pregunta si no hay cambios, si ya guardó, o si solo trabajó en variantes o 
 
 ## 🔒 Solo consulta
 
-Si su perfil tiene permiso de **consultar** pero no de **actualizar** la opción Referencias, la página se abre con el aviso *"Solo consulta: tu perfil no permite modificar referencias."*: todos los campos son de solo lectura, no hay **Guardar referencia** y las tablas de variantes, proveedores y producción no tienen botones para agregar, editar ni eliminar. En **Foto y documentos** puede ver y ampliar la foto y abrir los documentos, pero no aparecen **Nueva foto**, **Quitar foto**, **Agregar documento** ni la papelera. Las pestañas **Inventario** y **Movimientos** funcionan igual, porque son de consulta. **Copiar** y **Eliminar** aparecen solo si su perfil tiene esos permisos.
+Si su perfil tiene permiso de **consultar** pero no de **actualizar** la opción Referencias, la página se abre con el aviso *"Solo consulta: tu perfil no permite modificar referencias."*: todos los campos son de solo lectura, no hay **Guardar referencia** y las tablas de variantes, proveedores y producción no tienen botones para agregar, editar ni eliminar. En **Foto y documentos** puede ver y ampliar la foto y abrir los documentos, pero no aparecen **Nueva foto**, **Quitar foto**, **Agregar documento** ni la papelera. Las pestañas **Inventario** y **Movimientos** funcionan igual, porque son de consulta; **Bitácora** también, si su usuario es administrador de la compañía. **Copiar** y **Eliminar** aparecen solo si su perfil tiene esos permisos.
 
 ---
 
@@ -559,6 +636,7 @@ Si su perfil tiene permiso de **consultar** pero no de **actualizar** la opción
 | Cambió consumos u operaciones (pestaña Producción) | *"Otro usuario cambió la producción de esta referencia; la lista se actualizó."* | Nada: la pestaña se actualiza sola y resalta las filas. Si usted tenía un diálogo abierto, se actualiza al cerrarlo. |
 | Cambió el costo de un material de la hoja de consumos | *"Otro usuario cambió el costo de …: se recalculó el costo por unidad."* | Nada: el costo estimado por unidad se recalcula y se resalta. |
 | Cambió la foto o agregó o eliminó documentos | *"Otro usuario cambió la foto o los documentos; la lista se actualizó."* | Nada: la pestaña **Foto y documentos** se actualiza sola y resalta los documentos nuevos. Si usted tenía un diálogo abierto o estaba subiendo un archivo, no se interrumpe: se actualiza al cerrarlo o al terminar la subida. |
+| Cualquier cambio en la referencia, mientras usted ve la **Bitácora** | *"Hay cambios nuevos en esta referencia."* | Haga clic en **Actualizar** cuando quiera verlos: la bitácora no se recarga sola. |
 
 > ℹ️ **Inventario** y **Movimientos** no se actualizan solos: sus datos cambian por documentos de otros módulos (ventas, compras, traslados, ajustes). Por eso muestran **Consultado a las HH:MM**; haga clic en **Consultar** para ver lo más reciente.
 
@@ -578,7 +656,7 @@ Muchas referencias vienen de la versión anterior de OrangeERP con datos que hoy
 
 ## 🧭 Lo que por ahora sigue en la versión anterior
 
-Esta pantalla se entrega por partes. Mientras no se publiquen en la nueva versión, estas tareas se hacen en la **versión anterior de OrangeERP**:
+Todas las pestañas de la referencia ya están en la nueva versión. Solo esta tarea se sigue haciendo en la **versión anterior de OrangeERP**:
 
 | Tarea | Dónde hacerla por ahora |
 |-------|-------------------------|
@@ -641,6 +719,15 @@ Cada referencia tiene un cupo de 10 MB para sus documentos. Elimine los que ya n
 
 **¿Puedo subir la foto en otro formato, como GIF o WEBP?**
 No: la foto principal debe ser JPG o PNG de hasta 2 MB. Guarde la imagen en uno de esos formatos antes de subirla.
+
+**No veo la pestaña Bitácora.**
+Solo la ven los administradores de la compañía, y solo en una referencia ya guardada. Si necesita revisar un cambio, pídaselo a un administrador.
+
+**En la bitácora no encuentro un cambio antiguo.**
+Por defecto se muestran los últimos 3 meses: elija **Todo**. La bitácora solo tiene los cambios desde la fecha que indica *"La bitácora conserva los cambios desde el …"*.
+
+**Un cambio de precios de la versión anterior muestra solo una variante.**
+Así lo registraba la versión anterior: al actualizar los precios de todas las variantes, en la bitácora solo guardaba la primera. Las demás variantes sí se actualizaron.
 
 **¿Por qué el código quedó en mayúsculas?**
 Los códigos siempre se guardan en mayúsculas para que no haya dos referencias "iguales" escritas distinto (`cam-01` y `CAM-01`).
