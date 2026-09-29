@@ -10,7 +10,7 @@
 ![Static Badge](https://img.shields.io/badge/Opcion-Referencias-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
-![Static Badge](https://img.shields.io/badge/Actualizacion-20260928-yellow)
+![Static Badge](https://img.shields.io/badge/Actualizacion-20260929-yellow)
 
 ---
 
@@ -23,7 +23,7 @@ La **página de detalle** es donde se crea, se consulta y se modifica una refere
 | **General** | Código, nombres, clasificación (subgrupo y unidad), comportamiento, tipo de producto y control sanitario. |
 | **Impuestos y costos** | IVA y porcentajes de costo. |
 | **Contabilidad** | Cuentas contables de ventas y de devoluciones. |
-| **Variantes** | Las combinaciones de la referencia (por ejemplo talla y color), cada una con su código de barras, precios y niveles de inventario. |
+| **Variantes** | Las combinaciones de la referencia (por ejemplo talla y color), cada una con su código de barras, precios y niveles de inventario, y su envío a facturación electrónica. |
 | **Proveedores** | Los proveedores que venden la referencia, con su código y su valor. |
 | **Producción** | Solo en referencias **semielaboradas**: los materiales que consume, sus operaciones de fabricación y el costo estimado por unidad. |
 | **Inventario** | Solo si la referencia **maneja inventarios**: las existencias por bodega y por variante a una fecha. |
@@ -203,7 +203,7 @@ Corrija los campos marcados en cada pestaña y vuelva a guardar. Lo que escribi�
 
 Cada **variante** es una combinación de **atributo principal** y **atributo secundario** (por ejemplo, talla *M - Mediana* y color *NEG - Negro*), con su propio código de barras, precios y niveles de inventario. La variante se nombra así: *Mediana / Negro*.
 
-La tabla muestra: Atributo principal · Atributo secundario · Unidad · Cantidad · EAN13 · Asignación EAN13 · Precio 1 · Costo esperado · Participación. Con el **lápiz** la edita y con la **papelera** la elimina. Si la referencia maneja inventarios, **Ver movimientos** abre la pestaña **Movimientos** con esa variante.
+La tabla muestra: Atributo principal · Atributo secundario · Unidad · Cantidad · EAN13 · Asignación EAN13 · Precio 1 · Costo esperado · Participación. Con el **lápiz** la edita y con la **papelera** la elimina. Si la referencia maneja inventarios, **Ver movimientos** abre la pestaña **Movimientos** con esa variante. Si la compañía factura electrónicamente, también verá el botón para **enviar** la variante al proveedor (ver *Facturación electrónica*, más abajo).
 
 ### Agregar o editar una variante
 
@@ -271,6 +271,84 @@ Al **editar** una variante, abajo a la izquierda está **Aplicar precios a todas
 ### Eliminar una variante
 
 Haga clic en la **papelera** de la variante y confirme con **Eliminar variante**. Si la variante ya se usó (tiene movimientos u otra información), no se elimina: *"No se puede eliminar la variante …: tiene movimientos u otra información relacionada."*
+
+### Facturación electrónica
+
+Si la compañía factura electrónicamente con un **proveedor de facturación electrónica** configurado (hoy **SIIGO**), cada variante de la referencia existe allá como un **producto**, para poder usarla en las facturas.
+
+#### Qué pasa automáticamente al guardar
+
+No tiene que hacer nada: después de guardar, el sistema envía las variantes al proveedor en segundo plano cuando usted:
+
+- **agrega** o **modifica** una variante;
+- **copia** una referencia (se envían las variantes de la copia);
+- **importa** referencias o variantes desde Excel (se envían las que se crearon o cambiaron);
+- cambia el **código**, el **nombre** o el **estado** (activa o inactiva) de la referencia (se envían todas sus variantes).
+
+En el proveedor, el producto **se crea** si todavía no existe; si ya existe, se le actualizan el **nombre** y el **estado** cuando cambiaron. Lo demás que tenga el producto en el proveedor (impuestos, precios, grupo…) no se modifica.
+
+> ℹ️ El envío **nunca impide guardar**: si el proveedor no responde, la referencia y sus variantes quedan guardadas igual. En ese caso puede reenviarlas después con los botones que se explican abajo.
+
+#### El código del producto en el proveedor
+
+Cada variante se envía con este código: **código de la referencia - código del atributo principal - código del atributo secundario**. Por ejemplo, la variante *Mediana / Negro* de la referencia `CAM-BAS-001` se envía como `CAM-BAS-001-M-NEG`.
+
+SIIGO solo acepta códigos de **máximo 30 caracteres y sin espacios**. Una variante cuyo código no cumple esa regla **no se envía** (ni al guardar ni con los botones): en la tabla se marca con un ⚠️ **triángulo de advertencia** junto al botón de enviar, que queda deshabilitado. Pase el cursor sobre el triángulo para ver el motivo: *"El código … no es válido para SIIGO (máximo 30 caracteres y sin espacios)."*
+
+![Variante con un código que SIIGO no acepta](../recursos/img/referencias/26-fe-codigo-invalido.png)
+
+Para poder enviarla, acorte o quite los espacios de alguno de los códigos: el de la referencia (pestaña **General**, *Cambiar el código*) o el del atributo principal o secundario en su maestro.
+
+#### Reenviar las variantes a mano
+
+Si su perfil tiene permiso de **actualizar** Referencias y la compañía tiene configurado el proveedor de facturación electrónica, la pestaña **Variantes** muestra dos botones con el icono de **enviar** (un avión de papel). Si falta el permiso o la configuración, los botones no aparecen y la tabla se ve como siempre.
+
+![Pestaña Variantes con los envíos a facturación electrónica](../recursos/img/referencias/25-fe-variantes.png)
+
+**Enviar una variante**
+
+1. En la fila de la variante, haga clic en **enviar** (el primer botón de las acciones).
+2. Mientras espera, el botón gira; puede tardar unos segundos. Las demás filas siguen disponibles.
+3. El resultado aparece enseguida en un mensaje (ver *Qué significa cada resultado*).
+
+![Variante enviada a SIIGO](../recursos/img/referencias/29-fe-envio-exitoso.png)
+
+**Enviar todas las variantes**
+
+1. Arriba de la tabla, haga clic en **Enviar a facturación electrónica**.
+2. La confirmación le dice cuántas variantes se enviarán y, si alguna tiene un código no válido, cuántas se omitirán.
+3. Haga clic en **Enviar**.
+
+![Confirmar el envío de todas las variantes](../recursos/img/referencias/27-fe-confirmar-envio.png)
+
+Verá *"Se están enviando N variantes a SIIGO en segundo plano; puedes seguir trabajando."* (y, si aplica, *"Se omitió 1 por código no válido."*). El proveedor admite un número limitado de envíos por minuto, así que en una referencia con muchas variantes el envío puede tardar varios minutos. Mientras tanto puede seguir trabajando o salir de la página.
+
+![Envío de todas las variantes en segundo plano](../recursos/img/referencias/28-fe-envio-en-bloque.png)
+
+> ⚠️ Por ahora el sistema **no avisa** cuando termina el envío de todas las variantes ni muestra su resultado. Si necesita confirmar que una variante quedó en el proveedor, use el botón **enviar** de su fila: el resultado es inmediato.
+
+El botón **Enviar a facturación electrónica** está deshabilitado si ninguna variante tiene un código válido.
+
+#### Qué significa cada resultado
+
+| Mensaje | Significa | Qué hacer |
+|---------|-----------|-----------|
+| *"Variante … creada en SIIGO (código)."* | El producto no existía en el proveedor y se creó. | Nada. |
+| *"Variante … actualizada en SIIGO (código)."* | El producto ya existía y se le actualizó el nombre o el estado. | Nada. |
+| *"La variante … ya estaba al día en SIIGO."* | El producto ya existía con los mismos datos. | Nada. |
+| *"No se envió la variante …: el código … no es válido para SIIGO (máximo 30 caracteres y sin espacios)."* | El código de la variante no cumple la regla del proveedor. | Acorte o quite los espacios de los códigos (ver arriba). |
+| *"No se pudo enviar la variante … a SIIGO: (motivo)."* | El proveedor no recibió el producto. El motivo dice por qué. | Según el motivo (tabla siguiente). |
+| *"La facturación electrónica no está habilitada para esta compañía. Revisa la configuración del proveedor tecnológico."* | La configuración del proveedor en la compañía no está completa. Los botones de envío desaparecen. | Pida al administrador que revise los datos del proveedor de facturación electrónica de la compañía. |
+| *"No se pudo enviar a facturación electrónica. Inténtalo de nuevo."* | Falló la comunicación con OrangeERP. | Vuelva a intentarlo en un momento. |
+
+![Envío que no se pudo hacer, con el motivo](../recursos/img/referencias/30-fe-envio-fallido.png)
+
+| Motivo de un envío que no se pudo hacer | Qué hacer |
+|-----------------------------------------|-----------|
+| *SIIGO rechazó las credenciales de la compañía* | El usuario o la clave de acceso del proveedor configurados en la compañía no son válidos. Pida al administrador que los revise. |
+| *sin conexión con SIIGO* o *SIIGO no está disponible* | El proveedor no respondió. Vuelva a intentarlo más tarde. |
+| *SIIGO recibió demasiadas solicitudes* | Se superó el límite de envíos por minuto del proveedor. Espere unos minutos y vuelva a intentarlo. |
+| *SIIGO respondió …* con otro motivo | El proveedor rechazó el producto. Si se repite, comuníquese con soporte e indique la referencia y la variante. |
 
 ---
 
@@ -622,7 +700,7 @@ No pregunta si no hay cambios, si ya guardó, o si solo trabajó en variantes o 
 
 ## 🔒 Solo consulta
 
-Si su perfil tiene permiso de **consultar** pero no de **actualizar** la opción Referencias, la página se abre con el aviso *"Solo consulta: tu perfil no permite modificar referencias."*: todos los campos son de solo lectura, no hay **Guardar referencia** y las tablas de variantes, proveedores y producción no tienen botones para agregar, editar ni eliminar. En **Foto y documentos** puede ver y ampliar la foto y abrir los documentos, pero no aparecen **Nueva foto**, **Quitar foto**, **Agregar documento** ni la papelera. Las pestañas **Inventario** y **Movimientos** funcionan igual, porque son de consulta; **Bitácora** también, si su usuario es administrador de la compañía. **Copiar** y **Eliminar** aparecen solo si su perfil tiene esos permisos.
+Si su perfil tiene permiso de **consultar** pero no de **actualizar** la opción Referencias, la página se abre con el aviso *"Solo consulta: tu perfil no permite modificar referencias."*: todos los campos son de solo lectura, no hay **Guardar referencia** y las tablas de variantes, proveedores y producción no tienen botones para agregar, editar ni eliminar, ni para enviar variantes a facturación electrónica. En **Foto y documentos** puede ver y ampliar la foto y abrir los documentos, pero no aparecen **Nueva foto**, **Quitar foto**, **Agregar documento** ni la papelera. Las pestañas **Inventario** y **Movimientos** funcionan igual, porque son de consulta; **Bitácora** también, si su usuario es administrador de la compañía. **Copiar** y **Eliminar** aparecen solo si su perfil tiene esos permisos.
 
 ---
 
@@ -656,11 +734,7 @@ Muchas referencias vienen de la versión anterior de OrangeERP con datos que hoy
 
 ## 🧭 Lo que por ahora sigue en la versión anterior
 
-Todas las pestañas de la referencia ya están en la nueva versión. Solo esta tarea se sigue haciendo en la **versión anterior de OrangeERP**:
-
-| Tarea | Dónde hacerla por ahora |
-|-------|-------------------------|
-| Enviar el producto a **facturación electrónica** | La nueva versión **no** envía la referencia al proveedor de facturación electrónica al guardar. Si crea o modifica aquí una referencia que se factura electrónicamente, guárdela también desde la versión anterior para que se sincronice. |
+Nada. Todas las pestañas de la referencia ya están en la nueva versión, y desde el 29 de septiembre de 2026 también el envío de las variantes a **facturación electrónica** (ver *Pestaña Variantes › Facturación electrónica*): ya no hace falta volver a guardar la referencia en la versión anterior para que llegue al proveedor.
 
 ---
 
@@ -707,6 +781,18 @@ Otras operaciones dependen de ella. El aviso le dice cuáles: edítelas para que
 
 **¿Qué hago con las filas marcadas "Revisar"?**
 Vienen así de la versión anterior y no impiden trabajar. Cuando pueda, edítelas y corrija lo que indica el motivo (pase el cursor sobre la etiqueta).
+
+**¿Tengo que hacer algo para que una variante nueva llegue a facturación electrónica?**
+No. Al guardarla se envía sola al proveedor de la compañía. Use el botón **enviar** de la fila solo si quiere confirmar el resultado o si el envío automático falló (por ejemplo, porque el proveedor no respondía).
+
+**No veo los botones para enviar a facturación electrónica.**
+Aparecen solo si su perfil tiene permiso de **actualizar** Referencias y la compañía tiene configurado el proveedor de facturación electrónica. Si la compañía sí factura electrónicamente, pida al administrador que revise esa configuración.
+
+**Una variante tiene un triángulo de advertencia y no la puedo enviar.**
+Su código para el proveedor (referencia-atributo principal-atributo secundario) supera los 30 caracteres o tiene espacios, y SIIGO no lo acepta. Acorte o corrija alguno de esos códigos y vuelva a enviarla.
+
+**Envié todas las variantes: ¿cómo sé si llegaron?**
+Por ahora el sistema no avisa cuando termina el envío en segundo plano. Espere unos minutos y, si necesita confirmarlo, envíe la variante desde su fila: el mensaje le dice si se creó, se actualizó o ya estaba al día.
 
 **¿Puedo cargar muchas referencias o variantes a la vez?**
 Sí, con [Importar referencias desde Excel](referencias-importar.md).
