@@ -7,6 +7,7 @@
 Manuales de las pantallas de Inventarios en la nueva versión.
 
 - [Dashboard de Inventarios](dashboard.md)
+  - [Dashboard gerencial de Inventarios](dashboard-gerencial.md)
 
 ## Maestros
 
