@@ -76,7 +76,7 @@ Escriba en **Buscar por código, nombre o código de barras**. La búsqueda empi
 
 | Si escribe… | Encuentra | Ejemplo |
 |-------------|-----------|---------|
-| El **inicio del código** o del **código alterno** | Las referencias cuyo código empieza así | `cam-bas` encuentra `CAM-BAS-001` |
+| **Parte del código** o del **código alterno** | Las referencias cuyo código contiene lo escrito, en cualquier posición | `bas-00` encuentra `CAM-BAS-001` |
 | **Palabras del nombre**, en cualquier orden | Las referencias que tienen **todas** esas palabras en el nombre | `camiseta cuello` encuentra *Camiseta básica cuello redondo* |
 | Un **código de barras EAN13** completo | La referencia de la variante que tiene ese código | `7701234001018` |
 
