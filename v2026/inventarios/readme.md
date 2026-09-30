@@ -9,6 +9,10 @@ Manuales de las pantallas de Inventarios en la nueva versión.
 - [Dashboard de Inventarios](dashboard.md)
   - [Dashboard gerencial de Inventarios](dashboard-gerencial.md)
 
+## Movimientos
+
+- [Entradas y salidas](movimientos/entradas-salidas.md)
+
 ## Maestros
 
 - [Atributos principales](maestros/atributos-principales.md)
