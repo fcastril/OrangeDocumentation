@@ -53,6 +53,7 @@ Cada fila es **un usuario**, aunque tenga varias pestañas abiertas o trabaje en
 | **Seleccionar todos** / casilla de la fila | Marca los usuarios que recibirán el aviso. El contador indica cuántos lleva. |
 | **Ojo** | Muestra las pestañas abiertas del usuario. |
 | **Salida** (icono rojo) | Cierra la sesión del usuario. No aparece en su propia fila. |
+| **Activos / Inactivos / Todos** | Muestra solo los usuarios activos, solo los inactivos o todos (por defecto, **Todos**). Ver *Usuarios inactivos* más abajo. |
 | **Buscar por usuario, compañía u opción** | Filtra la lista mientras escribe. |
 
 Columnas:
@@ -63,13 +64,31 @@ Columnas:
 | **Compañías** | Compañías en las que tiene pestañas abiertas. |
 | **Opciones abiertas** | Opciones que está usando (módulo y opción). **Sin opción abierta** si está en el Inicio o en la página de un módulo. |
 | **Pestañas** | Cuántas pestañas tiene abiertas y cuántas están **activas** (a la vista). Si ninguna está a la vista, dice **En segundo plano**. |
-| **Última actividad** | Última vez que hizo algo; debajo, **Desde** indica cuándo abrió su primera pestaña. |
+| **Última actividad** | Última vez que hizo algo; debajo, **Desde** indica cuándo abrió su primera pestaña. Si lleva más de 15 minutos sin actividad, aparece la marca **Inactivo**. |
 
 > 🕒 Las fechas se muestran en la zona horaria de la compañía con la que está trabajando en esta pestaña.
 
 > 📱 En el celular cada usuario se muestra como una tarjeta, con las acciones arriba.
 >
 > ![Usuarios conectados en el celular](../recursos/img/usuarios-conectados/10-movil.png)
+
+### Usuarios inactivos
+
+![Usuarios activos e inactivos](../recursos/img/usuarios-conectados/11-inactivos.png)
+
+Un usuario se marca como **Inactivo** cuando lleva **más de 15 minutos** sin usar OrangeERP en ninguna de sus pestañas. La marca aparece junto a la **Última actividad** y se actualiza sola (en menos de un minuto), sin pulsar **Actualizar**. En la ventana de pestañas, cada pestaña con más de 15 minutos sin uso lleva la marca **Inactiva**.
+
+Para ver solo un grupo, use el filtro de arriba:
+
+- **Activos**: usuarios con actividad en los últimos 15 minutos.
+- **Inactivos**: usuarios con más de 15 minutos sin actividad.
+- **Todos**: la lista completa.
+
+![Filtro de usuarios inactivos](../recursos/img/usuarios-conectados/12-filtro-inactivos.png)
+
+La búsqueda y el orden se conservan al cambiar el filtro, y **Seleccionar todos** marca solo los usuarios que se ven con el filtro elegido.
+
+> 💡 La marca **Inactivo** es solo informativa: no desconecta al usuario. Si alguien pasa **30 minutos** sin actividad, OrangeERP cierra su sesión automáticamente (ver [Cierre de sesión por inactividad](../../Generales/ingreso.md#-cierre-de-sesión-por-inactividad)) y sale de esta lista.
 
 ### Si solo está usted
 
@@ -172,6 +191,9 @@ Si el indicador dice **Reconectando…**, la conexión se interrumpió; al recup
 
 **¿Por qué un usuario aparece en "En segundo plano"?**
 Tiene OrangeERP abierto, pero en una pestaña que no está a la vista (otra pestaña del navegador u otra ventana encima).
+
+**¿Qué diferencia hay entre "En segundo plano" e "Inactivo"?**
+*En segundo plano* indica que la pestaña no está a la vista; *Inactivo* indica que el usuario lleva más de 15 minutos sin tocar el teclado, el ratón o la pantalla. Un usuario puede tener OrangeERP a la vista y estar inactivo.
 
 **Un usuario cerró el navegador y sigue en la lista.**
 Puede tardar unos segundos en salir. Si sigue ahí, pulse **Actualizar**.

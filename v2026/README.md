@@ -10,7 +10,7 @@ Manuales de las pantallas de la nueva versión de **OrangeERP (V2026)**. Son los
 
 ## Generales
 
-- [Ingresar a OrangeERP](Generales/ingreso.md)
+- [Ingresar a OrangeERP y cierre de sesión por inactividad](Generales/ingreso.md)
 - [Elegir la compañía y trabajar con varias](Generales/seleccion-compania.md)
 - [Pantalla de Inicio y menú](Generales/pantalla-inicio.md)
 - [Manejo general de la información (tablas, exportar, ayuda)](Generales/manejo-general-informacion.md)
