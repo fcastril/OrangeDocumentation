@@ -18,7 +18,7 @@
 
 Los **grupos** clasifican las referencias de inventario en familias amplias, por ejemplo `ALI` Alimentos, `ASE` Aseo o `PAP` Papelería. Cada grupo se divide en **[subgrupos](subgrupos.md)**, y las referencias pertenecen a un subgrupo.
 
-Además de clasificar, cada grupo tiene su **configuración contable**: las cuentas en las que se contabilizan las ventas, el IVA, los descuentos, los costos, el inventario y las devoluciones de las referencias del grupo. Por eso un grupo **no se puede guardar sin sus 8 cuentas**.
+Además de clasificar, cada grupo tiene su **configuración contable**: las cuentas en las que se contabilizan las ventas, el IVA, los descuentos, los costos, el inventario y las devoluciones de las referencias del grupo. Las 8 cuentas son **opcionales**: puede guardar un grupo sin cuentas (o con solo algunas) y completarlas después; las que deje vacías no se contabilizarán hasta que las elija.
 
 En esta pantalla puede **consultar, crear, editar, eliminar, exportar e importar** los grupos de la compañía con la que está trabajando.
 
@@ -70,7 +70,7 @@ En esta pantalla puede **consultar, crear, editar, eliminar, exportar e importar
 
 1. Haga clic en **Nuevo grupo**.
 2. En la pestaña **General**, escriba el código y el nombre.
-3. En la pestaña **Contabilidad**, elija las 8 cuentas (y, si aplica, su naturaleza).
+3. En la pestaña **Contabilidad**, elija las cuentas que necesite (son opcionales) y, si aplica, su naturaleza.
 4. Haga clic en **Guardar** (o presione **Enter**).
 
 ### Pestaña General
@@ -86,7 +86,7 @@ En esta pantalla puede **consultar, crear, editar, eliminar, exportar e importar
 
 ![Crear grupo: pestaña Contabilidad](../recursos/img/grupos/03-crear-contabilidad.png)
 
-Las cuentas se agrupan en dos secciones. En cada fila elija la **cuenta** (obligatoria) y, si quiere, la **naturaleza**.
+Las cuentas se agrupan en dos secciones. En cada fila elija la **cuenta** (opcional; puede limpiarla con la X) y, si quiere, la **naturaleza**.
 
 | Sección | Concepto | Para qué se usa |
 |---------|----------|-----------------|
@@ -116,7 +116,6 @@ Si falta algo, el sistema **abre la pestaña del primer error** y pone el cursor
 | Usa solo letras, números y guion (máximo 5). | Quite espacios, tildes u otros símbolos del código, o acórtelo. |
 | El nombre no puede tener comas ni punto y coma (máximo 50). | Corrija el nombre. |
 | Ya existe un grupo con el código … | Use otro código. |
-| Elige la cuenta de *concepto* (p. ej. "Elige la cuenta de IVA."). | Elija la cuenta de ese concepto en **Contabilidad** (las 8 son obligatorias). |
 | La cuenta ya no existe o no es de movimiento. Elige otra. | Alguien cambió el plan de cuentas mientras usted editaba: elija otra cuenta. |
 
 ---
@@ -190,8 +189,8 @@ Si estaba por confirmar la eliminación de un grupo que otro ya eliminó, el di�
 
 ## ❓ Preguntas frecuentes
 
-**¿Por qué no puedo guardar un grupo sin cuentas?**
-Las 8 cuentas son obligatorias: los documentos de venta, devolución e inventario las usan para contabilizar las referencias del grupo. Es la misma regla de la versión anterior.
+**¿Puedo guardar un grupo sin cuentas?**
+Sí. Las 8 cuentas son opcionales. Los documentos de venta, devolución e inventario las usan para contabilizar las referencias del grupo, así que conviene completarlas antes de usar el grupo en documentos.
 
 **¿Por qué no aparece la cuenta que busco?**
 Solo se pueden elegir cuentas **de movimiento** (las que reciben asientos, no las cuentas mayores o de agrupación) de la compañía actual. Si la cuenta no aparece, revise en el plan de cuentas que exista en esta compañía y que esté marcada como de movimiento.

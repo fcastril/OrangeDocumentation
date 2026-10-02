@@ -51,7 +51,7 @@ La importación tiene tres pasos: **Cargar archivo → Revisar → Resultado**.
 | Filas vacías | Se ignoran; en **Revisar** se indica cuántas se omitieron ("Filas vacías omitidas"). |
 | Código | Hasta 5 caracteres: letras, números y guion. Se guarda en mayúsculas. |
 | Nombre | Hasta 50 caracteres, sin comas ni punto y coma. |
-| Cuentas | Escriba el **código de la cuenta** (por ejemplo `41350501`), no el nombre. Debe ser una cuenta **de movimiento** de la compañía. **Al crear**, las 8 cuentas son obligatorias. **Al actualizar**, una celda de cuenta **vacía conserva** la cuenta actual. |
+| Cuentas | Escriba el **código de la cuenta** (por ejemplo `41350501`), no el nombre. Debe ser una cuenta **de movimiento** de la compañía. Las cuentas son **opcionales**: al crear, una celda vacía deja el concepto sin cuenta; **al actualizar**, una celda de cuenta **vacía conserva** la cuenta actual. |
 | Naturalezas | `C` (Crédito), `D` (Débito) o vacía. También acepta `Crédito` y `Débito` escritos completos. Al crear, vacía = sin naturaleza; al actualizar, vacía = **conserva** la actual. |
 
 > ⚠️ Excel puede quitar los ceros a la izquierda o convertir códigos largos en números. Las columnas de **cuenta** de la plantilla ya vienen en formato **Texto** para evitarlo; si usa otro archivo, ponga esas columnas en formato Texto antes de escribir los códigos.
@@ -84,7 +84,6 @@ Use las pestañas **Todas / Nuevos / Se actualizan / Sin cambios / Con error** p
 | El código solo puede tener letras, números y guion. | Quite espacios, tildes u otros símbolos. |
 | El código / El nombre no puede tener comas ni punto y coma. | Quite `,` y `;`. |
 | El nombre tiene más de 50 caracteres. | Acorte el nombre. |
-| Falta la cuenta en «Cuenta …» (obligatoria al crear). | Un grupo nuevo necesita las 8 cuentas: escriba el código de la cuenta en esa columna. |
 | La cuenta … de «Cuenta …» no existe en la compañía. | Revise el código de la cuenta (sin puntos ni espacios) y que exista en el plan de cuentas de esta compañía. |
 | La cuenta … de «Cuenta …» no es de movimiento. | Use una cuenta auxiliar (de movimiento), no una cuenta mayor. |
 | «Naturaleza …» debe ser C (Crédito), D (Débito) o estar vacía. | Escriba `C`, `D` o deje la celda vacía. |
