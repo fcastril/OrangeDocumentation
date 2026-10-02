@@ -257,7 +257,7 @@ Haga clic en **Aplicar N cambios** (N = las filas **nuevas** y las que **se actu
 
 ![Resultado de la importación](../recursos/img/referencias/21-importar-resultado.png)
 
-Al terminar verá **Importación aplicada** con el resumen, por ejemplo *"Referencias: 3 creadas y 8 actualizadas. Variantes: 9 creadas y 4 actualizadas. Proveedores: 2 creadas y 1 actualizada. 2 filas con error no se aplicaron."* Use **Ver referencias** para volver al listado, que ya muestra los cambios, o **Importar otro archivo**.
+Al terminar verá **Importación aplicada** con el resumen, por ejemplo *"Referencias: 3 creadas y 4 actualizadas. Variantes: 4 creadas y 3 actualizadas. Proveedores: 2 creadas y 2 actualizadas. Consumos: 1 creadas y 2 actualizadas. Consumos variante: 2 creadas y 1 actualizadas. Operaciones: 1 creadas y 3 actualizadas. 44 filas con error no se aplicaron."* Use **Ver referencias** para volver al listado, que ya muestra los cambios, o **Importar otro archivo**.
 
 Los demás usuarios que tengan abierto el listado de referencias reciben un solo aviso: *"Otro usuario importó N referencias."*
 
