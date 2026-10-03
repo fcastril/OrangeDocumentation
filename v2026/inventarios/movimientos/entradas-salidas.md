@@ -10,7 +10,7 @@
 ![Static Badge](https://img.shields.io/badge/Opcion-Entradas%20y%20salidas-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
-![Static Badge](https://img.shields.io/badge/Actualizacion-20260930-yellow)
+![Static Badge](https://img.shields.io/badge/Actualizacion-20261003-yellow)
 
 ---
 
@@ -20,7 +20,7 @@ Los **movimientos de inventario** son los documentos con los que entra o sale me
 
 Lo más importante de esta pantalla: **cada línea se guarda en el momento en que la confirma** y actualiza de inmediato las existencias y la contabilidad. No hay un botón "Guardar documento": lo que ve como *Guardada* ya quedó registrado.
 
-En esta pantalla puede **buscar, filtrar, consultar, crear, duplicar, cerrar, anular, eliminar, imprimir y exportar** los movimientos de la compañía con la que está trabajando.
+En esta pantalla puede **buscar, filtrar, consultar, crear, duplicar, cerrar, anular, eliminar, imprimir, exportar e importar** los movimientos de la compañía con la que está trabajando.
 
 > 📘 El orden, la paginación y la ayuda funcionan como en las demás tablas: ver [Manejo general de la información](../../Generales/manejo-general-informacion.md).
 
@@ -121,6 +121,151 @@ Haga clic en **Exportar a Excel**. Se descarga `movimientos-inventario_DESDE_HAS
 > ⚠️ Se exportan hasta **50.000 documentos**. Si el filtro da más, verá *"El filtro tiene más de 50.000 documentos. Acote las fechas u otros filtros para exportar."* y no se descarga nada.
 
 Dentro de un documento cerrado o anulado, la tabla de líneas tiene su propio botón para exportar las líneas de ese documento.
+
+---
+
+## 📥 Importar entradas y salidas desde Excel
+
+Crea **varios documentos nuevos de una sola vez** a partir de una hoja de Excel: cada fila es una línea y las filas con la misma **Clave de documento** forman un documento. Antes de guardar, el sistema le muestra qué documentos va a crear y qué filas tienen errores. **Nada se guarda hasta que usted aplica.**
+
+> 🔐 Necesita los permisos **Crear** y **Exportar** sobre Entradas y salidas, y estar autorizado para los tipos de movimiento que importe. Con ambos permisos verá el botón **Importar**, junto a **Exportar a Excel**; si falta alguno, el botón no aparece. Los **traslados** no se importan aquí.
+
+La importación **solo crea documentos nuevos**: nunca modifica ni borra los existentes.
+
+### Los tres pasos: Cargar archivo → Revisar → Resultado
+
+![Importar: cargar archivo](../recursos/img/movimientos/24-importar-cargar.png)
+
+**1. Cargar archivo.** Descargue la **plantilla vacía** (hoja **Movimientos** con 18 columnas) o **Exportar para reimportar** (sus documentos actuales, sin anulados y con el filtro del listado, en el mismo formato; hasta 200 documentos y 5.000 líneas). Arrastre el archivo `.xlsx` al recuadro o elíjalo. Con **Cancelar** (o **Volver al listado**) regresa sin importar nada.
+
+> 💡 Un archivo exportado para reimportar **crea documentos nuevos** con otro consecutivo; no actualiza los que ya existen.
+
+### La hoja Movimientos: 18 columnas
+
+El orden de las columnas no importa (se leen por su nombre) y las columnas desconocidas se ignoran. Las marcadas con * son obligatorias.
+
+| Parte | Columna | Qué escribir |
+|-------|---------|--------------|
+| Encabezado (igual en todas las filas del documento) | **Clave de documento*** | Texto de hasta 20 caracteres, sin comas ni punto y coma. Solo agrupa las filas: no se guarda. |
+| | **Código tipo de movimiento*** | Por ejemplo `EI` o `SI`. |
+| | **Fecha*** | Fecha de Excel o `aaaa-mm-dd`. |
+| | **Documento tercero*** | NIT o cédula de un tercero activo. |
+| | **Documento referencia** | Hasta 20 caracteres. |
+| | **Observaciones** | Hasta 200 caracteres (se quitan comas y punto y coma). |
+| Línea | **Código referencia**, **Código atributo principal**, **Código atributo secundario** | La variante por sus códigos (atributos vacíos si la referencia no los usa). |
+| | **Código de barras** | La variante por su código de barras (EAN13, EAN8 o código alterno). |
+| | **Código bodega*** | Código de la bodega. |
+| | **Código ubicación** | Opcional. |
+| | **Código centro de costos** | Obligatorio si el tipo lo exige. |
+| | **Número OP** | Obligatorio si el tipo exige orden de producción. |
+| | **Lote** | Hasta 20 caracteres; obligatorio si la referencia exige lote. |
+| | **Detalle** | Hasta 200 caracteres. |
+| | **Cantidad*** | Mayor que 0, hasta 4 decimales. |
+| | **Valor unitario*** | Mayor que 0. |
+
+**Reglas importantes**
+
+| Regla | Detalle |
+|-------|---------|
+| **Un archivo, varios documentos** | Cada **Clave de documento** distinta es un documento nuevo. El consecutivo lo asigna el sistema (no hay columna). |
+| **Encabezado igual** | Tipo, fecha, tercero, documento de referencia y observaciones deben ser iguales en todas las filas del documento; si una difiere, el documento completo queda con error. |
+| **La variante, de una sola forma** | Por referencia + atributos **o** por código de barras; nunca las dos, y al menos una. Solo variantes activas, de referencias con inventario. |
+| **Líneas iguales** | Las líneas iguales (variante, bodega, ubicación y lote) se suman en una sola, como en la captura; en la revisión verá *"Se suma a la fila N"*. |
+| **Abiertos** | Los documentos se crean **Abiertos**: no se cierran ni se contabilizan solos. Ciérrelos desde el listado cuando corresponda. |
+| **No se importan** | Fecha de vencimiento, criterios de aceptación, estado, cierre ni anulación. |
+
+**Límites**
+
+| Límite | Valor |
+|--------|-------|
+| Archivo | `.xlsx`, hasta **5 MB**, hoja **Movimientos** |
+| Para **revisar** (vista previa) | Hasta **200 documentos y 5.000 líneas** |
+| Para **aplicar** | Hasta **200 documentos y 5.000 líneas** por archivo, igual que la revisión. La aplicación corre en segundo plano; el tiempo que toma con archivos grandes aún está por medir en el ambiente de pruebas |
+
+Si el archivo no sirve verá **"El archivo no se puede importar"** con el motivo y no se envía nada: no es un `.xlsx`, no tiene la hoja *Movimientos*, falta una columna obligatoria, no tiene filas, pesa más de 5 MB, o trae demasiados documentos o líneas (divídalo).
+
+![Archivo no válido](../recursos/img/movimientos/25-importar-archivo-invalido.png)
+
+### 2. Revisar
+
+El sistema valida cada fila **sin guardar nada**.
+
+![Vista previa de la importación](../recursos/img/movimientos/26-importar-vista-previa.png)
+
+- El resumen muestra **Documentos a crear**, **Documentos con error**, **Líneas**, **Cantidad** y **Valor**, y el detalle **Por tipo**.
+- La tabla muestra, por fila: **Fila** (la de su Excel), **Documento**, **Tipo**, **Variante**, **Bodega**, **Cantidad**, **Valor unit.** y **Estado y errores** (*Se creará* o *Con error*). Con **Todas / A crear / Con error** filtra por estado del documento.
+- Un error en una fila marca **todo el documento** como *Con error*.
+- **Descargar errores** genera un Excel con las filas con error y su motivo. **Cambiar archivo** vuelve al paso 1.
+
+![Filas con error](../recursos/img/movimientos/27-importar-con-errores.png)
+
+**Sin errores para aplicar:** mientras haya **una sola fila con error**, **Aplicar** está deshabilitado y no se crea ningún documento (nunca se omiten solo los documentos con error). Corrija el archivo y vuelva a cargarlo.
+
+![Encabezado distinto](../recursos/img/movimientos/28-importar-encabezado-distinto.png)
+
+![Líneas consolidadas](../recursos/img/movimientos/29-importar-lineas-consolidadas.png)
+
+**Errores frecuentes y qué hacer**
+
+| Mensaje | Qué hacer |
+|---------|-----------|
+| Falta la clave de documento. / La clave supera 20 caracteres o tiene "," o ";". | Escriba una clave corta, sin comas ni punto y coma. |
+| La columna … difiere de la primera fila del documento (filas …). | Deje el encabezado idéntico en todas las filas del documento. |
+| El tipo de movimiento … no existe. / No está autorizado para el tipo …. | Use un código de tipo existente y que usted pueda usar. |
+| La fecha … no es válida. / El periodo de … está cerrado. | Corrija la fecha o use una de un periodo abierto. |
+| El tercero … no existe. / Está inactivo. | Escriba el documento de un tercero activo. |
+| Falta la variante. / Informa la variante por referencia o por código de barras, no por ambas. | Use una sola forma, completa. |
+| La variante … no existe o no está activa. | Revise los códigos de referencia y atributos. |
+| El código de barras … coincide con más de una variante. | Use referencia y atributos. |
+| La bodega … no existe. / … no existe (ubicación, centro de costos, orden de producción). | Escriba un código existente. |
+| El tipo exige centro de costos / número de orden de producción. / La referencia exige lote. | Complete la celda. |
+| La cantidad … no es válida (mayor que 0, hasta 4 decimales). / El valor unitario … no es válido. | Corrija el número. |
+| El saldo quedaría en …; el tipo no permite negativos. | Reduzca la salida, o registre antes la entrada que la cubre (se simula en el orden del archivo). |
+| El documento supera el máximo de … líneas / el tope de …. | Divida el documento en dos claves. |
+
+**Archivo demasiado grande para aplicar.** Si el archivo pasa de **200 documentos** o de **5.000 líneas**, el sistema no lo acepta (ni para revisar ni para aplicar): divídalo en archivos más pequeños.
+
+![Límite para aplicar](../recursos/img/movimientos/30-importar-limite-aplicar.png)
+
+### 3. Aplicar y resultado
+
+Haga clic en **Aplicar N documentos**. La aplicación **no ocurre al instante**: el sistema la pone en cola como un **proceso en segundo plano** y se aplica **documento por documento**.
+
+![Importación en proceso](../recursos/img/movimientos/32-importar-en-proceso.png)
+
+- Mientras corre verá **Importación en proceso**, con el porcentaje (*"En curso: 33 %"*) y cuántos documentos van aplicados (*"1 de 3 documentos aplicados"*). Cada documento se marca como **Aplicado**, **Falló** o **Pendiente**.
+- Puede salir de la pantalla: *"te avisaremos en la campana cuando termine"*. El resultado llega también a la **campana de notificaciones**.
+
+![Aviso en la campana](../recursos/img/movimientos/35-importar-aviso-campana.png)
+
+- Si cierra y vuelve a abrir la importación mientras el proceso sigue vivo (o desde el aviso de la campana), la pantalla retoma el estado del proceso.
+- **No envíe dos veces el mismo archivo en 10 minutos.** Si lo hace, el sistema reutiliza el proceso que ya está en curso y no crea otro: no se duplican documentos.
+
+**Una transacción por documento.** Cada documento se guarda completo o no se guarda. Si uno falla, **no se deshacen los documentos que ya se aplicaron**; el resto queda pendiente o con su error.
+
+**Resultado.** Al terminar, cada documento aparece con su estado y, si se aplicó, con un **enlace** a su número (por ejemplo *EI-000231*). Los documentos quedan **Abiertos**.
+
+![Resultado de la importación](../recursos/img/movimientos/33-importar-resultado-final.png)
+
+Use **Ver el listado** o **Importar otro archivo**.
+
+**Resultado parcial.** Si algunos documentos se aplicaron y otros no, verá el aviso *"Importación parcial"* y el conteo (*"2 de 4 documentos aplicados"*). Los aplicados ya están registrados; los que fallaron muestran el motivo.
+
+![Resultado parcial](../recursos/img/movimientos/34-importar-resultado-parcial.png)
+
+- **Reintentar pendientes** reanuda el proceso solo con los documentos que faltan, sin duplicar los ya aplicados. Se puede reintentar una vez.
+- **Volver a validar** vuelve a revisar el archivo, por si los datos cambiaron.
+- Si vuelve a enviar el mismo archivo cuando ya hubo un resultado parcial, el sistema responde **409 IMPORT_PARCIAL**: no crea otro proceso. Use **Reintentar pendientes**, o corrija el archivo y cárguelo solo con los documentos que faltan.
+
+| Aviso | Qué hacer |
+|-------|-----------|
+| *Importación parcial: los documentos aplicados ya están registrados.* | Reintente los pendientes, o cargue un archivo solo con ellos. |
+| *Otro proceso está usando esa bodega.* | El sistema reintenta solo los pendientes; si persiste, haga clic en **Reintentar**. |
+| *Los datos cambiaron: el saldo ya no alcanza* (IMPORT_CONFLICT) | Use **Volver a validar** y ajuste el archivo. |
+| *Otro usuario importó movimientos mientras revisabas.* | Use **Volver a validar** antes de aplicar. |
+| *La importación falló. No se aplicó ningún documento.* | Corrija la causa que se muestra por documento y reintente. |
+
+Cada documento y línea importados aparece en la [bitácora](#-bitácora-solo-administradores) igual que si los hubiera capturado, y los demás usuarios con el listado abierto reciben el aviso de cambios nuevos.
 
 ---
 
@@ -426,6 +571,27 @@ Si su usuario no es administrador, no verá la pestaña ni el interruptor.
 ---
 
 ## ❓ Preguntas frecuentes
+
+**No veo el botón Importar.**
+Necesita los permisos **Crear** y **Exportar** sobre Entradas y salidas. Consulte a su administrador.
+
+**Mi archivo tiene un error en una fila: ¿se crean los demás documentos?**
+No. Con una fila con error no se puede aplicar: corrija el archivo y vuelva a cargarlo. Ver [Importar](#-importar-entradas-y-salidas-desde-excel).
+
+**Apliqué y la pantalla dice "En proceso". ¿Tengo que esperar?**
+No. Puede salir: el resultado llega a la campana y puede volver a abrir la importación.
+
+**Fallaron algunos documentos, ¿se pierden los que sí se aplicaron?**
+No. Cada documento es una transacción propia. Use **Reintentar pendientes**: solo se procesan los que faltan, sin duplicar.
+
+**Envié el archivo otra vez y no se creó otro proceso.**
+Es lo esperado: dentro de 10 minutos el mismo archivo reutiliza el proceso en curso. Si ya hubo un resultado parcial verá el aviso 409 IMPORT_PARCIAL.
+
+**¿Cuántos documentos puedo aplicar por archivo?**
+Hasta 200 documentos y 5.000 líneas. Los archivos grandes pueden tardar; por eso la aplicación es en segundo plano.
+
+**¿Los documentos importados quedan cerrados?**
+No. Quedan **Abiertos**; ciérrelos desde el listado.
 
 **¿Tengo que guardar el documento al final?**
 No. Cada línea se guarda al confirmarla. Lo único que puede hacer al final es **Cerrar transacción**, para que nadie lo modifique.
