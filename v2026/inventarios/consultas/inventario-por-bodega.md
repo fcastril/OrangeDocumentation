@@ -10,7 +10,7 @@
 ![Static Badge](https://img.shields.io/badge/Opcion-Inventarios%20por%20Bodega-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
-![Static Badge](https://img.shields.io/badge/Actualizacion-20261003-yellow)
+![Static Badge](https://img.shields.io/badge/Actualizacion-20261004-yellow)
 
 ---
 
@@ -52,7 +52,7 @@ Al entrar, la pantalla no muestra datos: elija los filtros y pulse **Consultar**
 | **Actualizar** | Vuelve a calcular el inventario. Ver *El día en curso*. |
 | **Exportar Excel** / **Exportar PDF** | Descargan lo que cumple los filtros y la búsqueda. Están deshabilitados mientras no haya resultados. |
 | **Fecha de corte** | Por defecto es **hoy**. No puede ser una fecha futura. |
-| **Bodega** | Escriba para buscar por código o nombre. Vacío significa **todas las bodegas**; puede elegir varias y se muestran como etiquetas que puede quitar. |
+| **Bodega** | Escriba para buscar por código o nombre. Vacío significa **todas las bodegas**. Se consulta **una bodega o todas**, no varias a la vez. |
 | **Atributos** | Ver *Con y sin atributos*. |
 | **Consultar** | Trae el resultado con los filtros elegidos. |
 
@@ -65,9 +65,21 @@ Si escribe una fecha futura o mal formada, el campo marca el error y no se consu
 ![Resultado con atributos](../recursos/img/inventario-por-bodega/02-con-atributos.png)
 
 1. **Tarjetas de resumen:** filas, bodegas, saldo total y costo total de **todo** lo que cumple los filtros, no solo de la página que ve.
-2. **Totales del filtro:** una línea **TOTAL BODEGA - nombre (Cód.: código)** por cada bodega y un **TOTAL GENERAL**. Están en un panel sobre la tabla (y no mezclados con las filas) para que sigan correctos aunque la tabla tenga varias páginas. El saldo suma unidades de medida distintas, por eso es una referencia de volumen y no una cifra contable.
-3. **Tabla:** Bodega, Referencia, Atributo principal, Atributo secundario, Saldo, Costo unitario, Costo total y Precio 1 a Precio 5. Puede ordenar haciendo clic en el encabezado y elegir 10, 25, 50 o 100 filas por página. En pantallas pequeñas la tabla se convierte en tarjetas.
-4. Los saldos **negativos** se muestran con signo **−**: indican que se sacó más de lo que había registrado y conviene revisarlos.
+2. **Totales dentro de la tabla:** no hay un panel de totales aparte. Cada bodega aparece como un grupo: un encabezado **Nombre (Cód.: 01)**, sus líneas y una fila **TOTAL BODEGA - nombre (Cód.: código)**. Al final de la consulta aparece la fila **TOTAL GENERAL**. El saldo suma unidades de medida distintas, por eso es una referencia de volumen y no una cifra contable.
+3. **Total general siempre visible:** una barra fija al pie de la tabla muestra el **TOTAL GENERAL** de todo el filtro, sin importar en qué página esté.
+4. **Bodega que continúa:** si una bodega no cabe en una página, la página siguiente abre con su encabezado seguido de **(continúa)**. El **TOTAL BODEGA** aparece al terminar la bodega y suma **toda** la bodega, no solo las líneas de esa página.
+
+![Bodega que continúa en la página siguiente](../recursos/img/inventario-por-bodega/12-grupo-continua.png)
+
+![Total general en la tabla y en la barra fija](../recursos/img/inventario-por-bodega/13-total-general-fijo.png)
+
+5. **Tabla:** Bodega, Referencia, Atributo principal, Atributo secundario, Saldo, Costo unitario, Costo total y Precio 1 a Precio 5. Puede elegir 10, 25, 50 o 100 filas por página.
+6. **Orden:** al hacer clic en el encabezado de una columna, el orden actúa **dentro de cada bodega**; las bodegas conservan su lugar y los totales no cambian.
+7. **En el celular:** la tabla se convierte en tarjetas; el encabezado de cada bodega queda como título del grupo y los totales se leen como una lista apilada (Saldo, Costo total).
+
+![Vista en el celular](../recursos/img/inventario-por-bodega/14-movil-grupos.png)
+
+8. Los saldos **negativos** se muestran con signo **−**: indican que se sacó más de lo que había registrado y conviene revisarlos.
 
 Si no hay inventario para esos filtros, la pantalla dice "No hay inventario con saldo…": pruebe con otra fecha u otra bodega.
 
@@ -94,7 +106,7 @@ Escriba en **Buscar bodega, referencia o atributo…**. La búsqueda empieza a p
 
 ![Búsqueda](../recursos/img/inventario-por-bodega/05-busqueda.png)
 
-Las tarjetas, los totales y los archivos exportados **respetan la búsqueda**. Si nada coincide verá "Sin resultados para «…»" y la exportación queda deshabilitada.
+Las tarjetas, los totales (de cada bodega y el general) y los archivos exportados **se recalculan solo con lo filtrado**. Si nada coincide verá "Sin resultados para «…»" y la exportación queda deshabilitada.
 
 ![Sin resultados](../recursos/img/inventario-por-bodega/09-sin-resultados.png)
 
@@ -109,7 +121,7 @@ El reporte de la versión anterior calculaba el costo con otro método (un prome
 Otras diferencias respecto al reporte anterior:
 
 - Ya no acepta **fechas futuras**.
-- Los totales se calculan sobre **todo el resultado** y no solo sobre lo que alcanza a cargar la pantalla.
+- Los totales se calculan sobre **todo el resultado** y no solo sobre la página que ve, y ahora se leen dentro de la propia tabla.
 - Los archivos exportados respetan la **bodega, la búsqueda y el orden** que tiene en pantalla.
 - Cada persona ve su propia consulta: ya no se comparte con otros usuarios que estén consultando al tiempo.
 
