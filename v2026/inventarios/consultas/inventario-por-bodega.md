@@ -64,7 +64,14 @@ Si escribe una fecha futura o mal formada, el campo marca el error y no se consu
 
 ![Resultado con atributos](../recursos/img/inventario-por-bodega/02-con-atributos.png)
 
-1. **Tarjetas de resumen:** filas, bodegas, saldo total y costo total de **todo** lo que cumple los filtros, no solo de la página que ve.
+1. **Tarjetas de resumen:** cuatro tarjetas con cifras de **todo** lo que cumple los filtros, no solo de la página que ve. Cada una trae una aclaración debajo del número:
+   - **Líneas de inventario** (con atributos): cada combinación de referencia y variante, por bodega, con saldo.
+   - **Referencias por bodega** (sin atributos): cada referencia cuenta una vez por bodega, con saldo.
+   - **Bodegas con saldo:** bodegas que aparecen en el resultado.
+   - **Saldo total:** unidades de todo el resultado.
+   - **Costo total:** saldo × costo promedio, de todo el resultado.
+
+   La primera tarjeta cambia de nombre según el modo de la consulta **ya ejecutada**: si mueve el interruptor **Atributos** pero aún no pulsa **Consultar**, conserva el nombre del resultado que está viendo.
 2. **Totales dentro de la tabla:** no hay un panel de totales aparte. Cada bodega aparece como un grupo: un encabezado **Nombre (Cód.: 01)**, sus líneas y una fila **TOTAL BODEGA - nombre (Cód.: código)**. Al final de la consulta aparece la fila **TOTAL GENERAL**. El saldo suma unidades de medida distintas, por eso es una referencia de volumen y no una cifra contable.
 3. **Total general siempre visible:** una barra fija al pie de la tabla muestra el **TOTAL GENERAL** de todo el filtro, sin importar en qué página esté.
 4. **Bodega que continúa:** si una bodega no cabe en una página, la página siguiente abre con su encabezado seguido de **(continúa)**. El **TOTAL BODEGA** aparece al terminar la bodega y suma **toda** la bodega, no solo las líneas de esa página.
