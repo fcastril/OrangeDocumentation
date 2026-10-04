@@ -9,6 +9,10 @@ Manuales de las pantallas de Inventarios en la nueva versión.
 - [Dashboard de Inventarios](dashboard.md)
   - [Dashboard gerencial de Inventarios](dashboard-gerencial.md)
 
+## Consultas/Reportes
+
+- [Inventarios por Bodega](consultas/inventario-por-bodega.md)
+
 ## Movimientos
 
 - [Entradas y salidas](movimientos/entradas-salidas.md)
