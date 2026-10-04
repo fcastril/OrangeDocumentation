@@ -12,6 +12,7 @@ Manuales de las pantallas de Inventarios en la nueva versión.
 ## Consultas/Reportes
 
 - [Inventarios por Bodega](consultas/inventario-por-bodega.md)
+- [Kardex de Inventarios](consultas/kardex-inventarios.md)
 
 ## Movimientos
 
