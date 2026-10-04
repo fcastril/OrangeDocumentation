@@ -16,7 +16,7 @@
 
 ## 📋 Descripción
 
-Esta consulta muestra **cada entrada y cada salida de inventario** de un **periodo**, con la **existencia** que queda después de cada movimiento (en cantidad y en pesos), el **costo promedio** y los totales. Es de **solo lectura**: no crea ni cambia información. Puede **consultar, buscar, exportar a Excel y exportar a PDF**.
+Esta consulta muestra **cada entrada y cada salida de inventario** de un **periodo**, con la **existencia** que queda después de cada movimiento (en cantidad y en pesos), el **costo promedio** y los totales, que aparecen como **filas grises dentro de la tabla**. Es de **solo lectura**: no crea ni cambia información. Puede **consultar, buscar, exportar a Excel y exportar a PDF**.
 
 La existencia se lleva **por referencia**: suma **todas las bodegas y todas las variantes** (talla, color…) de esa referencia. Aunque consulte una sola bodega, la existencia que ve en cada renglón es la de la referencia completa (ver *Leer el resultado*).
 
@@ -96,7 +96,22 @@ El campo marca el error y no se consulta cuando:
 
 ![Resultado con atributos](../recursos/img/kardex-inventarios/02-con-atributos.png)
 
-1. **Panel de totales (sobre la tabla):** el título **TOTAL GENERAL de todo el filtro** muestra cuatro cifras de **todo** lo consultado, no solo de la página que ve, cada una en cantidad · pesos: **Saldo inicial**, **Entradas**, **Salidas** y **Saldo final**. Debajo, la tabla plegable **Totales de los grupos de esta página** trae los mismos cuatro totales para cada **referencia** que aparece en la página; esos totales son los de la referencia **completa**, aunque parte de sus movimientos esté en otra página. Puede plegar ese detalle y la pantalla recuerda cómo lo dejó.
+1. **Cómo se organiza la tabla:** los movimientos se agrupan **por referencia** y los totales son **filas grises dentro de la propia tabla**. No hay recuadro de totales sobre la tabla ni pie fijo.
+   - **Fila gris de encabezado de la referencia:** abre cada referencia y muestra su **Saldo inicial** (cantidad y pesos), es decir, lo que había antes de la fecha inicial.
+   - **Renglones de la referencia:** sus entradas y salidas, una por línea.
+   - **Fila gris TOTAL REFERENCIA:** cierra la referencia, **después de su último renglón**, con las **entradas**, las **salidas** y el **saldo final**, en cantidad y en pesos.
+   - **Fila gris TOTAL GENERAL:** es **la última fila de la tabla** y suma **todas** las referencias del filtro. Aparece **solo en la última página** (ver *Páginas y totales*).
+
+![Referencia con su encabezado, sus renglones y los totales](../recursos/img/kardex-inventarios/02-con-atributos.png)
+
+![Varias referencias en una página: cada una con su encabezado y su TOTAL REFERENCIA](../recursos/img/kardex-inventarios/22-varias-referencias.png)
+
+> 📜 **Las cifras están a la derecha.** La tabla es ancha: en pantallas pequeñas use el **desplazamiento horizontal** para ver las columnas **Entradas, Entradas ($), Salidas, Salidas ($), Costo promedio, Existencia y Existencia ($)**. Las cifras de las filas grises de total (entradas, salidas y saldo final) se leen en esas mismas columnas. Estas capturas muestran la tabla desplazada a la derecha:
+
+![Tabla desplazada a la derecha: cifras de TOTAL REFERENCIA y TOTAL GENERAL (entradas 4 · $74.000,00, salidas 7 · $129.500,00, saldo final 22 · $407.000,00)](../recursos/img/kardex-inventarios/24-cifras-totales.png)
+
+![Varias referencias, desplazada a la derecha: cada TOTAL REFERENCIA con sus cifras](../recursos/img/kardex-inventarios/26-cifras-varias-referencias.png)
+
 2. **Tabla de movimientos:** Referencia, Bodega, At. principal y At. secundario (solo con atributos), Movimiento, Consecutivo, Fecha, Tercero, Entradas, Entradas ($), Salidas, Salidas ($), **Costo promedio**, Existencia y Existencia ($). Puede elegir 10, 25, 50 o 100 filas por página (por defecto 25).
 3. **Existencia:** es el saldo de la **referencia** (todas sus bodegas y variantes) **después** de ese movimiento. Empieza en la existencia que tenía la referencia antes de la fecha inicial y suma entradas y resta salidas renglón por renglón. La aplicación calcula este saldo corrido sobre todos los movimientos de la referencia en el periodo.
 4. **Con filtro de bodegas, el saldo es el de la referencia completa.** Si elige solo la bodega 02, cada renglón muestra la existencia de la referencia en **todas** las bodegas, no la que quedó en la bodega 02. Por eso la existencia de un renglón puede no coincidir con lo que sumaría solo lo visible. Para ver cuánto hay en cada bodega use la consulta [Inventario por bodega](inventario-por-bodega.md).
@@ -110,7 +125,7 @@ El campo marca el error y no se consulta cuando:
 
 ![Existencia negativa](../recursos/img/kardex-inventarios/08-saldo-negativo.png)
 
-9. **En el celular:** cada renglón se muestra como una tarjeta con todas sus etiquetas, y el panel de totales queda apilado arriba.
+9. **En el celular:** cada renglón se muestra como una tarjeta con todas sus etiquetas, y las filas grises de encabezado y totales se ven como bandas entre las tarjetas.
 
 ![Vista en el celular](../recursos/img/kardex-inventarios/16-movil.png)
 
@@ -118,11 +133,31 @@ El campo marca el error y no se consulta cuando:
 
 ---
 
+## 📑 Páginas y totales
+
+- **Una referencia que sigue en otra página:** si una referencia tiene más renglones de los que caben en una página, su encabezado se repite al inicio de la página siguiente con la marca **(continúa)**, con el mismo saldo inicial de la referencia. **TOTAL REFERENCIA** aparece solo en la página donde termina la referencia, y trae los totales de la referencia **completa**, no solo de los renglones de esa página.
+- **TOTAL GENERAL solo en la última página:** en las páginas anteriores no hay fila TOTAL GENERAL. Sus cifras son las de **todo lo consultado**, no las de la página que está viendo. Para verlo, vaya a la última página.
+
+![Página que continúa: el encabezado dice (continúa) y todavía no hay total](../recursos/img/kardex-inventarios/10-pagina-que-continua.png)
+
+![Última página: cierra la referencia con TOTAL REFERENCIA y termina con TOTAL GENERAL](../recursos/img/kardex-inventarios/23-total-general.png)
+
+![Última página, desplazada a la derecha: las cifras de TOTAL REFERENCIA y de TOTAL GENERAL de todo el filtro](../recursos/img/kardex-inventarios/25-cifras-total-general.png)
+
+- **El conteo de la página** ("1–25 de 120") cuenta solo renglones de movimiento; las filas grises no cuentan.
+- **Con filtro de bodegas:** el **saldo inicial**, el **saldo final** y la existencia son los de la **referencia completa** (todas sus bodegas). Las **entradas y salidas** de las filas grises suman solo los movimientos de las bodegas elegidas. Por eso, con una bodega elegida, saldo inicial + entradas − salidas puede no ser igual al saldo final.
+- **Con búsqueda:** igual que con bodegas: las filas grises suman **solo los renglones encontrados** (entradas y salidas), y los saldos inicial y final siguen siendo los **reales** de cada referencia. En la captura, la búsqueda deja 2 renglones y la tabla está desplazada a la derecha: las filas de total suman solo esos 2, pero la existencia final (22) es la real de la referencia.
+
+![Búsqueda, desplazada a la derecha: totales de los renglones encontrados](../recursos/img/kardex-inventarios/27-cifras-busqueda.png)
+- Los archivos **Excel y PDF** traen las mismas filas de total (una **TOTAL** al final de cada referencia y la fila **TOTAL GENERAL**) de **todo** el resultado, no solo de una página.
+
+---
+
 ## 💲 Cómo se calcula el valor
 
 - **Entradas ($) y Salidas ($):** el valor de cada línea del movimiento, tal como quedó registrado en el documento.
 - **Costo promedio:** el costo promedio móvil de la referencia en ese renglón.
-- **Saldo inicial ($):** el valor de la existencia que tenía la referencia antes de la fecha inicial.
+- **Saldo inicial ($):** el valor de la existencia que tenía la referencia antes de la fecha inicial; se ve en la fila gris de encabezado de cada referencia.
 - **Existencia ($):** saldo inicial ($) + entradas ($) − salidas ($), renglón por renglón.
 
 Es la misma cifra en la pantalla, en el Excel y en el PDF.
@@ -187,7 +222,7 @@ Escriba en **Buscar documento, tercero, referencia o bodega…**. La búsqueda e
 
 ![Búsqueda](../recursos/img/kardex-inventarios/09-busqueda.png)
 
-La búsqueda **solo oculta renglones; no cambia la existencia**: cada renglón que queda visible muestra la existencia real de su referencia. Con una búsqueda aplicada, el panel lo indica: **entradas y salidas** suman solo los movimientos encontrados, y el **saldo inicial y el saldo final** son los reales de cada referencia. Los archivos exportados también respetan la búsqueda.
+La búsqueda **solo oculta renglones; no cambia la existencia**: cada renglón que queda visible muestra la existencia real de su referencia. Con una búsqueda aplicada, en las filas grises **TOTAL REFERENCIA** y **TOTAL GENERAL** las **entradas y salidas** suman solo los movimientos encontrados, y el **saldo inicial y el saldo final** son los reales de cada referencia (ver *Páginas y totales*). Los archivos exportados también respetan la búsqueda.
 
 Si nada coincide verá "Sin resultados para «…»" con el botón **Limpiar búsqueda**, y la exportación queda deshabilitada.
 
@@ -257,7 +292,8 @@ Si compara con el Kardex de la versión anterior, puede ver cifras distintas. **
 | **Costo** | No se mostraba. | Columna **Costo promedio** (promedio móvil) en cada renglón. |
 | **Orden** | Sin desempate; podía mezclar renglones. | Referencia, fecha (entradas primero), documento y bodega. |
 | **Valor de la existencia** | El valor en pesos arrancaba en 0 en pantalla y se sumaba varias veces en Excel; sin atributos se multiplicaba por el número de variantes. | Valor de cada línea con el saldo inicial en pesos; igual en pantalla, Excel y PDF; el saldo inicial se cuenta una vez. |
-| **TOTAL GENERAL** | Omitía la última referencia y algunos totales de grupo. | Se calcula sobre **todo** el filtro. |
+| **TOTAL GENERAL** | Omitía la última referencia y algunos totales de grupo. | Se calcula sobre **todo** el filtro y es la última fila gris de la tabla, en la última página. |
+| **Totales por referencia** | Se calculaban en el navegador y fallaban con varias páginas. | Fila gris **TOTAL REFERENCIA** tras el último renglón de cada referencia, con los totales de la referencia completa. |
 | **Referencias sin movimientos** | No aparecían. | Siguen sin aparecer (no hay renglón de saldo). |
 | **Datos incompletos del legado** | Algunas líneas se perdían sin explicación. | Siguen excluidas, pero esta ayuda explica por qué el saldo inicial puede no cuadrar (ver *Líneas excluidas y fechas incompletas*). |
 | **Tiempo de respuesta** | La pantalla podía quedarse esperando más de 40 minutos. | En compañías grandes se calcula en segundo plano, con aviso por la campana, "Calculado a las…" y **Actualizar**. |
@@ -281,6 +317,12 @@ Si compara con el Kardex de la versión anterior, puede ver cifras distintas. **
 **¿Por qué no aparece una referencia que sé que tiene existencia?** Las referencias sin movimientos en el periodo no aparecen.
 
 **¿Por qué el saldo inicial no cuadra al centavo con lo que veo?** Puede haber líneas de documentos con datos incompletos del legado o movimientos con fecha 01/01/0001 que cuentan en la existencia pero no se muestran (ver *Líneas excluidas y fechas incompletas*).
+
+**¿Por qué no veo el TOTAL GENERAL?** Aparece solo como última fila de la **última página**. Pase a la última página para verlo; sus cifras son las de todo el filtro.
+
+**¿Por qué una referencia dice "(continúa)" y no tiene total?** Sigue en la página siguiente; su TOTAL REFERENCIA aparece donde termina y es el de la referencia completa.
+
+**Con una bodega o una búsqueda, ¿por qué saldo inicial + entradas − salidas no da el saldo final?** El saldo inicial y el final son los de la referencia completa, y las entradas y salidas son solo las de lo que se ve (ver *Páginas y totales*).
 
 **¿Por qué no puedo ordenar por columna?** La existencia de cada renglón depende del orden; si se cambiara, el saldo dejaría de tener sentido.
 
