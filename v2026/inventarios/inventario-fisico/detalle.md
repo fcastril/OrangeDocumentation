@@ -36,7 +36,7 @@ O desde **[Captura](captura.md)**:
 
 ## 🖥️ Pantalla principal
 
-<!-- CAPTURA PENDIENTE: story Pantallas/Inventario/Inventario físico/Detalle/Detalle -->
+![Pantalla de detalle del conteo mostrando el resumen (bodega, fecha, estado, responsable), totales (Lecturas, Variantes, Unidades), y tabla de variantes contadas con códigos, referencias, atributos, lecturas y cantidades. Botones de acciones (Capturar, Cerrar, Anular) en la cabecera.](../recursos/img/inventario-fisico/05-detalle-abierto.png)
 
 ### Cabecera
 

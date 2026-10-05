@@ -35,7 +35,7 @@ Desde **[Conteos](conteos.md)**:
 
 ## 🖥️ Pantalla principal
 
-<!-- CAPTURA PENDIENTE: story Pantallas/Inventario/Inventario físico/Captura/Captura -->
+![Pantalla de captura de conteo con campo de código de barras o referencia, campo de cantidad, búsqueda por nombre, totales en tiempo real (Lecturas, Variantes, Unidades) y listado de últimas lecturas registradas.](../recursos/img/inventario-fisico/03-captura-escaneo.png)
 
 ### Cabecera
 

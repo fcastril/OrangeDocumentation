@@ -33,7 +33,7 @@ En esta pantalla el jefe de inventarios ve todos los conteos abiertos, cerrados 
 
 ## 🖥️ Pantalla principal
 
-<!-- CAPTURA PENDIENTE: story Pantallas/Inventario/Inventario físico/Conteos/Listado -->
+![Listado de conteos en diferentes estados (Abierto, Cerrado, Ajustado) con columnas de fecha, bodega, tipo, estado, lecturas, unidades y responsable. Cada fila tiene acciones disponibles según el estado.](../recursos/img/inventario-fisico/01-conteos-listado.png)
 
 | Elemento | Para qué sirve |
 |----------|----------------|
@@ -88,6 +88,8 @@ Los filtros se aplican en memoria sin recargar la página. Combínese para acota
 ---
 
 ## ➕ Crear un conteo
+
+![Diálogo para crear un nuevo conteo: opciones de tipo (Completo o Aleatorio), buscador de bodega, fecha del conteo y campo de observaciones opcionales.](../recursos/img/inventario-fisico/02-conteos-nuevo.png)
 
 1. Haga clic en **Nuevo conteo**. Se abre un diálogo.
 2. **Tipo de conteo**: Seleccione **Completo** o **Aleatorio**.
