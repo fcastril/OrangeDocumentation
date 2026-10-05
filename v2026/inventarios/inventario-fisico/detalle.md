@@ -36,7 +36,7 @@ O desde **[Captura](captura.md)**:
 
 ## 🖥️ Pantalla principal
 
-![Pantalla de detalle del conteo con resumen, listado de lecturas por variante y botones de acciones según el estado.](../recursos/img/inventario-fisico/05-detalle-abierto.png)
+<!-- CAPTURA PENDIENTE: story Pantallas/Inventario/Inventario físico/Detalle/Detalle -->
 
 ### Cabecera
 
@@ -99,8 +99,6 @@ Si hay datos históricos problemáticos, aparecen avisos:
 ---
 
 ## ⚙️ Acciones según el estado
-
-![Diálogo de confirmación para cerrar el conteo con resumen de lecturas y variantes.](../recursos/img/inventario-fisico/06-detalle-acciones-cerrar.png)
 
 ### Abierto (🟢)
 
