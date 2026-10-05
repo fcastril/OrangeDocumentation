@@ -35,7 +35,7 @@ Desde **[Conteos](conteos.md)**:
 
 ## 🖥️ Pantalla principal
 
-<!-- CAPTURA PENDIENTE: story Pantallas/Inventario/Inventario físico/Captura/Captura -->
+![Pantalla de captura con campo de código, cantidad y listado de lecturas registradas en tiempo real.](../recursos/img/inventario-fisico/03-captura-escaneo.png)
 
 ### Cabecera
 
@@ -77,6 +77,8 @@ Desde **[Conteos](conteos.md)**:
 - Mismo efecto que presionar Enter.
 
 ### Buscar por nombre (lookup de variantes)
+
+![Captura con búsqueda manual de variantes por nombre de referencia.](../recursos/img/inventario-fisico/04-captura-lectura-manual.png)
 
 - Busque por nombre de referencia o variante.
 - Útil si el código no se escanea bien o no lo tiene a mano.
