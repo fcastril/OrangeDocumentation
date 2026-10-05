@@ -265,7 +265,7 @@ Los botones **Exportar Excel** y **Exportar PDF** (solo con permiso **Exportar**
 ![Exportando a Excel](../recursos/img/kardex-inventarios/14-exportar-excel.png)
 
 - **Encabezado:** datos de la compañía, el título "Kardex de Inventarios", la **fecha inicial y la fecha final**, las bodegas (o "Todas"), la referencia (o "Todas"), si se consultó con atributos, la búsqueda, la fecha y hora de generación y el usuario que lo generó.
-- **Contenido:** las mismas columnas de la pantalla, una fila **TOTAL** al final de cada referencia y la fila **TOTAL GENERAL**. En Excel los números quedan como números, listos para sumar o filtrar. El PDF sale en hoja carta horizontal y numera las páginas ("Página X de Y").
+- **Contenido:** las mismas columnas de la pantalla, una fila **TOTAL** al final de cada referencia y la fila **TOTAL GENERAL**. En Excel los números quedan como números, listos para sumar o filtrar. El PDF sale en hoja oficio horizontal y numera las páginas ("Página X de Y").
 - **Nombre del archivo:** `kardex-inventarios_` seguido de la fecha inicial y la fecha final, por ejemplo `kardex-inventarios_2026-10-01_2026-10-04.xlsx` o `.pdf`.
 
 | Formato | Máximo de movimientos |
