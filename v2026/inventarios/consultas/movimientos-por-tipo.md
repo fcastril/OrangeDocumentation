@@ -167,7 +167,7 @@ Los botones **Exportar Excel** y **Exportar PDF** (solo con permiso **Exportar**
 ![Exportando a Excel](../recursos/img/movimientos-por-tipo/18-exportar-excel.png)
 
 - **Encabezado:** datos de la compañía, el título del reporte, la **fecha inicial y la fecha final**, los tipos de movimiento elegidos, los centros de costo y las bodegas (o "Todos"/"Todas"), la búsqueda, la fecha y hora de generación y el usuario que lo generó.
-- **Contenido:** las **mismas 17 columnas** de la pantalla, la fila de encabezado de cada tipo, su **SUBTOTAL** y el **TOTAL GENERAL**. En Excel los números quedan como números, listos para sumar o filtrar. El PDF sale en hoja carta horizontal y numera las páginas ("Página X de Y").
+- **Contenido:** las **mismas 17 columnas** de la pantalla, la fila de encabezado de cada tipo, su **SUBTOTAL** y el **TOTAL GENERAL**. En Excel los números quedan como números, listos para sumar o filtrar. El PDF sale en hoja oficio horizontal (para que las 17 columnas y los montos grandes no se monten) y numera las páginas ("Página X de Y").
 - **Nombre del archivo:** `movimientos-por-tipo-inventarios_` seguido de la fecha inicial y la fecha final, por ejemplo `movimientos-por-tipo-inventarios_2026-10-01_2026-10-04.xlsx` o `.pdf`.
 
 ![Archivo PDF descargado](../recursos/img/movimientos-por-tipo/19-exportar-pdf.png)
