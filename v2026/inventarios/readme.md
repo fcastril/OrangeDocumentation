@@ -19,6 +19,12 @@ Manuales de las pantallas de Inventarios en la nueva versión.
 
 - [Entradas y salidas](movimientos/entradas-salidas.md)
 
+## Inventario físico
+
+- [Conteos](inventario-fisico/conteos.md)
+  - [Captura de conteo](inventario-fisico/captura.md)
+  - [Detalle del conteo](inventario-fisico/detalle.md)
+
 ## Maestros
 
 - [Atributos principales](maestros/atributos-principales.md)
