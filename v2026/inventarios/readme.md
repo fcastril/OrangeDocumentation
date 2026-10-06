@@ -24,6 +24,7 @@ Manuales de las pantallas de Inventarios en la nueva versión.
 - [Conteos](inventario-fisico/conteos.md)
   - [Captura de conteo](inventario-fisico/captura.md)
   - [Detalle del conteo](inventario-fisico/detalle.md)
+  - [Comparativo y ajuste](inventario-fisico/ajuste.md)
 
 ## Maestros
 

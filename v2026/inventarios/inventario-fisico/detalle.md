@@ -263,4 +263,4 @@ Escriba 2 o más caracteres en el campo de búsqueda. Puede buscar por código o
 ## 📍 Siguiente paso
 
 - Vuelva a **[Conteos](conteos.md)** para cerrar el conteo o continuar capturando.
-- Si el conteo está en estado **Cerrado**, comunique al jefe de inventarios para que genere el **Comparativo y ajuste** (opción 316, cuando esté disponible).
+- Si el conteo está en estado **Cerrado**, comunique al jefe de inventarios para que genere el **[Comparativo y ajuste](ajuste.md)** (opción 316).
