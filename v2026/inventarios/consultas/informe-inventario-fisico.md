@@ -87,8 +87,6 @@ Al hacer clic en **Elegir conteos**, se abre un modal con la lista de conteos di
 - **Tope:** el modal muestra máximo 31 conteos a la vez; si hay más, use la búsqueda o pagine.
 - **Seleccionar:** marque los conteos que desee; si elige un solo conteo, la pantalla muestra solo ese rango. Si elige varios, los gráficos agregados muestran la mezcla.
 
-![Conteos seleccionados como chips](../recursos/img/informe-inventario-fisico/03-chips.png)
-
 Los conteos elegidos aparecen como **chips** (etiquetas) bajo los filtros. Puede quitarlos haciendo clic en la **X** de cada chip, o eliminarlos todos con el botón **Limpiar**.
 
 ---
