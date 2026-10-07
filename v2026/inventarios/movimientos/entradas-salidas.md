@@ -658,6 +658,121 @@ Si alguna línea **se sumó** a otra existente (misma variante, bodega, lote y v
 
 ---
 
+## 🏭 Producción desde una entrada {#produccion-desde-una-entrada}
+
+Cuando una **entrada tiene una orden de producción (OP)**, cada línea puede generar un **movimiento de producción** para registrar que esa cantidad avanza de una operación a la siguiente en la ruta de fabricación. Desde aquí crea, ve y anula esa producción sin salir del documento de inventario.
+
+### Cuándo aparece la acción
+
+En una línea de **entrada con OP**, vea:
+
+- **Chip de producción**: resume la situación (por ejemplo, *"Producción: Corte → Costura · Responsable: Operario X"* o aviso rojo si hay un bloqueo).
+- **Botón "Registrar producción"**: aparece si la línea es elegible (tiene OP, está guardada, no está anulada, la ruta de la referencia tiene operaciones y la compañía no requiere sincronización externa).
+
+Si el botón no aparece, verá el motivo debajo:
+
+| Motivo | Qué hacer |
+|--------|-----------|
+| *"La línea no tiene orden de producción"* | Use una línea con OP. |
+| *"La referencia no tiene operaciones definidas"* | En **Maestro de referencias**, agregue la ruta de operaciones para esta referencia. |
+| *"La OP ya terminó su ruta"* | Todas las operaciones de la OP están completas; no hay más dónde registrar producción. |
+| *"Hay una dependencia sin cumplir"* | Una operación depende de otra que aún no tiene el saldo suficiente producido. |
+| *"Editar documentos cerrados"* | El documento está cerrado. Solo administradores pueden registrar producción en documentos cerrados (con permiso especial). |
+| *"Compañía con sincronización externa no disponible"* | La integración externa está activa; la función está en preparación. |
+
+### Propuesta de la operación y responsable
+
+Al abrir **"Registrar producción"** verá:
+
+**Operación de origen** y **Operación destino** (de dónde a dónde pasa la producción):
+- Si es el **primer movimiento** de la OP, origen está vacío y destino es la primera operación de la ruta.
+- Si **ya hay movimientos**, origen es la operación donde quedó la producción y destino es la siguiente elegible según las dependencias.
+- Si hay **operaciones en paralelo** (varias comparten la misma dependencia anterior), se ofrece una como destino principal y las demás como **alternativas**; puede elegir cualquiera.
+
+**Responsable** (obligatorio):
+- Viene precompletado con el **tercero del documento**. Si el tercero no es un responsable válido, edite el campo o elija otro con la lupa.
+
+**Saldo máximo**:
+- Debajo se ve cuántas unidades pueden producirse como máximo (no puede ser mayor que la cantidad de la línea de inventario ni mayor que el saldo producido en la operación de origen).
+
+**Fecha** (obligatoria):
+- Por defecto, la **fecha del documento**. Debe estar en un periodo contable abierto.
+
+**Fecha de entrega** (obligatoria):
+- Por defecto, la **fecha del documento + 1 día**. Debe ser posterior a la fecha del movimiento.
+
+**Fecha de entrega real** (opcional):
+- Cuándo se completó realmente la operación (no puede ser anterior a la fecha del movimiento).
+
+### Registrar el movimiento de producción
+
+1. Revise la **propuesta**: origen, destino, responsable, fechas y saldo máximo.
+2. Corrija lo que necesite: cambie responsable, alternativas de operación, fechas (si el periodo lo permite).
+3. Si la **cantidad tiene decimales**, verá un aviso: *"La producción se registra en unidades enteras"*. Redondee si es necesario.
+4. Haga clic en **Registrar** o presione **Ctrl+Enter**.
+
+Si todo es válido verá *"Se registró el movimiento de producción"* con el resumen, y el chip de la línea se actualiza mostrando la nueva operación. Otros usuarios ven el cambio en vivo.
+
+### Chip de producción por línea
+
+En la tabla de líneas, el **chip** (etiqueta coloreada) resume el estado:
+
+| Estado | Significado | Color |
+|--------|-------------|-------|
+| *Producción: Corte → Costura · Responsable X* | Movimiento activo registrado y guardado | Verde |
+| *Producción: Bloqueada · Razón* | La línea no puede registrar más producción (terminó la ruta, hay dependencias incumplidas) | Rojo |
+| *Producción: Anulada* | Se anuló el movimiento anterior; se puede registrar de nuevo | Gris |
+| *Sin producción* | La línea aún no tiene movimiento de producción | Neutral |
+
+Haga clic en el chip para ver el detalle y las opciones (ver, anular).
+
+### Ver el movimiento registrado
+
+En el chip, haga clic en **Ver producción** (ojo). Se abre un panel lateral con:
+
+- Operación origen → Operación destino
+- Responsable
+- Cantidad producida (entera)
+- Fechas (movimiento, entrega, entrega real si se completó)
+- Quién lo registró y cuándo
+- Botón **Anular** (si tiene permiso)
+
+### Anular la producción
+
+Si se equivocó o necesita revertir:
+
+1. Abra **Ver producción** desde el chip.
+2. Haga clic en **Anular**.
+3. Escriba el **motivo de anulación** (obligatorio, máx. 200 caracteres).
+4. Confirme.
+
+Verá *"Se anuló el movimiento de producción"*. La línea vuelve al estado anterior (o sin producción si era el primer movimiento). **No se puede deshacer**: los avisos de otros usuarios muestran que la operación quedó anulada.
+
+#### Cascada al anular
+
+Si **anula la línea de inventario** o todo el **documento**:
+
+- Si el movimiento de producción **no tiene movimientos posteriores** en la cadena, se anula automáticamente.
+- Si **hay movimientos posteriores** (otras líneas dependen de esta), verá el error *"Línea bloqueada: no se puede anular (tiene producción activa)"* y deberá anular primero la producción desde el chip.
+
+#### Línea bloqueada por producción
+
+Si cambia la **cantidad, variante u orden de producción** de una línea que tiene un **movimiento de producción activo**, verá *"No se puede cambiar: línea con producción activa"*. **Anule primero** la producción desde el chip, luego edite la línea.
+
+Otros cambios (valor, lote, detalle, criterios) sí se permiten sin anular.
+
+### Errores y validaciones
+
+| Error | Por qué | Qué hacer |
+|-------|--------|----------|
+| *Saldo insuficiente* | La cantidad que quiere producir supera el saldo de la operación origen. | Reduzca la cantidad o registre primero producción en otra línea de la misma OP. |
+| *Periodo cerrado* | La fecha del movimiento o la fecha de entrega cae en un periodo contable cerrado. | Use una fecha de un periodo abierto. |
+| *Variante inválida* | La referencia de la línea no está configurada con la ruta de operaciones. | En Maestro de referencias, agregue operaciones. |
+| *Compañía con sincronización externa no disponible* | La empresa está configurada para sincronizar con un sistema externo y esa sincronización no está disponible. | Consulte al administrador. |
+| *Dependencia no cumplida* | Una operación depende de saldo suficiente en otra que aún no lo tiene. | Registre primero la operación previa o elija una operación alternativa sin dependencia. |
+
+---
+
 ## 🔄 Cambios de otros usuarios (en vivo)
 
 Si otra persona crea, modifica o elimina movimientos mientras usted trabaja, **no tiene que recargar**:
