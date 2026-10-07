@@ -580,6 +580,7 @@ Cada fila muestra un artículo de la hoja de consumos:
 | **Pendiente** | Lo que falta por descargar (Requerido − Ya descargado). |
 | **Existencia** | Lo que hay en la bodega que eligió. |
 | **A descargar** | Lo que va a sacar ahora. **Editable**: solo si la casilla está marcada. El máximo es `min(Pendiente, Existencia)`. Si escribe más, verá *"Máximo N"* en rojo y **Confirmar** queda deshabilitado. Presione **Esc** para volver al valor sugerido; si lo borra o pone 0, se desmarca la casilla. |
+| **Lote** | Solo aparece cuando marca un insumo cuya referencia exige lote. Es una casilla (*"Lote de …"*) donde digita el lote: hasta 20 caracteres, se convierte a mayúsculas y es **obligatoria**. Ver *Insumos con lote* abajo. |
 | **Estado** | Leyenda (verde, amarilla, etc.) que resume por qué el insumo está en ese estado. Algunos estados llevan insignias adicionales. |
 
 ### Insumos no descargables
@@ -590,10 +591,19 @@ Si un insumo tiene alguno de estos problemas, aparece deshabilitado (la casilla 
 |--------|--------|----------|
 | **Ya descargado por completo** | El pendiente es 0. No hay más que sacar. | Nada, es normal. |
 | **Faltan N** | La existencia en bodega es menor que lo pendiente. | Reciba más inventario, elija otra bodega o descargue cantidad parcial; edite la fila a mano (o elija **Seleccionar suficientes**). |
-| **Requiere lote** | La referencia pide lote y el diálogo no lo captura. | Capture el lote en el documento a mano. Hay un enlace *"Capturar en el documento"*. |
 | **Sin costo** | La referencia no tiene costo configurado. | Defina el costo de la referencia en el maestro. |
 
 Los insumos con **duplicados**, **autoconsumo** u **otra variante sospechosa** en la hoja de consumos aparecen con la insignia **Revisar**. No están bloqueados: la descarga funciona, pero vea qué ocurrió.
+
+### Insumos con lote
+
+Si la referencia de un insumo **exige lote**, la fila se puede marcar como cualquier otra. Al marcarla aparece la casilla **"Lote de …"** y el cursor pasa a ella:
+
+- Digite el lote (hasta **20 caracteres**; si escribe en minúsculas se convierte a mayúsculas).
+- Mientras la casilla esté vacía verá *"Digite el lote (máx. 20)"* en rojo y **Confirmar** queda deshabilitado, con el motivo a la vista.
+- Si el servidor no acepta el lote, la casilla se marca con el error y el diálogo se queda abierto para corregirlo.
+- Cada insumo se descarga con **un solo lote** por fila. Para sacar el mismo insumo de dos lotes distintos, haga una descarga con un lote y luego otra con el otro.
+- Si la referencia **no** exige lote, no aparece la casilla.
 
 ### Resumen y límites
 
@@ -612,7 +622,7 @@ Los insumos con **duplicados**, **autoconsumo** u **otra variante sospechosa** e
 
 **Error de validación al confirmar**. Si algún dato es inválido (período cerrado, centro de costos faltante, etc.), verá un resumen de errores en rojo. El diálogo no se cierra; corrija y vuelva a confirmar.
 
-- Los errores por fila aparecen bajo el insumo (ej. *"Falta centro de costos"*).
+- Los errores por fila aparecen bajo el insumo (ej. *"Falta centro de costos"* o el error de la casilla de lote).
 - Use **Seleccionar suficientes** para limpiar filas problemáticas.
 
 **Error del sistema al confirmar**. Si el servidor falla:
