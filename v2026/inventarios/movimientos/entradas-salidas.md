@@ -10,7 +10,7 @@
 ![Static Badge](https://img.shields.io/badge/Opcion-Entradas%20y%20salidas-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
-![Static Badge](https://img.shields.io/badge/Actualizacion-20261003-yellow)
+![Static Badge](https://img.shields.io/badge/Actualizacion-20261007-yellow)
 
 ---
 
@@ -516,6 +516,145 @@ El formato por defecto **FRT-INV-001** incluye, en este orden: datos de la compa
 **Duplicar** (en el listado o en el documento) abre un documento **nuevo** con el mismo tipo, tercero, observaciones y líneas del original, con la fecha de hoy y el valor unitario **sugerido de nuevo** para esa fecha. No copia el consecutivo, el doc. referencia ni los adjuntos.
 
 Las líneas copiadas aparecen como **Por guardar** y el aviso dice *"Copia de EI 125: revise y pulse Guardar todas"*. Revise, corrija o quite lo que necesite y haga clic en **Guardar todas**: se envían una a una (la primera crea el documento) y cada una muestra su estado. Es útil para devoluciones o movimientos que se repiten.
+
+---
+
+## 📥 Descargar insumos de una OP {#descargar-insumos-de-op}
+
+Cuando el documento tiene un **tipo de salida** que exige **orden de producción** (OP), aparece el botón **Descargar insumos de OP** en la captura. Úselo para agregar líneas de una vez, desde la **hoja de consumos** de la orden.
+
+### Cuándo aparece el botón
+
+**Descargar insumos de OP** se muestra si:
+
+- El tipo de movimiento **exige orden de producción**
+- El documento es una **salida** (no entrada)
+- El documento está **abierto** y no tiene líneas en conflicto de OP (ver *Limitaciones*)
+
+Si el botón está deshabilitado, verá el motivo debajo. Algunos motivos comunes:
+
+| Motivo | Por qué | Qué hacer |
+|--------|--------|----------|
+| *Hay N líneas sin guardar* | El documento tiene líneas pendientes | Guarde las líneas primero o descarte los cambios |
+| *Complete el encabezado para descargar insumos* | Falta tipo, fecha, tercero o bodega destino | Rellene los campos obligatorios del encabezado |
+| *El documento ya tiene líneas de otra OP (OP-121, OP-122)* | Mezclaría órdenes diferentes | Cree otro documento o elimine las líneas de la OP anterior |
+| *Editar documentos cerrados* | El documento está cerrado | Si es administrador, haga clic en **Editar cerrado** primero |
+
+### Abrir y navegar el diálogo
+
+Haga clic en **Descargar insumos de OP**. Se abre un diálogo con:
+
+1. **Origen** (obligatorio):
+   - **OP**: la orden de producción. Solo ve las órdenes vigentes y elegibles. Si alguna aparece en rojo, no se puede usar (congelada, cancelada o sin hoja de consumos).
+   - **Bodega**: dónde salen los insumos. Obligatoria.
+   - **Ubicación**: dentro de la bodega (opcional).
+   - **Centro de costos**: según lo exija el tipo de movimiento.
+
+2. **Insumos**: la tabla con los artículos de la hoja de consumos. Puede cambiar de bodega en el origen: la tabla se actualiza con la existencia en esa bodega.
+
+3. **Resumen**: abajo, cuántos insumos seleccionó, cuántas líneas resultarán y el valor estimado.
+
+4. **Botones**: 
+   - **Seleccionar suficientes**: marca solo los insumos cuya existencia cubre la cantidad que necesita (atolondrado, pero oportuno).
+   - **Confirmar**: envía las líneas al documento. Si hay errores no se cierra el diálogo.
+   - **Cancelar**: cierra sin guardar. Si tiene cambios, pide confirmar *"¿Descartar la selección?"*.
+
+**Teclas de atajo:**
+
+| Tecla | Qué hace |
+|-------|----------|
+| **?** | Abre esta ayuda |
+| **Esc** | Cierra el diálogo (si no hay cambios, o tras confirmar el descarte) |
+| **Ctrl+Enter** | Confirma (igual que el botón) |
+
+### Los insumos de la tabla
+
+Cada fila muestra un artículo de la hoja de consumos:
+
+| Columna | Qué significa |
+|---------|--------------|
+| **Casilla** | Marca si desea descargar este insumo. Solo activa si el insumo es válido (ver *Insumos no descargables* abajo). |
+| **Insumo** | Código, nombre, unidad y variante. Si hay avisos, aparecen en texto pequeño debajo. |
+| **Requerido** | Lo que debe surtirse según la OP (cantidad que la OP pide). |
+| **Ya descargado** | Lo que ya descargó de esta OP en documentos anteriores. |
+| **Pendiente** | Lo que falta por descargar (Requerido − Ya descargado). |
+| **Existencia** | Lo que hay en la bodega que eligió. |
+| **A descargar** | Lo que va a sacar ahora. **Editable**: solo si la casilla está marcada. El máximo es `min(Pendiente, Existencia)`. Si escribe más, verá *"Máximo N"* en rojo y **Confirmar** queda deshabilitado. Presione **Esc** para volver al valor sugerido; si lo borra o pone 0, se desmarca la casilla. |
+| **Lote** | Solo aparece cuando marca un insumo cuya referencia exige lote. Es una casilla (*"Lote de …"*) donde digita el lote: hasta 20 caracteres, se convierte a mayúsculas y es **obligatoria**. Ver *Insumos con lote* abajo. |
+| **Estado** | Leyenda (verde, amarilla, etc.) que resume por qué el insumo está en ese estado. Algunos estados llevan insignias adicionales. |
+
+### Insumos no descargables
+
+Si un insumo tiene alguno de estos problemas, aparece deshabilitado (la casilla no se puede marcar) y verá el motivo en texto:
+
+| Motivo | Por qué | Qué hacer |
+|--------|--------|----------|
+| **Ya descargado por completo** | El pendiente es 0. No hay más que sacar. | Nada, es normal. |
+| **Faltan N** | La existencia en bodega es menor que lo pendiente. | Reciba más inventario, elija otra bodega o descargue cantidad parcial; edite la fila a mano (o elija **Seleccionar suficientes**). |
+| **Sin costo** | La referencia no tiene costo configurado. | Defina el costo de la referencia en el maestro. |
+
+Los insumos con **duplicados**, **autoconsumo** u **otra variante sospechosa** en la hoja de consumos aparecen con la insignia **Revisar**. No están bloqueados: la descarga funciona, pero vea qué ocurrió.
+
+### Insumos con lote
+
+Si la referencia de un insumo **exige lote**, la fila se puede marcar como cualquier otra. Al marcarla aparece la casilla **"Lote de …"** y el cursor pasa a ella:
+
+- Digite el lote (hasta **20 caracteres**; si escribe en minúsculas se convierte a mayúsculas).
+- Mientras la casilla esté vacía verá *"Digite el lote (máx. 20)"* en rojo y **Confirmar** queda deshabilitado, con el motivo a la vista.
+- Si el servidor no acepta el lote, la casilla se marca con el error y el diálogo se queda abierto para corregirlo.
+- Cada insumo se descarga con **un solo lote** por fila. Para sacar el mismo insumo de dos lotes distintos, haga una descarga con un lote y luego otra con el otro.
+- Si la referencia **no** exige lote, no aparece la casilla.
+
+### Resumen y límites
+
+**Resumen**: debajo de la tabla, ve cuántos insumos seleccionó (ej. *"4 de 6"*), cuántas líneas resultarán (si varias descargas se consolidan en una, es menos), y el valor total estimado.
+
+**Límites**: los tipos de movimiento pueden tener un límite de cantidad máxima de líneas o de valor. Si está cerca o lo supera:
+
+- Verá un aviso **naranja** (aviso) o **rojo** (error).
+- **Confirmar** queda deshabilitado si supera el límite.
+- Puede desmarcar insumos para entrar dentro del límite.
+- Si el servidor rechaza (por si el límite cambió), verá el error y el diálogo se queda abierto.
+
+### Errores y reintentos
+
+**Error al cargar la OP**. Si no se puede traer la hoja de consumos, verá *"No se pudieron cargar los insumos"* con **Reintentar**. La OP y bodega se conservan.
+
+**Error de validación al confirmar**. Si algún dato es inválido (período cerrado, centro de costos faltante, etc.), verá un resumen de errores en rojo. El diálogo no se cierra; corrija y vuelva a confirmar.
+
+- Los errores por fila aparecen bajo el insumo (ej. *"Falta centro de costos"* o el error de la casilla de lote).
+- Use **Seleccionar suficientes** para limpiar filas problemáticas.
+
+**Error del sistema al confirmar**. Si el servidor falla:
+
+- **Ocupado**: *"El sistema está ocupado. No se guardó nada"* con **Reintentar**. La selección se conserva con la misma clave de idempotencia (no se duplican líneas).
+- **Error**: *"No se pudo generar la salida. No se guardó ninguna línea"* con **Reintentar**.
+- **Conflicto**: otro usuario cambió el documento mientras lo tenía abierto. Aparece *"El documento cambió mientras elegía los insumos"* con **Actualizar y revisar** (relee sin escribir nada).
+- **Cambio de saldo**: otra persona descargó insumos de la misma OP antes que usted. Aparece el aviso y la tabla se actualiza con las existencias nuevas; el insumo que ya no alcanza se marca como *"Faltan …"*.
+- **Cambio de pendiente**: el pendiente de un insumo bajó porque otra descarga llegó antes. Aparece el aviso y la tabla se actualiza.
+
+En todos estos casos, el diálogo se queda abierto para revisar.
+
+### Cambios en tiempo real (otro usuario)
+
+Si otro usuario modifica el documento mientras el diálogo está abierto, verá *"El documento cambió; actualice los insumos"* con un botón **Actualizar**. La tabla no se refresca sola; úselo para traer los cambios sin perder su selección.
+
+### Limitaciones
+
+- **Una OP por documento**: el diálogo impide mezclar órdenes en el mismo documento. Si tiene líneas de OP-120 y abre para OP-121, verá *"El documento ya tiene líneas de otra OP"* y no abrirá. Cree otro documento.
+- **Máximo 50 insumos por descarga**: si la OP tiene más, solo ve los primeros 50 ordenados por código. Vuelva a abrir para los siguientes.
+- **Órdenes sin hoja de consumos**: el diálogo no abre si la OP no tiene consumos. Cargue la hoja en el módulo de Producción primero.
+
+### Después de confirmar
+
+Si la descarga fue correcta:
+
+- El diálogo se cierra.
+- Las líneas nuevas aparecen en la tabla del documento, **resaltadas** unos segundos.
+- Verá *"Se descargaron N insumos de OP-…"* con el consolidado: si dos descarga de diferentes materiales se sumaron a líneas que ya tenía, aparece *"X líneas se sumaron a líneas existentes"*.
+- El foco vuelve al botón que abrió el diálogo.
+
+Si alguna línea **se sumó** a otra existente (misma variante, bodega, lote y valor), solo ve una fila con *"Sumada a la línea N"*.
 
 ---
 
