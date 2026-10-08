@@ -660,116 +660,128 @@ Si alguna línea **se sumó** a otra existente (misma variante, bodega, lote y v
 
 ## 🏭 Producción desde una entrada {#produccion-desde-una-entrada}
 
-Cuando una **entrada tiene una orden de producción (OP)**, cada línea puede generar un **movimiento de producción** para registrar que esa cantidad avanza de una operación a la siguiente en la ruta de fabricación. Desde aquí crea, ve y anula esa producción sin salir del documento de inventario.
+Cuando una **entrada tiene una orden de producción (OP)**, puede **registrar un movimiento de producción** para toda la entrada de una sola vez, registrando que las cantidades avanzan de una operación a la siguiente en la ruta de fabricación. Un documento de entrada produce para **una única orden de producción**; sus líneas generan un solo movimiento de producción con un detalle por variante. Desde aquí crea, ve y anula esa producción sin salir del documento de inventario.
 
 ### Cuándo aparece la acción
 
-En una línea de **entrada con OP**, vea:
+En la **barra de acciones del documento** (arriba, junto a **Cerrar transacción** e **Imprimir**), aparecen botones de producción solo si el documento es elegible:
 
-- **Chip de producción**: resume la situación (por ejemplo, *"Producción: Corte → Costura · Responsable: Operario X"* o aviso rojo si hay un bloqueo).
-- **Botón "Registrar producción"**: aparece si la línea es elegible (tiene OP, está guardada, no está anulada, la ruta de la referencia tiene operaciones y la compañía no requiere sincronización externa).
+| Acción | Cuándo aparece |
+|--------|----------------|
+| **Registrar producción** | El documento es una entrada con OP única, tiene líneas elegibles (todas las líneas con OP apuntan a la misma orden), la ruta de la referencia tiene operaciones, ninguna línea tiene producción registrada todavía, y la compañía no requiere sincronización externa. |
+| **Completar producción** | El documento ya tiene producción registrada (completa o parcial) y hay líneas pendientes elegibles (nuevas, sin producción). |
+| **Ver producción** | El documento tiene movimientos de producción registrados. |
+| **Anular producción** | El documento tiene movimientos de producción activos y ninguno tiene movimientos posteriores en la cadena. |
 
-Si el botón no aparece, verá el motivo debajo:
+Si ningún botón aparece, el documento no cumple los requisitos (ver motivos en la tabla de *Errores*).
 
-| Motivo | Qué hacer |
-|--------|-----------|
-| *"La línea no tiene orden de producción"* | Use una línea con OP. |
-| *"La referencia no tiene operaciones definidas"* | En **Maestro de referencias**, agregue la ruta de operaciones para esta referencia. |
-| *"La OP ya terminó su ruta"* | Todas las operaciones de la OP están completas; no hay más dónde registrar producción. |
-| *"Hay una dependencia sin cumplir"* | Una operación depende de otra que aún no tiene el saldo suficiente producido. |
-| *"Editar documentos cerrados"* | El documento está cerrado. Solo administradores pueden registrar producción en documentos cerrados (con permiso especial). |
-| *"Compañía con sincronización externa no disponible"* | La integración externa está activa; la función está en preparación. |
+### Propuesta de producción del documento
 
-### Propuesta de la operación y responsable
+Al abrir **"Registrar producción"** o **"Completar producción"**, verá un diálogo con:
 
-Al abrir **"Registrar producción"** verá:
-
-**Operación de origen** y **Operación destino** (de dónde a dónde pasa la producción):
-- Si es el **primer movimiento** de la OP, origen está vacío y destino es la primera operación de la ruta.
-- Si **ya hay movimientos**, origen es la operación donde quedó la producción y destino es la siguiente elegible según las dependencias.
-- Si hay **operaciones en paralelo** (varias comparten la misma dependencia anterior), se ofrece una como destino principal y las demás como **alternativas**; puede elegir cualquiera.
+**Tabla de líneas** (solo lectura):
+- Las líneas elegibles del documento con su variante, cantidad y saldo (cuánto hay disponible en la operación de origen, o vacío si es el primer movimiento).
+- Si hay líneas sin orden de producción o de una OP distinta, aparecen omitidas en una sección aparte con *"Estas líneas no tienen OP / tienen otra OP y no se incluirán"*.
 
 **Responsable** (obligatorio):
-- Viene precompletado con el **tercero del documento**. Si el tercero no es un responsable válido, edite el campo o elija otro con la lupa.
+- Viene precompletado con el **tercero del documento**. Si no es un responsable válido, edite el campo o elija otro con la lupa.
 
-**Saldo máximo**:
-- Debajo se ve cuántas unidades pueden producirse como máximo (no puede ser mayor que la cantidad de la línea de inventario ni mayor que el saldo producido en la operación de origen).
+**Fechas** (obligatorias):
+- **Fecha**: por defecto, la **fecha del documento**. Debe estar en un periodo contable abierto.
+- **Fecha de entrega**: por defecto, la **fecha del documento + 1 día**. Debe ser posterior a la fecha del movimiento.
+- **Fecha de entrega real** (opcional): cuándo se completó realmente (no puede ser anterior a la fecha del movimiento).
 
-**Fecha** (obligatoria):
-- Por defecto, la **fecha del documento**. Debe estar en un periodo contable abierto.
+**Operación destino** (una por grupo):
+- Si el documento tiene **un grupo de líneas** (todas con la misma cabeza de movimiento), ve un solo selector **Operación destino**: dónde pasan las cantidades (la primera operación si es el primer movimiento, o la siguiente según dependencias).
+- Si hay **varios grupos** (variantes con cabezas distintas), ve un título por grupo y un selector de operación para cada uno. Puede elegir una operación distinta por grupo según sus dependencias.
+- Si una operación ya está completa o sus dependencias no se cumplen, no aparece como opción.
 
-**Fecha de entrega** (obligatoria):
-- Por defecto, la **fecha del documento + 1 día**. Debe ser posterior a la fecha del movimiento.
+### Registrar la producción del documento
 
-**Fecha de entrega real** (opcional):
-- Cuándo se completó realmente la operación (no puede ser anterior a la fecha del movimiento).
+1. Revise la **propuesta**: líneas incluidas, responsable, fechas, operaciones destino.
+2. Corrija responsable, fechas u operaciones si es necesario.
+3. Haga clic en **Registrar** o presione **Ctrl+Enter**.
 
-### Registrar el movimiento de producción
+Si todo es válido, verá *"Se registró la producción del documento"* con el resumen (número de líneas, operación destino, responsable). La barra se actualiza: **Registrar producción** desaparece y aparecen **Ver producción** y **Anular producción**. Otros usuarios ven el cambio en vivo.
 
-1. Revise la **propuesta**: origen, destino, responsable, fechas y saldo máximo.
-2. Corrija lo que necesite: cambie responsable, alternativas de operación, fechas (si el periodo lo permite).
-3. Si la **cantidad tiene decimales**, verá un aviso: *"La producción se registra en unidades enteras"*. Redondee si es necesario.
-4. Haga clic en **Registrar** o presione **Ctrl+Enter**.
+**Si quedó incompleta** (agregó líneas nuevas después de registrar), la acción pasa a **"Completar producción"**, que crea un movimiento adicional solo con las líneas pendientes (mismas reglas de origen, destino y responsable único).
 
-Si todo es válido verá *"Se registró el movimiento de producción"* con el resumen, y el chip de la línea se actualiza mostrando la nueva operación. Otros usuarios ven el cambio en vivo.
+### Resumen de la producción del documento
 
-### Chip de producción por línea
+La pantalla muestra un resumen con un renglón por par de movimientos (salida y entrada de la producción):
 
-En la tabla de líneas, el **chip** (etiqueta coloreada) resume el estado:
+| Columna | Qué significa |
+|---------|---------------|
+| **Operación** | De dónde a dónde (por ejemplo, *"Corte → Costura"*) |
+| **Responsable** | Quién ejecutó la operación |
+| **Líneas** | Cuántas líneas del documento se movieron |
+| **Estado** | *Activo*, *Parcial* o *Anulado* |
 
-| Estado | Significado | Color |
-|--------|-------------|-------|
-| *Producción: Corte → Costura · Responsable X* | Movimiento activo registrado y guardado | Verde |
-| *Producción: Bloqueada · Razón* | La línea no puede registrar más producción (terminó la ruta, hay dependencias incumplidas) | Rojo |
-| *Producción: Anulada* | Se anuló el movimiento anterior; se puede registrar de nuevo | Gris |
-| *Sin producción* | La línea aún no tiene movimiento de producción | Neutral |
-
-Haga clic en el chip para ver el detalle y las opciones (ver, anular).
+Haga clic en un renglón para **Ver producción** y más detalles.
 
 ### Ver el movimiento registrado
 
-En el chip, haga clic en **Ver producción** (ojo). Se abre un panel lateral con:
+Al hacer clic en **Ver producción** (ojo en el resumen) o en la barra del documento, se abre un panel con:
 
-- Operación origen → Operación destino
+- Operación origen → Operación destino (por ejemplo, vacío → Corte para el primer movimiento)
 - Responsable
-- Cantidad producida (entera)
+- Detalles de la producción (variante y cantidad producida, enteras)
 - Fechas (movimiento, entrega, entrega real si se completó)
 - Quién lo registró y cuándo
-- Botón **Anular** (si tiene permiso)
+- Botón **Anular** (si tiene permiso y el movimiento no tiene dependientes)
 
-### Anular la producción
+### Anular la producción del documento
 
 Si se equivocó o necesita revertir:
 
-1. Abra **Ver producción** desde el chip.
-2. Haga clic en **Anular**.
+1. En el resumen, haga clic en **Ver producción** del movimiento que quiere anular.
+2. O haga clic en **Anular producción** en la barra del documento.
 3. Escriba el **motivo de anulación** (obligatorio, máx. 200 caracteres).
 4. Confirme.
 
-Verá *"Se anuló el movimiento de producción"*. La línea vuelve al estado anterior (o sin producción si era el primer movimiento). **No se puede deshacer**: los avisos de otros usuarios muestran que la operación quedó anulada.
+Verá *"Se anuló la producción del documento"*. El resumen desaparece, la barra se actualiza con **Registrar producción** y **Completar producción** (si hay pendientes). **No se puede deshacer**: los avisos de otros usuarios muestran que la operación quedó anulada.
 
-#### Cascada al anular
+#### Cascada al anular o eliminar el documento
 
-Si **anula la línea de inventario** o todo el **documento**:
+Si **anula o elimina el documento** con **producción registrada**:
 
-- Si el movimiento de producción **no tiene movimientos posteriores** en la cadena, se anula automáticamente.
-- Si **hay movimientos posteriores** (otras líneas dependen de esta), verá el error *"Línea bloqueada: no se puede anular (tiene producción activa)"* y deberá anular primero la producción desde el chip.
+- El sistema avisa: *"Se anulará también el movimiento de producción Corte → Costura (3 líneas)"* con cada par que tenga.
+- Confirme y se anulan **todos los movimientos de producción** del documento en una sola transacción.
+- Si algún movimiento tiene **movimientos posteriores** en la cadena (otra entrada de la misma OP depende de este), verá el error *"Tiene producción con dependientes; anúlela desde el resumen"* y deberá anular primero desde **Anular producción**.
 
-#### Línea bloqueada por producción
+### Cambios en las líneas con producción registrada
 
-Si cambia la **cantidad, variante u orden de producción** de una línea que tiene un **movimiento de producción activo**, verá *"No se puede cambiar: línea con producción activa"*. **Anule primero** la producción desde el chip, luego edite la línea.
+**Agregar una línea nueva:**
+- Se permite: la línea nueva queda sin producción y la acción en la barra pasa a **"Completar producción"** (para registrar solo las pendientes).
 
-Otros cambios (valor, lote, detalle, criterios) sí se permiten sin anular.
+**Cambiar cantidad, variante u orden de producción, o eliminar:**
+- Si la línea es parte de un **movimiento compartido** (el movimiento de producción incluye varias líneas), verá *"No se puede cambiar: línea con producción registrada (par compartido)"* con un botón **Anular producción**. Anule primero desde la barra, luego edite.
+- **Otros cambios** (valor, lote, detalle, criterios) se permiten sin anular.
+
+### Líneas sin orden de producción
+
+Si el documento tiene líneas sin OP o con una OP distinta a las demás:
+
+- Aparecen omitidas en el diálogo de propuesta (*"Estas líneas no tienen OP / tienen otra OP"*).
+- En la tabla de líneas, muestran *"Sin producción (sin OP)"* en lugar de estado.
+- No se incluyen en el registro de producción.
+
+**Documento con varias órdenes de producción:**
+- Si las líneas con OP apuntan a órdenes distintas, el sistema rechaza el registro: *"El documento tiene líneas de más de una OP; una entrada produce para una sola OP"*. Cree un documento separado por cada OP.
 
 ### Errores y validaciones
 
 | Error | Por qué | Qué hacer |
 |-------|--------|----------|
-| *Saldo insuficiente* | La cantidad que quiere producir supera el saldo de la operación origen. | Reduzca la cantidad o registre primero producción en otra línea de la misma OP. |
-| *Periodo cerrado* | La fecha del movimiento o la fecha de entrega cae en un periodo contable cerrado. | Use una fecha de un periodo abierto. |
-| *Variante inválida* | La referencia de la línea no está configurada con la ruta de operaciones. | En Maestro de referencias, agregue operaciones. |
-| *Compañía con sincronización externa no disponible* | La empresa está configurada para sincronizar con un sistema externo y esa sincronización no está disponible. | Consulte al administrador. |
-| *Dependencia no cumplida* | Una operación depende de saldo suficiente en otra que aún no lo tiene. | Registre primero la operación previa o elija una operación alternativa sin dependencia. |
+| **Saldo insuficiente en: {lista}** | Una línea quiere producir más de lo disponible en la operación origen. Se lista qué variantes y cuánto falta. | Reduzca las cantidades, registre primero producción en otra línea de la misma OP, o verifique las operaciones anteriores. |
+| **Cantidad no entera** | La tabla solo muestra las líneas que se registran; si una cantidad tiene decimales, no se puede registrar como entera. | Revise la cantidad de la línea en el inventario. |
+| **Dependencia no cumplida** | Una operación depende de saldo suficiente en otra que aún no lo tiene (por ejemplo, "Depende de Costura (producido 4 de 10) para Variante 1"). | Registre primero la operación previa, o elija una operación alternativa sin dependencia. |
+| **Periodo cerrado** | La fecha del movimiento o la fecha de entrega cae en un periodo contable cerrado. | Use una fecha de un periodo abierto. |
+| **Variante inválida** | La referencia de la línea no está configurada con la ruta de operaciones. | En **Maestro de referencias**, agregue operaciones para esta referencia. |
+| **Compañía con sincronización externa no disponible** | La empresa está configurada para sincronizar con un sistema externo y esa sincronización no está disponible. | Consulte al administrador. |
+| **Documento ya tiene movimiento de producción** | Todas las líneas elegibles ya tienen producción registrada. | Si necesita registrar más, agregue líneas nuevas y use **Completar producción**. |
+| **El documento tiene líneas de más de una OP** | Las líneas con OP apuntan a órdenes distintas. | Cree un documento separado para cada OP. |
+| **No hay líneas elegibles** | El documento no tiene líneas con OP, o todas están anuladas. | Agregue líneas con orden de producción válida. |
 
 ---
 
