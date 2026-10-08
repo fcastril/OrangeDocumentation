@@ -785,6 +785,192 @@ Si el documento tiene líneas sin OP o con una OP distinta a las demás:
 
 ---
 
+## 💰 Costear la producción {#costear-la-produccion}
+
+Cuando guarda una **entrada de producción** (un documento donde sus líneas tienen la misma orden de producción), el sistema le propone un **valor unitario** basado en **los costos reales que la orden acumuló**: materiales que sacó de inventario, servicios de compras (confección, corte, etc.), e indirectos de fabricación. Antes de aplicar ese valor a las líneas, usted ve el resumen por rubro, lo compara con el precosteo teórico de la referencia, lo ajusta si es necesario, y solo entonces lo aplica al documento.
+
+### Cuándo aparece la acción
+
+En la **barra de acciones del documento** (arriba, junto a **Registrar producción** e **Imprimir**), aparece **Costear producción** solo si:
+
+- El documento es una **entrada** con una **orden de producción única** (todas las líneas de la OP).
+- El documento está **abierto** o usted tiene el permiso para editarlo cerrado.
+- Su usuario tiene el permiso **Actualizar** sobre *Entradas y salidas*.
+- El periodo del documento está abierto.
+
+Si el botón no aparece o está deshabilitado, el documento no cumple los requisitos anteriores.
+
+### Abrir el diálogo de costeo
+
+Haga clic en **Costear producción**. El sistema trae el resumen de costos de la orden, que puede tardar unos segundos (*"Calculando el resumen de costos de la OP…"*). Una vez listo, verá:
+
+1. **Avisos** (naranja y rojo, si aplica): le avisan si falta algo importante (sin materiales, sin servicios de compras, costo cero o negativo, etc.). A pesar de los avisos amarillos, puede seguir; los avisos rojos impiden aplicar.
+2. **Resumen de costos por rubro**: la base para calcular el valor unitario.
+3. **Comparación con el Teórico**: el precosteo de la referencia, solo de referencia.
+4. **Valor unitario propuesto** y cómo se distribuye por línea.
+5. **Botones**: Cancelar y Aplicar al documento (o solo Cerrar si no tiene permiso de actualizar).
+
+### Resumen de costos por rubro
+
+Es una tabla que muestra de dónde sale el costo de la orden:
+
+| Rubro | Qué incluye | Quién lo propone |
+|-------|------------|-----------------|
+| **Materiales** | Las salidas de inventario a la orden menos las devoluciones (el costo registrado de cada salida). | El sistema, de los documentos de salida de la orden. |
+| **Cada servicio** (por ej. *Confección*, *Corte*) | Las compras de servicios asignadas a la orden: valor bruto sin IVA ni retenciones, descuento ya restado. Se agrupa por tipo de servicio. | El sistema, de los documentos de Compras con la orden asignada. |
+| **Indirectos** | Un porcentaje (por ejemplo, 8 %) multiplicado por la base (Materiales + servicios). Solo incluye los indirectos de fabricación: la utilidad y los indirectos de administración y ventas no entran aquí. | El sistema, del porcentaje configurado en la referencia. |
+
+Cada rubro muestra:
+
+- **Real**: el costo que se ha gastado (materiales salidos, servicios facturados, etc.).
+- **Teórico** (para referencia): cuál debería ser según el precosteo de la referencia.
+- **Diferencia**: en pesos y porcentaje. Un icono le dice si es mayor, menor o igual al teórico.
+- **Efectivo**: lo que entra al cálculo del valor unitario (real más cualquier ajuste que haga).
+
+Debajo, la **fila Total** suma todos los rubros: ese es el **costo acumulado** de la orden.
+
+### Ajustar un rubro
+
+Si el costo de un rubro no es correcto —por ejemplo, hubo retoques no facturados, o un error en el cálculo—, puede **ajustarlo**:
+
+1. Haga clic en **Ajustar** de la fila del rubro.
+2. Se abre un pequeño diálogo con:
+   - **Monto actual** del rubro (solo lectura).
+   - **Ajuste**: escriba el aumento o disminución (puede ser negativo).
+   - **Motivo** (obligatorio, máx. 200 caracteres): por qué hace este ajuste. Queda en la bitácora del documento.
+3. Presione **Guardar** o **Enter**.
+
+Verá el rubro con un chip *"Ajustado"* y el motivo. El **Efectivo** recalcula al instante, así como el **Indirectos** (si lo ajustó) y el **valor unitario propuesto**.
+
+**Para quitar el ajuste**, vuelva a abrir y escriba 0 en el ajuste, o use **Quitar ajuste**.
+
+> 💡 El ajuste **no cambia** los documentos de origen (las compras, las salidas): solo modifica el cálculo del valor unitario para este documento. La bitácora registra quién, qué, cuándo y por qué.
+
+### Comparación con el Teórico
+
+Debajo del resumen aparecen tres tarjetas que comparan lo que costó en realidad con lo que la receta estimó:
+
+- **Total**: el costo acumulado vs el precosteo total.
+- **Mano de obra**: suma de todos los servicios vs la mano de obra de la receta.
+- **Materiales**: materiales reales vs materiales de la receta.
+
+El Teórico es **solo referencia**: no afecta el valor propuesto. Sirve para saber si los costos reales están cerca de lo esperado. Si la orden tiene variantes sin receta, verá una nota (*"Teórico incompleto"*).
+
+### Valor unitario propuesto
+
+Es el resultado de dividir:
+
+```
+Costo acumulado (Materiales + servicios + Indirectos ajustado) ÷ Cantidad acumulada producida = Valor propuesto
+```
+
+Se muestra con:**
+
+- **Costo acumulado**: el total de todos los rubros después de ajustes.
+- **Cantidad acumulada producida**: la cantidad total de todas las entradas de producción de esta orden que hay registradas (incluida esta).
+- **Absorbido**: lo que ya pagaron documentos anteriores de la misma orden (solo para su información).
+- **Por absorber**: lo que queda para próximas entradas de la orden (si las hay).
+- **Valor propuesto**: el resultado, redondeado a los decimales del tipo de documento.
+
+Este valor se aplica **de forma uniforme** a todas las líneas elegibles del documento.
+
+### Valor por línea
+
+Una tabla muestra cada línea del documento con:
+
+- **Línea**: número de la línea.
+- **Variante**: código y nombre.
+- **Cantidad**: unidades de esa línea.
+- **Actual**: el valor unitario que tiene ahora.
+- **Propuesto**: el nuevo valor que propone el sistema.
+- **Cambio**: la diferencia en pesos.
+
+Las líneas sin orden de producción aparecen con la nota *"No se modifican"*.
+
+### Aplicar el costo
+
+Una vez que revise el resumen, compare con el Teórico y haga los ajustes que considere:
+
+1. Haga clic en **Aplicar al documento**. Se abre una confirmación que dice exactamente qué va a pasar: *"Se escribirá $ X.XXX,00 como Valor de Y línea(s). Se registran Z ajuste(s) por rubro en la bitácora."*
+2. Revise y haga clic en **Aplicar valor** para confirmar.
+
+Verá *"Valor unitario aplicado"*. El documento se actualiza:
+
+- Las líneas muestran el nuevo valor.
+- La barra del documento muestra *"Valor unitario aplicado: $ X.XXX,00 el fecha por usuario"*.
+- Los ajustes quedan registrados en la bitácora (solo el administrador los ve).
+
+**El costeo nunca es automático**: hasta que no haga clic en **Aplicar**, nada cambia.
+
+### Casos especiales
+
+#### Entradas parciales de la misma orden
+
+Si la orden tiene **varias entradas de producción** en documentos distintos, el cálculo es acumulativo:
+
+- **Cantidad acumulada** incluye todas las cantidades que ya entró, más la de este documento.
+- **Absorbido** es lo que ya se asignó en entradas anteriores (solo información).
+- **Por absorber** es lo que queda si hay más entradas pendientes.
+
+El valor propuesto es diferente en cada entrada (se recalcula con la cantidad acumulada hasta ese momento) y se registra en la bitácora con fecha y usuario.
+
+#### Propuesta provisional
+
+Si a la orden le **falta costo de compras** o le **faltan materiales**:
+
+- Verá un aviso naranja: *"Provisional: falta el costo de servicios/materiales"*.
+- El valor propuesto está marcado como **Provisional** (no definitivo).
+- **Aplicar** le pide que confirme explícitamente que está seguro (*"Confirmo que el valor es provisional"*).
+- La bitácora lo registra como provisional.
+
+Cuando registre la compra o la salida que faltaba, puede volver a abrir **Costear producción** y proponer de nuevo.
+
+#### Sin base o costo cero
+
+Si la orden **no tiene ningún costo** (sin materiales, sin servicios, sin receta), o si los ajustes la dejan en cero o negativo:
+
+- Verá un aviso rojo: *"No hay base para costear"* o *"El costo quedó cero o negativo"*.
+- **Aplicar** queda deshabilitado.
+- Revise: agregue ajustes positivos con motivo, o registre los costos que faltan en compras o inventario.
+
+#### Desfase (cambió algo después de proponer)
+
+Si después de que propuso el costo, **cambió una salida de materiales o una compra de servicios** de la orden:
+
+- Verá un aviso naranja: *"El costo de la OP cambió después de asignar el valor"*.
+- La propuesta anterior aparece grisada.
+- Los botones permiten **Recalcular** para traer los cambios y hacer una nueva propuesta, sin perder los ajustes que ya hizo.
+
+#### Líneas excluidas (reclasificaciones y traslados)
+
+Algunas líneas de movimiento (reclasificaciones, traslados internos) **no cuentan** en el costeo porque no son costo real de la orden:
+
+- Aparecen omitidas del resumen con una nota: *"Líneas excluidas: X reclasificación/traslado"*.
+- No impiden aplicar ni afectan el valor propuesto.
+
+### Errores y avisos
+
+| Aviso / Error | Qué significa | Qué hacer |
+|---|---|---|
+| **Documento no elegible (periodo cerrado, OP sin líneas, etc.)** | El documento no cumple los requisitos. | Vea el motivo específico. Algunos no se pueden corregir; otros requieren cambiar el documento. |
+| **Sin permiso** | No tiene el permiso **Actualizar** sobre Entradas y salidas. | El diálogo se abre en **solo lectura**: puede ver pero no aplicar. Consulte al administrador. |
+| **El sistema está ocupado** o **No se pudo cargar el resumen** | Error de conexión o del servidor. | Haga clic en **Reintentar**. |
+| **El costo cambió; actualice** | Otro usuario modificó una compra o salida de la orden mientras el diálogo estaba abierto. | Haga clic en **Actualizar** para traer los cambios. Su propuesta y ajustes se conservan. |
+| **No se pudo aplicar** | Error al guardar. | Haga clic en **Reintentar** (usa la misma clave de idempotencia, no se duplica). |
+| **Tipo sin configuración de costos** | El tipo de documento no está configurado para costear. | Consulte al administrador. |
+
+### Sugerencia: recalcular costos posteriores
+
+Cuando aplica el valor unitario a una entrada de producción, **solo cambia ese documento**. Si más adelante la orden tiene **otras entradas posteriores**, esas también necesitan costeo propio (con la cantidad acumulada que incluya esta entrada).
+
+Además, si después de costear cambian materiales o servicios de la orden, el módulo de **Inventario › Recálculo de costos** permite recalcular todas las salidas e identificar diferencias acumuladas. Ver esa pantalla para ajustes a escala.
+
+### Cambios en tiempo real
+
+Si otro usuario modifica el documento (agrega o cambia líneas) mientras el diálogo está abierto, verá un aviso: *"El documento cambió; actualice"*. Haga clic en **Actualizar** para traer los cambios sin perder los ajustes que ya hizo. El resumen se recalcula al instante.
+
+---
+
 ## 🔄 Cambios de otros usuarios (en vivo)
 
 Si otra persona crea, modifica o elimina movimientos mientras usted trabaja, **no tiene que recargar**:
