@@ -16,11 +16,11 @@
 
 ## 📋 Descripción
 
-Esta consulta muestra **cuánto hay hoy de cada referencia en una bodega, cuánto ya está comprometido con pedidos sin despachar, cuánto viene en producción, y por tanto qué puedo ofrecer ahora y qué podré ofrecer cuando termine la fabricación**. Es de **solo lectura**: no crea ni cambia información. Responde a una pregunta del comercial: "¿tengo disponibilidad de este producto para prometer al cliente?"
+Consulta que muestra **cuánto hay de cada referencia (por talla, color, etc.) en la bodega principal hoy, cuánto está comprometido con pedidos sin despachar, cuánto viene en producción, y por tanto qué puedo ofrecer ahora y qué podré ofrecer cuando termine la fabricación**. Es de **solo lectura**: no crea ni cambia información. Se puede abrir desde el maestro de **Referencias** con la acción "Ver disponibilidad", filtrada por esa referencia.
 
-El informe incluye **solo referencias que manejan inventario**. Los pedidos siguen las mismas reglas que el Reporte de Pedidos legado.
+El informe incluye **solo referencias que manejan inventario**. Los pedidos siguen las reglas del Reporte de Pedidos legado.
 
-> 📘 El orden, la paginación y la ayuda funcionan como en las demás tablas: ver [Manejo general de la información](../../Generales/manejo-general-informacion.md).
+> 📘 Funciona como las demás tablas: ver [Manejo general de la información](../../Generales/manejo-general-informacion.md).
 
 > 💡 Cada pestaña del navegador trabaja con **una compañía**. El nombre de la compañía se ve en la barra superior.
 
@@ -28,15 +28,21 @@ El informe incluye **solo referencias que manejan inventario**. Los pedidos sigu
 
 ## 🎯 Acceso
 
+### Desde Inventarios
+
 1. En el menú principal, haga clic en **Inventarios**.
 2. En **Consultas/Reportes**, haga clic en **Disponibilidad de Inventarios**.
 
-Permisos de la opción:
+### Desde el maestro de Referencias
+
+En **Referencias**, cada referencia tiene una acción **Ver disponibilidad** (ícono de cuadro con check). Al pulsarla, la consulta se abre filtrada por esa referencia. Si ya tiene bodega elegida, consulta automáticamente y abre el detalle. Si no, pide elegir bodega y luego consulta.
+
+**Permisos:**
 
 | Permiso | Qué permite |
 |---------|-------------|
-| **Consultar** | Ver la pantalla y consultar. Sin este permiso la pantalla muestra "No tienes acceso a esta consulta". |
-| **Exportar** | Ver los botones **Exportar Excel** y **Exportar PDF**. Sin este permiso los botones no aparecen. |
+| **Consultar** | Ver la pantalla y consultar. Sin él, "No tienes acceso a esta consulta". |
+| **Exportar** | Ver botones **Exportar Excel** y **Exportar PDF**. |
 
 ---
 
@@ -49,74 +55,87 @@ Al entrar, la pantalla no muestra datos: elija la bodega principal y pulse **Con
 | Elemento | Para qué sirve |
 |----------|----------------|
 | **?** (junto al título) | Abre esta ayuda en un panel lateral. |
-| **Calculado a las HH:MM** | La hora en que se calculó esa información. |
-| **Actualizar** | Vuelve a calcular si han pasado más de 60 segundos. Ver *El día en curso*. |
-| **Exportar Excel** / **Exportar PDF** | Descargan lo que cumple los filtros. Están deshabilitados mientras no haya resultados. |
-| **Bodega principal** | Elija la bodega donde desea consultar la disponibilidad. **No puede estar vacía.** El sistema recuerda su última elección. |
-| **Existencia: Solo bodega principal / Todas las bodegas** | Por defecto **Solo bodega principal**: el disponible se calcula con lo que hay en esa bodega. Active **Todas las bodegas** para ver la disponibilidad usando todo el inventario de la compañía. Los pedidos y la producción siempre cuentan sin importar la bodega. |
-| **Referencia, Grupo, Subgrupo, Estado** | Escriba para filtrar. Vacío significa **sin filtrar ese campo**. |
-| **Consultar** | Trae el resultado con los filtros elegidos. |
-
-Si deja la bodega vacía o escribe filtros mal formados, el campo marca el error y no se consulta.
+| **Calculado a las HH:MM** | Hora del cálculo. |
+| **Actualizar** | Recalcula si han pasado 60+ segundos. Ver *El día en curso*. |
+| **Exportar Excel** / **Exportar PDF** | Descargan todo lo filtrado. Deshabilitados sin resultados. |
+| **Bodega principal** | **Obligatoria.** El sistema la recuerda. |
+| **Existencia: Solo bodega principal / Todas las bodegas** | Por defecto solo la principal. Active para incluir todas. |
+| **Referencia, Grupo, Subgrupo** | Filtros por búsqueda. |
+| **Solo con faltante, Solo con pedidos, Solo con producción** | Interruptores para ver referencias que tienen ese estado. |
+| **Consultar** | Trae el resultado. |
 
 ---
 
 ## 📊 Leer el resultado
 
-![Resultado de la consulta](../recursos/img/disponibilidad/02-con-resultados.png)
+### Grilla por referencia
 
-1. **Indicadores de resumen:** arriba de la tabla, seis tarjetas con cifras de **todo** lo que cumple los filtros, no solo de la página que ve:
-   - **Variantes** (número de filas del resultado).
-   - **Existencia** (lo que hay en la bodega elegida, o en todas si activó ese interruptor).
-   - **Por despachar** (lo que está comprometido con pedidos sin terminar).
-   - **En producción** (lo que está en órdenes de fabricación en tránsito).
-   - **Disponible hoy** (Existencia − Por despachar).
-   - **Disponible proyectado** (Disponible hoy + En producción).
+![Resultado: referencias con variantes colapsadas](../recursos/img/disponibilidad/02-referencias-expandidas.png)
 
-2. **Tabla:** para cada referencia y variante:
-   - **Referencia**: código y nombre del producto.
-   - **Atributo principal** y **Atributo secundario**: talla, color, etc.
-   - **Unidad**: la unidad de medida de la referencia.
-   - **Existencia**: lo que hay en la bodega principal (o el total, según el interruptor).
-   - **Por despachar**: saldo pendiente de los pedidos.
-   - **Disponible hoy**: Existencia − Por despachar.
-   - **En producción**: lo que está en fabricación aún no recibido.
-   - **Disponible proyectado**: Disponible hoy + En producción.
-   - **Estado** (con texto e ícono): **Disponible** (check, verde), **Cubierto con producción** (reloj, amarillo) o **Faltante** (alerta, rojo).
+La tabla muestra **una fila por referencia**, con cifras **sumadas de todas sus variantes**:
 
-3. **Seleccionar una variante:** haga clic en una fila o en el botón **Detalle** para abrir el panel de detalles debajo de la tabla. La fila queda resaltada. Se muestra un panel con tres tablas: **Pedidos**, **Producción** y **Otras bodegas**.
+- **Referencia**: código y nombre.
+- **Variantes**: cuántas tallas, colores, etc. ("3", o "100 de 108" con botón "Ver las 8 restantes").
+- **Existencia**: total en la bodega principal (o todas si lo activó).
+- **Por despachar**: saldo pendiente sumado.
+- **Disponible hoy**: Existencia − Por despachar.
+- **En producción**: en fabricación, no recibido.
+- **Disponible proyectado**: Disponible hoy + En producción.
+- **Estado**: el **peor** de todas las variantes + "1 de 3 variantes en faltante" (u otra cifra).
 
-4. **Detalle de Pedidos:** tabla con documento/pedido, cliente, sucursal y vendedor, fecha de pedido y entrega, antigüedad, cantidades (Pedido/Despachado/Falta) y estado (Vencido, Congelado, etc.). Se lista por variante seleccionada. Total de todos los pedidos en el pie.
+Números negativos con signo "−".
 
-![Panel de detalle con tabla de Pedidos bajo la grilla](../recursos/img/disponibilidad/03-detalle-seleccionado.png)
+### Expandir variantes
 
-5. **Detalle de Producción:** tabla con número de orden, etapa actual de la ruta (Corte, Costura, etc.), fechas estimadas, cantidades (Planeada/Recibida/Pendiente) y totales en el pie. **Advertencia "OP sin entradas registradas"**: aparece si la orden está en el sistema pero la planta aún no ha registrado ninguna entrada. El tránsito mostrado puede estar sobrestimado; revise con producción.
+Haga clic en **▶** para ver sus variantes debajo (p.ej. "M / NEG", "L / NEG"). Botones **Expandir todas** / **Colapsar todas** arriba de la grilla.
 
-6. **Otras bodegas:** tabla con bodega (marcando cuál es la principal) y existencia en cada una. Si no hay existencia fuera de la bodega principal, dice "Sin existencia en otras bodegas".
+Expandir **no abre el detalle**: solo muestra las variantes.
 
-7. **Disposición del detalle:** en escritorio (ancho ≥ 1000 px), **Pedidos** ocupa todo el ancho arriba; **Producción** (2/3) y **Otras bodegas** (1/3) están lado a lado debajo. En tableta, las tres tablas están apiladas con **anclas** (Pedidos · nº, Producción · nº, Otras bodegas · nº) que saltan a cada tabla. En móvil (≤ 640 px), **el detalle ocupa toda la pantalla** con un botón **Volver a la lista** arriba (el foco regresa a la fila).
+### Seleccionar referencia o variante
 
-![Detalle en modo tableta con tabla de Producción y etapas](../recursos/img/disponibilidad/08-detalle-tableta.png)
+**Clic en la referencia (fila principal):** detalle de **toda la referencia** (cifras sumadas, columna "Variante" en las tablas). Título: "CAM-BAS-001 · toda la referencia (3 variantes)".
 
-8. **Cerrar el detalle:** pulse **Cerrar detalle** (botón `✕`), presione **Esc**, seleccione otra fila o haga clic fuera. El detalle se cierra y la selección se quita.
+**Clic en variante (fila con sangría):** detalle de **solo esa variante**. Título: "CAM-BAS-001 · M / NEG".
 
-9. **Orden y búsqueda:** al hacer clic en el encabezado de una columna, se ordena la tabla. La búsqueda filtra por código o nombre de referencia (≥ 2 caracteres). Los indicadores, los totales y el detalle se limpian al cambiar filtros, búsqueda u orden. **Actualizar la conserva**: al pulsar **Actualizar**, el detalle sigue abierto y recarga las tres tablas con la información nueva.
+Una sola selección a la vez. Seleccionar otra cierra la anterior.
 
-Si no hay variantes para esos filtros, la pantalla dice "Sin resultados para los filtros actuales" con un botón **Limpiar filtros**.
+### Detalle con tabs
+
+El detalle aparece debajo con tres tabs: **Pedidos · Producción · Otras bodegas**, cada una con contador (p.ej. "Pedidos (3)").
+
+**Solo la tab activa consulta** (más rápido). Las demás consultan cuando las activa.
+
+**Tab por defecto:** Pedidos si hay; si no, Producción; si no, Otras bodegas. Se recuerda durante la sesión.
+
+**Pedidos:** documento, cliente, sucursal·vendedor, fechas, cantidades (Pedido/Despachado/Falta), estado. Con alcance **referencia**, columna "Variante" (qué talla). Total en el pie.
+
+**Producción:** orden, etapa actual (Corte, Costura, etc.), fechas, cantidades (Planeada/Recibida/Pendiente). **"OP sin entradas registradas"** en rojo: la planta no ha registrado entradas, el tránsito puede estar inflado. Total en el pie.
+
+**Otras bodegas:** bodega (la principal marcada) y existencia. Con alcance referencia, columna "Variante" (fila por variante y bodega). Totales.
+
+![Detalle en modo tableta con tabs](../recursos/img/disponibilidad/04-detalle-tabs-tableta.png)
+
+### Navegar
+
+- **Orden:** clic en encabezado de columna.
+- **Búsqueda:** escriba (≥ 2 caracteres) para filtrar referencias. Al expandir, las que coinciden quedan resaltadas "Coincide con el filtro".
+- **Cambiar filtro/página/tamaño/orden/búsqueda:** cierra detalle y colapsa referencias.
+- **Actualizar:** conserva detalle, expansión y tab. Recarga solo la tab visible.
+  - Si la selección desaparece: cierra con aviso "La selección ya no aparece en el resultado".
 
 ---
 
 ## 🎨 Estados: Disponible, Cubierto con producción, Faltante
 
-Cada variante tiene un estado que resume su disponibilidad:
+El estado de la referencia es el **peor de sus variantes**:
 
-| Estado | Significado | Cuándo aparece |
-|--------|------------|----------------|
-| **Disponible** ✓ | Hay producto disponible ahora para ofrecer. | Disponible hoy ≥ 0 |
-| **Cubierto con producción** ⏱ | No hay disponible hoy, pero lo habrá cuando termine la producción en tránsito. | Disponible hoy < 0 y Disponible proyectado ≥ 0 |
-| **Faltante** ⚠ | Ni ahora ni con lo que viene en producción hay suficiente. Hay que esperar más producción u obtener de otra forma. | Disponible proyectado < 0 |
+| Estado | Cuándo |
+|--------|--------|
+| **Disponible** ✓ | Todas las variantes tienen disponible hoy ≥ 0. |
+| **Cubierto con producción** ⏱ | Al menos una tiene hoy < 0 pero proyectado ≥ 0 (con producción se cubre). |
+| **Faltante** ⚠ | Al menos una tiene proyectado < 0 (falta incluso con producción). |
 
-Cada estado lleva texto e ícono para que se entienda sin depender solo del color (accesibilidad para el navegador y para lectores de pantalla).
+Lleva "1 de 3 variantes en faltante" u otra combinación: cuántas variantes tienen ese estado.
 
 ---
 
@@ -124,88 +143,53 @@ Cada estado lleva texto e ícono para que se entienda sin depender solo del colo
 
 ### Pedidos (Por despachar)
 
-Cuentan los pedidos de **venta** (opción 56) que:
-- No han sido anulados.
-- Tienen fecha ≤ hoy (corte "ahora").
-- Tienen saldo > 0 por línea.
-- Están congelados o no: en ambos casos se incluyen en la cifra de "Por despachar". Los congelados aparecen con una marca de "congelado" en el detalle.
+- Opción 56 (Ventas › Pedidos).
+- No anulados, fecha ≤ hoy, saldo > 0 por línea.
+- **Congelados siempre cuentan** (se marcan en el detalle).
+- Sumadas por variante.
 
-Se mide por **variante**: si un pedido repite la misma variante en dos líneas (quizá con otro valor), se suman y aparece una sola fila.
+**Despachado:** facturas de venta + devoluciones (opción 67), por pedido y variante. **Remisiones NO cuentan** (solo factura).
 
-**Despachado:** suma de todas las facturas de venta y devoluciones ligadas a ese pedido por referencia y variante. Las remisiones **no cuentan** como despacho: solo las facturas hechas.
-
-**Saldo = Cantidad pedida − Despachado**, por variante. Si el saldo es ≤ 0, el pedido no aparece.
-
-**Diferencia con el Reporte de Pedidos legado:** se incluyen pedidos no cerrados (el legado exigía cierre; hoy pueden estar en proceso y contar). Sin embargo, en la mayoría de compañías el cambio es mínimo.
+**Saldo = Cantidad − Despachado.**
 
 ### Órdenes de Producción (En producción)
 
-Cuentan las órdenes de fabricación que:
-- Están activas y no canceladas.
-- No están congeladas.
-- Tienen pendiente > 0 después de restar lo ya recibido.
+- Activas, no canceladas, no congeladas.
+- Pendiente > 0 después de restar entradas recibidas.
+- Sumadas por variante.
 
-Se mide por **variante**: cantidad planeada − cantidad recibida (entradas registradas con esa orden), con piso en 0 (una orden sobre-recibida no regala disponibilidad a otra).
-
-**Advertencia "OP sin entradas registradas":** si una orden está en el sistema pero la planta aún no ha registrado ninguna entrada de producto terminado con esa orden, aparece esta advertencia. En ese caso, el tránsito mostrado puede estar sobrestimado. Revise con producción.
-
----
-
-## 🔍 Filtros
-
-| Filtro | Qué hace | Ejemplo |
-|--------|----------|---------|
-| **Bodega principal** | Elige dónde consultar la existencia. Obligatorio. El sistema la recuerda. | "01 - Bodega principal" |
-| **Existencia** | Cambia si el disponible usa solo esa bodega o todas. | Activar si necesita incluir otras bodegas. |
-| **Referencia** | Busca por código o nombre de producto. Escribe ≥ 2 caracteres, sin tildes. | "cam" para "camiseta". |
-| **Grupo** | Busca el grupo de la referencia (Ropas, Electrónica, etc.). | "ROP" para "Ropa y calzado". |
-| **Subgrupo** | Busca el subgrupo (Tops, Pantalones, etc.). | "TOP" para "Tops y camisetas". |
-| **Estado** | Muestra solo variantes con ese estado. | "Faltante" para alertas rojas. |
-
-La búsqueda por referencia es en vivo: conforme escribe, la lista se filtra sin tildes ni mayúsculas. Los otros filtros son de selección múltiple: puede elegir varios valores a la vez.
-
----
-
-## 🔎 Buscar en el resultado
-
-Después de consultar, escriba en **Buscar…** para filtrar el resultado por código o nombre de referencia. La búsqueda empieza a partir de **2 caracteres** y se hace sola, un instante después de dejar de escribir. No distingue mayúsculas ni tildes.
-
-![Búsqueda en el resultado](../recursos/img/disponibilidad/04-busqueda.png)
-
-Los indicadores y los totales se recalculan solo con lo filtrado. Si nada coincide verá "Sin resultados para «…»" y la exportación queda deshabilitada.
+**Advertencia "OP sin entradas registradas":** orden en el sistema pero planta sin entradas → tránsito puede estar sobrestimado.
 
 ---
 
 ## 📅 El día en curso
 
-El informe siempre muestra el estado **de hoy** de negocio. Con la hora "Calculado a las HH:MM" aparece un botón **Actualizar** para recalcular si han pasado más de 60 segundos (protege la base de datos de consultas muy seguidas). La información puede cambiar mientras se registran movimientos; tras actualizar, la hora se pone al día.
+Siempre de hoy. Botón **Actualizar** si han pasado 60+ segundos. Información puede cambiar mientras se registran movimientos.
 
-![Día en curso con botón Actualizar](../recursos/img/disponibilidad/05-actualizar.png)
-
----
-
-## ⏳ Cuando el cálculo tarda
-
-La primera vez que consulta un día (o si fuerza Actualizar), el inventario se calcula en segundo plano y puede tardar unos segundos. La pantalla muestra "Calculando el inventario..." y puede **seguir trabajando**: cuando termine, el sistema le avisa en la **campana** (notificación en la esquina superior derecha) y el resultado aparece. Las siguientes consultas del mismo día son inmediatas.
-
-![Cálculo en segundo plano](../recursos/img/disponibilidad/06-calculando.png)
+![Actualizar](../recursos/img/disponibilidad/05-actualizar.png)
 
 ---
 
-## 📤 Exportar a Excel y a PDF
+## ⏳ Cálculo en segundo plano
 
-Los botones **Exportar Excel** y **Exportar PDF** (solo con permiso **Exportar**) descargan un archivo con el encabezado de la compañía, la hora de cálculo, los filtros usados y **todas las filas** que cumplen los filtros y la búsqueda de pantalla (no solo la página visible).
+Primera consulta del día o Actualizar pueden tardar. Pantalla dice "Calculando..." y puede seguir trabajando. Aviso en la **campana** cuando termine.
 
-| Formato | Máximo de filas | Contenido |
-|---------|-----------------|-----------|
-| **Excel** | 50.000 | Hoja principal "Disponibilidad" con la tabla. Si incluye detalles (opción avanzada), hojas adicionales "Pedidos" y "Producción". |
-| **PDF** | 4.000 | Solo la tabla principal en oficio horizontal. Los detalles de pedidos y producción van en Excel si activa la opción. |
+![Calculando](../recursos/img/disponibilidad/06-calculando.png)
 
-Si supera el máximo, un aviso lo indica; **filtre por bodega o referencia** (o busque algo más específico) y vuelva a exportar. Si el Excel es muy grande, el PDF lo será más: pruebe a restringir.
+---
 
-Mientras se genera el archivo, el botón aparece ocupado y al terminar se indica el nombre del archivo descargado. Si algo falla, el mensaje pide intentar de nuevo; sus filtros no se pierden.
+## 📤 Exportar a Excel y PDF
 
-![Exportando a Excel](../recursos/img/disponibilidad/07-exportar-excel.png)
+Con permiso **Exportar**, descargar todo lo filtrado (no solo página).
+
+**Incluir hojas de pedidos y producción:** Excel extra con detalles.
+
+| Formato | Máximo |
+|---------|--------|
+| **Excel** | 50.000 (ref. + variantes) |
+| **PDF** | 4.000 (ref. + variantes) |
+
+Si excede: filtre y reexporte.
 
 ---
 
@@ -215,60 +199,62 @@ Mientras se genera el archivo, el botón aparece ocupado y al terminar se indica
 
 **Disponible proyectado = Disponible hoy + En producción**
 
-### Ejemplo
+**Referencia CAM-BAS-001 (3 variantes):**
 
-Referencia `CAM-BAS-001` (Camiseta básica), variante `M/NEG` (Mediano, Negro):
-
-| Concepto | Cantidad | Notas |
-|----------|----------|-------|
-| Existencia en bodega principal | 12 unidades | Lo que hay ahora. |
-| Pedidos pendientes | 30 unidades | Dos pedidos con 15 cada uno sin despachar (aunque haya existencia). |
-| **Disponible hoy** | **−18** | 12 − 30. Es negativo: ya está sobre-comprometido. |
-| Órdenes de producción en tránsito | 30 unidades | Una orden con 40 planeada, 10 recibida, 30 pendiente. |
-| **Disponible proyectado** | **12** | −18 + 30. Cuando termine la orden habrá 12 más de lo pedido. |
-| **Estado** | **Cubierto con producción** | Porque hoy es insuficiente (−18 < 0) pero lo cubren las órdenes. |
+| Concepto | M/NEG | L/NEG | S/BLA | **TOTAL** |
+|----------|-------|-------|-------|-----------|
+| Existencia | 12 | 8 | 0 | **20** |
+| Por despachar | 30 | 0 | 20 | **50** |
+| Disponible hoy | −18 | 8 | −20 | **−30** |
+| En producción | 30 | 0 | 0 | **30** |
+| Disponible proyectado | 12 | 8 | −20 | **0** |
+| **Estado** | **Cubierto** | **Disponible** | **Faltante** | **Faltante (1 de 3)** |
 
 ---
 
-## ⚠️ Advertencia: OP sin entradas registradas
+## 📱 Responsive
 
-Si abre el detalle de Producción de una orden y ve este aviso, significa que **la planta aún no ha registrado entradas para esa orden**. El tránsito que calcula el sistema puede estar inflado. Ejemplo: una orden con 100 planeada, 0 recibida, muestra 100 en tránsito; pero si la planta está en la mitad de la ruta, el verdadero tránsito es menos. Revise con el equipo de producción.
+- **Tableta (768 px):** columnas secundarias ocultas.
+- **Móvil (≤ 640 px):** tarjetas anidadas; detalle a pantalla completa con **Volver a la lista**; tabs en fila con scroll.
+
+![Móvil](../recursos/img/disponibilidad/07-detalle-movil.png)
 
 ---
 
 ## ❓ Preguntas frecuentes
 
-**¿Puedo ver la disponibilidad a una fecha anterior?**
-No. El informe es siempre de hoy. La historia de pedidos y órdenes pasadas no se guarda de forma fiable para reconstruir fechas antiguas.
+**¿Desde dónde puedo abrir esta consulta?**
+Desde **Inventarios** › **Disponibilidad de Inventarios**, o desde **Referencias** con botón "Ver disponibilidad" en cada fila.
 
-**¿Qué es la "bodega principal"?**
-Es la bodega que elige al entrar. Ahí se mide la existencia y el disponible. Puede cambiarla sin guardarla para siempre: el sistema recuerda la última que usó en esa compañía, pero cada consulta parte de su elección. Si una bodega deja de existir, se olvida.
+**¿Cómo funcionan las variantes?**
+La tabla suma todas las variantes (tallas, colores) en una fila de referencia. Haga clic en **▶** para verlas y **clic en una variante** para ver solo esa.
+
+**¿Qué es el estado de referencia?**
+El **peor** de sus variantes: si una está "Faltante", la referencia es "Faltante". Muestra "1 de 3 variantes en faltante", etc.
 
 **¿Los pedidos congelados cuentan?**
-Sí. Los congelados se marcan en el detalle para que sepa que están en pausa, pero siguen comprometiendo mercancía y restan del disponible.
+Sí, siempre. Se marcan como "Congelado" en el detalle.
 
 **¿Las remisiones cuentan como despacho?**
-No. Solo las facturas de venta (y las devoluciones). Una remisión es un paso intermedio; la factura es la que cierra el despacho. Si alguien factura directamente sobre una remisión, se cuenta una sola vez.
+No. Solo facturas de venta (y devoluciones).
 
-**¿Por qué los totales suman unidades distintas?**
-Porque cada referencia usa su propia unidad de medida (kilogramos, metros, piezas, etc.). El total de "Existencia" mezcla todas: úselo como referencia de volumen, no como cifra contable. Para cifras de valor, consulte el módulo de **Costeo de Inventarios**.
+**¿Qué tab se abre por defecto?**
+La primera con datos: Pedidos, o Producción, o Otras bodegas (en ese orden). Se recuerda durante la sesión.
 
-**¿Por qué un saldo negativo no regala disponibilidad a otra orden?**
-Porque cada pedido y cada orden es un compromiso independiente. Si un pedido está sobre-despachado (error de logística), no debe regalar disponibilidad a otro. El "piso en 0" evita eso.
+**¿Cómo afecta "Actualizar" a mi detalle abierto?**
+Conserva: detalle, expansión, tab. Recarga solo la tab visible. Si la selección desaparece, cierra con aviso.
+
+**¿Puedo cambiar filtros sin cerrar el detalle?**
+No. Cambiar filtro/página/orden/búsqueda cierra el detalle. **Actualizar** lo conserva.
+
+**¿Por qué pide bodega si abro "Ver disponibilidad" desde Referencias?**
+Es la primera vez que consulta. El sistema la recuerda después.
 
 **¿Qué referencias aparecen?**
-Solo las que **manejan inventario** (columna `ManejaInventarios` de la referencia). Las que no (servicios, trabajos especiales) no cuentan.
+Solo que **manejan inventario**. Las que no (servicios) no cuentan.
 
-**¿Qué diferencia hay con el Reporte de Pedidos legado?**
-1. **Incluye pedidos no cerrados.** El legado exigía cerrado; aquí cuentan aunque estén en tramitación. El cambio es mínimo: en compañías normales, la mayoría de pedidos están cerrados.
-2. **Agrega sin importar la bodega del pedido.** El legado emparejaba también por bodega; aquí se suma por variante. El comercial necesita saber si tiene disponible sin importar de dónde viene la línea.
-3. **Mide por variante, no por pedido.** Aquí cada variante es una fila; el Reporte podía mostrar el mismo pedido varias veces. Este informe simplifica.
-
-**¿Por qué me dice "No se pudo consultar"?**
-Pulse **Actualizar** o vuelva a consultar. Si persiste, la bodega puede no existir en la compañía o su usuario perdió el permiso. Avise a soporte.
-
-**¿Necesito una ruta para ver las etapas de producción?**
-No obligatoriamente. Si la orden no tiene ruta o aún no ha iniciado, el detalle lo dice ("Sin ruta definida", "Sin iniciar").
+**¿Qué es "Variantes: 100 de 108 · Ver las 8 restantes"?**
+La referencia tiene 108 variantes; se muestran 100 en la página. Botón para ver las 8 que falta.
 
 ---
 
