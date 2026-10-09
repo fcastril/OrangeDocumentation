@@ -18,6 +18,8 @@ La **cartera de proveedores** muestra cuánto le debe la compañía a cada prove
 
 Es una pantalla **solo de consulta**: desde aquí no se crea, no se edita y no se elimina nada. Los pagos, las notas y las facturas se registran en sus pantallas de origen, y la cartera los toma de ahí.
 
+La pantalla tiene dos pestañas: **Proveedores** (el listado de la cartera) y **Dashboard** (el resumen de la cartera a una fecha de corte). Ver [Dashboard](#-dashboard).
+
 > 📘 La búsqueda, el orden, la paginación y la ayuda funcionan igual en todas las tablas: ver [Manejo general de la información](../../Generales/manejo-general-informacion.md).
 
 ---
@@ -132,6 +134,118 @@ Un proveedor que nunca tuvo documentos de cartera no aparece en ningún caso.
 Si a la fecha de corte no hay proveedores con saldo, verá el mensaje **No hay proveedores con saldo a esta fecha**. Cambie la fecha de corte o active **Incluir proveedores en saldo cero**.
 
 ![Sin proveedores con saldo](../recursos/img/cartera-proveedores/13-vacio.png)
+
+---
+
+## 📊 Dashboard
+
+El **Dashboard** es la pestaña que está junto a **Proveedores**, en la parte de arriba de la pantalla. Resume la cartera a una fecha de corte: cuánto se debe, cuánto está vencido, cómo envejece la deuda, qué proveedores concentran el saldo, qué vence pronto y qué se pagó en los últimos días.
+
+Las cifras son las mismas de la lista para el mismo corte, rango y filtros. Como la lista, es una pantalla de solo consulta.
+
+Para abrirlo, haga clic en **Dashboard**. También puede ir directo con el enlace de la pantalla seguido de `?vista=dashboard`.
+
+![Dashboard de la cartera de proveedores](../recursos/img/cartera-proveedores/18-dashboard.png)
+
+### Filtros del dashboard
+
+Los filtros se aplican al hacer clic en **Consultar**. Cambiar un filtro no recalcula la cartera por sí solo.
+
+| Filtro | Opciones | Por defecto |
+|--------|----------|-------------|
+| **Fecha de corte** | Hasta hoy. No se puede elegir una fecha futura. | Hoy |
+| **Tamaño de los tramos** | 7, 14, 15 o 30 días | 30 días |
+| **Proveedores en el top** | Top 5 o Top 10 | Top 10 |
+| **Ventana de pagos recientes** | Últimos 7, 15, 30, 60 o 90 días | 30 días |
+| **Más filtros** | **Tipo de movimiento** y **Centro de costos**, igual que en el listado | Todos |
+
+A diferencia del listado, el dashboard no tiene la opción **Sin rangos**: el envejecimiento siempre se reparte en tramos.
+
+### Tarjetas
+
+| Tarjeta | Qué muestra |
+|---------|-------------|
+| **Total por pagar** | Suma de los saldos con deuda a la fecha de corte. |
+| **Vencido** | Parte del total que ya está vencida, con su porcentaje del total. |
+| **Por vencer** | Parte del total que todavía no vence, con su porcentaje. Vencido y por vencer suman el total. |
+| **Saldo a favor** | Anticipos, devoluciones y notas sin aplicar. Se muestra en valor positivo y rotulado como **Saldo a favor**. Ese valor ya está descontado del total por pagar. |
+| **Proveedores con saldo** | Cuántos proveedores deben algo. Debajo indica cuántos están en saldo cero y cuántos tienen saldo a favor. |
+
+Debajo de las tarjetas aparece la línea **Cifras con corte al** (la fecha de corte) **· calculadas a las** (la hora del cálculo) **· tramos de** (los días del rango elegido).
+
+### Composición
+
+Una barra divide el total entre **Vencido** y **Por vencer**, con su valor y su porcentaje en la leyenda. El botón **Ver proveedores con saldo vencido** abre la lista ordenada por lo vencido (ver *Desglose* más abajo).
+
+### Antigüedad del saldo
+
+Son diez tramos. Los cinco primeros son **por vencer** (*Vence en…*), del más lejano al más cercano. Los cinco últimos son **vencidos** (*Vencido…*), del más cercano al más antiguo. Cada tramo muestra su saldo y su porcentaje del total.
+
+- El tramo **Vence en 1–30** (el más cercano al vencimiento) incluye también los documentos que vencen **hoy**.
+- La suma de los diez tramos es igual al total por pagar.
+
+### Concentración
+
+Muestra los proveedores con más saldo, según el **Top 5** o el **Top 10** elegido, con su saldo y su porcentaje del total.
+
+- La fila **Otros** agrupa al resto de los proveedores. El top más **Otros** da siempre el total por pagar.
+- **Otros** puede ser **negativo**: incluye el saldo a favor de los proveedores con anticipos o devoluciones, que se resta de la deuda. Aparece con signo «−», en color de alerta, con la nota que lo explica.
+
+![Concentración con «Otros» negativo](../recursos/img/cartera-proveedores/20-dashboard-otros-negativo.png)
+
+### Vencimientos próximos
+
+Muestra el saldo y el número de documentos que vencen en los próximos **7, 15 y 30 días** desde la fecha de corte. Son acumulados: el de 30 días incluye lo de 7 y de 15. Solo cuentan los saldos de deuda, no los saldos a favor.
+
+Estas barras no abren nada: la lista todavía no filtra por fecha de vencimiento.
+
+### Pagos recientes
+
+Arriba aparece el resumen: cuánto se pagó, en cuántos egresos y entre qué fechas. Abajo están los últimos 10 pagos, con fecha, egreso, proveedor y valor pagado.
+
+Haga clic en el nombre del proveedor para abrir sus documentos. Si no hubo pagos en el periodo, verá el mensaje **No hubo pagos en este periodo**.
+
+### Ver como tablas
+
+El botón **Ver como tablas** cambia la antigüedad, la concentración y los vencimientos por tablas con los mismos números. La composición se mantiene como barra. Use **Gráficos** para volver a verlos.
+
+![Dashboard como tablas](../recursos/img/cartera-proveedores/19-dashboard-tablas.png)
+
+### Desglose
+
+Algunas partes del dashboard llevan a otra vista:
+
+| Haga clic en | Qué se abre |
+|--------------|-------------|
+| El nombre de un proveedor del **top** o de **pagos recientes** | Sus documentos, con la misma fecha de corte y los mismos tramos. Use **Volver al dashboard** para regresar. |
+| Un tramo de **antigüedad** | La pestaña **Proveedores**, con la misma fecha de corte, tipo de movimiento, centro de costos y tamaño de tramos. La lista va ordenada por saldo vencido (tramos vencidos) o por saldo (tramos por vencer). |
+| **Ver proveedores con saldo vencido** | La misma lista, ordenada por saldo vencido. |
+| **Vencimientos próximos** | Nada: no abren la lista. |
+
+Cuando llega desde un tramo o desde **Vencido**, la lista muestra un aviso: *la lista aún no filtra por tramo*. Los tramos aparecen como columnas, pero la lista no muestra solo los proveedores de ese tramo.
+
+![Lista abierta desde un tramo de antigüedad](../recursos/img/cartera-proveedores/21-dashboard-tramo-lista.png)
+
+Si no hay cartera por pagar a la fecha de corte, el dashboard muestra **No hay cartera por pagar a esta fecha** con el botón **Ver proveedores en saldo cero**.
+
+### Tiempo de carga
+
+Cada consulta del dashboard tarda cerca de **2 segundos**. Mientras tanto verá el aviso *"Calculando el dashboard…"*. Si tarda más, aparece *"Calculando la cartera a la fecha de corte. Puede tardar unos segundos."* No es necesario recargar la página.
+
+Si la consulta falla, verá *"No se pudo calcular el dashboard"*. Haga clic en **Reintentar**; los filtros se conservan.
+
+### Qué no incluye el dashboard
+
+Por ahora el dashboard **no** muestra:
+
+- La tendencia mensual del saldo.
+- El plazo medio de pago.
+- La calificación del proveedor. Está aplazada: no aparece ni se simula.
+- Los descuentos por pronto pago.
+
+### Permisos del dashboard
+
+El dashboard usa el mismo permiso que el listado: **Consultar** sobre *Cartera de Proveedores*. No necesita ningún permiso adicional. Sin **Consultar** no verá la pantalla ni sus pestañas.
 
 ---
 
@@ -252,7 +366,7 @@ Por ahora la exportación es **solo a Excel**. No hay exportación a PDF.
 
 | Permiso | Qué habilita |
 |---------|--------------|
-| Consultar | Ver el listado, abrir los documentos de un proveedor y ver la historia de cada documento. |
+| Consultar | Ver el listado, el Dashboard, abrir los documentos de un proveedor y ver la historia de cada documento. |
 | Exportar | El botón **Exportar a Excel**. |
 
 Si solo tiene **Consultar**, la pantalla funciona igual, pero no verá el botón **Exportar a Excel**.
