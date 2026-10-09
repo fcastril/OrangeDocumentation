@@ -59,7 +59,7 @@ Las tarjetas de arriba suman el **filtro completo**, no solo la página que est�
 |---------|----------|
 | **Saldo por pagar** | Lo que la compañía debe a todos los proveedores del filtro. |
 | **Vencido** | El saldo de los documentos que ya tienen atraso. |
-| **Saldo a favor** | Anticipos, sobrepagos y notas sin aplicar. Ese valor ya está descontado del saldo por pagar y se muestra en negativo. |
+| **Saldo a favor** | Anticipos, sobrepagos y notas sin aplicar. Se muestra en valor positivo, rotulado **Saldo a favor**, y ya está descontado del saldo por pagar. |
 | **Proveedores** | Cuántos proveedores cumplen el filtro actual. |
 
 Debajo de las tarjetas aparece la línea **Saldos con corte al** (la fecha de corte) **· calculado a las** (la hora en que se calculó). Si hay proveedores en saldo cero ocultos, la línea indica cuántos son y tiene el enlace **mostrarlos**.
@@ -85,6 +85,12 @@ Los saldos a favor se marcan con la etiqueta **A favor**. Los proveedores que es
 
 > 📱 En pantallas pequeñas, cada proveedor se muestra como una tarjeta con sus datos principales.
 
+### Si la consulta falla
+
+Si la cartera no carga, la pantalla muestra el aviso *"No se pudo consultar la cartera"* con el botón **Reintentar**. Haga clic en **Reintentar** para volver a consultar: los filtros, la fecha de corte y el rango se conservan.
+
+![Error al consultar la cartera, con Reintentar](../recursos/img/cartera-proveedores/22-error-reintentar.png)
+
 ![Cartera en pantalla pequeña](../recursos/img/cartera-proveedores/17-movil.png)
 
 ![Búsqueda por nombre o documento](../recursos/img/cartera-proveedores/02-buscar.png)
@@ -103,7 +109,7 @@ Elija un rango en **Rango de vencimiento** y haga clic en **Consultar**:
 
 Con un rango, cada proveedor muestra su saldo en tramos: los que **todavía no vencen** (*Vence en…*) y los **vencidos** (*Vencido…*). Con el rango mensual, los tramos son 1–30, 31–60, 61–90, 91–120 y más de 120 días; con los demás rangos, los tramos crecen con el mismo tamaño. La suma de los tramos siempre es igual al saldo del proveedor.
 
-El tramo de *Vence en* más cercano incluye también los documentos que **vencen hoy**.
+El tramo más cercano al vencimiento se rotula **Vence en** seguido de sus días (por ejemplo, **Vence en 1–30** con el rango mensual). Ese tramo incluye también los documentos que **vencen hoy**.
 
 ![Listado con rango mensual](../recursos/img/cartera-proveedores/04-rangos-vencimiento.png)
 
@@ -114,7 +120,7 @@ Haga clic en **Más filtros** para ver:
 - **Tipo de movimiento**: solo cuentan los documentos de ese tipo (por ejemplo, facturas de compra o gastos).
 - **Centro de costos**: solo cuentan los documentos cuyo tipo tiene ese centro por defecto.
 
-Elija el filtro y haga clic en **Consultar**. Con **Todos**, no se filtra.
+Elija el filtro y haga clic en **Consultar**. Con **Todos** (la opción por defecto en ambos campos), no se filtra.
 
 ![Más filtros](../recursos/img/cartera-proveedores/05-mas-filtros.png)
 
@@ -181,7 +187,7 @@ Una barra divide el total entre **Vencido** y **Por vencer**, con su valor y su 
 
 Son diez tramos. Los cinco primeros son **por vencer** (*Vence en…*), del más lejano al más cercano. Los cinco últimos son **vencidos** (*Vencido…*), del más cercano al más antiguo. Cada tramo muestra su saldo y su porcentaje del total.
 
-- El tramo **Vence en 1–30** (el más cercano al vencimiento) incluye también los documentos que vencen **hoy**.
+- El tramo más cercano al vencimiento, rotulado **Vence en** con los días del tamaño elegido (por ejemplo, **Vence en 1–30** con tramos de 30 días), incluye también los documentos que vencen **hoy**.
 - La suma de los diez tramos es igual al total por pagar.
 
 ### Concentración
@@ -259,8 +265,8 @@ Haga clic en el nombre de un proveedor en el listado. Se abre la página de sus 
 |----------|----------------|
 | **Volver a proveedores** | Regresa al listado con los filtros que tenía. |
 | **Ver ficha del proveedor** | Abre la ficha del proveedor en la pantalla de Proveedores. |
-| **Incluir documentos en saldo cero** | Muestra también los documentos ya saldados. La línea de la derecha dice cuántos están ocultos. |
-| **Buscar por movimiento o referencia** | Filtra por el código del documento o por su documento de referencia. |
+| **Incluir documentos en saldo cero** | Muestra también los documentos ya saldados. Mientras estén ocultos, la línea de la derecha dice cuántos hay, por ejemplo *1 documento saldado está oculto*. |
+| **Buscar documento** (el campo dice *Buscar por movimiento o referencia*) | Filtra por el código del documento o por su documento de referencia. |
 | **Movimiento** (código subrayado) | Abre la historia del documento. Ver *Historia del movimiento*. |
 
 Las columnas son: **Movimiento**, **Doc. referencia**, **Fecha**, **Plazo (d)**, **Vence**, **Atraso**, **Valor total**, **Notas**, **Pagos** y **Saldo**.
@@ -300,7 +306,8 @@ Debajo está la **Línea de tiempo**:
 | **Generado** | El valor con el que se creó el documento, en su fecha. Es el punto de partida. |
 | **Pagado con** (un egreso) | Un pago que cruzó contra este documento, con la fecha del pago y el valor aplicado. |
 | **Nota aplicada** (una nota débito o crédito) | Una nota que cruzó contra este documento. |
-| **Aplicado por** | Otro documento que cruzó contra este; no cambia el saldo. |
+| **Aplicado por** | Otro documento que cruzó contra este, como una devolución (categoría *Otro*); no cambia el saldo. |
+| **Aplicado a** | Este documento cruzó contra otros (por ejemplo, un egreso o un anticipo que pagó facturas). Aparece en la historia del documento que aplicó. |
 | **Sin aplicar** | El valor que queda sin cruzar en un egreso o un anticipo. |
 
 En cada línea verá:
@@ -313,9 +320,7 @@ La última línea, **Saldo actual**, es el mismo saldo que ve en el listado. Si 
 
 ### Reversos y saldo a favor
 
-Un reverso es un cruce guardado en negativo. El sistema lo cuenta por su valor absoluto, igual que un cruce positivo del mismo monto: mueve el saldo en el mismo sentido, no lo devuelve a su estado anterior. Se marca con la etiqueta **Reverso**.
-
-Si ve un documento con cruces negativos y su saldo le parece incoherente, consúltelo con contabilidad: la regla replica el reporte de cartera del sistema anterior.
+Un reverso es un cruce guardado en negativo. El sistema lo cuenta por su valor absoluto, igual que un cruce positivo del mismo monto. Se marca con la etiqueta **Reverso**; si pasa el cursor sobre la etiqueta, la pantalla explica lo mismo en un aviso.
 
 Los documentos con saldo a favor se marcan con la etiqueta **A favor** junto a su saldo.
 
@@ -356,7 +361,7 @@ Haga clic en **Exportar a Excel** (necesita el permiso **Exportar**). Se descarg
 - Una fila por proveedor, con su NIT, nombre, nombre comercial, teléfono, ciudad, zona, dirección, comprador, documentos, valor total, notas, pagos, saldo, vencido, saldo a favor y mayor atraso. Si eligió un rango, también trae los tramos.
 - Al final, una fila **TOTAL**.
 
-**Límite:** el archivo puede tener hasta **50.000 proveedores**. Si el filtro trae más, no se genera el archivo y verá el aviso *"Hay demasiadas filas para exportar (máximo 50.000). Acote el filtro e inténtalo de nuevo."* Escriba más texto en el buscador, elija una fecha de corte o un filtro más específico y vuelva a exportar.
+**Límite:** el archivo puede tener hasta **50.000 proveedores**. Si el filtro trae más, no se genera el archivo y verá el aviso *"Hay demasiadas filas para exportar (máximo 50.000). Acota el filtro e inténtalo de nuevo."* Escriba más texto en el buscador, elija una fecha de corte o un filtro más específico y vuelva a exportar.
 
 Por ahora la exportación es **solo a Excel**. No hay exportación a PDF.
 
@@ -395,7 +400,7 @@ No es necesario recargar la página: espere a que aparezca el resultado.
 | *"No se encontró"* | El proveedor o el documento no existe en esta compañía, o ya fue anulado. Vuelva a la lista. |
 | *"No se pudieron cargar los documentos"* | Los documentos del proveedor no llegaron. Haga clic en **Reintentar**. |
 | *"No se pudo cargar la historia"* | La historia no llegó, pero los documentos siguen disponibles. Haga clic en **Reintentar**. |
-| *"Esta historia tiene demasiados cruces para mostrarla."* | El documento tiene más de 1.000 cruces y la historia no se puede mostrar. |
+| *"Esta historia tiene demasiados cruces para mostrarla."* | El documento tiene demasiados cruces (más de 1.000) y la historia no se puede mostrar. Elija una fecha de corte anterior o consulte el documento con contabilidad. |
 | *"No se pudo generar el archivo. Inténtelo de nuevo."* | La exportación falló. Vuelva a intentarlo. |
 
 ---
@@ -421,7 +426,7 @@ Los totales de las tarjetas y el conteo de proveedores son del filtro completo, 
 Los documentos en saldo cero están ocultos. Active **Incluir documentos en saldo cero** en la página del proveedor.
 
 **¿Por qué un documento tiene una línea marcada como Reverso?**
-Es un cruce guardado en negativo. El sistema lo cuenta por su valor absoluto, igual que un cruce positivo del mismo monto. Si el saldo de ese documento le parece incoherente, consúltelo con contabilidad: la regla replica el reporte de cartera del sistema anterior. Ver *Reversos y saldo a favor*.
+Es un cruce guardado en negativo. El sistema lo cuenta por su valor absoluto, igual que un cruce positivo del mismo monto. Pase el cursor sobre la etiqueta para leer la explicación. Ver *Reversos y saldo a favor*.
 
 **¿Por qué no veo el botón Exportar a Excel?**
 Su perfil no tiene el permiso **Exportar** sobre esta opción. Consulte con el administrador.
