@@ -184,7 +184,7 @@ El sistema lee el archivo en su equipo y lo revisa. Los avisos de archivo no vá
 Cuando el archivo está bien, el sistema compara cada fila con los terceros de la compañía y le muestra el resultado. **Esta revisión no guarda nada.**
 
 - Los **indicadores** arriba muestran cuántas filas son **Nuevos**, **Se convierten**, **Se actualizan**, **Sin cambios** y **Con error**.
-- Los **filtros** (Todas, Nuevo, Se actualiza, Existe como tercero, Sin cambios, Error) muestran solo las filas de ese estado.
+- Los **filtros** (Todas, Nuevos, Se convierten, Se actualizan, Sin cambios, Con error) muestran solo las filas de ese estado.
 - Cada fila muestra su **número de fila** del archivo, el **documento**, el **nombre** y el **estado**. Las filas con error muestran el motivo.
 - Con el **buscador** puede buscar por documento o nombre.
 
@@ -215,8 +215,9 @@ Otros botones de la página:
 Al aplicar, el sistema guarda **todas las filas válidas juntas**, en una sola operación:
 
 - Si todo sale bien, se guardan todas las filas **Nuevos**, **Se convierten** y **Se actualizan**.
-- Si ocurre un fallo del servidor, **no se guarda ninguna fila**. Verá *"No se pudo completar. No se guardó ningún cambio. Inténtalo de nuevo."* y puede reintentar.
+- Si ocurre un fallo del servidor, **no se guarda ninguna fila**. Verá el aviso *"No se pudo completar"* con el texto *"No se guardó ningún cambio. Inténtalo de nuevo."* y puede reintentar.
 - Las filas con **error** no se guardan, pero **no bloquean** a las demás: las filas válidas sí se aplican. Corrija las filas con error y vuelva a cargar el archivo cuando quiera.
+- Si la vista previa tiene filas con error, aparece el aviso *"{{n}} filas tienen error y no se aplicarán. Corrígelas y vuelve a cargar el archivo, o aplica las demás."* (con una sola fila: *"1 fila tiene error y no se aplicará…"*).
 - La importación **nunca borra** compradores ni datos que no estén en el archivo.
 
 ### Estados de cada fila
@@ -224,7 +225,7 @@ Al aplicar, el sistema guarda **todas las filas válidas juntas**, en una sola o
 | Estado | Qué significa | Qué pasa al aplicar |
 |--------|---------------|---------------------|
 | **Nuevo** | El documento no está registrado en la compañía. | Se crea el tercero y su condición de comprador. |
-| **Existe como tercero** (se convierte) | El documento ya es tercero de la compañía (por ejemplo, proveedor o cliente), pero no es comprador. La fila muestra la nota *"Ya es tercero en la compañía: se convierte en comprador y conserva sus otros perfiles (proveedor, cliente)."* | Se agrega la condición de **comprador** al tercero existente. **No se duplica** y **conserva sus otros perfiles** (proveedor, cliente). Si el nombre del archivo es distinto del registrado, la fila muestra *"Actual: …"* con el nombre actual. |
+| **Se convierte en comprador** | El documento ya es tercero de la compañía (por ejemplo, proveedor o cliente), pero no es comprador. La fila muestra la nota *"Ya es tercero en la compañía: se convierte en comprador y conserva sus otros perfiles (proveedor, cliente)."* | Se agrega la condición de **comprador** al tercero existente. **No se duplica** y **conserva sus otros perfiles** (proveedor, cliente). Si el nombre del archivo es distinto del registrado, la fila muestra *"Actual: …"* con el nombre actual. |
 | **Se actualiza** | Ya es comprador y el archivo cambia algún dato. | Se actualizan los datos que cambiaron. |
 | **Sin cambios** | Ya es comprador y el archivo no cambia nada. | No se escribe nada. |
 | **Error** | La fila tiene un problema que hay que corregir. | No se guarda. Ver *Errores por fila* más abajo. |
@@ -243,11 +244,11 @@ Para **borrar** un dato que ya existe, no use la importación: modifique el comp
 
 ### Errores por fila y cómo corregirlos
 
-Cada fila con error muestra el motivo en el paso de revisión. Corrija la celda indicada en Excel y vuelva a cargar el archivo. Los mensajes y los formatos aceptados (Sí/No, números, correos, documento de 5 a 20 caracteres, códigos de ciudad, actividad económica o cuenta contable) son los mismos que en Proveedores: ver [Importar desde Excel en Proveedores](proveedores.md#-importar-desde-excel). Recuerde que en Compradores solo se validan las 27 columnas de la sección Tercero.
+Cada fila con error muestra el motivo en el paso de revisión. Ejemplos: *"Falta el número de documento."* y *"Documento repetido en el archivo (filas 12)."* (las filas indicadas son las que comparten el mismo documento). Corrija la celda indicada en Excel y vuelva a cargar el archivo. Los mensajes y los formatos aceptados (Sí/No, números, correos, documento de 5 a 20 caracteres, códigos de ciudad, actividad económica o cuenta contable) son los mismos que en Proveedores: ver [Importar desde Excel en Proveedores](proveedores.md#-importar-desde-excel). Recuerde que en Compradores solo se validan las 27 columnas de la sección Tercero.
 
 ### Conflicto: "Volver a validar"
 
-La vista previa es una foto del momento en que la revisó. Si mientras tanto otra persona crea el mismo documento o el perfil de comprador, al aplicar el sistema no guarda nada y muestra el aviso *"Los datos cambiaron"*: *"Otro usuario cambió terceros mientras revisabas. Vuelve a validar antes de aplicar."* No se guarda nada.
+La vista previa es una foto del momento en que la revisó. Si mientras tanto otra persona crea el mismo documento o el perfil de comprador, al aplicar el sistema no guarda nada y muestra el aviso *"Los datos cambiaron"*: *"Otro usuario creó el documento o el perfil mientras revisabas, y no se guardó nada. Vuelve a validar antes de aplicar."*
 
 Haga clic en **Volver a validar**: el sistema vuelve a revisar el archivo que cargó. No se pierde el archivo. Si el error es de conexión y no de datos, use **Reintentar**.
 
