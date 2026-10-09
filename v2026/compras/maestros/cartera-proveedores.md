@@ -199,7 +199,9 @@ La última línea, **Saldo actual**, es el mismo saldo que ve en el listado. Si 
 
 ### Reversos y saldo a favor
 
-Un cruce con valor negativo es un **reverso**. Se marca con la etiqueta **Reverso**. Un reverso **se resta por su valor absoluto**: como cualquier otro cruce, no aumenta el saldo por ser negativo.
+Un reverso es un cruce guardado en negativo. El sistema lo cuenta por su valor absoluto, igual que un cruce positivo del mismo monto: mueve el saldo en el mismo sentido, no lo devuelve a su estado anterior. Se marca con la etiqueta **Reverso**.
+
+Si ve un documento con cruces negativos y su saldo le parece incoherente, consúltelo con contabilidad: la regla replica el reporte de cartera del sistema anterior.
 
 Los documentos con saldo a favor se marcan con la etiqueta **A favor** junto a su saldo.
 
@@ -305,7 +307,7 @@ Los totales de las tarjetas y el conteo de proveedores son del filtro completo, 
 Los documentos en saldo cero están ocultos. Active **Incluir documentos en saldo cero** en la página del proveedor.
 
 **¿Por qué un documento tiene una línea marcada como Reverso?**
-Es un cruce con valor negativo. Se resta por su valor absoluto y no aumenta el saldo. Ver *Reversos y saldo a favor*.
+Es un cruce guardado en negativo. El sistema lo cuenta por su valor absoluto, igual que un cruce positivo del mismo monto. Si el saldo de ese documento le parece incoherente, consúltelo con contabilidad: la regla replica el reporte de cartera del sistema anterior. Ver *Reversos y saldo a favor*.
 
 **¿Por qué no veo el botón Exportar a Excel?**
 Su perfil no tiene el permiso **Exportar** sobre esta opción. Consulte con el administrador.
