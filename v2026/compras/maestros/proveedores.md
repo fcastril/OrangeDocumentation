@@ -83,6 +83,10 @@ La ficha tiene tres pestañas:
 | **Proveedor** | Condiciones comerciales (descuento comercial, días de plazo de factura y de orden de compra, tipo de movimiento de compras y de gastos), impuestos y retenciones (realiza IVA, retefuente, reteIVA, ICA u otra retención) y crédito y pagos (cupo de crédito, días de mora, banco, tipo y número de cuenta bancaria, pago electrónico). |
 | **Contactos** | Las personas con quienes se trata en el proveedor. Ver la sección *Contactos* más abajo. |
 
+**Fecha de nacimiento** (pestaña Proveedor, en Condiciones comerciales): elíjala en el calendario o escríbala. Debe estar entre **1753-01-01** y hoy; fuera de ese rango, el campo muestra *"La fecha de nacimiento debe estar entre 1753-01-01 y hoy."* y no guarda. Si la deja vacía, se guarda 1753-01-01.
+
+**Número de cuenta bancaria** (pestaña Proveedor, en Crédito y pagos): admite hasta **20 caracteres**; con más, verá *"El número de cuenta admite hasta 20 caracteres."*. Con permiso para **Actualizar** lo ve y lo edita completo. Si solo tiene consulta, el número aparece **enmascarado** con los últimos 4 dígitos (por ejemplo, `****1234`). El número completo nunca se registra en el historial de cambios.
+
 Los campos obligatorios se marcan en la ficha. Si falta algún dato o un valor no es válido, la pestaña aparece con un contador de errores (por ejemplo, **2 errores**) y el campo muestra el motivo, como *"Escribe un valor numérico válido."*, *"Debe estar entre 0 y 100."* o *"Elige el impuesto o desmarca la casilla."*. Corríjalo y guarde de nuevo.
 
 Al guardar verá el mensaje **"Proveedor … creado."** y el proveedor aparece en el listado.
@@ -95,7 +99,7 @@ Cuando escribe el número de documento (entre 5 y 20 caracteres) y deja el campo
 |-------|---------------|-----------------|
 | *"Verificando si el documento ya está registrado…"* | La revisión está en curso. | Espere un momento. |
 | *"Este documento ya existe en la compañía como {nombre} ({roles})."* y *"Se cargó la información registrada…"* | El tercero ya existe con otro perfil (cliente, empleado u otro). **No se duplica.** La ficha se llena con sus datos. | Revise los datos precargados y haga clic en **Guardar**: el tercero se agrega como proveedor sin crear otro. |
-| *"Este documento ya es proveedor en la compañía."* y *"{nombre} ya está registrado con este documento."* | Ya tiene este perfil. | Haga clic en **Abrir su edición** para modificarlo. |
+| *"Este documento ya es proveedor en la compañía."* y *"{nombre} ya está registrado con este documento."* | Ya tiene este perfil. | Haga clic en **Abrir su edición** para modificarlo. La ficha se abre directamente, sin preguntar nada: lo que escribió en el documento no cuenta como cambio. |
 | *"No se pudo verificar el documento…"* | La revisión falló por la conexión. | Haga clic en **Reintentar**, o guarde: el sistema lo verifica otra vez al guardar. |
 
 ![Documento ya registrado con otro perfil](../recursos/img/proveedores/03-reutilizar-tercero.png)
@@ -207,8 +211,9 @@ Cuando se elimina el proveedor de verdad, también se borran sus contactos, su l
 
 Haga clic en **Exportar a Excel**. Se descarga el archivo con los proveedores que cumplen la **búsqueda** y el **orden** que tiene en pantalla, de todas las páginas (no solo la visible).
 
-- El archivo puede tener **hasta 10.000 filas**. Si la búsqueda tiene más resultados, verá el aviso *"Hay más de 10.000 resultados: acota la búsqueda para exportar."* Escriba más texto en el buscador (documento o nombre) para reducir la lista y vuelva a exportar.
-- Si la exportación falla por la conexión, verá *"No se pudo exportar. Inténtalo de nuevo."*
+- El archivo puede tener **hasta 10.000 filas**. Si la búsqueda tiene más resultados, verá el aviso *"Hay más de 10.000 proveedores: acota la búsqueda para exportar."* Escriba más texto en el buscador (documento o nombre) para reducir la lista y vuelva a exportar.
+- Si la exportación falla por la conexión, verá *"No se pudo exportar los proveedores. Inténtalo de nuevo."*
+- Los avisos de exportar se quitan cuando inicia otro intento, cuando la exportación sale bien o cuando cambia la búsqueda o el orden.
 
 ---
 
@@ -216,7 +221,7 @@ Haga clic en **Exportar a Excel**. Se descarga el archivo con los proveedores qu
 
 Use esta función cuando tenga muchos proveedores en una hoja de cálculo y quiera cargarlos de una vez. Antes de guardar, el sistema le muestra qué se va a crear, qué se va a convertir y qué se va a actualizar. **Nada se guarda hasta que haga clic en Aplicar.**
 
-> ℹ️ Solo se importan **proveedores**. Los compradores no se importan desde esta versión: ver [Compradores](compradores.md).
+> ℹ️ Esta importación es solo para **proveedores**. Los compradores se importan desde su propia página, con el mismo procedimiento: ver [Compradores](compradores.md#-importar-desde-excel).
 
 Para importar necesita el permiso **Exportar** sobre la opción Proveedores. Si no lo tiene, el botón **Importar** no aparece en el listado.
 
@@ -388,6 +393,8 @@ Si otra persona crea, modifica o elimina proveedores mientras usted tiene abiert
 Si estaba por confirmar la eliminación de un proveedor que otro ya eliminó, el diálogo se cierra con el aviso *"Otro usuario ya eliminó el proveedor …"*.
 
 > ℹ️ Los cambios que usted hace en esta misma pestaña no generan avisos.
+
+**Terceros que son proveedor y comprador.** Si el tercero tiene los dos perfiles, un cambio en su ficha (crear, editar, convertir, eliminar o retirar un perfil, contactos o importar) también aparece en vivo en la pantalla de [Compradores](compradores.md), y viceversa. Si se retira un perfil, el aviso llega a las dos pantallas cuando el tercero tenía ambos perfiles antes del cambio.
 
 ---
 
