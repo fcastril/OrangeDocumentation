@@ -10,3 +10,4 @@ Manuales de las pantallas de Compras en la nueva versión.
 
 - [Proveedores](maestros/proveedores.md)
 - [Compradores](maestros/compradores.md)
+- [Cartera de Proveedores](maestros/cartera-proveedores.md)
