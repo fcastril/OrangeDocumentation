@@ -44,7 +44,7 @@ Para ver la pantalla necesita el permiso **Consultar** sobre la opción Proveedo
 | **Nuevo proveedor** | Abre la ficha para crear un proveedor. |
 | **Buscar por documento o nombre** | Filtra el listado mientras escribe. No distingue mayúsculas ni tildes. |
 | **Exportar a Excel** | Descarga los proveedores que cumplen la búsqueda actual. Ver la sección *Exportar a Excel* más abajo. |
-| **Importar** | Pendiente en esta versión: ver *Importar desde Excel* más abajo. |
+| **Importar** | Abre la página para cargar proveedores desde un archivo de Excel. Solo aparece en Proveedores y con el permiso **Exportar**. Ver *Importar desde Excel* más abajo. |
 | **Lápiz** / **Papelera** | Editar o eliminar el proveedor de esa fila. Siempre están en la **primera columna**. Si no tiene permiso para editar, el lápiz dice **Ver** y abre la ficha en solo lectura. |
 | **Encabezados** | Un clic ordena de forma ascendente, el segundo descendente y el tercero quita el orden. |
 | **Filas por página** y paginación | Cambian cuántos proveedores ve por página (10, 20, 50 o 100) y la página. |
@@ -214,7 +214,159 @@ Haga clic en **Exportar a Excel**. Se descarga el archivo con los proveedores qu
 
 ## 📥 Importar desde Excel
 
-> 🚧 **Pendiente.** La importación de proveedores desde Excel todavía no está disponible en esta versión. Esta sección se completará cuando la pantalla de importación esté publicada (pasos: cargar archivo, revisar y resultado; el permiso necesario es **Exportar**).
+Use esta función cuando tenga muchos proveedores en una hoja de cálculo y quiera cargarlos de una vez. Antes de guardar, el sistema le muestra qué se va a crear, qué se va a convertir y qué se va a actualizar. **Nada se guarda hasta que haga clic en Aplicar.**
+
+> ℹ️ Solo se importan **proveedores**. Los compradores no se importan desde esta versión: ver [Compradores](compradores.md).
+
+Para importar necesita el permiso **Exportar** sobre la opción Proveedores. Si no lo tiene, el botón **Importar** no aparece en el listado.
+
+### Antes de empezar
+
+| Regla | Detalle |
+|-------|---------|
+| Formato | Archivo de Excel **.xlsx**. Solo se lee la **primera hoja**. |
+| Tamaño | Hasta **1 MB** por archivo. |
+| Filas | Hasta **1.000** filas con datos. Si tiene más, divídalo en varios archivos. |
+| Columnas | Las columnas se reconocen por su **encabezado** (el nombre de la fila 1), no por su posición. Use la plantilla para no equivocarse. |
+| Documento | La columna **Documento** es obligatoria: sin ella el archivo no se puede usar. |
+
+### Paso a paso
+
+**Paso 1. Cargar archivo**
+
+1. En el listado de **Proveedores**, haga clic en **Importar**.
+2. Haga clic en **Descargar plantilla**. Se descarga un archivo de Excel con las columnas de la importación, una fila de ejemplo en la fila 2 y una nota en cada encabezado.
+3. Llene la plantilla: escriba un proveedor por fila, empezando en la fila 2. **Borre la fila de ejemplo** o reemplácela por sus datos. Las filas vacías se omiten.
+4. Haga clic en **Seleccionar archivo** (o arrastre el archivo a la zona punteada) y elija su archivo .xlsx.
+
+![Cargar archivo](../recursos/img/proveedores/importar-01-cargar-archivo.png)
+
+El sistema lee el archivo en su equipo y lo revisa. Si no se puede usar, verá uno de estos avisos:
+
+| Aviso | Qué hacer |
+|-------|-----------|
+| *"El archivo no es un .xlsx válido."* | Guarde el archivo como **Libro de Excel (.xlsx)** y vuelva a cargarlo. |
+| *"No se encontró la columna «Documento». Usa la plantilla."* | Copie sus datos en la plantilla descargada, sin cambiar los encabezados. |
+| *"El archivo no tiene filas con datos."* | Escriba los proveedores debajo de los encabezados. |
+| *"El archivo tiene N filas; el máximo es 1.000."* | Divida el archivo en varias partes de 1.000 filas o menos. |
+| *"El archivo pesa más de 1 MB."* | Quite columnas o filas que no use, o divídalo. |
+
+![Archivo no válido](../recursos/img/proveedores/importar-02-archivo-invalido.png)
+
+**Paso 2. Revisar (vista previa)**
+
+Cuando el archivo está bien, el sistema compara cada fila con los terceros de la compañía y le muestra el resultado. **Esta revisión no guarda nada.**
+
+- Los **indicadores** arriba muestran cuántas filas son **Nuevos**, **Se convierten**, **Se actualizan**, **Sin cambios** y **Con error**.
+- Los **filtros** (Todas, Nuevo, Se actualiza, Existe como tercero, Sin cambios, Error) muestran solo las filas de ese estado.
+- Cada fila muestra su **número de fila** del archivo, el **documento**, el **nombre** y el **estado**. Las filas con error muestran el motivo.
+- Con el **buscador** puede buscar por documento o nombre.
+
+![Vista previa](../recursos/img/proveedores/importar-03-vista-previa.png)
+
+**Paso 3. Aplicar**
+
+1. Revise la vista previa. Si hay filas con error, puede corregirlas (ver la sección siguiente) o aplicar las demás.
+2. Haga clic en **Aplicar N cambios**. El número cuenta las filas **Nuevos**, **Se convierten** y **Se actualizan**.
+3. Espere el indicador **Aplicando…**. Al terminar verá la pantalla **Importación terminada** con el resumen.
+
+En la pantalla de resultado puede **Ver el listado** o **Importar otro archivo**. El listado de proveedores se actualiza con los cambios aplicados.
+
+![Resultado de la importación](../recursos/img/proveedores/importar-06-resultado.png)
+
+Otros botones de la página:
+
+| Botón | Qué hace |
+|-------|----------|
+| **Cambiar archivo** | Vuelve al paso 1 para cargar otro archivo. Lo que revisó antes se descarta. |
+| **Descargar filas con error** | Descarga solo las filas con error, para corregirlas en Excel. |
+| **Cancelar** / **Cargar otro archivo** | Sale de la importación sin guardar nada. |
+
+> ℹ️ Si la vista previa dice *"Nada que aplicar: todas las filas están sin cambios o con error."*, el botón **Aplicar** queda deshabilitado: no hay nada que guardar.
+
+### Todo o nada
+
+Al aplicar, el sistema guarda **todas las filas válidas juntas**, en una sola operación:
+
+- Si todo sale bien, se guardan todas las filas **Nuevos**, **Se convierten** y **Se actualizan**.
+- Si ocurre un fallo del servidor, **no se guarda ninguna fila**. Verá *"No se pudo completar. No se guardó ningún cambio. Inténtalo de nuevo."* y puede reintentar.
+- Las filas con **error** no se guardan, pero **no bloquean** a las demás: las filas válidas sí se aplican. Corrija las filas con error y vuelva a cargar el archivo cuando quiera.
+- La importación **nunca borra** proveedores ni datos que no estén en el archivo.
+
+El resultado muestra cuántos fueron **nuevos**, **convertidos**, **actualizados**, **sin cambios** y **con error**.
+
+### Estados de cada fila
+
+| Estado | Qué significa | Qué pasa al aplicar |
+|--------|---------------|---------------------|
+| **Nuevo** | El documento no está registrado en la compañía. | Se crea el proveedor. |
+| **Existe como tercero** (se convierte) | El documento ya está registrado con otro perfil (por ejemplo, cliente o empleado). | Se agrega la condición de **proveedor** al tercero existente. **No se duplica.** Si el nombre del archivo es distinto del registrado, la fila muestra *"Actual: …"* con el nombre actual. |
+| **Se actualiza** | Ya es proveedor y el archivo cambia algún dato. | Se actualizan los datos que cambiaron. |
+| **Sin cambios** | Ya es proveedor y el archivo no cambia nada. | No se escribe nada. |
+| **Error** | La fila tiene un problema que hay que corregir. | No se guarda. Ver *Errores por fila* más abajo. |
+
+### Qué significa una celda vacía
+
+Una celda vacía significa **sin dato**. Lo que pasa depende de si el proveedor es nuevo o ya existe:
+
+| Caso | Qué ocurre con la celda vacía |
+|------|-------------------------------|
+| **Dato obligatorio** (por ejemplo, Documento, Tipo de documento, Primer nombre, Dirección, Ciudad, Teléfono, Celular, Correo y Régimen tributario) | Si el proveedor es **nuevo**, la fila tiene error. Si el tercero **ya existe**, se conserva el dato registrado. |
+| **Dato opcional** y proveedor **nuevo** | Se usa el valor por defecto: por ejemplo, **Dígito de verificación** vacío queda como NA, **Nombre comercial** vacío toma el nombre completo, **Activo** vacío queda en Sí y **Realizar IVA** (u otro impuesto) con su código queda en Sí. |
+| **Dato opcional** y tercero **que ya existe** | Se **conserva** lo que ya está registrado. Una celda vacía no borra datos. |
+
+Para **borrar** un dato que ya existe, no use la importación: modifique el proveedor en su ficha.
+
+### Errores por fila y cómo corregirlos
+
+Cada fila con error muestra el motivo en el paso de revisión. Corrija la celda indicada en Excel y vuelva a cargar el archivo.
+
+| Mensaje | Qué significa | Cómo corregirlo |
+|---------|---------------|-----------------|
+| *"La fila está vacía."* | La fila no tiene datos. | Borre la fila o escriba los datos del proveedor. |
+| *"Falta el número de documento."* | La columna **Documento** está vacía. | Escriba el número de documento. |
+| *"El documento debe tener entre 5 y 20 caracteres."* | El documento es muy corto o muy largo. | Revise el número, sin espacios ni texto adicional. |
+| *"Documento repetido en el archivo (filas N)."* | El mismo documento aparece en dos o más filas del archivo. | Deje una sola fila por documento o corrija el número de la que sobra. |
+| *"Falta un dato obligatorio: {campo}."* | Un dato obligatorio está vacío en un proveedor nuevo. | Complete la celda del campo indicado. |
+| *"El dato es demasiado largo: {campo}."* | El texto supera el máximo permitido. | Acorte el texto. |
+| *"El dato no es válido: {campo}."* | El formato no es correcto (un número, un sí/no, un porcentaje o un correo). | Revise el formato del campo. Ver los valores aceptados abajo. |
+| *"El código no existe en la compañía: {campo}."* | El código (ciudad, actividad económica, cuenta contable, banco, tipo de movimiento o impuesto) no está en la compañía. | Use el código tal como aparece en las tablas de la compañía, o consulte con su administrador. |
+| *"La fila tiene un error."* | El error no tiene un mensaje específico. | Revise la fila completa y vuelva a validar. |
+
+Formatos aceptados en los campos:
+
+- **Sí/No**: escriba `1`, `0`, `Sí`, `No`, `S`, `N`, `true`, `false`, `verdadero`, `falso` o `x`.
+- **Números**: use punto o coma como separador decimal, sin separador de miles.
+- **Descuento comercial**: porcentaje de 0 a 100 (por ejemplo, `5` para 5 %).
+- **Días**: de 0 a 9999.
+- **Correo**: uno o varios correos separados por `;` o `,`.
+- **Tipo de cuenta bancaria**: `A` (ahorros), `C` (corriente) o vacío.
+
+Los campos **Otra retención** y **Fecha de nacimiento** no se importan: se conservan como están en el tercero.
+
+### Conflicto: "Volver a validar"
+
+La vista previa es una foto del momento en que la revisó. Si mientras tanto otra persona cambia proveedores o crea el mismo documento, puede pasar lo siguiente:
+
+| Aviso | Qué significa | Qué hacer |
+|-------|---------------|-----------|
+| *"Otro usuario cambió proveedores mientras revisabas. Vuelve a validar antes de aplicar."* | Hubo cambios en la compañía mientras revisaba. La vista previa ya no es confiable. | Haga clic en **Volver a validar**. El sistema revisa el archivo otra vez. |
+| *"Los datos cambiaron. Otro usuario creó el documento o el perfil mientras revisabas, y no se guardó nada. Vuelve a validar antes de aplicar."* | Al aplicar, un documento ya no era el mismo: no se guardó nada. | Haga clic en **Volver a validar** y revise de nuevo la vista previa antes de aplicar. |
+
+Con **Volver a validar** no se pierde el archivo: el sistema vuelve a leer lo que cargó. Si el error no es de datos sino de conexión, use **Reintentar**.
+
+![Conflicto al aplicar](../recursos/img/proveedores/importar-07-conflicto.png)
+
+### ¿Qué puede salir mal?
+
+| Mensaje | Qué hacer |
+|---------|-----------|
+| *"Importar requiere el permiso de exportar."* | Pida el permiso **Exportar** a su administrador. |
+| *"No se pudo descargar la plantilla. Inténtalo de nuevo."* | Revise la conexión y pulse **Descargar plantilla** otra vez. |
+| *"El servidor no aceptó las filas del archivo (vacío, más de 1.000 filas o numeración repetida). Revisa el archivo."* | Revise el archivo con las reglas de *Antes de empezar*. |
+| *"El archivo es demasiado grande para enviarlo (máximo 2 MB de datos). Divídelo en partes."* | Divida el archivo en varias partes. |
+| *"No se pudo completar. No se guardó ningún cambio. Inténtalo de nuevo."* | Pulse **Reintentar**. Nada quedó a medias. |
+
 
 ---
 
@@ -252,6 +404,9 @@ Si el tercero tenía otro perfil (cliente, empleado u otro), solo se retiró su 
 
 **¿Por qué no veo "En vivo"?**
 La conexión en vivo no está disponible en este momento (por ejemplo, por la red de su empresa). La pantalla funciona igual; para ver cambios de otros usuarios, recargue la página.
+
+**¿Por qué el archivo de importación dice que no se puede usar?**
+Revise el mensaje de la página: el archivo debe ser un .xlsx de hasta 1 MB, con la columna **Documento** y hasta 1.000 filas. Descargue la plantilla y copie sus datos en ella.
 
 **¿Por qué no encuentro un proveedor que sí existe?**
 Revise que esté en la compañía correcta (título de la pestaña) y borre el texto del buscador con la **✕**.

@@ -44,7 +44,7 @@ Para ver la pantalla necesita el permiso **Consultar** sobre la opción Comprado
 | **Nuevo comprador** | Abre la ficha para crear un comprador. |
 | **Buscar por documento o nombre** | Filtra el listado mientras escribe. No distingue mayúsculas ni tildes. |
 | **Exportar a Excel** | Descarga los compradores que cumplen la búsqueda actual. Ver la sección *Exportar a Excel* más abajo. |
-| **Importar** | Pendiente en esta versión: ver *Importar desde Excel* más abajo. |
+| **Importar** | No disponible para compradores: en esta versión solo los proveedores se importan desde Excel. |
 | **Lápiz** / **Papelera** | Editar o eliminar el comprador de esa fila. Siempre están en la **primera columna**. Si no tiene permiso para editar, el lápiz dice **Ver** y abre la ficha en solo lectura. |
 | **Encabezados** | Un clic ordena de forma ascendente, el segundo descendente y el tercero quita el orden. |
 | **Filas por página** y paginación | Cambian cuántos compradores ve por página (10, 20, 50 o 100) y la página. |
@@ -146,8 +146,7 @@ Haga clic en **Exportar a Excel**. Se descarga el archivo con los compradores qu
 
 ## 📥 Importar desde Excel
 
-> 🚧 **Pendiente.** La importación de compradores desde Excel todavía no está disponible en esta versión. Esta sección se completará cuando la pantalla de importación esté publicada (el permiso necesario es **Exportar**).
-
+> ℹ️ **Los compradores no se importan desde Excel.** Para cargar terceros desde un archivo, use la importación de [Proveedores](proveedores.md#-importar-desde-excel). Si un tercero que va a registrar como comprador ya existe en la compañía, búsquelo por su documento al crear el comprador: la ficha carga sus datos y no se duplica.
 ---
 
 ## 🔄 Cambios de otros usuarios (en vivo)
