@@ -11,3 +11,4 @@ Manuales de las pantallas de Compras en la nueva versión.
 - [Proveedores](maestros/proveedores.md): incluye la pestaña **Cartera** (saldos de cada proveedor a una fecha de corte, documentos, historia y exportación a Excel).
 - [Compradores](maestros/compradores.md)
 - [Cartera de proveedores](maestros/cartera-proveedores.md): manual de la pestaña Cartera de Proveedores (Saldos, documentos, historia y Dashboard), con acceso por la opción Cartera Terceros.
+- [Inventario del proveedor](maestros/proveedores-inventario.md): pestaña Inventario y rotación de la ficha del proveedor (existencias de las referencias que maneja, vista A o B, exportes a Excel y PDF).
