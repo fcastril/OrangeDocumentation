@@ -32,7 +32,7 @@ La cartera está en la pestaña **Cartera** de la pantalla de [Proveedores](prov
 
 ![Pestaña Cartera junto a Proveedores](../recursos/img/cartera-proveedores/00-pestana-cartera.png)
 
-También puede llegar desde la ficha de un proveedor: en la pantalla de [Proveedores](proveedores.md), abra la ficha y use el botón **Cartera**. Se abre la cartera con los documentos de ese proveedor ya abiertos.
+También puede llegar desde la ficha de un proveedor: en la pantalla de [Proveedores](proveedores.md), abra la ficha de un proveedor guardado y use sus secciones **Cartera** e **Indicadores** (vea *Cartera e Indicadores dentro de la ficha del proveedor* más abajo). Aparecen solo si usted tiene permiso de consulta sobre la cartera.
 
 La pestaña **Cartera** aparece solo si tiene el permiso **Consultar** sobre la opción *Cartera Terceros* (menú Cartera › Consultas/Reportes). Si no lo tiene, no verá la pestaña; y si escribe la dirección de la cartera, vuelve a la pantalla de Proveedores con un aviso. Para ver el botón **Exportar a Excel** necesita además el permiso **Exportar** sobre esa misma opción (ver la tabla de permisos más abajo).
 
@@ -255,6 +255,29 @@ Por ahora el dashboard **no** muestra:
 ### Permisos del dashboard
 
 El dashboard usa el mismo permiso que el listado: **Consultar** sobre *Cartera Terceros*. No necesita ningún permiso adicional. Sin **Consultar** no verá la pestaña **Cartera** ni sus vistas.
+
+---
+
+## 🗂️ Cartera e Indicadores dentro de la ficha del proveedor
+
+Cuando abre la ficha de un proveedor **ya guardado** y tiene permiso de consulta sobre la cartera, la ficha suma dos secciones a las de siempre (Tercero, Proveedor y Contactos):
+
+| Sección | Qué muestra |
+|---|---|
+| **Cartera** | Los documentos de ese proveedor con su saldo, el desglose por tramos de vencimiento y la historia de cada movimiento en un panel lateral. Es la misma información de *Documentos de un proveedor* (más abajo), sin salir de la ficha. |
+| **Indicadores** | El dashboard de ese proveedor: total por pagar, vencido y por vencer, saldo a favor, composición, vencimientos próximos, antigüedad del saldo y pagos recientes. |
+
+![Sección Cartera dentro de la ficha del proveedor](../recursos/img/cartera-proveedores/23-ficha-cartera.png)
+
+![Sección Indicadores dentro de la ficha del proveedor](../recursos/img/cartera-proveedores/24-ficha-indicadores.png)
+
+Qué cambia frente a la pestaña **Cartera** de la lista de proveedores:
+
+- **Indicadores** muestra solo las cifras de ese proveedor, así que no trae *Concentración* ni la tarjeta *Proveedores con saldo*, y los tramos y los pagos no abren la lista de proveedores.
+- En estas dos secciones no hay botón **Guardar**: son de solo consulta. Para cambiar datos del proveedor, vuelva a las secciones **Tercero**, **Proveedor** o **Contactos**.
+- Cambiar de sección no cambia la dirección de la página. Si tiene cambios sin guardar en la ficha, cambiar a **Cartera** o **Indicadores** no los descarta; los conserva al volver.
+- En **Indicadores** puede cambiar la fecha de corte, el tamaño de los tramos y los demás filtros, y aplicarlos con **Consultar**. La sección **Cartera** muestra los documentos con corte a la fecha de hoy.
+- No ven estas secciones quienes no tienen permiso de consulta sobre la cartera, ni al crear un proveedor, ni en la ficha de un comprador.
 
 ---
 

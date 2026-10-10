@@ -117,6 +117,8 @@ Si cambia el número de documento después de haber cargado un tercero existente
 1. Haga clic en el **lápiz** del proveedor (o en **Ver** si solo tiene consulta).
 2. Cambie los datos y haga clic en **Guardar**.
 
+Si tiene permiso de consulta sobre la cartera, la ficha suma las secciones **Cartera** e **Indicadores** del proveedor (vea *Cartera de proveedores* más abajo); en ellas no hay **Guardar**, porque son de consulta.
+
 Los cambios se guardan cuando hace clic en **Guardar**. Si sale de la ficha con cambios sin guardar, el sistema pregunta **"¿Salir sin guardar?"**: **Seguir editando** lo deja en la ficha; **Salir sin guardar** descarta los cambios.
 
 Si otro usuario modificó el mismo proveedor mientras lo edita, vea *Cambios de otros usuarios* más abajo.
@@ -402,7 +404,7 @@ Si estaba por confirmar la eliminación de un proveedor que otro ya eliminó, el
 
 ## 💰 Cartera de proveedores
 
-La pestaña **Cartera**, junto a **Proveedores**, muestra cuánto le debe la compañía a cada proveedor a una fecha de corte, con sus documentos y su historia de pagos. Desde la ficha de un proveedor, el botón **Cartera** abre sus documentos directamente.
+La pestaña **Cartera**, junto a **Proveedores**, muestra cuánto le debe la compañía a cada proveedor a una fecha de corte, con sus documentos y su historia de pagos. Además, la ficha de cada proveedor guardado trae sus propias secciones **Cartera** e **Indicadores**, con la cartera y el dashboard de ese proveedor.
 
 La cartera es de solo consulta: no se crea, edita ni elimina nada desde ella. Su manual completo está en [Cartera de proveedores](cartera-proveedores.md).
 
