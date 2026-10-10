@@ -323,7 +323,7 @@ La última línea, **Saldo actual**, es el mismo saldo que ve en el listado. Si 
 
 ### Reversos y saldo a favor
 
-Un reverso es un cruce guardado en negativo. El sistema lo cuenta por su valor absoluto, igual que un cruce positivo del mismo monto. Se marca con la etiqueta **Reverso**; si pasa el cursor sobre la etiqueta, la pantalla explica lo mismo en un aviso.
+Un reverso es un cruce guardado en negativo (por ejemplo, la devolución de un pago). Se cuenta **con su signo**, igual que en el reporte *Cartera Terceros* del sistema anterior: en lugar de reducir el saldo del documento, lo devuelve hacia lo pendiente. El efecto exacto depende del tipo del documento que lo aplica. Se marca con la etiqueta **Reverso**; si pasa el cursor sobre la etiqueta, la pantalla explica lo mismo en un aviso.
 
 Los documentos con saldo a favor se marcan con la etiqueta **A favor** junto a su saldo.
 
@@ -429,7 +429,7 @@ Los totales de las tarjetas y el conteo de proveedores son del filtro completo, 
 Los documentos en saldo cero están ocultos. Active **Incluir documentos en saldo cero** en la página del proveedor.
 
 **¿Por qué un documento tiene una línea marcada como Reverso?**
-Es un cruce guardado en negativo. El sistema lo cuenta por su valor absoluto, igual que un cruce positivo del mismo monto. Pase el cursor sobre la etiqueta para leer la explicación. Ver *Reversos y saldo a favor*.
+Es un cruce guardado en negativo, por ejemplo la devolución de un pago. El sistema lo cuenta con su signo, igual que el reporte del sistema anterior: en lugar de reducir el saldo del documento, lo devuelve hacia lo pendiente. Pase el cursor sobre la etiqueta para leer la explicación. Ver *Reversos y saldo a favor*.
 
 **¿Por qué una factura aparece pagada con un egreso contable?**
 Un egreso contable que cruzó contra la factura cuenta como pago de esa factura: resta del saldo y aparece en la historia como **Pagado con**. Si la factura debería seguir pendiente, revise el cruce con contabilidad.
