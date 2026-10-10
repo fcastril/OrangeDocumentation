@@ -279,7 +279,7 @@ Los botones **Exportar Excel** y **Exportar PDF** (solo con permiso **Exportar**
 ![Exportando](../recursos/img/rotacion-inventarios/14b-exportando.png)
 
 - **Encabezado:** datos de la compañía, el título, el periodo, las bodegas, el grupo, el subgrupo, la referencia, las clasificaciones, los umbrales usados, los tipos que cuentan como consumo, la búsqueda, la fecha y hora de generación y el usuario que lo generó.
-- **Contenido:** las mismas columnas de la pantalla, agrupadas por grupo, con la fila **TOTAL GRUPO** y la fila **TOTAL GENERAL**. En Excel los números quedan como números, listos para sumar o filtrar. El PDF sale en hoja horizontal y numera las páginas.
+- **Contenido:** las mismas columnas de la pantalla, agrupadas por grupo, con la fila **TOTAL GRUPO** y la fila **TOTAL GENERAL**. En Excel los números quedan como números, listos para sumar o filtrar. El PDF sale en hoja horizontal, con un ancho pensado para que se imprima completo en papel carta y también en oficio, y numera las páginas.
 - **Nombre del archivo:** `rotacion-inventarios_` seguido de la fecha inicial y la fecha final, por ejemplo `rotacion-inventarios_2025-10-10_2026-10-09.xlsx` o `.pdf`.
 
 | Formato | Máximo de filas |
