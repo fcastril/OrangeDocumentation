@@ -31,6 +31,8 @@ En esta pantalla puede **consultar, crear, editar y eliminar** proveedores, y **
 
 Para ver la pantalla necesita el permiso **Consultar** sobre la opción Proveedores. Los demás botones dependen de los permisos que le haya dado el administrador (ver la tabla más abajo).
 
+La pantalla tiene las pestañas **Proveedores** y **Cartera**. La pestaña **Cartera** aparece solo si tiene el permiso **Consultar** sobre la opción *Cartera Terceros*. Ver [la sección Cartera](#-cartera-de-proveedores).
+
 ---
 
 ## 🖥️ Pantalla principal
@@ -395,6 +397,16 @@ Si estaba por confirmar la eliminación de un proveedor que otro ya eliminó, el
 > ℹ️ Los cambios que usted hace en esta misma pestaña no generan avisos.
 
 **Terceros que son proveedor y comprador.** Si el tercero tiene los dos perfiles, un cambio en su ficha (crear, editar, convertir, eliminar o retirar un perfil, contactos o importar) también aparece en vivo en la pantalla de [Compradores](compradores.md), y viceversa. Si se retira un perfil, el aviso llega a las dos pantallas cuando el tercero tenía ambos perfiles antes del cambio.
+
+---
+
+## 💰 Cartera de proveedores
+
+La pestaña **Cartera**, junto a **Proveedores**, muestra cuánto le debe la compañía a cada proveedor a una fecha de corte, con sus documentos y su historia de pagos. Desde la ficha de un proveedor, el botón **Cartera** abre sus documentos directamente.
+
+La cartera es de solo consulta: no se crea, edita ni elimina nada desde ella. Su manual completo está en [Cartera de proveedores](cartera-proveedores.md).
+
+![Pestaña Cartera junto a Proveedores](../recursos/img/cartera-proveedores/00-pestana-cartera.png)
 
 ---
 

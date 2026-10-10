@@ -7,7 +7,7 @@
 ![Static Badge](https://img.shields.io/badge/Tipo-Consulta-red)
 ![Static Badge](https://img.shields.io/badge/Module-Compras-orange)
 ![Static Badge](https://img.shields.io/badge/Submodule-Maestros-blue)
-![Static Badge](https://img.shields.io/badge/Opcion-Cartera%20de%20Proveedores-green)
+![Static Badge](https://img.shields.io/badge/Opcion-Cartera%20Terceros%20(107)-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
 ---
@@ -18,7 +18,7 @@ La **cartera de proveedores** muestra cuánto le debe la compañía a cada prove
 
 Es una pantalla **solo de consulta**: desde aquí no se crea, no se edita y no se elimina nada. Los pagos, las notas y las facturas se registran en sus pantallas de origen, y la cartera los toma de ahí.
 
-La pantalla tiene dos pestañas: **Proveedores** (el listado de la cartera) y **Dashboard** (el resumen de la cartera a una fecha de corte). Ver [Dashboard](#-dashboard).
+La cartera está en la pestaña **Cartera** de la pantalla de [Proveedores](proveedores.md). Dentro de ella hay dos vistas: **Saldos** (el listado de la cartera) y **Dashboard** (el resumen de la cartera a una fecha de corte). Ver [Dashboard](#-dashboard).
 
 > 📘 La búsqueda, el orden, la paginación y la ayuda funcionan igual en todas las tablas: ver [Manejo general de la información](../../Generales/manejo-general-informacion.md).
 
@@ -27,11 +27,14 @@ La pantalla tiene dos pestañas: **Proveedores** (el listado de la cartera) y **
 ## 🎯 Acceso
 
 1. En el menú principal, haga clic en **Compras**.
-2. En **Maestros**, haga clic en **Cartera de Proveedores**.
+2. En **Maestros**, haga clic en **Proveedores**.
+3. Haga clic en la pestaña **Cartera**, junto a **Proveedores**, en la parte de arriba de la pantalla.
 
-También puede llegar desde la ficha de un proveedor: en la pantalla de [Proveedores](proveedores.md), abra la ficha y use el enlace **Cartera**. Se abre esta pantalla con ese proveedor ya abierto.
+![Pestaña Cartera junto a Proveedores](../recursos/img/cartera-proveedores/00-pestana-cartera.png)
 
-Para ver la pantalla necesita el permiso **Consultar** sobre la opción *Cartera de Proveedores*. Si no lo tiene, el ítem no aparece en el menú y, si escribe la dirección de la pantalla, vuelve a la pantalla de inicio. Para ver el botón **Exportar a Excel** necesita además el permiso **Exportar** (ver la tabla de permisos más abajo).
+También puede llegar desde la ficha de un proveedor: en la pantalla de [Proveedores](proveedores.md), abra la ficha y use el botón **Cartera**. Se abre la cartera con los documentos de ese proveedor ya abiertos.
+
+La pestaña **Cartera** aparece solo si tiene el permiso **Consultar** sobre la opción *Cartera Terceros* (menú Cartera › Consultas/Reportes). Si no lo tiene, no verá la pestaña; y si escribe la dirección de la cartera, vuelve a la pantalla de Proveedores con un aviso. Para ver el botón **Exportar a Excel** necesita además el permiso **Exportar** sobre esa misma opción (ver la tabla de permisos más abajo).
 
 ---
 
@@ -145,11 +148,11 @@ Si a la fecha de corte no hay proveedores con saldo, verá el mensaje **No hay p
 
 ## 📊 Dashboard
 
-El **Dashboard** es la pestaña que está junto a **Proveedores**, en la parte de arriba de la pantalla. Resume la cartera a una fecha de corte: cuánto se debe, cuánto está vencido, cómo envejece la deuda, qué proveedores concentran el saldo, qué vence pronto y qué se pagó en los últimos días.
+El **Dashboard** es la segunda vista de la pestaña **Cartera**, junto a **Saldos** (el listado), en la parte de arriba de la pantalla de Proveedores. Resume la cartera a una fecha de corte: cuánto se debe, cuánto está vencido, cómo envejece la deuda, qué proveedores concentran el saldo, qué vence pronto y qué se pagó en los últimos días.
 
 Las cifras son las mismas de la lista para el mismo corte, rango y filtros. Como la lista, es una pantalla de solo consulta.
 
-Para abrirlo, haga clic en **Dashboard**. También puede ir directo con el enlace de la pantalla seguido de `?vista=dashboard`.
+Para abrirlo, en la pestaña **Cartera** haga clic en **Dashboard**. También puede abrirlo con la dirección de la cartera seguida de `?vista=dashboard`.
 
 ![Dashboard de la cartera de proveedores](../recursos/img/cartera-proveedores/18-dashboard.png)
 
@@ -224,7 +227,7 @@ Algunas partes del dashboard llevan a otra vista:
 | Haga clic en | Qué se abre |
 |--------------|-------------|
 | El nombre de un proveedor del **top** o de **pagos recientes** | Sus documentos, con la misma fecha de corte y los mismos tramos. Use **Volver al dashboard** para regresar. |
-| Un tramo de **antigüedad** | La pestaña **Proveedores**, con la misma fecha de corte, tipo de movimiento, centro de costos y tamaño de tramos. La lista va ordenada por saldo vencido (tramos vencidos) o por saldo (tramos por vencer). |
+| Un tramo de **antigüedad** | La vista **Saldos**, con la misma fecha de corte, tipo de movimiento, centro de costos y tamaño de tramos. La lista va ordenada por saldo vencido (tramos vencidos) o por saldo (tramos por vencer). |
 | **Ver proveedores con saldo vencido** | La misma lista, ordenada por saldo vencido. |
 | **Vencimientos próximos** | Nada: no abren la lista. |
 
@@ -251,7 +254,7 @@ Por ahora el dashboard **no** muestra:
 
 ### Permisos del dashboard
 
-El dashboard usa el mismo permiso que el listado: **Consultar** sobre *Cartera de Proveedores*. No necesita ningún permiso adicional. Sin **Consultar** no verá la pantalla ni sus pestañas.
+El dashboard usa el mismo permiso que el listado: **Consultar** sobre *Cartera Terceros*. No necesita ningún permiso adicional. Sin **Consultar** no verá la pestaña **Cartera** ni sus vistas.
 
 ---
 
@@ -304,7 +307,7 @@ Debajo está la **Línea de tiempo**:
 | Línea | Qué significa |
 |-------|---------------|
 | **Generado** | El valor con el que se creó el documento, en su fecha. Es el punto de partida. |
-| **Pagado con** (un egreso) | Un pago que cruzó contra este documento, con la fecha del pago y el valor aplicado. |
+| **Pagado con** (un egreso) | Un pago que cruzó contra este documento, con la fecha del pago y el valor aplicado. También cuenta como pago un egreso contable que cruzó contra la factura. |
 | **Nota aplicada** (una nota débito o crédito) | Una nota que cruzó contra este documento. |
 | **Aplicado por** | Otro documento que cruzó contra este, como una devolución (categoría *Otro*); no cambia el saldo. |
 | **Aplicado a** | Este documento cruzó contra otros (por ejemplo, un egreso o un anticipo que pagó facturas). Aparece en la historia del documento que aplicó. |
@@ -371,7 +374,7 @@ Por ahora la exportación es **solo a Excel**. No hay exportación a PDF.
 
 | Permiso | Qué habilita |
 |---------|--------------|
-| Consultar | Ver el listado, el Dashboard, abrir los documentos de un proveedor y ver la historia de cada documento. |
+| Consultar (opción *Cartera Terceros*) | Ver la pestaña **Cartera**, el listado, el Dashboard, abrir los documentos de un proveedor y ver la historia de cada documento. |
 | Exportar | El botón **Exportar a Excel**. |
 
 Si solo tiene **Consultar**, la pantalla funciona igual, pero no verá el botón **Exportar a Excel**.
@@ -428,6 +431,12 @@ Los documentos en saldo cero están ocultos. Active **Incluir documentos en sald
 **¿Por qué un documento tiene una línea marcada como Reverso?**
 Es un cruce guardado en negativo. El sistema lo cuenta por su valor absoluto, igual que un cruce positivo del mismo monto. Pase el cursor sobre la etiqueta para leer la explicación. Ver *Reversos y saldo a favor*.
 
+**¿Por qué una factura aparece pagada con un egreso contable?**
+Un egreso contable que cruzó contra la factura cuenta como pago de esa factura: resta del saldo y aparece en la historia como **Pagado con**. Si la factura debería seguir pendiente, revise el cruce con contabilidad.
+
+**¿Por qué no veo la pestaña Cartera?**
+Su perfil no tiene el permiso **Consultar** sobre la opción *Cartera Terceros*. Consulte con el administrador.
+
 **¿Por qué no veo el botón Exportar a Excel?**
 Su perfil no tiene el permiso **Exportar** sobre esta opción. Consulte con el administrador.
 
@@ -438,6 +447,6 @@ Sí. Se registra cuándo se exportó, con la fecha de corte y los filtros usados
 
 ## 📚 Relacionado
 
-- [Proveedores](proveedores.md)
+- [Proveedores](proveedores.md) (la cartera es su pestaña **Cartera**)
 - [Compradores](compradores.md)
 - [Manejo general de la información](../../Generales/manejo-general-informacion.md)
