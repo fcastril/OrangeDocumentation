@@ -361,5 +361,5 @@ Es mejor comparar periodos de la misma duración. La rotación es la del periodo
 **¿El sistema envía el PDF para el proveedor?**
 No. Usted lo descarga y se lo envía por su correo u otro medio, por fuera del sistema.
 
-**¿Cuándo llega el semáforo de reposición?**
-Llegará en una versión posterior, como indicador de cuándo conviene pedir. Este manual todavía no lo describe.
+**¿Dónde veo cuándo conviene pedir?**
+En el modo **Reposición** de esta misma pestaña: un semáforo por referencia y un pedido sugerido. Se explica en [Reposición del proveedor](proveedores-reposicion.md). Este manual solo describe el modo Rotación.

@@ -266,5 +266,5 @@ Trae todas las referencias del resultado, no solo la página. Si escribió un te
 **¿Qué significa «Calculado a las»?**
 La hora en que se calculó la información que está viendo. Si pulsa **Actualizar** y la hora no cambia, es porque el cálculo era muy reciente.
 
-**¿Cuándo llega la rotación?**
-La rotación del inventario (días de inventario, cobertura y clasificación de las referencias) **llegará en una próxima versión** a esta misma pestaña. Por ahora este manual solo describe el inventario.
+**¿Dónde veo la rotación y qué conviene pedir?**
+En esta misma pestaña, con el selector de modo **Inventario | Rotación | Reposición**. La rotación (días de inventario, cobertura y clasificación de las referencias) se explica en [Rotación del proveedor](proveedores-rotacion.md), y el semáforo de reposición con el pedido sugerido en [Reposición del proveedor](proveedores-reposicion.md). Este manual solo describe el modo Inventario.
