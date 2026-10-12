@@ -282,7 +282,7 @@ Solo se imprimen órdenes **cerradas** y **no anuladas**. El botón **Imprimir**
 2. Elija **Color** o **Blanco y negro**.
 3. Haga clic en **Imprimir** para mandarla a la impresora, o en **Descargar PDF** para guardarla.
 
-El PDF sale en **tamaño carta**. El documento muestra la empresa, el número y la fecha, el proveedor, el comprador, las fechas de entrega, las líneas con sus valores y totales, el valor en letras, las observaciones, la información tributaria y los espacios de firma.
+En la ventana de impresión puede elegir el **papel** (**Carta** o **A4**) y si el PDF sale a color. El documento muestra la empresa, el número y la fecha, el proveedor, el comprador, las fechas de entrega, las líneas con sus valores y totales, el valor en letras, las observaciones, la información tributaria y los espacios de firma.
 
 - La **primera** impresión lleva la marca **Original**. Las siguientes llevan la marca **Copia**.
 - Cada impresión queda registrada: el encabezado muestra el número de impresiones, quién la hizo y cuándo (**Impresiones**).
