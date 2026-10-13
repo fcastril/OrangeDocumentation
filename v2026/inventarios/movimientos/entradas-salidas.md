@@ -10,7 +10,7 @@
 ![Static Badge](https://img.shields.io/badge/Opcion-Entradas%20y%20salidas-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
-![Static Badge](https://img.shields.io/badge/Actualizacion-20261003-yellow)
+![Static Badge](https://img.shields.io/badge/Actualizacion-20261007-yellow)
 
 ---
 
@@ -516,6 +516,458 @@ El formato por defecto **FRT-INV-001** incluye, en este orden: datos de la compa
 **Duplicar** (en el listado o en el documento) abre un documento **nuevo** con el mismo tipo, tercero, observaciones y líneas del original, con la fecha de hoy y el valor unitario **sugerido de nuevo** para esa fecha. No copia el consecutivo, el doc. referencia ni los adjuntos.
 
 Las líneas copiadas aparecen como **Por guardar** y el aviso dice *"Copia de EI 125: revise y pulse Guardar todas"*. Revise, corrija o quite lo que necesite y haga clic en **Guardar todas**: se envían una a una (la primera crea el documento) y cada una muestra su estado. Es útil para devoluciones o movimientos que se repiten.
+
+---
+
+## 📥 Descargar insumos de una OP {#descargar-insumos-de-op}
+
+Cuando el documento tiene un **tipo de salida** que exige **orden de producción** (OP), aparece el botón **Descargar insumos de OP** en la captura. Úselo para agregar líneas de una vez, desde la **hoja de consumos** de la orden.
+
+### Cuándo aparece el botón
+
+**Descargar insumos de OP** se muestra si:
+
+- El tipo de movimiento **exige orden de producción**
+- El documento es una **salida** (no entrada)
+- El documento está **abierto** y no tiene líneas en conflicto de OP (ver *Limitaciones*)
+
+Si el botón está deshabilitado, verá el motivo debajo. Algunos motivos comunes:
+
+| Motivo | Por qué | Qué hacer |
+|--------|--------|----------|
+| *Hay N líneas sin guardar* | El documento tiene líneas pendientes | Guarde las líneas primero o descarte los cambios |
+| *Complete el encabezado para descargar insumos* | Falta tipo, fecha, tercero o bodega destino | Rellene los campos obligatorios del encabezado |
+| *El documento ya tiene líneas de otra OP (OP-121, OP-122)* | Mezclaría órdenes diferentes | Cree otro documento o elimine las líneas de la OP anterior |
+| *Editar documentos cerrados* | El documento está cerrado | Si es administrador, haga clic en **Editar cerrado** primero |
+
+### Abrir y navegar el diálogo
+
+Haga clic en **Descargar insumos de OP**. Se abre un diálogo con:
+
+1. **Origen** (obligatorio):
+   - **OP**: la orden de producción. Solo ve las órdenes vigentes y elegibles. Si alguna aparece en rojo, no se puede usar (congelada, cancelada o sin hoja de consumos).
+   - **Bodega**: dónde salen los insumos. Obligatoria.
+   - **Ubicación**: dentro de la bodega (opcional).
+   - **Centro de costos**: según lo exija el tipo de movimiento.
+
+2. **Insumos**: la tabla con los artículos de la hoja de consumos. Puede cambiar de bodega en el origen: la tabla se actualiza con la existencia en esa bodega.
+
+3. **Resumen**: abajo, cuántos insumos seleccionó, cuántas líneas resultarán y el valor estimado.
+
+4. **Botones**: 
+   - **Seleccionar suficientes**: marca solo los insumos cuya existencia cubre la cantidad que necesita (atolondrado, pero oportuno).
+   - **Confirmar**: envía las líneas al documento. Si hay errores no se cierra el diálogo.
+   - **Cancelar**: cierra sin guardar. Si tiene cambios, pide confirmar *"¿Descartar la selección?"*.
+
+**Teclas de atajo:**
+
+| Tecla | Qué hace |
+|-------|----------|
+| **?** | Abre esta ayuda |
+| **Esc** | Cierra el diálogo (si no hay cambios, o tras confirmar el descarte) |
+| **Ctrl+Enter** | Confirma (igual que el botón) |
+
+### Los insumos de la tabla
+
+Cada fila muestra un artículo de la hoja de consumos:
+
+| Columna | Qué significa |
+|---------|--------------|
+| **Casilla** | Marca si desea descargar este insumo. Solo activa si el insumo es válido (ver *Insumos no descargables* abajo). |
+| **Insumo** | Código, nombre, unidad y variante. Si hay avisos, aparecen en texto pequeño debajo. |
+| **Requerido** | Lo que debe surtirse según la OP (cantidad que la OP pide). |
+| **Ya descargado** | Lo que ya descargó de esta OP en documentos anteriores. |
+| **Pendiente** | Lo que falta por descargar (Requerido − Ya descargado). |
+| **Existencia** | Lo que hay en la bodega que eligió. |
+| **A descargar** | Lo que va a sacar ahora. **Editable**: solo si la casilla está marcada. El máximo es `min(Pendiente, Existencia)`. Si escribe más, verá *"Máximo N"* en rojo y **Confirmar** queda deshabilitado. Presione **Esc** para volver al valor sugerido; si lo borra o pone 0, se desmarca la casilla. |
+| **Lote** | Solo aparece cuando marca un insumo cuya referencia exige lote. Es una casilla (*"Lote de …"*) donde digita el lote: hasta 20 caracteres, se convierte a mayúsculas y es **obligatoria**. Ver *Insumos con lote* abajo. |
+| **Estado** | Leyenda (verde, amarilla, etc.) que resume por qué el insumo está en ese estado. Algunos estados llevan insignias adicionales. |
+
+### Insumos no descargables
+
+Si un insumo tiene alguno de estos problemas, aparece deshabilitado (la casilla no se puede marcar) y verá el motivo en texto:
+
+| Motivo | Por qué | Qué hacer |
+|--------|--------|----------|
+| **Ya descargado por completo** | El pendiente es 0. No hay más que sacar. | Nada, es normal. |
+| **Faltan N** | La existencia en bodega es menor que lo pendiente. | Reciba más inventario, elija otra bodega o descargue cantidad parcial; edite la fila a mano (o elija **Seleccionar suficientes**). |
+| **Sin costo** | La referencia no tiene costo configurado. | Defina el costo de la referencia en el maestro. |
+
+Los insumos con **duplicados**, **autoconsumo** u **otra variante sospechosa** en la hoja de consumos aparecen con la insignia **Revisar**. No están bloqueados: la descarga funciona, pero vea qué ocurrió.
+
+### Insumos con lote
+
+Si la referencia de un insumo **exige lote**, la fila se puede marcar como cualquier otra. Al marcarla aparece la casilla **"Lote de …"** y el cursor pasa a ella:
+
+- Digite el lote (hasta **20 caracteres**; si escribe en minúsculas se convierte a mayúsculas).
+- Mientras la casilla esté vacía verá *"Digite el lote (máx. 20)"* en rojo y **Confirmar** queda deshabilitado, con el motivo a la vista.
+- Si el servidor no acepta el lote, la casilla se marca con el error y el diálogo se queda abierto para corregirlo.
+- Cada insumo se descarga con **un solo lote** por fila. Para sacar el mismo insumo de dos lotes distintos, haga una descarga con un lote y luego otra con el otro.
+- Si la referencia **no** exige lote, no aparece la casilla.
+
+### Resumen y límites
+
+**Resumen**: debajo de la tabla, ve cuántos insumos seleccionó (ej. *"4 de 6"*), cuántas líneas resultarán (si varias descargas se consolidan en una, es menos), y el valor total estimado.
+
+**Límites**: los tipos de movimiento pueden tener un límite de cantidad máxima de líneas o de valor. Si está cerca o lo supera:
+
+- Verá un aviso **naranja** (aviso) o **rojo** (error).
+- **Confirmar** queda deshabilitado si supera el límite.
+- Puede desmarcar insumos para entrar dentro del límite.
+- Si el servidor rechaza (por si el límite cambió), verá el error y el diálogo se queda abierto.
+
+### Errores y reintentos
+
+**Error al cargar la OP**. Si no se puede traer la hoja de consumos, verá *"No se pudieron cargar los insumos"* con **Reintentar**. La OP y bodega se conservan.
+
+**Error de validación al confirmar**. Si algún dato es inválido (período cerrado, centro de costos faltante, etc.), verá un resumen de errores en rojo. El diálogo no se cierra; corrija y vuelva a confirmar.
+
+- Los errores por fila aparecen bajo el insumo (ej. *"Falta centro de costos"* o el error de la casilla de lote).
+- Use **Seleccionar suficientes** para limpiar filas problemáticas.
+
+**Error del sistema al confirmar**. Si el servidor falla:
+
+- **Ocupado**: *"El sistema está ocupado. No se guardó nada"* con **Reintentar**. La selección se conserva con la misma clave de idempotencia (no se duplican líneas).
+- **Error**: *"No se pudo generar la salida. No se guardó ninguna línea"* con **Reintentar**.
+- **Conflicto**: otro usuario cambió el documento mientras lo tenía abierto. Aparece *"El documento cambió mientras elegía los insumos"* con **Actualizar y revisar** (relee sin escribir nada).
+- **Cambio de saldo**: otra persona descargó insumos de la misma OP antes que usted. Aparece el aviso y la tabla se actualiza con las existencias nuevas; el insumo que ya no alcanza se marca como *"Faltan …"*.
+- **Cambio de pendiente**: el pendiente de un insumo bajó porque otra descarga llegó antes. Aparece el aviso y la tabla se actualiza.
+
+En todos estos casos, el diálogo se queda abierto para revisar.
+
+### Cambios en tiempo real (otro usuario)
+
+Si otro usuario modifica el documento mientras el diálogo está abierto, verá *"El documento cambió; actualice los insumos"* con un botón **Actualizar**. La tabla no se refresca sola; úselo para traer los cambios sin perder su selección.
+
+### Limitaciones
+
+- **Una OP por documento**: el diálogo impide mezclar órdenes en el mismo documento. Si tiene líneas de OP-120 y abre para OP-121, verá *"El documento ya tiene líneas de otra OP"* y no abrirá. Cree otro documento.
+- **Máximo 50 insumos por descarga**: si la OP tiene más, solo ve los primeros 50 ordenados por código. Vuelva a abrir para los siguientes.
+- **Órdenes sin hoja de consumos**: el diálogo no abre si la OP no tiene consumos. Cargue la hoja en el módulo de Producción primero.
+
+### Después de confirmar
+
+Si la descarga fue correcta:
+
+- El diálogo se cierra.
+- Las líneas nuevas aparecen en la tabla del documento, **resaltadas** unos segundos.
+- Verá *"Se descargaron N insumos de OP-…"* con el consolidado: si dos descarga de diferentes materiales se sumaron a líneas que ya tenía, aparece *"X líneas se sumaron a líneas existentes"*.
+- El foco vuelve al botón que abrió el diálogo.
+
+Si alguna línea **se sumó** a otra existente (misma variante, bodega, lote y valor), solo ve una fila con *"Sumada a la línea N"*.
+
+---
+
+## 🏭 Producción desde una entrada {#produccion-desde-una-entrada}
+
+Cuando una **entrada tiene una orden de producción (OP)**, puede **registrar un movimiento de producción** para toda la entrada de una sola vez, registrando que las cantidades avanzan de una operación a la siguiente en la ruta de fabricación. Un documento de entrada produce para **una única orden de producción**; sus líneas generan un solo movimiento de producción con un detalle por variante. Desde aquí crea, ve y anula esa producción sin salir del documento de inventario.
+
+### Cuándo aparece la acción
+
+En la **barra de acciones del documento** (arriba, junto a **Cerrar transacción** e **Imprimir**), aparecen botones de producción solo si el documento es elegible:
+
+| Acción | Cuándo aparece |
+|--------|----------------|
+| **Registrar producción** | El documento es una entrada con OP única, tiene líneas elegibles (todas las líneas con OP apuntan a la misma orden), la ruta de la referencia tiene operaciones, ninguna línea tiene producción registrada todavía, y la compañía no requiere sincronización externa. |
+| **Completar producción** | El documento ya tiene producción registrada (completa o parcial) y hay líneas pendientes elegibles (nuevas, sin producción). |
+| **Ver producción** | El documento tiene movimientos de producción registrados. |
+| **Anular producción** | El documento tiene movimientos de producción activos y ninguno tiene movimientos posteriores en la cadena. |
+
+Si ningún botón aparece, el documento no cumple los requisitos (ver motivos en la tabla de *Errores*).
+
+### Propuesta de producción del documento
+
+Al abrir **"Registrar producción"** o **"Completar producción"**, verá un diálogo con:
+
+**Tabla de líneas** (solo lectura):
+- Las líneas elegibles del documento con su variante, cantidad y saldo (cuánto hay disponible en la operación de origen, o vacío si es el primer movimiento).
+- Si hay líneas sin orden de producción o de una OP distinta, aparecen omitidas en una sección aparte con *"Estas líneas no tienen OP / tienen otra OP y no se incluirán"*.
+
+**Responsable** (obligatorio):
+- Viene precompletado con el **tercero del documento**. Si no es un responsable válido, edite el campo o elija otro con la lupa.
+
+**Fechas** (obligatorias):
+- **Fecha**: por defecto, la **fecha del documento**. Debe estar en un periodo contable abierto.
+- **Fecha de entrega**: por defecto, la **fecha del documento + 1 día**. Debe ser posterior a la fecha del movimiento.
+- **Fecha de entrega real** (opcional): cuándo se completó realmente (no puede ser anterior a la fecha del movimiento).
+
+**Operación destino** (una por grupo):
+- Si el documento tiene **un grupo de líneas** (todas con la misma cabeza de movimiento), ve un solo selector **Operación destino**: dónde pasan las cantidades (la primera operación si es el primer movimiento, o la siguiente según dependencias).
+- Si hay **varios grupos** (variantes con cabezas distintas), ve un título por grupo y un selector de operación para cada uno. Puede elegir una operación distinta por grupo según sus dependencias.
+- Si una operación ya está completa o sus dependencias no se cumplen, no aparece como opción.
+
+### Registrar la producción del documento
+
+1. Revise la **propuesta**: líneas incluidas, responsable, fechas, operaciones destino.
+2. Corrija responsable, fechas u operaciones si es necesario.
+3. Haga clic en **Registrar** o presione **Ctrl+Enter**.
+
+Si todo es válido, verá *"Se registró la producción del documento"* con el resumen (número de líneas, operación destino, responsable). La barra se actualiza: **Registrar producción** desaparece y aparecen **Ver producción** y **Anular producción**. Otros usuarios ven el cambio en vivo.
+
+**Si quedó incompleta** (agregó líneas nuevas después de registrar), la acción pasa a **"Completar producción"**, que crea un movimiento adicional solo con las líneas pendientes (mismas reglas de origen, destino y responsable único).
+
+### Resumen de la producción del documento
+
+La pantalla muestra un resumen con un renglón por par de movimientos (salida y entrada de la producción):
+
+| Columna | Qué significa |
+|---------|---------------|
+| **Operación** | De dónde a dónde (por ejemplo, *"Corte → Costura"*) |
+| **Responsable** | Quién ejecutó la operación |
+| **Líneas** | Cuántas líneas del documento se movieron |
+| **Estado** | *Activo*, *Parcial* o *Anulado* |
+
+Haga clic en un renglón para **Ver producción** y más detalles.
+
+### Ver el movimiento registrado
+
+Al hacer clic en **Ver producción** (ojo en el resumen) o en la barra del documento, se abre un panel con:
+
+- Operación origen → Operación destino (por ejemplo, vacío → Corte para el primer movimiento)
+- Responsable
+- Detalles de la producción (variante y cantidad producida, enteras)
+- Fechas (movimiento, entrega, entrega real si se completó)
+- Quién lo registró y cuándo
+- Botón **Anular** (si tiene permiso y el movimiento no tiene dependientes)
+
+### Anular la producción del documento
+
+Si se equivocó o necesita revertir:
+
+1. En el resumen, haga clic en **Ver producción** del movimiento que quiere anular.
+2. O haga clic en **Anular producción** en la barra del documento.
+3. Escriba el **motivo de anulación** (obligatorio, máx. 200 caracteres).
+4. Confirme.
+
+Verá *"Se anuló la producción del documento"*. El resumen desaparece, la barra se actualiza con **Registrar producción** y **Completar producción** (si hay pendientes). **No se puede deshacer**: los avisos de otros usuarios muestran que la operación quedó anulada.
+
+#### Cascada al anular o eliminar el documento
+
+Si **anula o elimina el documento** con **producción registrada**:
+
+- El sistema avisa: *"Se anulará también el movimiento de producción Corte → Costura (3 líneas)"* con cada par que tenga.
+- Confirme y se anulan **todos los movimientos de producción** del documento en una sola transacción.
+- Si algún movimiento tiene **movimientos posteriores** en la cadena (otra entrada de la misma OP depende de este), verá el error *"Tiene producción con dependientes; anúlela desde el resumen"* y deberá anular primero desde **Anular producción**.
+
+### Cambios en las líneas con producción registrada
+
+**Agregar una línea nueva:**
+- Se permite: la línea nueva queda sin producción y la acción en la barra pasa a **"Completar producción"** (para registrar solo las pendientes).
+
+**Cambiar cantidad, variante u orden de producción, o eliminar:**
+- Si la línea es parte de un **movimiento compartido** (el movimiento de producción incluye varias líneas), verá *"No se puede cambiar: línea con producción registrada (par compartido)"* con un botón **Anular producción**. Anule primero desde la barra, luego edite.
+- **Otros cambios** (valor, lote, detalle, criterios) se permiten sin anular.
+
+### Líneas sin orden de producción
+
+Si el documento tiene líneas sin OP o con una OP distinta a las demás:
+
+- Aparecen omitidas en el diálogo de propuesta (*"Estas líneas no tienen OP / tienen otra OP"*).
+- En la tabla de líneas, muestran *"Sin producción (sin OP)"* en lugar de estado.
+- No se incluyen en el registro de producción.
+
+**Documento con varias órdenes de producción:**
+- Si las líneas con OP apuntan a órdenes distintas, el sistema rechaza el registro: *"El documento tiene líneas de más de una OP; una entrada produce para una sola OP"*. Cree un documento separado por cada OP.
+
+### Errores y validaciones
+
+| Error | Por qué | Qué hacer |
+|-------|--------|----------|
+| **Saldo insuficiente en: {lista}** | Una línea quiere producir más de lo disponible en la operación origen. Se lista qué variantes y cuánto falta. | Reduzca las cantidades, registre primero producción en otra línea de la misma OP, o verifique las operaciones anteriores. |
+| **Cantidad no entera** | La tabla solo muestra las líneas que se registran; si una cantidad tiene decimales, no se puede registrar como entera. | Revise la cantidad de la línea en el inventario. |
+| **Dependencia no cumplida** | Una operación depende de saldo suficiente en otra que aún no lo tiene (por ejemplo, "Depende de Costura (producido 4 de 10) para Variante 1"). | Registre primero la operación previa, o elija una operación alternativa sin dependencia. |
+| **Periodo cerrado** | La fecha del movimiento o la fecha de entrega cae en un periodo contable cerrado. | Use una fecha de un periodo abierto. |
+| **Variante inválida** | La referencia de la línea no está configurada con la ruta de operaciones. | En **Maestro de referencias**, agregue operaciones para esta referencia. |
+| **Compañía con sincronización externa no disponible** | La empresa está configurada para sincronizar con un sistema externo y esa sincronización no está disponible. | Consulte al administrador. |
+| **Documento ya tiene movimiento de producción** | Todas las líneas elegibles ya tienen producción registrada. | Si necesita registrar más, agregue líneas nuevas y use **Completar producción**. |
+| **El documento tiene líneas de más de una OP** | Las líneas con OP apuntan a órdenes distintas. | Cree un documento separado para cada OP. |
+| **No hay líneas elegibles** | El documento no tiene líneas con OP, o todas están anuladas. | Agregue líneas con orden de producción válida. |
+
+---
+
+## 💰 Costear la producción {#costear-la-produccion}
+
+Cuando guarda una **entrada de producción** (un documento donde sus líneas tienen la misma orden de producción), el sistema le propone un **valor unitario** basado en **los costos reales que la orden acumuló**: materiales que sacó de inventario, servicios de compras (confección, corte, etc.), e indirectos de fabricación. Antes de aplicar ese valor a las líneas, usted ve el resumen por rubro, lo compara con el precosteo teórico de la referencia, lo ajusta si es necesario, y solo entonces lo aplica al documento.
+
+### Cuándo aparece la acción
+
+En la **barra de acciones del documento** (arriba, junto a **Registrar producción** e **Imprimir**), aparece **Costear producción** solo si:
+
+- El documento es una **entrada** con una **orden de producción única** (todas las líneas de la OP).
+- El documento está **abierto** o usted tiene el permiso para editarlo cerrado.
+- Su usuario tiene el permiso **Actualizar** sobre *Entradas y salidas*.
+- El periodo del documento está abierto.
+
+Si el botón no aparece o está deshabilitado, el documento no cumple los requisitos anteriores.
+
+### Abrir el diálogo de costeo
+
+Haga clic en **Costear producción**. El sistema trae el resumen de costos de la orden, que puede tardar unos segundos (*"Calculando el resumen de costos de la OP…"*). Una vez listo, verá:
+
+1. **Avisos** (naranja y rojo, si aplica): le avisan si falta algo importante (sin materiales, sin servicios de compras, costo cero o negativo, etc.). A pesar de los avisos amarillos, puede seguir; los avisos rojos impiden aplicar.
+2. **Resumen de costos por rubro**: la base para calcular el valor unitario.
+3. **Comparación con el Teórico**: el precosteo de la referencia, solo de referencia.
+4. **Valor unitario propuesto** y cómo se distribuye por línea.
+5. **Botones**: Cancelar y Aplicar al documento (o solo Cerrar si no tiene permiso de actualizar).
+
+### Resumen de costos por rubro
+
+Es una tabla que muestra de dónde sale el costo de la orden:
+
+| Rubro | Qué incluye | Quién lo propone |
+|-------|------------|-----------------|
+| **Materiales** | Las salidas de inventario a la orden menos las devoluciones (el costo registrado de cada salida). | El sistema, de los documentos de salida de la orden. |
+| **Cada servicio** (por ej. *Confección*, *Corte*) | Las compras de servicios asignadas a la orden: valor bruto sin IVA ni retenciones, descuento ya restado. Se agrupa por tipo de servicio. | El sistema, de los documentos de Compras con la orden asignada. |
+| **Indirectos** | Un porcentaje (por ejemplo, 8 %) multiplicado por la base (Materiales + servicios). Solo incluye los indirectos de fabricación: la utilidad y los indirectos de administración y ventas no entran aquí. | El sistema, del porcentaje configurado en la referencia. |
+
+Cada rubro muestra:
+
+- **Real**: el costo que se ha gastado (materiales salidos, servicios facturados, etc.).
+- **Teórico** (para referencia): cuál debería ser según el precosteo de la referencia.
+- **Diferencia**: en pesos y porcentaje. Un icono le dice si es mayor, menor o igual al teórico.
+- **Efectivo**: lo que entra al cálculo del valor unitario (real más cualquier ajuste que haga).
+
+Debajo, la **fila Total** suma todos los rubros: ese es el **costo acumulado** de la orden.
+
+### Ajustar un rubro
+
+Si el costo de un rubro no es correcto —por ejemplo, hubo retoques no facturados, o un error en el cálculo—, puede **ajustarlo**:
+
+1. Haga clic en **Ajustar** de la fila del rubro.
+2. Se abre un pequeño diálogo con:
+   - **Monto actual** del rubro (solo lectura).
+   - **Ajuste**: escriba el aumento o disminución (puede ser negativo).
+   - **Motivo** (obligatorio, máx. 200 caracteres): por qué hace este ajuste. Queda en la bitácora del documento.
+3. Presione **Guardar** o **Enter**.
+
+Verá el rubro con un chip *"Ajustado"* y el motivo. El **Efectivo** recalcula al instante, así como el **Indirectos** (si lo ajustó) y el **valor unitario propuesto**.
+
+**Para quitar el ajuste**, vuelva a abrir y escriba 0 en el ajuste, o use **Quitar ajuste**.
+
+> 💡 El ajuste **no cambia** los documentos de origen (las compras, las salidas): solo modifica el cálculo del valor unitario para este documento. La bitácora registra quién, qué, cuándo y por qué.
+
+### Comparación con el Teórico
+
+Debajo del resumen aparecen tres tarjetas que comparan lo que costó en realidad con lo que la receta estimó:
+
+- **Total**: el costo acumulado vs el precosteo total.
+- **Mano de obra**: suma de todos los servicios vs la mano de obra de la receta.
+- **Materiales**: materiales reales vs materiales de la receta.
+
+El Teórico es **solo referencia**: no afecta el valor propuesto. Sirve para saber si los costos reales están cerca de lo esperado. Si la orden tiene variantes sin receta, verá una nota (*"Teórico incompleto"*).
+
+### Valor unitario propuesto
+
+Es el resultado de dividir:
+
+```
+Costo acumulado (Materiales + servicios + Indirectos ajustado) ÷ Cantidad acumulada producida = Valor propuesto
+```
+
+Se muestra con:**
+
+- **Costo acumulado**: el total de todos los rubros después de ajustes.
+- **Cantidad acumulada producida**: la cantidad total de todas las entradas de producción de esta orden que hay registradas (incluida esta).
+- **Absorbido**: lo que ya pagaron documentos anteriores de la misma orden (solo para su información).
+- **Por absorber**: lo que queda para próximas entradas de la orden (si las hay).
+- **Valor propuesto**: el resultado, redondeado a los decimales del tipo de documento.
+
+Este valor se aplica **de forma uniforme** a todas las líneas elegibles del documento.
+
+### Valor por línea
+
+Una tabla muestra cada línea del documento con:
+
+- **Línea**: número de la línea.
+- **Variante**: código y nombre.
+- **Cantidad**: unidades de esa línea.
+- **Actual**: el valor unitario que tiene ahora.
+- **Propuesto**: el nuevo valor que propone el sistema.
+- **Cambio**: la diferencia en pesos.
+
+Las líneas sin orden de producción aparecen con la nota *"No se modifican"*.
+
+### Aplicar el costo
+
+Una vez que revise el resumen, compare con el Teórico y haga los ajustes que considere:
+
+1. Haga clic en **Aplicar al documento**. Se abre una confirmación que dice exactamente qué va a pasar: *"Se escribirá $ X.XXX,00 como Valor de Y línea(s). Se registran Z ajuste(s) por rubro en la bitácora."*
+2. Revise y haga clic en **Aplicar valor** para confirmar.
+
+Verá *"Valor unitario aplicado"*. El documento se actualiza:
+
+- Las líneas muestran el nuevo valor.
+- La barra del documento muestra *"Valor unitario aplicado: $ X.XXX,00 el fecha por usuario"*.
+- Los ajustes quedan registrados en la bitácora (solo el administrador los ve).
+
+**El costeo nunca es automático**: hasta que no haga clic en **Aplicar**, nada cambia.
+
+### Casos especiales
+
+#### Entradas parciales de la misma orden
+
+Si la orden tiene **varias entradas de producción** en documentos distintos, el cálculo es acumulativo:
+
+- **Cantidad acumulada** incluye todas las cantidades que ya entró, más la de este documento.
+- **Absorbido** es lo que ya se asignó en entradas anteriores (solo información).
+- **Por absorber** es lo que queda si hay más entradas pendientes.
+
+El valor propuesto es diferente en cada entrada (se recalcula con la cantidad acumulada hasta ese momento) y se registra en la bitácora con fecha y usuario.
+
+#### Propuesta provisional
+
+Si a la orden le **falta costo de compras** o le **faltan materiales**:
+
+- Verá un aviso naranja: *"Provisional: falta el costo de servicios/materiales"*.
+- El valor propuesto está marcado como **Provisional** (no definitivo).
+- **Aplicar** le pide que confirme explícitamente que está seguro (*"Confirmo que el valor es provisional"*).
+- La bitácora lo registra como provisional.
+
+Cuando registre la compra o la salida que faltaba, puede volver a abrir **Costear producción** y proponer de nuevo.
+
+#### Sin base o costo cero
+
+Si la orden **no tiene ningún costo** (sin materiales, sin servicios, sin receta), o si los ajustes la dejan en cero o negativo:
+
+- Verá un aviso rojo: *"No hay base para costear"* o *"El costo quedó cero o negativo"*.
+- **Aplicar** queda deshabilitado.
+- Revise: agregue ajustes positivos con motivo, o registre los costos que faltan en compras o inventario.
+
+#### Desfase (cambió algo después de proponer)
+
+Si después de que propuso el costo, **cambió una salida de materiales o una compra de servicios** de la orden:
+
+- Verá un aviso naranja: *"El costo de la OP cambió después de asignar el valor"*.
+- La propuesta anterior aparece grisada.
+- Los botones permiten **Recalcular** para traer los cambios y hacer una nueva propuesta, sin perder los ajustes que ya hizo.
+
+#### Líneas excluidas (reclasificaciones y traslados)
+
+Algunas líneas de movimiento (reclasificaciones, traslados internos) **no cuentan** en el costeo porque no son costo real de la orden:
+
+- Aparecen omitidas del resumen con una nota: *"Líneas excluidas: X reclasificación/traslado"*.
+- No impiden aplicar ni afectan el valor propuesto.
+
+### Errores y avisos
+
+| Aviso / Error | Qué significa | Qué hacer |
+|---|---|---|
+| **Documento no elegible (periodo cerrado, OP sin líneas, etc.)** | El documento no cumple los requisitos. | Vea el motivo específico. Algunos no se pueden corregir; otros requieren cambiar el documento. |
+| **Sin permiso** | No tiene el permiso **Actualizar** sobre Entradas y salidas. | El diálogo se abre en **solo lectura**: puede ver pero no aplicar. Consulte al administrador. |
+| **El sistema está ocupado** o **No se pudo cargar el resumen** | Error de conexión o del servidor. | Haga clic en **Reintentar**. |
+| **El costo cambió; actualice** | Otro usuario modificó una compra o salida de la orden mientras el diálogo estaba abierto. | Haga clic en **Actualizar** para traer los cambios. Su propuesta y ajustes se conservan. |
+| **No se pudo aplicar** | Error al guardar. | Haga clic en **Reintentar** (usa la misma clave de idempotencia, no se duplica). |
+| **Tipo sin configuración de costos** | El tipo de documento no está configurado para costear. | Consulte al administrador. |
+
+### Sugerencia: recalcular costos posteriores
+
+Cuando aplica el valor unitario a una entrada de producción, **solo cambia ese documento**. Si más adelante la orden tiene **otras entradas posteriores**, esas también necesitan costeo propio (con la cantidad acumulada que incluya esta entrada).
+
+Además, si después de costear cambian materiales o servicios de la orden, el módulo de **Inventario › Recálculo de costos** permite recalcular todas las salidas e identificar diferencias acumuladas. Ver esa pantalla para ajustes a escala.
+
+### Cambios en tiempo real
+
+Si otro usuario modifica el documento (agrega o cambia líneas) mientras el diálogo está abierto, verá un aviso: *"El documento cambió; actualice"*. Haga clic en **Actualizar** para traer los cambios sin perder los ajustes que ya hizo. El resumen se recalcula al instante.
 
 ---
 

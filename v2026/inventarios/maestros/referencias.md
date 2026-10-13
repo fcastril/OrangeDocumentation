@@ -52,6 +52,7 @@ En esta pantalla puede **buscar, filtrar, consultar, crear, copiar, eliminar, ex
 | **Importar** | Crea o actualiza referencias y variantes desde un archivo de Excel. Ver [Importar referencias desde Excel](referencias-importar.md). |
 | **N registros** | Cuántas referencias cumplen la búsqueda y los filtros (no solo las de la página). |
 | **Lápiz** / **Copiar** / **Papelera** | Editar, copiar o eliminar la referencia de esa fila. Siempre están en la **primera columna**, visibles aunque la tabla tenga que desplazarse. |
+| **Cuadro con check** (con permiso Consultar sobre Disponibilidad de Inventarios) | Abre la consulta [Disponibilidad de Inventarios](../consultas/disponibilidad.md) filtrada por esa referencia, con el detalle abierto si ya tiene bodega elegida. |
 | **Código**, **Nombre**, **Subgrupo**, **Unidad**, **Variantes**, **Estado**, **Última modificación** | Columnas del listado. **Subgrupo** se muestra como `Código - Nombre` y, debajo, su grupo (`Grupo: ALI - Alimentos`). **Variantes** dice cuántas variantes tiene. **Estado** es *Activa* o *Inactiva*. |
 | **Encabezados** | Puede ordenar por **Código**, **Nombre**, **Subgrupo** y **Última modificación**. Un clic ordena de forma ascendente, el segundo descendente y el tercero vuelve al orden inicial (por código). |
 | **Filas por página** y paginación | Cambian cuántas referencias ve (10, 20, 50 o 100) y la página. |
