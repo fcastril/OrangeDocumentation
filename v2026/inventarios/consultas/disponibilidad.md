@@ -1,0 +1,415 @@
+[Regresar a Inventarios](../readme.md)
+
+---
+
+# 📦 Disponibilidad de Inventarios
+
+![Static Badge](https://img.shields.io/badge/Tipo-Consulta-red)
+![Static Badge](https://img.shields.io/badge/Module-Inventarios-orange)
+![Static Badge](https://img.shields.io/badge/Submodule-Consultas%2FReportes-blue)
+![Static Badge](https://img.shields.io/badge/Opcion-Disponibilidad%20de%20Inventarios-green)
+![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
+
+![Static Badge](https://img.shields.io/badge/Actualizacion-20261013-yellow)
+
+---
+
+## 📋 Descripción
+
+Consulta que muestra **cuánto hay de cada referencia (por talla, color, etc.) en la bodega, cuánto está comprometido con pedidos sin despachar, cuánto viene en producción y cuánto viene en órdenes de compra sin recibir**. Así sabe **qué puede ofrecer ahora y qué podrá ofrecer cuando lleguen la fabricación y las compras**. Es de **solo lectura**: no crea ni cambia información. Se puede abrir desde el maestro de **Referencias** con la acción "Ver disponibilidad", filtrada por esa referencia.
+
+El informe incluye **solo referencias que manejan inventario**. Los pedidos siguen las reglas del Reporte de Pedidos legado.
+
+> 📘 Funciona como las demás tablas: ver [Manejo general de la información](../../Generales/manejo-general-informacion.md).
+
+> 💡 Cada pestaña del navegador trabaja con **una compañía**. El nombre de la compañía se ve en la barra superior.
+
+---
+
+## 🎯 Acceso
+
+### Desde Inventarios
+
+1. En el menú principal, haga clic en **Inventarios**.
+2. En **Consultas/Reportes**, haga clic en **Disponibilidad de Inventarios**.
+
+### Desde el maestro de Referencias
+
+En **Referencias**, cada referencia tiene una acción **Ver disponibilidad** (ícono de cuadro con check). Al pulsarla, la consulta se abre filtrada por esa referencia. Si ya tiene bodega elegida, consulta automáticamente y abre el detalle. Si no, pide elegir bodega y luego consulta.
+
+**Permisos:**
+
+| Permiso | Qué permite |
+|---------|-------------|
+| **Consultar** (Disponibilidad) | Ver la pantalla y consultar. Sin él, "No tienes acceso a esta consulta". |
+| **Exportar** (Disponibilidad) | Ver botones **Exportar Excel** y **Exportar PDF**. |
+| **Consultar** (Órdenes de compra) | Ver la pestaña **Compras en tránsito** con el detalle de cada orden. Sin él, la cifra **En tránsito (compras)** sí se ve. |
+
+---
+
+## 🖥️ Pantalla principal
+
+Al entrar, la pantalla no muestra datos: elija la bodega y pulse **Consultar**.
+
+![Pantalla inicial](../recursos/img/disponibilidad/01-inicial.png)
+
+| Elemento | Para qué sirve |
+|----------|----------------|
+| **?** (junto al título) | Abre esta ayuda en un panel lateral. |
+| **Calculado a las HH:MM** | Hora del cálculo. |
+| **Actualizar** | Recalcula si han pasado 60+ segundos. Ver *El día en curso*. |
+| **Exportar Excel** / **Exportar PDF** | Descargan todo lo filtrado. Deshabilitados sin resultados. |
+| **Bodega principal** | **Obligatoria.** El sistema la recuerda. Es también la bodega que se usa para las compras en tránsito (ver abajo). |
+| **Existencia: Solo bodega principal / Todas las bodegas** | Por defecto solo la bodega elegida. Active para incluir todas. |
+| **Más filtros** | Despliega **Referencia**, **Grupo**, **Subgrupo**, el grupo **Qué se cuenta** y los interruptores de estado. |
+| **Solo con faltante, Solo con pedidos, Solo con producción, Solo con compras en tránsito** | Interruptores para ver referencias que tienen ese estado. |
+| **Consultar** | Trae el resultado. Cambiar un filtro no consulta solo. |
+
+### Grupo "Qué se cuenta" (en Más filtros)
+
+| Interruptor | Qué hace |
+|-------------|----------|
+| **Incluir pedidos congelados** | Apagado por defecto. Ver *Qué cuenta*. |
+| **Incluir OC sin cerrar** | **Activo por defecto.** Cuenta las órdenes de compra abiertas (sin cerrar). Apagado, solo cuentan las cerradas. |
+
+Cuando un interruptor de este grupo cambia de su valor normal, aparece un **chip** (resumen) en la pantalla. Por ejemplo, con **Incluir OC sin cerrar** apagado aparece el chip **OC sin cerrar excluidas**.
+
+---
+
+## 📊 Leer el resultado
+
+### Grilla por referencia
+
+![Resultado: referencias con variantes colapsadas](../recursos/img/disponibilidad/02-referencias-expandidas.png)
+
+La tabla muestra **una fila por referencia**, con cifras **sumadas de todas sus variantes**:
+
+- **Referencia**: código y nombre.
+- **Variantes**: cuántas tallas, colores, etc. ("3", o "100 de 108" con botón "Ver las 8 restantes").
+- **Existencia**: total en la bodega elegida (o en todas, si lo activó).
+- **Por despachar**: saldo pendiente de pedidos, sumado.
+- **Disponible hoy**: Existencia − Por despachar.
+- **En producción**: en fabricación, no recibido.
+- **En tránsito (compras)**: órdenes de compra pendientes de recibir (ver [Compras en tránsito](#compras-en-transito)).
+- **Disponible proyectado**: Disponible hoy + En producción + En tránsito (compras).
+- **Estado**: el **peor** de todas las variantes + "1 de 3 variantes en faltante" (u otra cifra).
+
+Números negativos con signo "−".
+
+Puede ordenar la tabla por cualquier columna, incluida **En tránsito (compras)**: haga clic en el encabezado.
+
+### Expandir variantes
+
+Haga clic en **▶** para ver sus variantes debajo (p.ej. "M / NEG", "L / NEG"). Botones **Expandir todas** / **Colapsar todas** arriba de la grilla.
+
+Expandir **no abre el detalle**: solo muestra las variantes.
+
+### Seleccionar referencia o variante
+
+**Clic en la referencia (fila principal):** detalle de **toda la referencia** (cifras sumadas, columna "Variante" en las tablas). Título: "CAM-BAS-001 · toda la referencia (3 variantes)".
+
+**Clic en variante (fila con sangría):** detalle de **solo esa variante**. Título: "CAM-BAS-001 · M / NEG".
+
+Una sola selección a la vez. Seleccionar otra cierra la anterior.
+
+### Detalle con pestañas
+
+El detalle aparece debajo con sus pestañas: **Pedidos · Producción · Compras en tránsito · Otras bodegas**. Cada una tiene un contador (p.ej. "Pedidos (3)").
+
+La pestaña **Compras en tránsito** solo aparece si tiene el permiso de **Órdenes de compra**. Sin ese permiso, el detalle tiene las otras tres pestañas.
+
+**Solo la pestaña activa consulta** (más rápido). Las demás consultan cuando las activa.
+
+**Pestaña por defecto:** la primera con datos, en ese orden (Pedidos, Producción, Compras en tránsito, Otras bodegas). Se recuerda durante la sesión.
+
+**Pedidos:** documento, cliente, sucursal·vendedor, fechas, cantidades (Pedido/Despachado/Falta), estado. Con alcance **referencia**, columna "Variante" (qué talla). Total en el pie.
+
+**Producción:** orden, etapa actual (Corte, Costura, etc.), fechas, cantidades (Planeada/Recibida/Pendiente). **"OP sin entradas registradas"** en rojo: la planta no ha registrado entradas, el tránsito puede estar inflado. Total en el pie.
+
+**Compras en tránsito:** orden y proveedor, comprador, fechas (orden y entrega), cantidades (Pedida, Recibida, Pendiente) con barra de avance. Las marcas **Vencida** y **Sin cerrar** señalan órdenes entregadas tarde o todavía abiertas. Ordenada por fecha de entrega y paginada. **No muestra valores de dinero.** Con alcance **referencia**, columna "Variante". Total en el pie.
+
+**Otras bodegas:** bodega (la principal marcada) y existencia. Con alcance referencia, columna "Variante" (fila por variante y bodega). Totales.
+
+![Detalle en modo tableta con pestañas](../recursos/img/disponibilidad/04-detalle-tabs-tableta.png)
+
+### Navegar
+
+- **Orden:** clic en encabezado de columna.
+- **Búsqueda:** escriba (≥ 2 caracteres) para filtrar referencias. Al expandir, las que coinciden quedan resaltadas "Coincide con el filtro".
+- **Cambiar filtro/página/tamaño/orden/búsqueda:** cierra detalle y colapsa referencias.
+- **Actualizar:** conserva detalle, expansión y pestaña. Recarga solo la pestaña visible.
+  - Si la selección desaparece: cierra con aviso "La selección ya no aparece en el resultado".
+
+---
+
+<a id="compras-en-transito"></a>
+## 🚚 Compras en tránsito
+
+### Qué es
+
+**En tránsito (compras)** es la cantidad que **ya se pidió a un proveedor** en una **orden de compra** y **todavía no ha llegado** a la bodega. Viene de la pantalla de **Órdenes de compra** (Compras).
+
+Una orden de compra **no mueve la existencia**: lo que se pidió no se puede despachar hoy. Por eso la compra solo aumenta el **disponible proyectado**, no el disponible hoy.
+
+**Qué cuenta como tránsito, en una línea de orden:**
+
+- Cantidad pedida − cantidad ya recibida. Nunca es menor que cero.
+- Solo las órdenes **abiertas** y **cerradas** de la compañía. Las **anuladas** no cuentan.
+- Las órdenes **vencidas** (la fecha de entrega ya pasó) **sí cuentan**, y se marcan como **Vencida**.
+- Una orden **abierta** se marca **Sin cerrar**, porque todavía puede cambiar. Si el interruptor **Incluir OC sin cerrar** está apagado, esas órdenes no cuentan.
+- Solo cuentan las líneas de la **bodega seleccionada** en la pantalla. Si elige **Todas las bodegas**, cuentan las de todas.
+
+### Fórmula con un ejemplo
+
+**Disponible hoy = Existencia − Por despachar**
+
+**Disponible proyectado = Existencia − Por despachar + En producción + En tránsito (compras)**
+
+Dicho con letras: **E − PD + T + C** (E = existencia, PD = por despachar, T = en producción, C = en tránsito de compras).
+
+Ejemplo de la variante **S/BLA** en la bodega elegida:
+
+| Concepto | Valor |
+|----------|-------|
+| Existencia (E) | 12 |
+| Por despachar (PD) | 30 |
+| En producción (T) | 30 |
+| En tránsito de compras (C) | 20 |
+| **Disponible hoy** = 12 − 30 | **−18** |
+| **Disponible proyectado** = 12 − 30 + 30 + 20 | **32** |
+
+El **disponible hoy** es −18: hoy faltan unidades, porque la compra todavía no llegó. El **disponible proyectado** es 32: con la producción y las compras que llegan, la variante queda cubierta.
+
+El encabezado del detalle muestra la misma cuenta: "Existencia 12 − Por despachar 30 + En producción 30 + En tránsito 20 = Disponible 32".
+
+### Bodega seleccionada
+
+El tránsito se cuenta **en la bodega que elige** en la pantalla, aunque no sea la bodega principal de la compañía. Una orden con líneas en otra bodega **no cubre** la bodega que usted consulta.
+
+- Bodega 3 seleccionada, con 20 unidades en la bodega 3 y 15 en la bodega 5: **En tránsito = 20**.
+- Si selecciona la bodega 5 y consulta: **En tránsito = 15**.
+- Con **Todas las bodegas**: **En tránsito = 35** (la suma de todas).
+
+
+### Estados cubiertos por compras
+
+Una variante **falta hoy** cuando su disponible hoy es menor que cero. Entonces el estado depende de cómo se cubre:
+
+| Estado | Cuándo |
+|--------|--------|
+| **Disponible** ✓ | Disponible hoy ≥ 0. |
+| **Cubierto** ⏱ | Falta hoy, pero el disponible proyectado queda ≥ 0. El texto dice con qué se cubre: |
+| &nbsp;&nbsp;· **Cubierto con producción** | Hay producción y no hay compras en tránsito. |
+| &nbsp;&nbsp;· **Cubierto con compras** | Hay compras en tránsito y no hay producción. |
+| &nbsp;&nbsp;· **Cubierto con producción y compras** | Hay producción y compras en tránsito. |
+| **Faltante** ⚠ | El disponible proyectado sigue menor que cero. Aunque haya producción y compras. |
+
+El estado de la referencia sigue siendo el **peor** de sus variantes. Una talla cubierta por compras no cubre a otra que está en faltante.
+
+> 💡 En el ejemplo de arriba (S/BLA), la variante tiene producción **y** compras, por eso dice "Cubierto con producción y compras". Con la producción sola ya quedaría cubierta, pero la pantalla indica que también cuentan las compras.
+
+### Filtro "Solo con compras en tránsito"
+
+Muestra solo las variantes (y referencias con alguna variante así) que tienen compras en tránsito mayores que cero. Por defecto está apagado. Los **faltantes nunca se ocultan**.
+
+Una variante **sin existencia, sin pedidos y sin producción** aparece igual si tiene compras en tránsito: es información útil para saber qué se puede ofrecer.
+
+### Pestaña "Compras en tránsito"
+
+- Solo aparece con el permiso **Consultar** de **Órdenes de compra**.
+- Muestra cada orden con saldo pendiente: tipo y número, proveedor, comprador, fecha de la orden, fecha de entrega, cantidad pedida, recibida y pendiente.
+- Las órdenes **vencidas** llevan la marca **Vencida**; las **abiertas** llevan la marca **Sin cerrar**.
+- Si selecciona una **referencia**, la lista trae las órdenes de todas sus variantes, con la columna **Variante**.
+- La lista se lee al abrir la pestaña. Puede diferir unos minutos de la cifra **En tránsito (compras)**.
+
+> 💡 Sin el permiso de Órdenes de compra, la pestaña no aparece y la cifra **En tránsito (compras)** sigue visible en la grilla y en el detalle.
+
+### Advertencias
+
+Hay dos avisos que puede ver en la pantalla:
+
+> ⚠️ **Tránsito posiblemente sobrestimado.** Las compras aún no registran en todos los casos la orden de compra que reciben. Si la mercancía ya llegó, la orden puede seguir mostrando esa cantidad como pendiente. Antes de prometer una entrega por esa cifra, revise la orden de compra.
+
+> ⚠️ **Tránsito de compras no disponible.** No se pudo consultar Compras. Las cifras de **En tránsito** y **Disponible proyectado** no incluyen compras (usan solo existencia, pedidos y producción). **No es un cero:** significa que no hay dato de compras. Vuelva a consultar más tarde.
+
+Cuando **Compras** está ocupado calculando, la pantalla espera y se actualiza sola, igual que en el cálculo de la primera consulta del día.
+
+Los avisos de **compras en tránsito** también aparecen si Compras cambia mientras tiene la pantalla abierta (ver *Cambios de otros usuarios*).
+
+---
+
+## 🎨 Estados: Disponible, Cubierto, Faltante
+
+Resumen de los estados (detalle en [Compras en tránsito](#compras-en-transito)):
+
+| Estado | Cuándo |
+|--------|--------|
+| **Disponible** ✓ | Todas las variantes tienen disponible hoy ≥ 0. |
+| **Cubierto con producción** ⏱ | Al menos una tiene hoy < 0 y se cubre con producción (sin compras en tránsito). |
+| **Cubierto con compras** ⏱ | Al menos una tiene hoy < 0 y se cubre con compras en tránsito (sin producción). |
+| **Cubierto con producción y compras** ⏱ | Al menos una tiene hoy < 0 y se cubre con producción y compras en tránsito. |
+| **Faltante** ⚠ | Al menos una tiene proyectado < 0 (falta incluso con producción y compras). |
+
+Lleva "1 de 3 variantes en faltante" u otra combinación: cuántas variantes tienen ese estado.
+
+---
+
+## 🏭 Qué cuenta: Pedidos, Producción y Compras
+
+### Pedidos (Por despachar)
+
+- Opción 56 (Ventas › Pedidos).
+- No anulados, fecha ≤ hoy, saldo > 0 por línea.
+- **Congelados siempre cuentan** (se marcan en el detalle).
+- Sumadas por variante.
+
+**Despachado:** facturas de venta + devoluciones (opción 67), por pedido y variante. **Remisiones NO cuentan** (solo factura).
+
+**Saldo = Cantidad − Despachado.**
+
+### Órdenes de Producción (En producción)
+
+- Activas, no canceladas, no congeladas.
+- Pendiente > 0 después de restar entradas recibidas.
+- Sumadas por variante.
+
+**Advertencia "OP sin entradas registradas":** orden en el sistema pero planta sin entradas → tránsito puede estar sobrestimado.
+
+### Órdenes de compra (En tránsito)
+
+Ver [Compras en tránsito](#compras-en-transito): abiertas y cerradas cuentan; anuladas no; pendiente = pedido − recibido, por variante y bodega.
+
+---
+
+## 📅 El día en curso
+
+Siempre de hoy. Botón **Actualizar** si han pasado 60+ segundos. Información puede cambiar mientras se registran movimientos.
+
+![Actualizar](../recursos/img/disponibilidad/05-actualizar.png)
+
+### Cambios de otros usuarios
+
+Si otra persona registra una producción, un pedido o una orden de compra mientras tiene el informe abierto, aparece el aviso **"Hay cambios desde las HH:MM. Actualizar"**. La pantalla **no** se actualiza sola: pulse **Actualizar** cuando quiera ver los cambios.
+
+---
+
+## ⏳ Cálculo en segundo plano
+
+Primera consulta del día o Actualizar pueden tardar. Pantalla dice "Calculando..." y puede seguir trabajando. Aviso en la **campana** cuando termine.
+
+![Calculando](../recursos/img/disponibilidad/06-calculando.png)
+
+---
+
+## 📤 Exportar a Excel y PDF
+
+Con permiso **Exportar**, descargar todo lo filtrado (no solo página).
+
+- La columna **En tránsito (compras)** sale en el Excel y en el PDF, con la misma cifra de la pantalla.
+- El encabezado del archivo dice si las órdenes sin cerrar están **incluidas** o **excluidas**, y repite la advertencia de *tránsito posiblemente sobrestimado* si aplica.
+- **Incluir hojas de pedidos y producción:** en el Excel, agrega hojas con el detalle.
+
+| Formato | Máximo |
+|---------|--------|
+| **Excel** | 50.000 (ref. + variantes) |
+| **PDF** | 4.000 (ref. + variantes) |
+
+Si excede: filtre y reexporte.
+
+---
+
+## 💡 Fórmula resumida
+
+**Disponible hoy = Existencia − Por despachar**
+
+**Disponible proyectado = Disponible hoy + En producción + En tránsito (compras)**
+
+**Referencia CAM-BAS-001 (3 variantes), sin compras en tránsito:**
+
+| Concepto | M/NEG | L/NEG | S/BLA | **TOTAL** |
+|----------|-------|-------|-------|-----------|
+| Existencia | 12 | 8 | 0 | **20** |
+| Por despachar | 30 | 0 | 20 | **50** |
+| Disponible hoy | −18 | 8 | −20 | **−30** |
+| En producción | 30 | 0 | 0 | **30** |
+| Disponible proyectado | 12 | 8 | −20 | **0** |
+| **Estado** | **Cubierto** | **Disponible** | **Faltante** | **Faltante (1 de 3)** |
+
+Para ver cómo entra una orden de compra en la cuenta, vea el ejemplo de [Compras en tránsito](#compras-en-transito).
+
+---
+
+## 📱 Responsive
+
+- **Tableta (768 px):** columnas secundarias ocultas.
+- **Móvil (≤ 640 px):** tarjetas anidadas; detalle a pantalla completa con **Volver a la lista**; pestañas en fila con scroll. La fórmula se apila en vertical.
+
+![Móvil](../recursos/img/disponibilidad/07-detalle-movil.png)
+
+---
+
+## ❓ Preguntas frecuentes
+
+**¿Desde dónde puedo abrir esta consulta?**
+Desde **Inventarios** › **Disponibilidad de Inventarios**, o desde **Referencias** con botón "Ver disponibilidad" en cada fila.
+
+**¿Cómo funcionan las variantes?**
+La tabla suma todas las variantes (tallas, colores) en una fila de referencia. Haga clic en **▶** para verlas y **clic en una variante** para ver solo esa.
+
+**¿Qué es el estado de referencia?**
+El **peor** de sus variantes: si una está "Faltante", la referencia es "Faltante". Muestra "1 de 3 variantes en faltante", etc.
+
+**¿Qué es "En tránsito (compras)"?**
+Lo que se pidió en órdenes de compra y todavía no ha llegado. Solo suma al disponible proyectado, no al disponible hoy.
+
+**¿Por qué el disponible hoy no cambia con una orden de compra?**
+Porque lo que no ha llegado no se puede despachar hoy. La orden aumenta el disponible proyectado.
+
+**¿Las órdenes de compra anuladas cuentan?**
+No. Las abiertas y las cerradas sí. Las vencidas también cuentan y se marcan.
+
+**¿Qué pasa si apago "Incluir OC sin cerrar"?**
+Las órdenes abiertas dejan de contar. Solo cuentan las cerradas. Aparece el chip "OC sin cerrar excluidas". Recuerde pulsar **Consultar**.
+
+**¿Por qué la compra de otra bodega no cubre lo que consulto?**
+Porque el tránsito se cuenta en la bodega que eligió. Con **Todas las bodegas** cuentan todas.
+
+**¿Por qué no veo la pestaña "Compras en tránsito"?**
+Necesita el permiso de **Consultar** en Órdenes de compra. Sin él, la cifra En tránsito (compras) sí aparece.
+
+**¿Qué significa "Tránsito posiblemente sobrestimado"?**
+Que la cifra de compras puede ser mayor a lo que realmente falta por llegar, porque las compras aún no registran en todos los casos la orden que reciben. Revise la orden antes de prometer una entrega.
+
+**¿Qué significa "Tránsito de compras no disponible"?**
+Que no se pudo consultar Compras. Las cifras no incluyen compras; no es un cero. Vuelva a consultar más tarde.
+
+**¿Qué estado tiene una variante cubierta solo por compras?**
+"Cubierto con compras". Si también hace falta producción, dice "Cubierto con producción y compras".
+
+**¿Los pedidos congelados cuentan?**
+Sí, siempre. Se marcan como "Congelado" en el detalle.
+
+**¿Las remisiones cuentan como despacho?**
+No. Solo facturas de venta (y devoluciones).
+
+**¿Qué pestaña se abre por defecto?**
+La primera con datos, en el orden Pedidos, Producción, Compras en tránsito, Otras bodegas. Se recuerda durante la sesión.
+
+**¿Cómo afecta "Actualizar" a mi detalle abierto?**
+Conserva: detalle, expansión, pestaña. Recarga solo la pestaña visible. Si la selección desaparece, cierra con aviso.
+
+**¿Puedo cambiar filtros sin cerrar el detalle?**
+No. Cambiar filtro/página/orden/búsqueda cierra el detalle. **Actualizar** lo conserva.
+
+**¿Por qué pide bodega si abro "Ver disponibilidad" desde Referencias?**
+Es la primera vez que consulta. El sistema la recuerda después.
+
+**¿Qué referencias aparecen?**
+Solo las que **manejan inventario**. Las que no (servicios) no cuentan.
+
+**¿Qué es "Variantes: 100 de 108 · Ver las 8 restantes"?**
+La referencia tiene 108 variantes; se muestran 100 en la página. Botón para ver las 8 que falta.
+
+---
+
+[Regresar a Inventarios](../readme.md)
