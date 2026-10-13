@@ -126,9 +126,27 @@ La fila de captura sigue este orden (con **Enter** avanza al siguiente campo; en
 | **Valor unitario** | Mayor que 0. Se propone el valor sugerido de la referencia; puede cambiarlo. |
 | **% Dto.** | De 0 a 100. Por defecto el descuento del proveedor. |
 
-El **IVA** se toma de la referencia y del tipo de orden; no es un campo de la línea. El **Total** de la línea se calcula solo.
+El **IVA** se toma de la referencia y del tipo de orden; usted no lo escribe. En la lista de líneas guardadas se ve la columna **IVA** de cada una. Si el tipo y la referencia liquidan IVA pero la referencia no tiene impuesto configurado, el sistema no guarda la línea y se lo indica: pida que se configure el impuesto en la referencia. El **Total** de la línea se calcula solo.
 
 Una orden de compra no pide **ubicación**, **lote** ni **existencia**, porque no mueve inventario.
+
+<a id="referencias-comprables"></a>
+### ¿Qué referencias puedo elegir?
+
+En una orden de compra solo aparecen las referencias **comercializadas** y los **materiales**. Una referencia que no sea ninguna de las dos no sale en el buscador, y si por algún motivo se intenta guardar, el sistema responde que «esta variante no se puede comprar». Si no encuentra la referencia que busca, revise en su ficha que esté marcada como comercializada o como material.
+
+<a id="matriz"></a>
+### Capturar varias variantes con la matriz
+
+Cuando una referencia tiene variantes (por ejemplo talla y color), no hace falta capturar una línea por cada una:
+
+1. En la fila de captura, elija **Bodega** (y **Centro de costos**, si el tipo lo exige) y escriba el **Valor unitario**.
+2. Pulse **Matriz de variantes**.
+3. Busque y elija la referencia. Se muestra una cuadrícula con un atributo en las filas y el otro en las columnas.
+4. Escriba la **cantidad** en cada celda que quiera comprar. La matriz de una orden no muestra existencias ni lotes.
+5. Acepte. **Cada celda con cantidad entra como una línea** con la bodega, el centro de costos, el valor y el descuento de la captura, y se guarda como cualquier otra línea.
+
+Si faltan datos (bodega, centro de costos o encabezado), el botón le dice qué falta. Si las celdas superan las líneas que admite el tipo de orden, se le avisa antes de agregarlas.
 
 ### Estados de cada línea
 
@@ -334,7 +352,7 @@ La pantalla se actualiza sola cuando otro usuario cambia algo de las órdenes:
 <a id="bitacora"></a>
 ## 📜 Bitácora
 
-La pestaña **Bitácora** de la orden muestra quién y cuándo (fecha y hora) creó la orden, agregó o cambió líneas, la cerró, la anuló y la imprimió. Solo la ven los usuarios con permiso de consulta sobre Órdenes de compra.
+La **Bitácora** de la orden (quién y cuándo creó la orden, agregó o cambió líneas, la cerró, la anuló y la imprimió) **todavía no está disponible en pantalla**: se activará en una próxima entrega. Mientras tanto, esos movimientos sí quedan registrados.
 
 ---
 
@@ -345,7 +363,7 @@ La pestaña **Bitácora** de la orden muestra quién y cuándo (fecha y hora) cr
 
 | Permiso | Opción | Qué habilita |
 |---------|--------|--------------|
-| Consultar | Órdenes de compra (48) | Ver el listado, abrir las órdenes, ver la bitácora y el detalle de tránsito. |
+| Consultar | Órdenes de compra (48) | Ver el listado, abrir las órdenes y el detalle de tránsito. |
 | Crear | Órdenes de compra (48) | **Nueva orden**. |
 | Actualizar | Órdenes de compra (48) | Agregar, cambiar y quitar líneas; cambiar el encabezado; **Cerrar orden**. |
 | Anular | Órdenes de compra (48) | **Anular orden**. |
