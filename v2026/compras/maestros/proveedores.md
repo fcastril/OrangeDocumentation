@@ -411,6 +411,31 @@ Si estaba por confirmar la eliminación de un proveedor que otro ya eliminó, el
 
 ---
 
+## 🔖 Identificar los documentos
+
+Las pantallas de Proveedores muestran cada documento con su **identificador**, y debajo, en letra pequeña, su **Doc. Referencia**.
+
+![Documento con su Doc. Referencia](../recursos/img/proveedor-documento-referenciado/01-con-doc-referencia.png)
+
+**Cómo leer el identificador.** Tiene tres partes: el **código del tipo**, el **prefijo** y el **consecutivo**. Por ejemplo, **CMP-1-1025** es un documento del tipo CMP, con prefijo 1 y consecutivo 1025. Si el tipo no usa prefijo, el identificador es solo código y consecutivo, como **OC-0101**.
+
+**Pase el mouse sobre el identificador** para ver el **nombre del tipo de documento** (por ejemplo, *Compra*). En las compras y en las órdenes, el identificador es un enlace: haga clic para abrir el documento.
+
+**Qué es el Doc. Referencia.** Es un texto libre que se escribe al capturar el documento, con **hasta 20 caracteres**. Por ejemplo, el número de la factura o del pedido del proveedor. Puede repetir el consecutivo o ser muy corto; la pantalla lo muestra **tal cual**, sin cambiarlo. **No es un enlace.** Si el documento no tiene Doc. Referencia, verá **—**.
+
+**Dónde aparece:**
+
+| Pantalla | Qué muestra |
+|----------|-------------|
+| **Órdenes y compras** | Cada orden de compra con su Doc. Referencia debajo del número. En **Compras y devoluciones**, la columna **Órdenes ligadas** muestra las órdenes a las que está ligada cada compra. |
+| **Cumplimiento de OC** | Cada recepción de una línea, con su documento (identificador y Doc. Referencia). |
+| **Indicadores › Evaluación, I1** | Las líneas de *Líneas que explican el I1*, con el documento de cada recepción. |
+| **Indicadores › Evaluación, I2** | Los documentos de *Documentos que explican el I2*, con su identificador y su Doc. Referencia. |
+
+![Órdenes con su Doc. Referencia](../recursos/img/proveedor-ordenes-compras/01-ordenes-y-compras.png)
+
+---
+
 ## 🧾 Órdenes y compras del proveedor
 
 En la ficha de un proveedor guardado, la pestaña **Órdenes y compras** muestra, sin salir de la ficha, las órdenes de compra del proveedor y sus compras y devoluciones. Son los mismos listados de **Órdenes de compra** y de **Compras y devoluciones**, filtrados por este proveedor. Es de solo consulta.
@@ -557,6 +582,7 @@ El color nunca va solo: siempre aparece el texto. El semáforo compara el valor 
 
 **Qué tener en cuenta:**
 
+- En *Líneas que explican el I1* cada recepción muestra su documento (identificador y Doc. Referencia).
 - **Solo cuentan las compras ligadas a una orden de compra.** Una compra sin orden no tiene compromiso con el cual medirla, por eso no entra en I1.
 - Las compras se cuentan por su fecha y las órdenes por su fecha pactada. Por eso, en un mismo periodo, la cobertura y el cumplimiento pueden no cuadrar exactamente.
 - Si **más de la mitad** de las líneas no tiene plazo pactado, el cumplimiento de fecha sale como *Sin dato* y I1 se calcula solo con cantidades y referencias. El aviso lo dice así. Para medir fechas, revise los días de plazo de orden de compra en la pestaña **Proveedor** de la ficha.
@@ -602,6 +628,8 @@ El color nunca va solo: siempre aparece el texto. El semáforo compara el valor 
 ### Exportar a Excel
 
 **I2** tiene **Exportar a Excel**. El archivo incluye el proveedor, la fecha de corte, el periodo, los parámetros usados y los documentos que explican el resultado. No pide el permiso **Exportar** de la opción.
+
+El archivo de I2 tiene **16 columnas**. Las tres nuevas son **Tipo de movimiento**, **Consecutivo** y **Doc. Referencia**, para identificar cada documento sin abrirlo.
 
 Las órdenes de compra y las compras del proveedor no se exportan desde la ficha.
 
@@ -649,6 +677,9 @@ La orden tiene 0 días de plazo, así que no hay fecha pactada con la cual compa
 
 **¿Por qué el semáforo de I2 dice *Provisional*?**
 Los umbrales (95 % y 85 %) y los días de gracia del contado los está confirmando negocio. Mientras tanto, el color orienta, pero la cifra no es final.
+
+**¿Qué es el Doc. Referencia y por qué dice —?**
+Es el texto que se escribió al capturar el documento (hasta 20 caracteres), por ejemplo, el número de la factura del proveedor. Si el documento no lo tiene, se muestra **—**. La pantalla lo muestra tal cual y no es un enlace.
 
 **¿Por qué dice *Datos insuficientes*?**
 Hay pocas líneas (I1, menos de 5) o pocos documentos vencidos (I2, menos de 3) para sacar conclusiones. La cifra se muestra, pero sin color.
