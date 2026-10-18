@@ -6,6 +6,10 @@
 
 Manuales de las pantallas de Compras en la nueva versión.
 
+## Dashboard
+
+- [Dashboard gerencial de Compras](dashboard-gerencial.md): órdenes de compra abiertas, saldo, vencidas y en tránsito; compras, devoluciones y neto del periodo frente al anterior; rankings de proveedores, referencias y tipos de movimiento, con drill-down y exportación a Excel.
+
 ## Movimientos
 
 - [Compras y devoluciones](movimientos/compras-devoluciones.md): registro de compras y devoluciones a proveedores, con cruce de órdenes de compra, autorización de administrador, cerrar, anular, eliminar e imprimir.
