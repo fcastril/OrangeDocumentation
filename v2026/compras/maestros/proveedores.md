@@ -31,7 +31,7 @@ En esta pantalla puede **consultar, crear, editar y eliminar** proveedores, y **
 
 Para ver la pantalla necesita el permiso **Consultar** sobre la opción Proveedores. Los demás botones dependen de los permisos que le haya dado el administrador (ver la tabla más abajo).
 
-La pantalla tiene las pestañas **Proveedores** y **Cartera**. La pestaña **Cartera** aparece solo si tiene el permiso **Consultar** sobre la opción *Cartera Terceros*. Ver [la sección Cartera](#-cartera-de-proveedores).
+La pantalla tiene las pestañas **Proveedores** y **Cartera**. La pestaña **Cartera** aparece solo si tiene el permiso **Consultar** sobre la opción *Cartera Terceros*. Su manual está en [Cartera de proveedores](cartera-proveedores.md).
 
 ---
 
@@ -117,7 +117,16 @@ Si cambia el número de documento después de haber cargado un tercero existente
 1. Haga clic en el **lápiz** del proveedor (o en **Ver** si solo tiene consulta).
 2. Cambie los datos y haga clic en **Guardar**.
 
-Si tiene permiso de consulta sobre la cartera, la ficha suma las secciones **Cartera** e **Indicadores** del proveedor (vea *Cartera de proveedores* más abajo); en ellas no hay **Guardar**, porque son de consulta.
+En un proveedor guardado, la ficha suma pestañas de solo consulta (en ellas no hay **Guardar**):
+
+| Pestaña | Para qué sirve | Vea |
+|---------|----------------|-----|
+| **Órdenes y compras** | Órdenes de compra y compras del proveedor. | [Órdenes y compras](#-órdenes-y-compras-del-proveedor) |
+| **Cumplimiento de OC** | Si las órdenes llegaron a tiempo y completas. | [Cumplimiento de OC](#-cumplimiento-de-oc) |
+| **Cartera** | Cartera del proveedor (con permiso sobre *Cartera Terceros*). | [Cartera de proveedores](cartera-proveedores.md) |
+| **Indicadores** | Saldos y vencimientos, y la evaluación I1 e I2 del proveedor. | [Indicadores](#-indicadores-del-proveedor) |
+
+Si le falta el permiso de un bloque dentro de **Órdenes y compras** o **Cumplimiento de OC**, ese bloque muestra el aviso *"Sin permiso de …"* con el nombre de la opción que le falta, y el resto de la ficha sigue disponible. Las pestañas **Cartera** e **Indicadores** solo aparecen con su permiso.
 
 Los cambios se guardan cuando hace clic en **Guardar**. Si sale de la ficha con cambios sin guardar, el sistema pregunta **"¿Salir sin guardar?"**: **Seguir editando** lo deja en la ficha; **Salir sin guardar** descarta los cambios.
 
@@ -402,13 +411,210 @@ Si estaba por confirmar la eliminación de un proveedor que otro ya eliminó, el
 
 ---
 
-## 💰 Cartera de proveedores
+## 🧾 Órdenes y compras del proveedor
 
-La pestaña **Cartera**, junto a **Proveedores**, muestra cuánto le debe la compañía a cada proveedor a una fecha de corte, con sus documentos y su historia de pagos. Además, la ficha de cada proveedor guardado trae sus propias secciones **Cartera** e **Indicadores**, con la cartera y el dashboard de ese proveedor.
+En la ficha de un proveedor guardado, la pestaña **Órdenes y compras** muestra, sin salir de la ficha, las órdenes de compra del proveedor y sus compras y devoluciones. Son los mismos listados de **Órdenes de compra** y de **Compras y devoluciones**, filtrados por este proveedor. Es de solo consulta.
 
-La cartera es de solo consulta: no se crea, edita ni elimina nada desde ella. Su manual completo está en [Cartera de proveedores](cartera-proveedores.md).
+| Bloque | Permiso necesario |
+|--------|-------------------|
+| Pestaña **Órdenes y compras** | Consultar sobre **Proveedores** |
+| **Órdenes de compra** | Consultar sobre **Órdenes de compra** |
+| **Compras y devoluciones** | Consultar sobre **Compras y devoluciones** |
 
-![Pestaña Cartera junto a Proveedores](../recursos/img/cartera-proveedores/00-pestana-cartera.png)
+**Órdenes de compra.** Columnas: orden, valor, fecha, fecha de entrega, estado (abierta, cerrada o anulada) y recepción (sin recibir, recibida parcial o recibida). La **fecha de entrega** es la fecha de la orden más sus días de plazo; si la orden no tiene plazo, dice *Sin plazo pactado*. Filtre por estado, recepción, periodo o texto. **Abrir** lleva a la orden.
+
+**Compras y devoluciones.** Columnas: documento, valor, fecha, naturaleza (compra o devolución), estado y órdenes ligadas. Filtre por naturaleza, por *con* o *sin orden de compra*, por periodo o por texto. **Abrir** lleva al documento.
+
+**Periodo.** Filtra por la fecha del documento. Por defecto son los últimos 365 días terminados ayer; el periodo no puede superar 366 días. Cambie las fechas y pulse **Actualizar**.
+
+![Órdenes y compras del proveedor](../recursos/img/proveedor-ordenes-compras/01-ordenes-y-compras.png)
+
+![Filtro por estado de la orden](../recursos/img/proveedor-ordenes-compras/02-filtro-estado.png)
+
+> ℹ️ Por ahora la ficha **no exporta a Excel** las órdenes ni las compras del proveedor.
+
+### ¿Qué puede salir mal?
+
+| Mensaje | Qué hacer |
+|---------|-----------|
+| *"Sin permiso de Órdenes de compra (48)"* o *"Sin permiso de Compras y devoluciones (57)"* | Ese bloque necesita Consultar sobre la opción indicada. Pida el permiso a su administrador; el resto de la ficha sigue disponible. |
+| *"El periodo no puede superar 366 días."* | Acorte las fechas. |
+| *"La fecha inicial no puede ser posterior a la final."* | Corrija el orden de las fechas. |
+| *"No pudimos cargar esta información"* | Pulse **Reintentar**. Si vuelve a pasar, intente más tarde. |
+| *"Este proveedor ya no existe."* | Otro usuario lo eliminó. Vuelva al listado. |
+
+![Bloque sin permiso](../recursos/img/proveedor-ordenes-compras/03-sin-permiso-compras-57.png)
+
+---
+
+## ✅ Cumplimiento de OC
+
+La pestaña **Cumplimiento de OC** responde a una pregunta: ¿las órdenes de compra del proveedor llegaron en la fecha pactada y completas? Compara cada orden y cada línea con lo que realmente se recibió. Es de solo consulta y necesita Consultar sobre **Proveedores**, **Órdenes de compra** y **Compras y devoluciones**.
+
+> ℹ️ **Solo se mide lo que se compró contra una orden de compra.** Las compras sin orden no entran al cumplimiento. La pantalla informa cuántas compras no tienen orden, y las devoluciones sin orden aparecen aparte.
+
+**Cómo se lee la pantalla:**
+
+1. **Periodo de cumplimiento.** Filtra por la fecha pactada de cada línea. Tiene el mismo límite de 366 días.
+2. **Resumen.** Órdenes evaluadas, líneas evaluables, a tiempo, tarde, pendientes vencidas y completas.
+3. **Más detalle del periodo.** Parciales, sobre-entregadas, entregas anticipadas, sin plazo pactado, en curso (no se evalúan) y las unidades pedidas, recibidas y pendientes.
+4. **De dónde salen los datos.** Cuántas líneas de compra tienen orden (por ejemplo, *9 de 214*), cuántas órdenes tienen plazo pactado y cuántas compras no tienen orden.
+5. **Órdenes y sus líneas.** Una fila por orden. Las líneas de cada orden se cargan solo al expandirla. Al expandirla verá sus líneas con la fecha pactada, la primera recepción, la fecha en que se completó y las unidades pedidas, recibidas y pendientes. Cada línea muestra también **sus recepciones por fecha y unidades**. Use **Expandir todas** y **Colapsar todas**, o filtre por estado de la orden o marque **Solo incumplidas**.
+
+![Cumplimiento de OC del proveedor](../recursos/img/proveedor-cumplimiento-oc/01-resultado.png)
+
+![Orden expandida con sus líneas y recepciones](../recursos/img/proveedor-cumplimiento-oc/03-expandir-una-orden.png)
+
+### Estado de cada línea
+
+| Estado | Qué significa |
+|--------|---------------|
+| **A tiempo** | Se recibió dentro de los días de gracia de la fecha pactada. |
+| **Tarde** | Se completó después de los días de gracia. |
+| **Pendiente vencida** | Ya pasó la fecha pactada y falta recibir. |
+| **En curso** | La fecha pactada es futura: todavía no se evalúa. |
+| **Sin plazo pactado** | La orden no tiene días de plazo: solo cuenta la cantidad. |
+
+Además, cada línea puede mostrar una nota: **Parcial vencida**, **Completa fuera de plazo**, **Completa**, **Sobre-entrega** (con su porcentaje), **Entrega anticipada** o **Aún dentro del plazo**.
+
+**Reglas que usa el cálculo:**
+
+- **Fecha pactada** = fecha de la orden + días de plazo.
+- **Gracia** = 2 días después de la fecha pactada.
+- **Completa** = se recibe al menos el 98 % de lo pedido.
+- **Sobre-entrega** = se recibe más del 110 % de lo pedido. Se marca, pero no suma más de lo pedido.
+- Las devoluciones **ligadas a la orden** restan de lo recibido. Las que no tienen orden no cambian ninguna línea.
+- Las **órdenes anuladas** no se evalúan. Una orden **cerrada con faltante** cuenta lo que faltó como incumplimiento.
+
+**Qué puede ver en blanco:**
+
+| Aviso | Qué significa |
+|-------|---------------|
+| *"Aún no hay entregas que medir"* | Ninguna compra de este proveedor está ligada a una orden en el periodo. Las compras registradas antes de que se guardara la orden no se pueden comparar con lo pedido. El cumplimiento crece con las compras nuevas que se registren contra una orden. |
+| *"Datos insuficientes"* | Hay menos de 5 líneas evaluables. Las cifras se muestran, pero tómelas como referencia. |
+
+![Cumplimiento sin compras ligadas a una orden](../recursos/img/proveedor-cumplimiento-oc/06-vacio-sin-cobertura.png)
+
+### ¿Qué puede salir mal?
+
+| Mensaje | Qué hacer |
+|---------|-----------|
+| *"Sin permiso de Órdenes de compra (48)"* o *"Sin permiso de Compras y devoluciones (57)"* | Pida el permiso de consulta de la opción indicada. |
+| *"El resultado es demasiado grande"* | Acorte el periodo o aplique un filtro y vuelva a consultar. |
+| *"Este proveedor ya no existe."* | Vuelva al listado de proveedores. |
+| *"No pudimos cargar esta información"* | Pulse **Reintentar**. |
+
+---
+
+## 📊 Indicadores del proveedor
+
+La pestaña **Indicadores** de la ficha tiene dos sub-pestañas:
+
+- **Saldos y vencimientos**: la cartera del proveedor, con sus documentos vencidos y su historia de pagos. Es la misma cartera de la pestaña **Cartera**; su manual completo está en [Cartera de proveedores](cartera-proveedores.md). Es de solo consulta.
+- **Evaluación**: dos indicadores de la relación con el proveedor, **I1** e **I2**, con su detalle; I2 se puede exportar a Excel.
+
+| Qué ve | Permiso necesario |
+|--------|-------------------|
+| Pestaña **Indicadores** | Consultar sobre **Cartera Terceros (107)**, o bien **Proveedores (46)**, **Órdenes de compra (48)** y **Compras y devoluciones (57)** |
+| Sub-pestaña **Saldos y vencimientos** | Consultar sobre **Cartera Terceros (107)** |
+| Indicador **I1** | **Proveedores (46)**, **Órdenes de compra (48)** y **Compras y devoluciones (57)** |
+| Indicador **I2** | **Proveedores (46)** y **Cartera Terceros (107)** |
+
+Si le falta el permiso de uno de los indicadores, verá la tarjeta con el aviso *"Sin permiso de Cartera Terceros (107)"*; el otro indicador se muestra igual. La sub-pestaña **Evaluación** aparece si tiene permiso para ver al menos uno.
+
+![Indicadores: sub-pestañas Saldos y vencimientos y Evaluación](../recursos/img/proveedor-evaluacion-ficha/03-indicadores-evaluacion.png)
+
+### Evaluación: periodo y cálculo
+
+El **periodo de la evaluación** tiene por defecto los últimos 365 días terminados ayer y no puede superar 366 días. **I1** filtra por la fecha pactada de cada línea; **I2**, por la fecha de vencimiento de cada documento. Si cambia las fechas, pulse **Actualizar**: hasta entonces verá el aviso *"Cambiaste el periodo. Pulse Actualizar para ver el resultado con él."*
+
+Los números se calculan al consultar. Para ver los cambios recientes de otros usuarios, pulse **Actualizar**.
+
+El pie de la sección indica los parámetros usados: gracia de entrega (2 días), tolerancia de faltante (2 %), sobre-entrega (por encima del 10 %) y gracia de pago del contado (5 días, provisional).
+
+### I1 · Cumplimiento en entregas
+
+**Pregunta:** ¿las órdenes llegan en la fecha pactada y completas?
+
+**Cómo se calcula:**
+
+- **Cumplimiento de fecha** (la mitad del indicador): unidades recibidas a tiempo ÷ unidades pedidas, solo de las líneas con plazo pactado.
+- **Cantidades y referencias completas** (la otra mitad): el promedio de dos cifras: unidades recibidas ÷ unidades pedidas, y el porcentaje de líneas recibidas completas.
+- **I1** = 50 % × cumplimiento de fecha + 50 % × cantidades y referencias completas.
+- **A tiempo y completas (OTIF)**: porcentaje de líneas que cumplieron fecha y cantidad a la vez. Es más exigente que I1 y se muestra aparte, sin cambiar I1.
+
+*Ejemplo:* cumplimiento de fecha 80 %, cantidades 90 % y referencias 70 %. Las cantidades y referencias dan 80 %, así que I1 = 0,5 × 80 + 0,5 × 80 = **80,0 %**.
+
+**Semáforo de I1:**
+
+| Color | Texto | Valor |
+|-------|-------|-------|
+| Verde | **Cumple la meta** | 90 % o más |
+| Amarillo | **En seguimiento** | de 75 % a 89,9 % |
+| Rojo | **Por debajo de la meta** | menos de 75 % |
+
+El color nunca va solo: siempre aparece el texto. El semáforo compara el valor exacto: 89,95 % es amarillo.
+
+**Qué tener en cuenta:**
+
+- **Solo cuentan las compras ligadas a una orden de compra.** Una compra sin orden no tiene compromiso con el cual medirla, por eso no entra en I1.
+- Las compras se cuentan por su fecha y las órdenes por su fecha pactada. Por eso, en un mismo periodo, la cobertura y el cumplimiento pueden no cuadrar exactamente.
+- Si **más de la mitad** de las líneas no tiene plazo pactado, el cumplimiento de fecha sale como *Sin dato* y I1 se calcula solo con cantidades y referencias. El aviso lo dice así. Para medir fechas, revise los días de plazo de orden de compra en la pestaña **Proveedor** de la ficha.
+- Con **menos de 5 líneas evaluables**, verá *Datos insuficientes*: la cifra aparece, sin color.
+- Sin ninguna compra ligada a una orden, verá *"Aún no hay entregas medibles"* con la cobertura: *"Líneas de compra con orden: N de M · Órdenes con plazo pactado: n de m."*
+
+![I1 con semáforo amarillo](../recursos/img/proveedor-evaluacion/02-semaforo-amarillo.png)
+
+![I1 con datos insuficientes](../recursos/img/proveedor-evaluacion/04-datos-insuficientes.png)
+
+### I2 · Cumplimiento de pago (CxP)
+
+**Pregunta:** ¿cuánto de lo que le debíamos al proveedor se pagó dentro del plazo?
+
+> ℹ️ **I2 mide a la empresa, no al proveedor**: es nuestro cumplimiento al pagarle. Por eso se compara con cuidado entre proveedores.
+
+**Cómo se calcula:**
+
+**I2** = valor pagado a más tardar el día del vencimiento ÷ valor de los documentos vencidos en el periodo.
+
+- Cuentan los documentos que generan deuda con el proveedor (compras, gastos y similares, los mismos de la cartera) y los pagos (egresos) aplicados a ellos.
+- Las **notas crédito** reducen el saldo, pero no cuentan como pago a tiempo. Los anticipos y los saldos a favor no entran en el cálculo.
+- En los documentos **a crédito** (con plazo), el pago debe entrar el día del vencimiento o antes.
+- En los documentos de **contado** (sin plazo), hay una gracia de pago de **5 días** (valor provisional, en revisión con negocio).
+
+**Complementos** (no cambian I2):
+
+- **Documentos pagados a tiempo**: cuántos de los documentos vencidos se pagaron completos a tiempo.
+- **Atraso medio ponderado**: días de atraso de los pagos tardíos, promediados por valor.
+- **Vencido sin pagar**: saldo de los documentos ya vencidos y sin pagar.
+- **Saldo a favor** (informativo).
+
+**Crédito y contado, por separado.** I2 muestra dos bloques: **Crédito (plazo mayor a 0)** y **Contado (gracia N días)**. Cada uno indica sus documentos (a tiempo y tardíos), su valor y su propio I2. Así, los documentos de contado, que vencen el mismo día, no distorsionan la cifra de crédito. La cifra total se muestra arriba.
+
+**Semáforo provisional.** I2 tiene semáforo: **verde** desde 95 %, **amarillo** de 85 % a 94,9 % y **rojo** por debajo de 85 %. Como negocio aún confirma esos umbrales y los días de gracia del contado, el semáforo lleva la insignia **Provisional** y el aviso *"Provisional: umbrales y días de gracia en revisión"*. Tómelo como orientación: la cifra es una referencia, no una calificación final.
+
+**Datos insuficientes.** Con **menos de 3 documentos vencidos** verá la cifra sin color y con *Datos insuficientes*. Si el periodo no tiene documentos vencidos, verá *"No hay documentos vencidos en el periodo"*: no es un error.
+
+![I2 con semáforo provisional](../recursos/img/proveedor-evaluacion/03-i2-semaforo-provisional.png)
+
+![I2 con crédito y contado por separado](../recursos/img/proveedor-evaluacion/13-i2-credito-y-contado.png)
+
+### Exportar a Excel
+
+**I2** tiene **Exportar a Excel**. El archivo incluye el proveedor, la fecha de corte, el periodo, los parámetros usados y los documentos que explican el resultado. No pide el permiso **Exportar** de la opción.
+
+Las órdenes de compra y las compras del proveedor no se exportan desde la ficha.
+
+### ¿Qué puede salir mal?
+
+| Mensaje | Qué hacer |
+|---------|-----------|
+| *"Sin permiso de Cartera Terceros (107)"* | Pida el permiso de consulta de Cartera Terceros. Los demás indicadores siguen disponibles. |
+| *"Sin permiso de Órdenes de compra (48)"* o *"Sin permiso de Compras y devoluciones (57)"* | Pida el permiso de consulta de la opción indicada. I1 no se muestra sin ellas. |
+| *"El periodo no puede superar 366 días."* / *"La fecha inicial no puede ser posterior a la final."* | Corrija las fechas y pulse **Actualizar**. |
+| *"No pudimos cargar esta información"* | Pulse **Reintentar**. Si solo falla un indicador, el otro se muestra igual. |
+| *"El resultado es demasiado grande"* | Acorte el periodo o aplique un filtro. |
+| *"Este proveedor ya no existe."* | Vuelva al listado de proveedores. |
 
 ---
 
@@ -432,9 +638,25 @@ Revise el mensaje de la página: el archivo debe ser un .xlsx de hasta 1 MB, con
 **¿Por qué no encuentro un proveedor que sí existe?**
 Revise que esté en la compañía correcta (título de la pestaña) y borre el texto del buscador con la **✕**.
 
+**¿Por qué no veo las pestañas Órdenes y compras o Cumplimiento de OC?**
+Aparecen solo en un proveedor guardado y con permiso de consulta sobre **Proveedores**. Si la pestaña está pero un bloque dice *"Sin permiso de …"*, pida ese permiso a su administrador.
+
+**Cumplimiento de OC está vacío, aunque el proveedor tiene compras.**
+Solo cuentan las compras ligadas a una orden de compra. Las compras que se registraron sin orden, o antes de que se guardara la orden, no entran en el cálculo.
+
+**¿Por qué una orden dice *Sin plazo pactado*?**
+La orden tiene 0 días de plazo, así que no hay fecha pactada con la cual comparar la entrega. Revise los días de plazo de orden de compra en la pestaña **Proveedor** de la ficha.
+
+**¿Por qué el semáforo de I2 dice *Provisional*?**
+Los umbrales (95 % y 85 %) y los días de gracia del contado los está confirmando negocio. Mientras tanto, el color orienta, pero la cifra no es final.
+
+**¿Por qué dice *Datos insuficientes*?**
+Hay pocas líneas (I1, menos de 5) o pocos documentos vencidos (I2, menos de 3) para sacar conclusiones. La cifra se muestra, pero sin color.
+
 ---
 
 ## 📚 Relacionado
 
 - [Compradores](compradores.md)
+- [Cartera de proveedores](cartera-proveedores.md)
 - [Manejo general de la información](../../Generales/manejo-general-informacion.md)
