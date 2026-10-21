@@ -20,4 +20,5 @@ Manuales de las pantallas de la nueva versión de **OrangeERP (V2026)**. Son los
 
 - [Compras](compras/readme.md)
 - [Configuración](configuracion/readme.md)
+- [Gastos](gastos/readme.md)
 - [Inventarios](inventarios/readme.md)
