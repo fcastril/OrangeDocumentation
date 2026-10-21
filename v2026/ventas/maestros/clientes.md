@@ -94,11 +94,13 @@ Mientras el sistema revisa el documento verá *"Verificando si el documento ya e
 
 | Aviso | Qué significa | Qué puede hacer |
 |-------|---------------|-----------------|
-| *"Este documento ya existe en la compañía como {nombre} ({roles})."* | El tercero ya existe con otro perfil (proveedor, vendedor u otro). **No se duplica.** La ficha se llena con sus datos. | Revise los datos precargados y haga clic en **Convertir en cliente**. Luego guarde: el tercero se agrega como cliente sin crear otro. |
+| *"Este documento ya existe en la compañía como {nombre} ({roles})."* | El tercero ya existe con otro perfil (proveedor, vendedor u otro). **No se duplica.** La ficha se llena con sus datos. | Revise los datos precargados y haga clic en **Guardar**: el tercero se agrega como cliente sin crear otro. |
 | *"Este documento ya es cliente en la compañía."* | Ya tiene este perfil. | Haga clic en **Abrir su edición** para modificarlo. El botón **Guardar** queda deshabilitado. |
 | *"No se pudo verificar el documento…"* | La revisión falló por la conexión. | Haga clic en **Reintentar**, o guarde: el sistema lo verifica otra vez al guardar. |
 
 ![Documento que ya es cliente](../recursos/img/clientes/08-documento-ya-es-cliente.png)
+
+![Documento que ya existe con otro perfil, con la información cargada](../recursos/img/clientes/13-convertir-tercero.png)
 
 Si cambia el número de documento después de haber cargado un tercero existente, la información precargada se quita y la verificación se repite.
 
