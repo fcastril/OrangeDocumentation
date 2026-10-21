@@ -20,11 +20,11 @@ La **página de detalle** es donde se crea, se consulta y se modifica una refere
 
 | Pestaña | Qué contiene |
 |---------|--------------|
-| **Referencia** | Código, nombre, subgrupo, unidad, bodega y tercero por defecto, costos, si está activa, impuestos (IVA) y los documentos adjuntos. |
+| **Referencia** | Código, nombre, subgrupo, unidad, bodega y tercero por defecto, costos, si está activa y impuestos (IVA). |
 | **Configuración contable** | Las cuentas del concepto: valor bruto, IVA y descuento, con su naturaleza (crédito o débito). |
 | **Referencias por proveedor** | Los proveedores que venden este concepto, con el código que cada uno usa y su valor. |
 
-Las pestañas **Referencia** y **Configuración contable** se guardan juntas con **Guardar referencia**. Los proveedores y los documentos se guardan cada uno en su propio diálogo, en el momento.
+Las pestañas **Referencia** y **Configuración contable** se guardan juntas con **Guardar referencia**. Los proveedores se guardan en su propio diálogo, en el momento.
 
 > 📘 Para buscar o filtrar referencias, vea [Maestro de Gastos](maestro-de-gastos.md).
 
@@ -60,7 +60,7 @@ Puede guardar el enlace de la página en favoritos: el enlace incluye la pestañ
 3. En **Configuración contable**, elija al menos la cuenta del valor bruto y su naturaleza.
 4. Haga clic en **Guardar referencia**.
 
-Al crear, **Activa** y **Liquida IVA** vienen marcadas. Mientras no guarde la referencia, las pestañas **Referencias por proveedor** y la sección **Documentos** están deshabilitadas, con la indicación *"Guarda la referencia para agregar proveedores"* o *"Guarda la referencia para agregar documentos"*.
+Al crear, **Activa** y **Liquida IVA** vienen marcadas. Mientras no guarde la referencia, la pestaña **Referencias por proveedor** está deshabilitada, con la indicación *"Guarda la referencia para agregar proveedores"*.
 
 ![Crear una referencia de gasto](../recursos/img/maestro-de-gastos/08-crear.png)
 
@@ -147,7 +147,7 @@ Para crear o editar una referencia de gasto, la compañía debe tener asignados 
 1. Haga clic en **Eliminar** en el detalle, o en la **papelera** del listado.
 2. Revise el código y el nombre que aparecen y confirme con **Eliminar**.
 
-Se eliminan la referencia, sus proveedores y sus documentos adjuntos. Esta acción no se puede deshacer.
+Se eliminan la referencia y sus proveedores. Esta acción no se puede deshacer.
 
 ### Referencia que ya se usó
 
@@ -195,32 +195,6 @@ Si el proveedor ya está en la referencia, verá **"Este proveedor ya está en l
 
 ---
 
-## 📎 Documentos adjuntos
-
-La sección **Documentos** está al final de la pestaña **Referencia**. Sirve para guardar archivos de respaldo del concepto, como fichas técnicas, certificados u otros archivos. Esta pantalla no tiene foto de la referencia: solo se adjuntan documentos.
-
-![Documentos adjuntos](../recursos/img/maestro-de-gastos/16-documentos.png)
-
-- Cada referencia tiene un cupo de **10 MB** de documentos. El indicador muestra cuánto lleva usado.
-- Formatos admitidos: **PDF**, **imagen**, **Word** y **Excel**.
-- Para subir un archivo, haga clic en **Agregar documento**, elija el archivo, escriba una **descripción** (obligatoria, hasta 200 caracteres) y haga clic en **Guardar**.
-- **Ver** abre el archivo en otra pestaña. **Eliminar** pide confirmación y no se puede deshacer.
-
-![Agregar documento](../recursos/img/maestro-de-gastos/17-agregar-documento.png)
-
-### Mensajes frecuentes
-
-| Mensaje | Qué hacer |
-|---------|-----------|
-| *Ese tipo de archivo no se admite. Usa PDF, imagen, Word o Excel.* | Elija otro archivo. |
-| *El archivo pesa … y solo quedan … de los 10 MB de la referencia.* | Elimine documentos o reduzca el archivo. |
-| *Ese documento ya no existe. Otro usuario lo eliminó.* | Actualice la pantalla. |
-| *No se pudo abrir el archivo. Es posible que ya no esté disponible.* | Intente más tarde. |
-
-Si solo tiene permiso de consulta, puede ver y abrir los documentos, pero no subir ni eliminar.
-
----
-
 ## 🔄 Cambios de otros usuarios (en vivo)
 
 Si otra persona modifica la referencia mientras usted la tiene abierta, verá un aviso:
@@ -232,7 +206,7 @@ Si otra persona modifica la referencia mientras usted la tiene abierta, verá un
 
 ![Otro usuario modificó la referencia que usted edita](../recursos/img/maestro-de-gastos/20-editando-modificada.png)
 
-Si otro usuario cambia los proveedores o los documentos, la lista se actualiza sola y resalta lo cambiado.
+Si otro usuario cambia los proveedores, la lista se actualiza sola y resalta lo cambiado.
 
 Junto al título verá **En vivo** mientras la conexión esté activa. Si se interrumpe, verá **Reconectando…**; al volver, la pantalla se pone al día.
 
@@ -259,8 +233,8 @@ El código es único en la compañía, aunque la otra referencia sea de inventar
 Los terceros inactivos no se ofrecen, y las cuentas deben ser de movimiento. Revise que estén activas.
 
 **¿Puedo elegir una foto para la referencia?**
-No. Esta pantalla solo permite adjuntar documentos.
+No. Esta pantalla no maneja fotos.
 
 **¿Puedo copiar o importar referencias desde Excel?**
-Por ahora no están disponibles en esta pantalla.
+Copiar una referencia no está disponible. Para crear o actualizar varias referencias a la vez, vea [Importar gastos desde Excel](maestro-de-gastos.md#-importar-gastos-desde-excel).
 
