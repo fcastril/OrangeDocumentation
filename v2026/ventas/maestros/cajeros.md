@@ -150,7 +150,11 @@ El diálogo solo permite **Cancelar**. El cajero no se modifica ni se elimina.
 
 Haga clic en **Exportar a Excel**. Se descarga `cajeros_AAAA-MM-DD.xlsx` con **todos** los cajeros del filtro actual (no solo la página visible), con el encabezado fijo y filtros de Excel.
 
-> ℹ️ Importar cajeros desde Excel todavía no está disponible.
+---
+
+## 📥 Importar desde Excel
+
+Haga clic en **Importar** (junto a **Exportar a Excel**) para crear o actualizar varios cajeros a la vez. Primero el sistema revisa el archivo sin guardar nada; después usted aplica todas las filas válidas juntas o ninguna. Necesita el permiso **Exportar**. Vea el manual completo: [Importar cajeros desde Excel](cajeros-importar.md).
 
 ---
 
