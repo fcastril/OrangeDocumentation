@@ -31,7 +31,7 @@ En esta pantalla puede **consultar, crear, editar y eliminar** proveedores, y **
 
 Para ver la pantalla necesita el permiso **Consultar** sobre la opción Proveedores. Los demás botones dependen de los permisos que le haya dado el administrador (ver la tabla más abajo).
 
-> 💡 Esta pantalla muestra los **mismos proveedores** que Compras › Maestros › Proveedores. Las pestañas de seguimiento (órdenes, cumplimiento, cartera, indicadores e inventario) viven solo en Compras. Sus permisos son propios: tener acceso a Proveedores en Compras no habilita Proveedores en Gastos, ni al revés.
+> 💡 Esta pantalla muestra los **mismos proveedores** que Compras › Maestros › Proveedores. Con la mirada de gastos, la ficha tiene además las pestañas **Gastos** y **Cartera** (ver [Gastos del proveedor](#gastos) y [Cartera del proveedor](#cartera)). Las pestañas de órdenes, cumplimiento, indicadores e inventario viven solo en Compras. Sus permisos son propios: tener acceso a Proveedores en Compras no habilita Proveedores en Gastos, ni al revés.
 
 ---
 
@@ -59,7 +59,7 @@ Las columnas del listado son: **Nro. documento**, **Nombre completo**, **Nombre 
 
 | Permiso | Qué habilita |
 |---------|--------------|
-| Consultar | Ver el listado, abrir la ficha y ver el logo y los adjuntos. |
+| Consultar | Ver el listado, abrir la ficha y ver el logo y los adjuntos. Para las pestañas **Gastos** y **Cartera** se piden además Consultar sobre *Causación de Gastos* y *Cartera Terceros*. |
 | Crear | **Nuevo proveedor**, agregar contactos, subir el logo y los adjuntos. |
 | Actualizar | Editar la ficha, editar contactos, reemplazar o quitar el logo, subir o quitar adjuntos. |
 | Eliminar | **Papelera**, quitar contactos y eliminar adjuntos. |
@@ -77,12 +77,12 @@ Si solo tiene **Consultar**, la ficha aparece con el aviso *"Solo tienes permiso
 
 ![Crear proveedor](../../compras/recursos/img/proveedores/02-crear.png)
 
-La ficha tiene tres pestañas:
+La ficha tiene tres pestañas de datos. Con el proveedor ya guardado y los permisos necesarios, aparecen además las pestañas de consulta **Gastos** y **Cartera**:
 
 | Pestaña | Qué incluye |
 |---------|-------------|
 | **Tercero** | Identificación (tipo y número de documento, nombre o razón social, género), ubicación y contacto (dirección, ciudad, teléfono, celular, correo, página web), información tributaria (régimen, actividad económica, cuenta contable, resolución, gran contribuyente, autorretenedor) y estado (activo, observaciones). También tiene el **logo** y los **adjuntos**. |
-| **Proveedor** | Condiciones comerciales (descuento comercial, días de plazo de factura y de orden de compra, tipo de movimiento de compras y de gastos), impuestos y retenciones (realiza IVA, retefuente, reteIVA, ICA u otra retención) y crédito y pagos (cupo de crédito, días de mora, banco, tipo y número de cuenta bancaria, pago electrónico). |
+| **Proveedor** | Condiciones comerciales (descuento comercial, días de plazo de factura y de orden de compra, tipo de movimiento de gastos y de compras; el de gastos es el primero), impuestos y retenciones (realiza IVA, retefuente, reteIVA, ICA u otra retención) y crédito y pagos (cupo de crédito, días de mora, banco, tipo y número de cuenta bancaria, pago electrónico). |
 | **Contactos** | Las personas con quienes se trata en el proveedor. Ver la sección *Contactos* más abajo. |
 
 **Fecha de nacimiento** (pestaña Proveedor, en Condiciones comerciales): elíjala en el calendario o escríbala. Debe estar entre **1753-01-01** y hoy; fuera de ese rango, el campo muestra *"La fecha de nacimiento debe estar entre 1753-01-01 y hoy."* y no guarda. Si la deja vacía, se guarda 1753-01-01.
@@ -138,6 +138,41 @@ Los contactos se agregan dentro de la pestaña **Contactos** de la ficha del pro
 - Para quitar un contacto, haga clic en la **papelera** de la fila y confirme con **Quitar contacto**. Esta acción no se puede deshacer.
 
 > ℹ️ La pestaña **Contactos** solo se usa cuando el proveedor ya está guardado: si es nuevo, primero guarde la ficha. El aviso dice *"Guarda el proveedor para poder agregar contactos."*
+
+---
+
+## 🧾 Gastos del proveedor
+
+<a id="gastos"></a>
+
+La pestaña **Gastos** muestra lo que se le ha causado a este proveedor: los documentos de **Causación de Gastos**. Es de solo consulta y aparece únicamente con el proveedor ya guardado.
+
+**Permisos:** necesita **Consultar** sobre **Proveedores** y sobre **Causación de Gastos**. Si le falta alguno, la pestaña no aparece o muestra *"Necesitas consultar Proveedores y Causación de Gastos."*
+
+1. Elija el **Periodo** con la **Fecha inicial** y la **Fecha final**. Por defecto son los últimos 12 meses; el máximo es de 5 años y la fecha final no puede ser futura.
+2. Haga clic en **Consultar** (después, **Actualizar**). Si cambia las fechas y no consulta, la pantalla avisa *"Cambiaste el periodo: pulsa Consultar para verlo."*
+
+| Bloque | Qué muestra |
+|--------|-------------|
+| **Total causado**, **Documentos** y **Anulados** | El valor neto causado en el periodo, el número de documentos vigentes y el número de anulados. |
+| **Por tipo de movimiento** | El valor y los documentos de cada tipo (causación, factura de gastos, documento soporte, etc.). |
+| **Por mes** | El valor causado mes a mes. |
+| **Top 10 referencias de gasto** | Las diez referencias de gasto con mayor valor. |
+| **Documentos de causación** | La tabla de documentos, con **Número**, **Fecha**, **Tipo**, **Documento de referencia**, **Valor** y **Estado**. Se busca por número o documento de referencia y se filtra por **Tipo de movimiento** y **Estado** (*Vigentes* o *Anulados*). Se ordena y se pagina en el servidor. |
+
+**Cómo se calcula el valor.** Cada documento suma o resta según su tipo de movimiento: los tipos de **devolución** o de nota restan, y los que no valoran (multiplicador cero) no suman. Los **saldos iniciales de proveedores** y la **nómina** también cuentan dentro del total causado. Los **anulados** se muestran marcados con la insignia **Anulado**, pero **no suman** en los totales.
+
+Si el proveedor no tiene causaciones en el periodo, verá *"Sin causaciones en el periodo"* con la acción **Ampliar periodo**. Si otro usuario registra o anula una causación mientras mira la pestaña, aparece *"Hay datos nuevos"*: pulse **Actualizar** para ver los totales al día.
+
+---
+
+## 💳 Cartera del proveedor
+
+<a id="cartera"></a>
+
+La pestaña **Cartera** muestra la **cartera completa** del proveedor: el saldo y los documentos por pagar, **venga de donde venga** (compras, gastos u otros movimientos). Es la misma cartera que ve en Compras para ese proveedor, con la historia de cada documento y con qué documentos se fue cruzando (egresos, notas, anticipos). Su funcionamiento completo está explicado en [Cartera de proveedores](../../compras/maestros/cartera-proveedores.md).
+
+**Permisos:** necesita **Consultar** sobre **Proveedores** y sobre **Cartera Terceros**. Sin el permiso de Cartera Terceros la pestaña no aparece.
 
 ---
 
