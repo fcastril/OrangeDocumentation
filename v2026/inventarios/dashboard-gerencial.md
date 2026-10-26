@@ -22,6 +22,7 @@ En esta pantalla puede:
 - Ver cuatro **indicadores**: valor total, unidades, bodegas y referencias con saldo.
 - Analizar el inventario **por bodega, grupo y subgrupo** con rankings de barras, y profundizar con un clic (*drill-down*).
 - Consultar el **detalle** de cada combinación (bodega, referencia y variante) con su saldo y su valor.
+- Ver la **rotación de inventarios** (rotación, días de inventario y tendencia mensual) en un bloque al final de la pantalla.
 - **Exportar** ese detalle a Excel.
 
 Es solo de consulta: no modifica el inventario.
@@ -53,6 +54,7 @@ Es solo de consulta: no modifica el inventario.
 | **Valor $ / Unidades** | Cambia la métrica de los rankings. |
 | **Bodega**, **Grupo**, **Subgrupo** | Rankings de barras con *drill-down*. |
 | **Detalle de combinaciones** | La tabla con cada combinación con saldo. |
+| **Rotación de inventarios** | Bloque con cuatro gráficos de rotación de los últimos 12 meses. Ver *Rotación*. |
 
 ---
 
@@ -226,6 +228,69 @@ Una fila por cada **bodega + referencia + variante** con saldo distinto de cero,
 
 ---
 
+## 🔄 Rotación
+
+Al final del dashboard hay un bloque con la **rotación de inventarios** de la compañía: qué tan rápido sale el inventario y cuántos días alcanza. Cubre los **12 meses terminados en la fecha de corte** y sigue la **fecha de corte** y la **bodega** del filtro.
+
+<!-- Capturas pendientes (sin capturar; desde la story Pantallas/Inventario/Dashboard gerencial/Rotación de inventarios; PNG, ancho máximo 800 px, peso máximo 500 KB). Carpeta: v2026/inventarios/recursos/img/dashboard-gerencial/
+- 11-rotacion-bloque.png: bloque completo con sus cuatro gráficos (story Calculado).
+- 12-rotacion-calculando.png: estado "Calculando la rotación…" (story Calculando).
+- 13-rotacion-fallo-parcial.png: fallo parcial con Reintentar rotación (story FalloParcialConReintento).
+- 14-rotacion-ver-como-tabla.png: gráfico en "Ver como tabla" (story VerComoTabla).
+- 15-rotacion-sin-permiso-informe.png: barras sin enlace y nota (story SinPermisoAlInforme).
+-->
+
+### Los gráficos
+
+| Gráfico | Qué muestra | Cómo cambiarlo |
+|---------|-------------|----------------|
+| **Rotación por grupo** | Una barra por grupo, de mayor a menor. Cada barra trae su texto: días (por ejemplo, *212 días*) o veces (por ejemplo, *3,8 veces*). | Conmutador **DIO (días)** / **Rotación ($)**. |
+| **Distribución por clasificación** | Cuántas referencias hay en cada clasificación (Alta, Media, Baja, Sin rotación, Obsoleto) o cuánto valor de inventario tienen. Las barras siguen el orden de la clasificación, no su tamaño. | Conmutador **Referencias** / **Valor $**. |
+| **Referencias más lentas y más rápidas** | Las 10 referencias con más días de inventario (**más lentas**) o con menos (**más rápidas**). | Conmutador **Más lentas** / **Más rápidas**. |
+| **Tendencia mensual** | Columnas: consumo en $ de cada mes. Línea: inventario en $ al cierre de cada mes. | Use **Gráfico / Ver como tabla**. |
+
+Cada gráfico tiene **Gráfico / Ver como tabla**: la tabla trae los mismos números, con una fila por grupo, clasificación o referencia. Las clasificaciones se leen por su nombre, no solo por color.
+
+> ℹ️ Para cómo se calculan los días de inventario, la rotación y qué cuenta como consumo, vea [Pestaña Rotación de inventarios](maestros/referencias-detalle.md#-pestaña-rotación-de-inventarios) de la ficha de la referencia y el informe [Rotación de inventarios](consultas/rotacion-inventarios.md).
+
+### Encabezado del bloque
+
+| Elemento | Para qué sirve |
+|----------|----------------|
+| **12 meses terminados el …** | El periodo que se analiza. Termina en la fecha de corte del dashboard. |
+| **Rotación calculada a las HH:MM** | La hora en que se calculó. |
+| **Ver en el informe de rotación** | Abre el informe [Rotación de inventarios](consultas/rotacion-inventarios.md) con los mismos datos. Solo aparece con permiso sobre ese informe. |
+
+### Cuando la rotación tarda: "Calculando"
+
+La primera vez que se pide la rotación de una fecha de corte, el cálculo puede tardar unos minutos. Mientras tanto:
+
+- Los indicadores y los rankings de arriba se ven normal.
+- El bloque muestra **Calculando la rotación…**.
+- Cuando termina, le llega un aviso por la **campana** y el bloque se completa solo.
+
+### Si la rotación no se pudo cargar
+
+Si falla, el bloque muestra **No se pudo cargar la rotación** con el botón **Reintentar rotación**. Los indicadores, los rankings y el resto del dashboard siguen funcionando. Si el periodo no tiene consumo ni existencias para la bodega elegida, verá **Sin rotación para mostrar**.
+
+### Ir al informe desde un gráfico
+
+Con permiso sobre el informe [Rotación de inventarios](consultas/rotacion-inventarios.md):
+
+- Haga clic en una **barra** (de grupo, de clasificación o de referencia): el informe se abre filtrado por ese grupo, esa clasificación o esa referencia.
+- Haga clic en **Ver en el informe de rotación** del encabezado.
+
+Sin ese permiso, los gráficos se ven igual, pero las barras no abren nada y verá la nota *"Las barras no abren el informe porque no tienes acceso a Rotación de inventarios."*
+
+### Actualizar y los filtros
+
+- **Actualizar** vuelve a calcular también la rotación.
+- **Aplicar** (cambio de fecha de corte o de bodega) vuelve a pedir la rotación para ese corte.
+
+En el celular los gráficos se apilan en una columna. Las tablas tienen su propio desplazamiento, sin mover toda la página hacia los lados.
+
+---
+
 ## 📤 Exportar a Excel
 
 Haga clic en **Exportar** (en la banda de arriba). Se descarga `inventario-gerencial_AAAA-MM-DD.xlsx` (con la fecha de corte), hoja **Detalle**, con **lo que está viendo en el detalle**, completo y no solo la página visible:
@@ -253,6 +318,7 @@ Elija una bodega en el filtro, seleccione una bodega, grupo o subgrupo en los ra
 | Ver este dashboard | Permiso de **Consultar** sobre **Reportes Gerenciales**, su grupo de reportes y la opción **Inventarios** (además del acceso al módulo Inventarios). Sin ese permiso, verá el [Resumen del módulo](dashboard.md). |
 | **Actualizar** | El mismo permiso de consultar. |
 | **Exportar** | Además, el permiso de **Exportar** sobre la opción **Inventarios** de Reportes Gerenciales. Sin él, el botón **Exportar** no aparece. |
+| Abrir el informe de rotación desde las barras o el encabezado del bloque | Además, el permiso de **Consultar** sobre **Rotación de inventarios**. Sin él, las barras no son interactivas. |
 
 El filtro **Bodega** muestra todas las bodegas de la compañía aunque su perfil no tenga acceso a la pantalla de Bodegas.
 

@@ -525,7 +525,7 @@ Al abrir la pestaña se consulta **la primera variante**, en **todas las bodegas
 
 La tabla se pagina (20 filas por defecto); la hora de la consulta se ve en **Consultado a las HH:MM**, igual que en Inventario. Si no hay movimientos verá *"Sin movimientos en este periodo"*: cambie el periodo, la variante o la bodega.
 
-> 💡 También llega aquí desde **Ver movimientos** en la pestaña **Variantes** o en **Inventario**: la pestaña se abre con la variante (y la bodega) ya elegidas.
+> 💡 También llega aquí desde **Ver movimientos** en la pestaña **Variantes**, en **Inventario** o en **Rotación de inventarios**: la pestaña se abre con la variante y la bodega ya elegidas. Desde **Rotación de inventarios** se abre con los últimos 12 meses.
 
 ### Ver un documento
 
@@ -539,6 +539,105 @@ Haga clic en **Ver documento** (el ojo) de un movimiento. Se abre un diálogo co
 - **Totales**: *Total cantidad* y el total del documento, rotulado **precio de venta** en los documentos de ventas o **costo** en los demás (compras, traslados, producción, ajustes…).
 
 Por ahora el documento solo se consulta aquí: se podrá abrir en su módulo cuando ese módulo esté disponible en esta versión.
+
+---
+
+## 📈 Pestaña Rotación de inventarios
+
+Muestra **qué tan rápido sale del inventario** esta referencia y **cuántos días de inventario** tiene, con los **últimos 12 meses terminados ayer**. Es solo de consulta: no cambia el inventario ni la referencia.
+
+La pestaña aparece solo en las referencias que **manejan inventario**. En las demás no se muestra. Para verla necesita el permiso de **Consultar** sobre Referencias.
+
+<!-- Capturas pendientes (sin capturar; desde las stories Pantallas/Inventario/Referencias/Rotación de inventarios; PNG, ancho máximo 800 px, peso máximo 500 KB). Carpeta: v2026/inventarios/recursos/img/referencias/
+- 38-rotacion-calculado.png: pestaña con KPIs, tendencia y bodegas (story Calculado).
+- 39-rotacion-tendencia-tabla.png: tendencia en "Ver como tabla" (story TendenciaComoTabla).
+- 40-rotacion-sin-movimiento.png: referencia sin consumo en el periodo (story SinMovimiento).
+- 41-rotacion-calculando.png: estado "Calculando la rotación…" (story Cargando).
+- 42-rotacion-error.png: error con Reintentar (story ErrorDeCalculo).
+- 43-rotacion-movil.png: vista de 375 px (story Movil).
+-->
+
+### Lo que ve
+
+| Elemento | Para qué sirve |
+|----------|----------------|
+| **Rotación del … al … · N días** | El periodo que se analiza. Es fijo: los 12 meses terminados ayer. La pestaña no tiene filtros. |
+| **Calculado a las HH:MM** | La hora en que se calculó la información que ve. |
+| **Ver movimientos** | Abre la pestaña **Movimientos** de esta referencia con los últimos 12 meses. Ver *Ver movimientos y el informe* más abajo. |
+| **Abrir en el informe** | Abre el informe [Rotación de inventarios](../consultas/rotacion-inventarios.md) filtrado por esta referencia. Solo aparece con permiso sobre ese informe. |
+| **Rotación global**, **Días de inventario**, **Cobertura (días)** y **Clasificación** | Los cuatro indicadores principales. Ver *Cómo se calcula*. |
+| **Existencia final**, **Consumo (unidades)**, **Consumo ($)** | Las cifras del periodo que explican los indicadores. |
+| **Consumo y existencia por mes** | Columnas: lo consumido en cada mes. Línea: la existencia al cierre de cada mes. Con **Ver como tabla** ve los mismos números en una tabla. |
+| **Detalle por bodega** | Una fila por bodega: existencia final, consumo, rotación ($) y días de inventario. |
+| **Nota de cifras** (ⓘ) | Recuerda cómo se calcula el inventario promedio y que las cifras pueden diferir un poco del informe. Ver *¿Por qué puede no coincidir con el informe?*. |
+
+Los cuatro indicadores dicen:
+
+| Indicador | Qué significa |
+|-----------|---------------|
+| **Rotación global ($)** | Cuántas veces se consumió el inventario promedio en el periodo. Abajo aparece la misma rotación en unidades. |
+| **Días de inventario** | Cuántos días alcanza el inventario al ritmo de consumo del periodo. |
+| **Cobertura (días)** | Cuántos días alcanza la existencia final al consumo diario del periodo. |
+| **Clasificación** | Alta, Media, Baja, Sin rotación u Obsoleto (ver la tabla de clasificación más abajo). |
+
+### Cómo se calcula
+
+- **Rotación** = consumo del periodo ÷ inventario promedio.
+- **Días de inventario** = días del periodo ÷ rotación.
+- **Cobertura** = existencia final ÷ consumo diario.
+- **Inventario promedio** = promedio de los saldos al inicio del periodo y al cierre de cada mes.
+- **Consumo neto**: las devoluciones restan. Si el consumo neto da negativo, se toma como cero.
+
+**Qué cuenta como consumo depende de qué es la referencia:**
+
+| Tipo de referencia | Cuenta como consumo | No cuenta |
+|--------------------|---------------------|-----------|
+| **Materias primas e insumos** (materiales y semielaborados) | Las **salidas para producción**: la descarga de insumos de una orden de producción. | Las salidas manuales que no están ligadas a una orden de producción. |
+| **Productos terminados**, producidos o comercializados | Las **ventas**: facturas, remisiones y punto de venta, menos sus devoluciones. | Una descarga de insumos sobre un producto terminado. |
+| **Cualquiera** | — | La **entrada de producción** (es el ingreso del producto terminado, no un consumo), los traslados entre bodegas, los inventarios físicos y sus ajustes, y las compras o devoluciones a proveedores. |
+
+> ℹ️ Si una materia prima se vende directamente, esa venta no cuenta para su rotación. **Ver movimientos** sí la muestra, porque el listado incluye todos los movimientos de la referencia.
+
+**La clasificación** se basa en los días de inventario:
+
+| Clasificación | Regla |
+|---------------|-------|
+| **Alta** | Hasta 30 días. |
+| **Media** | De 31 a 90 días. |
+| **Baja** | De 91 a 180 días. |
+| **Sin rotación** | Tiene existencia, pero no hubo consumo en el periodo. |
+| **Obsoleto** | Sin rotación y, además, sin ningún movimiento (entrada o salida) en un año. |
+
+Estos valores son los que usa la pestaña. El informe permite cambiarlos al consultar; la pestaña siempre usa los valores por defecto.
+
+### ¿Por qué puede no coincidir con el informe?
+
+El informe valora el consumo al **costo promedio móvil** de la referencia. Esta pestaña valora cada movimiento al **costo de su propia línea**. Por eso las cifras pueden diferir un poco, sobre todo en los valores en $. Si necesita una cifra exacta para un informe, use el informe [Rotación de inventarios](../consultas/rotacion-inventarios.md).
+
+### Ver movimientos y el informe
+
+- **Ver movimientos** lleva a la pestaña [Movimientos](#-pestaña-movimientos) con esta referencia, en todas las bodegas y con los últimos 12 meses. Sirve para revisar uno por uno los documentos que explican el consumo.
+- **Abrir en el informe** abre el informe de rotación con esta referencia ya elegida, para ver el detalle por fecha, documento y bodega.
+
+### Estados
+
+| Lo que ve | Qué hacer |
+|-----------|-----------|
+| **Calculando la rotación…** | Espere un momento. El resto de la ficha sigue disponible. |
+| **Sin movimiento en el periodo** | No hay consumo, así que no hay rotación. Se muestra la existencia final de la referencia. |
+| **No se pudo calcular la rotación** | Haga clic en **Reintentar**. El resto de la ficha no se ve afectado. |
+| **Esta referencia no maneja inventario** | La rotación solo existe para referencias que manejan inventario. |
+| **No tienes permiso para ver la rotación** | Solo aparece si entra con un enlace directo. Pida el permiso de consulta sobre Referencias. |
+
+### Permisos
+
+| Acción | Su perfil necesita |
+|--------|--------------------|
+| Ver la pestaña y sus cifras | Consultar sobre **Referencias** |
+| **Ver movimientos** | Consultar sobre **Referencias** (no necesita más permisos) |
+| **Abrir en el informe** | Además, Consultar sobre **Rotación de inventarios**. Sin ese permiso, el botón no aparece. |
+
+> ℹ️ Esta información no existía en la versión anterior de OrangeERP. Por eso no hay un equivalente que comparar.
 
 ---
 
