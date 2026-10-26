@@ -155,3 +155,5 @@ Su perfil no tiene el permiso de consulta de ventas por clientes y referencias.
 - [Ficha del cliente · Pedidos y sus Facturas de Despachos](ficha-pedidos.md)
 - [Ficha del cliente · Remisiones y sus Facturas de Venta](ficha-remisiones.md)
 - [Ficha del cliente · Facturas de Venta y sus Recibos de Caja](ficha-facturas.md)
+- [Ficha del cliente · Cartera](ficha-cartera.md)
+- [Ficha del cliente · Consultas que tardan](ficha-consultas-que-tardan.md)

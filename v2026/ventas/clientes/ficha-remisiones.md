@@ -127,7 +127,7 @@ Revise si una de las facturas está anulada (las anuladas no cuentan) o si la ca
 Una factura puede cubrir varias remisiones. Se muestra en cada una con la cantidad que le corresponde.
 
 **¿Veo aquí el saldo o la mora del cliente?**
-No. Eso está en la pestaña **Cartera**.
+No. Eso está en la pestaña **[Cartera](ficha-cartera.md)**.
 
 ---
 
@@ -147,3 +147,5 @@ No. Eso está en la pestaña **Cartera**.
 - [Ficha del cliente · Pedidos y sus Facturas de Despachos](ficha-pedidos.md)
 - [Ficha del cliente · Facturas de Venta y sus Recibos de Caja](ficha-facturas.md)
 - [Ficha del cliente · Referencias vendidas](ficha-referencias-vendidas.md)
+- [Ficha del cliente · Cartera](ficha-cartera.md)
+- [Ficha del cliente · Consultas que tardan](ficha-consultas-que-tardan.md)

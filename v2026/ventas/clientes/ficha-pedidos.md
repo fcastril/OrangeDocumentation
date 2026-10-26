@@ -113,7 +113,7 @@ Si el pedido aún no tiene despachos, aparece **Este pedido aún no tiene despac
 ## 🧭 Saltos entre pestañas
 
 - **Ver en Facturas** y **Ver en Remisiones** abren la pestaña del documento con el número seleccionado. Si el documento cae fuera del rango, **la pestaña amplía el rango de fechas** para incluirlo y muestra el aviso **«Se amplió el rango de fechas para incluir el documento…»**.
-- **Ver en Cartera** (en las pestañas de facturas) lleva a la pestaña **Cartera** de la ficha del cliente.
+- **Ver en Cartera** (en las pestañas de facturas) lleva a la pestaña **[Cartera](ficha-cartera.md)** de la ficha del cliente.
 
 ---
 
@@ -161,3 +161,5 @@ Su perfil no tiene el permiso de Remisiones y Facturas de venta. Pídale a su ad
 - [Ficha del cliente · Remisiones y sus Facturas de Venta](ficha-remisiones.md)
 - [Ficha del cliente · Facturas de Venta y sus Recibos de Caja](ficha-facturas.md)
 - [Ficha del cliente · Referencias vendidas](ficha-referencias-vendidas.md)
+- [Ficha del cliente · Cartera](ficha-cartera.md)
+- [Ficha del cliente · Consultas que tardan](ficha-consultas-que-tardan.md)

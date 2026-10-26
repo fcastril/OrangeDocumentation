@@ -22,7 +22,7 @@ Es una pantalla de **consulta**: no crea, no edita ni elimina facturas ni recibo
 
 > 📘 Para el uso general de tablas (orden, paginación y exportación) vea [Manejo general de la información](../../Generales/manejo-general-informacion.md).
 
-> 💡 Esta pestaña **no calcula el saldo, el vencimiento ni la mora** de una factura. Eso está en la pestaña **Cartera**, a la que puede saltar con **Ver en Cartera**.
+> 💡 Esta pestaña **no calcula el saldo, el vencimiento ni la mora** de una factura. Eso está en la pestaña **[Cartera](ficha-cartera.md)**, a la que puede saltar con **Ver en Cartera**.
 
 > 💡 Los documentos **no se abren desde aquí**: se muestran su número, fecha, valores y estado.
 
@@ -140,3 +140,5 @@ Su perfil no tiene el permiso de Recibos de caja. Pídale a su administrador que
 - [Ficha del cliente · Pedidos y sus Facturas de Despachos](ficha-pedidos.md)
 - [Ficha del cliente · Remisiones y sus Facturas de Venta](ficha-remisiones.md)
 - [Ficha del cliente · Referencias vendidas](ficha-referencias-vendidas.md)
+- [Ficha del cliente · Cartera](ficha-cartera.md)
+- [Ficha del cliente · Consultas que tardan](ficha-consultas-que-tardan.md)
