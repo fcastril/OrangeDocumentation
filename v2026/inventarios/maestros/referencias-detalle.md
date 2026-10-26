@@ -542,6 +542,164 @@ Por ahora el documento solo se consulta aquí: se podrá abrir en su módulo cua
 
 ---
 
+## 📊 Pestaña Reposición
+
+![Pestaña Reposición: referencia en zona Roja](../recursos/img/referencias/reposicion-01-zona-roja.png)
+
+La pestaña **Reposición** le dice si conviene reponer **esta referencia**, cuánto comprar (o producir) y con qué urgencia. Es el mismo semáforo que ve en el modo **Reposición** de la ficha de un proveedor, pero para una sola referencia y sin salir de su ficha. Es solo de consulta: **no crea órdenes** de compra ni de producción.
+
+> 💡 Para entender cómo se calcula cada número, abra el panel **Cómo se calcula** al final de la pestaña.
+
+### Acceso
+
+- La pestaña aparece a la derecha de **Rotación de inventarios**, solo si la referencia **maneja inventarios** (casilla *Maneja inventarios (kardex)* de la pestaña General) y su perfil tiene permiso de **Consultar** sobre **Referencias**.
+- En una referencia nueva no aparece: guárdela primero.
+- Si su perfil no tiene ese permiso, la pestaña no se muestra. Si abre el enlace de la pestaña de todos modos, verá el aviso *No tienes permiso para ver la reposición*.
+- Si la referencia no maneja inventarios, la pestaña muestra *Esta referencia no maneja inventario*.
+
+### Qué pasa al abrirla
+
+La reposición se calcula **sola** al abrir la pestaña: verá *Calculando la reposición…* mientras termina. Después, la banda de arriba muestra con qué fecha de corte y a qué hora se calculó.
+
+La pestaña **no se actualiza sola**. Si cambian las compras o las existencias mientras la mira, pulse **Actualizar** o **Consultar** para ver las cifras al día.
+
+### Consulta de reposición
+
+![Consulta de reposición con la fecha de corte y el proveedor para el plazo](../recursos/img/referencias/reposicion-02-consulta.png)
+
+| Campo | Qué significa |
+|-------|---------------|
+| **Fecha de corte** | El último día que se considera. Por defecto es el día anterior a hoy. Define la **existencia** (lo que había ese día) y los **90 días de demanda** que terminan en esa fecha. No puede ser futura: si la deja vacía o pone una fecha futura, **Consultar** queda deshabilitado y se lo indica el campo. |
+| **Proveedor para el plazo** | El proveedor cuyos **días de entrega** se usan para el plazo de reposición. Por defecto está en **Automático**, que aplica el criterio explicado en *Proveedores de la referencia*. Si la referencia no tiene proveedores, el campo queda deshabilitado. |
+| **Consultar** (o **Actualizar**) | Calcula otra vez con la fecha y el proveedor elegidos. Si cambia alguno de los dos y todavía no pulsa **Consultar**, la pantalla le avisa *Cambiaste los filtros. Pulse Consultar para ver la reposición con ellos.* y las cifras siguen siendo las anteriores. |
+
+En la misma banda hay dos enlaces que **no salen de la ficha**:
+
+| Botón | Qué abre |
+|-------|----------|
+| **Ver rotación** | La pestaña **Rotación de inventarios** de esta referencia, con su consumo y su existencia. |
+| **Ver movimientos** | La pestaña **Movimientos** de esta referencia. Se abre con la **primera variante**, **todas las bodegas** y el periodo **Este mes**. Para ver los 90 días del cálculo, cambie el periodo a **Últimos 3 meses**. |
+
+### Dónde está esta referencia
+
+![Zona Roja con los niveles del semáforo y el sugerido de compra](../recursos/img/referencias/reposicion-03-niveles.png)
+
+Arriba de esta sección verá la **zona** de la referencia con su nombre, su ícono y su color, y una frase que resume la situación. Por ejemplo: *Con 60 unidades está en zona Roja (hasta 75). Para llegar al tope verde (475) conviene comprar 415 unidades.*
+
+Debajo están los **niveles del semáforo**: el tope rojo (TOR), el tope amarillo (TOY), el tope verde (TOG) y la **existencia**, todos en unidades sobre la misma escala. Con **Ver como tabla** ve los mismos niveles en una tabla, con la regla de cada uno.
+
+| Zona | Cuándo aparece | Qué significa |
+|------|----------------|---------------|
+| **Roja** | La existencia llega hasta el tope rojo (TOR) | Hay que comprar. |
+| **Amarilla** | Está por encima del TOR y hasta el tope amarillo (TOY) | Conviene comprar. |
+| **Verde** | Está por encima del TOY y hasta el tope verde (TOG) | Bien abastecida. |
+| **Exceso** | Está por encima del TOG | Hay más de lo necesario. |
+| **Sin demanda** | No hubo consumo en los 90 días | No se sugiere compra. |
+
+> ℹ️ Los límites pertenecen a la zona más urgente: si la existencia es **igual** al TOR, la zona es **Roja**; si es igual al TOY, **Amarilla**; si es igual al TOG, **Verde**.
+
+Si la referencia no tuvo consumo en 90 días, verá el aviso *Sin consumo en 90 días*: no hay topes que dibujar, no se sugiere comprar ni producir, y la existencia cuenta como exceso. Si el consumo neto fue negativo (por ejemplo, por devoluciones), la pantalla lo indica y para el cálculo lo toma como 0.
+
+### Cifras de la reposición
+
+| Tarjeta | Qué muestra |
+|---------|-------------|
+| **Sugerido de compra** | Las unidades para llegar al tope verde desde la existencia actual. Solo se sugiere en zona **Roja** o **Amarilla**; en las demás aparece 0 y el texto *Solo se sugiere en zona Roja o Amarilla*. |
+| **Valor del sugerido** | Lo que valen esas unidades. Puede ser *Al valor del proveedor* (el valor del proveedor del plazo), *Al costo promedio* o *Sin costo*. |
+| **Plazo de reposición** | Los días de entrega del proveedor. Si no tiene días registrados, aparece **15 días (estimado)**: es el valor por defecto de la instalación. |
+| **Demanda diaria (ADU)** | Las unidades consumidas en los 90 días, divididas entre 90. |
+
+Debajo, en **Cifras de la referencia**:
+
+- **Existencia (posición neta)**: lo que hay en existencia al corte, en todas las bodegas y variantes.
+- **Prioridad**: un porcentaje. Mientras más alto, más vacío está el nivel y antes conviene comprar. Si no hay demanda, dice *Sin prioridad*.
+- **Exceso sobre el tope verde**: las unidades por encima del TOG y su valor.
+- **Consumo de 90 días**: las unidades consumidas en la ventana.
+
+> ⚠️ Cuando el sugerido sale **sin costo**, la pantalla muestra *Sugerido sin costo*: el valor es $ 0 y subestima la compra. Registre el valor del proveedor en su ficha para que el cálculo lo valore.
+
+### De dónde sale el sugerido
+
+Según cómo se repone la referencia, la pantalla usa uno de estos rótulos:
+
+| Rótulo | Cuándo |
+|--------|--------|
+| **Se repone comprando** → **Sugerido de compra** | La referencia se compra a proveedores. |
+| **Se repone produciendo** → **Sugerido de producción** | La referencia se fabrica. La pantalla solo cambia el nombre del rótulo: no crea la orden de producción. |
+| **Se compra y también se produce** | La referencia tiene proveedores y ruta de producción. El sugerido se rotula como **de compra**. |
+
+El consumo se cuenta según el tipo de referencia:
+
+- **Materia prima o insumo**: la descarga de insumos de las órdenes de producción y las opciones configuradas.
+- **Producto terminado**: las ventas, las remisiones y el punto de venta.
+
+### Proveedores de la referencia
+
+![Proveedores de la referencia y su plazo](../recursos/img/referencias/reposicion-04-proveedores.png)
+
+La tabla lista los proveedores que tiene la referencia (los del catálogo y los que le han vendido). Por cada uno ve el **plazo** en días, su **valor**, la **última compra** y la acción **Ver en el proveedor**. La etiqueta **Usado en el cálculo** marca el que da el plazo.
+
+El cálculo toma el plazo del proveedor en este orden:
+
+1. El proveedor que **usted elija** en *Proveedor para el plazo*.
+2. Si está en **Automático**, el proveedor de la **última compra** no anulada.
+3. Si no hay compras, el proveedor del catálogo con **menor plazo** registrado.
+4. Si ninguno tiene plazo, el **plazo por defecto** (15 días), marcado como **estimado**.
+
+El texto encima de la tabla dice cuál criterio se usó: *Proveedor elegido por ti*, *Proveedor de la última compra*, *Menor plazo del catálogo* o *Plazo por defecto de la instalación*.
+
+Si la referencia no tiene proveedores, verá *Esta referencia no tiene proveedores*. Agréguelos en la pestaña **Proveedores** de esta ficha.
+
+> ⚠️ **Ver en el proveedor** abre la **ficha del proveedor** en Compras, pero **no** abre su modo **Reposición**: en esa ficha tiene que abrirlo usted. El botón solo aparece si su perfil tiene permiso de **Consultar** sobre **Proveedores**.
+
+### Cómo se calcula
+
+Al final de la pestaña, el panel **Cómo se calcula** (cerrado al inicio) muestra los pasos **con los números de esta referencia** (por ejemplo, *ADU = 900 ÷ 90 = 10,00*):
+
+![Panel Cómo se calcula desplegado](../recursos/img/referencias/reposicion-05-como-se-calcula.png)
+
+1. **Demanda diaria (ADU)** = consumo de 90 días ÷ 90.
+2. **Plazo de reposición**: los días del proveedor usado (o 15, marcados como estimado).
+3. **Tope rojo (TOR)** = parte base del rojo + parte de seguridad.
+4. **Tope amarillo (TOY)** = TOR + demanda × plazo.
+5. **Tope verde (TOG)** = TOY + el mayor entre demanda × ciclo de pedido y la parte base del rojo.
+6. **Zona**: se compara la existencia con los topes.
+7. **Sugerido** = TOG − existencia, redondeado hacia arriba, solo en Roja o Amarilla.
+8. **Prioridad** = 1 − existencia ÷ TOG.
+
+Los parámetros usados aparecen al final del panel: la ventana de 90 días, el plazo por defecto, el factor de plazo, el factor de variabilidad y el ciclo de pedido. Son los de **toda la instalación**: no se editan aquí ni se configuran por compañía.
+
+### Qué tener en cuenta
+
+- La **existencia** es la del corte, de **todas las bodegas y variantes**. **No** se descuentan los pedidos en camino ni la demanda confirmada de clientes.
+- El consumo **siempre** se divide entre 90. Si la referencia tiene menos de 90 días de historia, la demanda diaria puede quedar **subestimada**.
+- Con plazo **estimado**, el cálculo usa 15 días. Para corregirlo, registre los **Días de plazo (orden de compra)** del proveedor en su ficha.
+- El plazo por defecto, los factores y el ciclo de pedido no se pueden ajustar por compañía ni por referencia.
+- Las cifras en unidades coinciden con las del modo **Reposición** de la ficha del proveedor para el mismo corte y el mismo proveedor. Los importes pueden diferir un poco por redondeo.
+
+### Preguntas frecuentes
+
+**¿Por qué la pestaña no aparece?**
+Revise que la referencia maneje inventarios (pestaña General) y que su perfil tenga permiso de Consultar sobre Referencias. Una referencia nueva no la muestra hasta guardarla.
+
+**¿Por qué el sugerido es 0 si la existencia es baja?**
+El sugerido solo aparece en zona Roja o Amarilla. Si la zona es Sin demanda, no hay consumo en 90 días y no se sugiere nada.
+
+**¿La pantalla genera la orden de compra o de producción?**
+No. Es solo consulta. El sugerido le indica cuánto y con qué urgencia.
+
+**¿Por qué no coincide con la ficha del proveedor?**
+Compare el mismo **corte** y el mismo **proveedor** para el plazo. Con el mismo corte y el mismo proveedor, las unidades son iguales.
+
+**Dice *Calculando la reposición…* mucho tiempo.**
+Espere unos segundos. Si no responde, pulse **Reintentar** o cierre y abra la ficha de nuevo.
+
+**Aparece *No se pudo calcular la reposición*.**
+Revise su conexión e inténtelo de nuevo con **Reintentar**. No se modificó ningún dato.
+
+**Aparece *Ese proveedor ya no está asociado a la referencia*.**
+Elija otro proveedor de la lista o deje **Automático** y pulse **Consultar**.
+
 ## 🖼️ Pestaña Foto y documentos
 
 ![Pestaña Foto y documentos](../recursos/img/referencias/19-foto-documentos.png)
