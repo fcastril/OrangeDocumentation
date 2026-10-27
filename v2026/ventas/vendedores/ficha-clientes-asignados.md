@@ -15,7 +15,7 @@
 
 La pestaña **Clientes asignados** muestra las **sucursales** de clientes que atiende este vendedor. La asignación se hace por sucursal, no por cliente: un mismo cliente puede tener sucursales atendidas por distintos vendedores.
 
-Es una pantalla de **consulta**: no cambia el vendedor de ninguna sucursal.
+Es una pantalla de **consulta**: no cambia el vendedor de ninguna sucursal. Para asignar sucursales a este vendedor, use la pestaña [Clientes no asignados](ficha-clientes-no-asignados.md).
 
 > Para el uso general de las tablas (orden, paginación y ayuda) vea [Manejo general de la información](../../Generales/manejo-general-informacion.md).
 
