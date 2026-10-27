@@ -17,6 +17,7 @@ Manuales de las pantallas de Ventas en la nueva versión.
 - [Pedidos y sus Facturas de Despachos](clientes/ficha-pedidos.md): pedidos del cliente, con sus despachos y cumplimiento.
 - [Remisiones y sus Facturas de Venta](clientes/ficha-remisiones.md): remisiones del cliente y las facturas que las cubren.
 - [Facturas de Venta y sus Recibos de Caja](clientes/ficha-facturas.md): facturas y devoluciones del cliente, con sus recibos.
+- [Exportar PDF del historial de facturas y recibos](clientes/ficha-historial-pdf.md): el PDF con facturas, recibos, saldo y totales del cliente.
 - [Referencias vendidas](clientes/ficha-referencias-vendidas.md): lo que se le ha vendido, por referencia.
 - [Cartera](clientes/ficha-cartera.md): lo que el cliente debe y, si es proveedor, lo que se le debe, con su saldo y su historia.
 - [Seguimiento de Cartera](clientes/ficha-seguimiento-cartera.md): gestión de cobro del cliente, con fecha de alerta.

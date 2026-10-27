@@ -99,6 +99,20 @@ Para no repetir cifras en dos pestañas, esta pantalla no muestra el saldo.
 
 ---
 
+## 📄 Exportar el historial en PDF
+
+El botón **Exportar PDF** de esta pestaña entrega un documento con las facturas y devoluciones del rango, **con sus recibos de caja debajo de cada factura**, y los totales. Usa el mismo rango de fechas y los mismos filtros de la pantalla.
+
+- El PDF sale en hoja horizontal, a **blanco y negro** por defecto; el selector **Imprimir en** permite elegir **Color**.
+- Sin el permiso de **Recibos de caja**, el PDF solo lista las facturas, con un aviso.
+- El saldo que aparece en el PDF (valor menos valor cruzado) es el saldo del documento, no el de **Cartera**; esta pantalla sigue sin mostrar saldo.
+- Si el cliente tiene mucho movimiento, el botón muestra **Preparando el historial…** y puede salir de la pestaña: le avisamos en la campana.
+- Si el rango es demasiado grande, reduzca las fechas.
+
+Para el detalle, las capturas y los mensajes, vea [Exportar PDF del historial de facturas y recibos](ficha-historial-pdf.md).
+
+---
+
 ## 🔄 Cambios de otros usuarios (en vivo)
 
 Esta pantalla **no se actualiza sola**. Si otro usuario registra un recibo o anula una factura mientras la mira, haga clic en **Consultar** para ver el cambio.
@@ -142,3 +156,4 @@ Su perfil no tiene el permiso de Recibos de caja. Pídale a su administrador que
 - [Ficha del cliente · Referencias vendidas](ficha-referencias-vendidas.md)
 - [Ficha del cliente · Cartera](ficha-cartera.md)
 - [Ficha del cliente · Consultas que tardan](ficha-consultas-que-tardan.md)
+- [Ficha del cliente · Exportar PDF del historial de facturas y recibos](ficha-historial-pdf.md)
