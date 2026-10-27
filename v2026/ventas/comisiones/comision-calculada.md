@@ -77,7 +77,7 @@ Una línea está «sin regla» cuando, para ese vendedor, ese cliente y esa fech
 
 Si hay líneas sin regla, aparece el aviso **Hay líneas sin regla**, con el número de líneas y el botón **Ver solo esas líneas**. Al pulsarlo, la tabla muestra únicamente esas líneas para revisarlas.
 
-*(captura pendiente: resúmenes de ventas y recaudo, con el aviso de líneas sin regla)*
+![Resúmenes de comisión de ventas y de recaudo con el aviso Hay líneas sin regla y el botón Ver solo esas líneas](../recursos/img/vendedores-comisiones-informe/03-resumenes-lineas-sin-regla.png)
 
 ### Las secciones de resultado
 
@@ -184,9 +184,9 @@ El PDF admite hasta **4.000 líneas** con el filtro elegido. Si el filtro tiene 
 - Acorte el periodo (por ejemplo, un mes en lugar de un año) y vuelva a exportar, o
 - use **Exportar Excel**, que admite más líneas.
 
-*(captura pendiente: botón Exportar PDF junto a Exportar Excel, y el diálogo con papel y color)*
+![Botón Exportar PDF junto a Exportar Excel, con papel Carta o A4 e Imprimir en Blanco y negro o Color](../recursos/img/vendedores-comisiones-informe/04-pantalla-exportar-pdf.png)
 
-*(captura pendiente: ejemplo de PDF, con encabezado, resúmenes y TOTAL, tomado de la story)*
+![Ejemplo de PDF de liquidación de comisiones con datos ficticios: encabezado, resumen de ventas y de recaudo, reglas aplicadas, detalle y TOTAL](../recursos/img/vendedores-comisiones-informe/ejemplo-pdf-liquidacion.png)
 
 ---
 

@@ -85,7 +85,7 @@ Solo consulta: no liquida, no paga y no guarda resultados.
 
 Es la primera subsección de la pestaña. Solo aparece si su perfil puede consultar **Comisión calculada**, además de **Comisiones de vendedores**. Si no tiene ese permiso, la pestaña abre en **Ventas**.
 
-*(captura pendiente: subsección Informe con resultado)*
+![Subsección Informe con el resultado del periodo: tarjetas de comisión, tabla por regla y detalle de ventas y recaudo](../recursos/img/vendedores-comisiones-informe/01-informe-listo.png)
 
 ### Periodo y filtros
 
@@ -107,7 +107,7 @@ Con el permiso **Exportar** en **Comisión calculada**, el informe tiene **Expor
 - **Exportar Excel**: ver [Exportar a Excel](../comisiones/comision-calculada.md#exportar-a-excel).
 - **Exportar PDF**: elija el papel (**Carta** o **A4**) y **Imprimir en** (**Blanco y negro**, por defecto, o **Color**). El detalle del contenido y el límite de líneas están en [Exportar a PDF](../comisiones/comision-calculada.md#exportar-a-pdf).
 
-*(captura pendiente: exportar PDF desde el informe, con papel e imprimir en)*
+![Botón Exportar PDF junto a Exportar Excel, con papel A4 e Imprimir en Color seleccionados, y el mensaje de PDF generado](../recursos/img/vendedores-comisiones-informe/02-informe-exportar-pdf.png)
 
 ### Abrir en pantalla completa
 
