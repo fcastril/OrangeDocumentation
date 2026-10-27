@@ -18,6 +18,8 @@
 
 El botón **Exportar PDF** de la pestaña **Facturas de Venta y sus Recibos de Caja** entrega un documento con la trazabilidad de lo facturado y lo cobrado a un cliente: cada factura, con sus **recibos de caja** debajo, y los totales al final.
 
+El PDF sale en **hoja horizontal**, con la **marca de agua de Orange** de fondo. Puede imprimirlo **a color** o **en blanco y negro**.
+
 El PDF sirve para **uso interno** y para **entregarlo al cliente**.
 
 > 💡 El PDF muestra lo mismo que la pestaña, con el **mismo rango de fechas** y los **mismos filtros**. No trae nada que usted no pueda ver en la pantalla.
@@ -30,7 +32,7 @@ El PDF sirve para **uso interno** y para **entregarlo al cliente**.
 2. En **Maestros**, haga clic en **Clientes**.
 3. Busque el cliente y ábralo en **Editar** (ficha).
 4. Haga clic en la pestaña **Facturas de Venta y sus Recibos de Caja**.
-5. Elija el rango de fechas y los filtros, pulse **Consultar** y, después, **Exportar PDF**.
+5. Elija el rango de fechas y los filtros, pulse **Consultar**, elija **Imprimir en** y, después, pulse **Exportar PDF**.
 
 > ⚠️ El botón **Exportar PDF** solo aparece si tiene permiso para **Consultar Facturas de venta**. Sin ese permiso no lo verá.
 
@@ -38,11 +40,24 @@ El PDF sirve para **uso interno** y para **entregarlo al cliente**.
 
 ## 🖥️ Pantalla principal
 
-![Pestaña con el botón Exportar PDF y la vista previa del contenido](../recursos/img/ficha-historial-pdf/01-pantalla-y-maqueta.png)
+![Pestaña con el botón Exportar PDF, el selector Imprimir en y la vista previa](../recursos/img/ficha-historial-pdf/01-pantalla-y-maqueta-bn.png)
 
-Debajo del botón **Exportar PDF** aparece una **vista previa** del contenido. Es solo una muestra con datos de ejemplo: el archivo real lo arma el sistema y su letra y márgenes son los del documento oficial.
+| Elemento | Para qué sirve |
+|----------|----------------|
+| **Exportar PDF** | Descarga el documento con el rango y los filtros que están en pantalla. |
+| **Imprimir en: Color / Blanco y negro** | Elige cómo sale el PDF. Viene en **Blanco y negro** por defecto. |
+
+El selector **recuerda su elección mientras la ficha esté abierta**: si elige **Color**, los siguientes PDF de esa ficha también saldrán a color. Al cerrar la ficha, vuelve a **Blanco y negro**.
+
+Debajo del botón aparece una **vista previa** del contenido. Es solo una muestra con datos de ejemplo: el archivo real lo arma el sistema y su letra y márgenes son los del documento oficial.
 
 El nombre del archivo que se descarga es **historial-facturas-recibos-[NIT del cliente]-[fecha desde]-[fecha hasta].pdf**.
+
+![Selector Imprimir en con Color elegido y vista previa a color](../recursos/img/ficha-historial-pdf/02-maqueta-color.png)
+
+![Selector Imprimir en con el teclado](../recursos/img/ficha-historial-pdf/03-selector-teclado.png)
+
+Con el teclado, el selector es **una sola parada** de **Tab**: use las **flechas** para cambiar entre **Color** y **Blanco y negro**.
 
 ### Qué trae el PDF
 
@@ -52,6 +67,7 @@ El nombre del archivo que se descarga es **historial-facturas-recibos-[NIT del c
 | **Facturas** | Cada factura o devolución con su documento, referencia, fecha, plazo en días, **valor**, **valor cruzado** y **saldo**. |
 | **Recibos de caja** | Debajo de cada factura, los recibos que la cruzan: fecha, número, **valor aplicado** y **medio de pago**. Si la factura no tiene recibos, aparece **Sin recibos aplicados**. |
 | **Totales** | **Total facturas**, **Total devoluciones**, **Neto**, **Valor cruzado** y **Saldo**. |
+| **Marca de agua** | El isotipo de Orange en el fondo de cada hoja. Va en color o en gris según la elección. |
 | **Pie de página** | **Página X de Y** en cada hoja. Los títulos de columna se repiten en cada hoja. |
 
 ### Cómo leer el PDF
@@ -84,7 +100,7 @@ En el documento también aparece la línea **Los recibos de caja no se incluyen 
 
 Si necesita esa información, pida el permiso de **Recibos de caja** a su administrador.
 
-![PDF sin permiso de recibos: solo facturas y aviso](../recursos/img/ficha-historial-pdf/05-sin-permiso-73.png)
+![PDF sin permiso de recibos: solo facturas y aviso](../recursos/img/ficha-historial-pdf/07-sin-permiso-73.png)
 
 ---
 
@@ -92,8 +108,9 @@ Si necesita esa información, pida el permiso de **Recibos de caja** a su admini
 
 1. Elija el **rango de fechas** y los filtros en la pestaña. Por defecto es el **último mes**.
 2. Pulse **Consultar** y revise que las facturas sean las que quiere entregar.
-3. Pulse **Exportar PDF**.
-4. Si el cálculo es rápido, el archivo se descarga de inmediato.
+3. Elija **Imprimir en**: **Blanco y negro** (por defecto) o **Color**.
+4. Pulse **Exportar PDF**.
+5. Si el cálculo es rápido, el archivo se descarga de inmediato.
 
 Si pasa de un momento, vea la sección siguiente.
 
@@ -107,7 +124,7 @@ Si el cliente tiene **mucho movimiento**, el documento puede tardar. Mientras ta
 
 > Este cliente tiene mucho movimiento. Puede seguir usando la ficha; la descarga empezará sola.
 
-![Preparando el historial](../recursos/img/ficha-historial-pdf/02-preparando.png)
+![Preparando el historial](../recursos/img/ficha-historial-pdf/04-preparando.png)
 
 Qué puede hacer:
 
@@ -115,9 +132,9 @@ Qué puede hacer:
 - **Espere.** Cuando el documento esté listo, la descarga empieza sola, sin que pulse nada.
 - **Salga de la pestaña, si lo necesita.** Si el cálculo sigue en proceso, aparece **Sigue en proceso. Puede salir de la pestaña: le avisaremos en la campana cuando el historial esté listo.** Cuando termine, la **campana de notificaciones** le avisa.
 
-![Sigue en proceso: puede salir de la pestaña](../recursos/img/ficha-historial-pdf/03-sigue-en-proceso.png)
+![Sigue en proceso: puede salir de la pestaña](../recursos/img/ficha-historial-pdf/05-sigue-en-proceso.png)
 
-> 💡 Si pulsa **Exportar PDF** otra vez poco después, con el mismo rango y filtros, el documento ya preparado se descarga de inmediato.
+> 💡 Si pulsa **Exportar PDF** otra vez poco después, con el mismo rango, filtros y color, el documento ya preparado se descarga de inmediato.
 
 ---
 
@@ -131,6 +148,8 @@ Un PDF tiene **límites**. Si el rango tiene demasiadas facturas, recibos o pág
 | Recibos de caja en el documento | **10 000** |
 | Páginas | **400** |
 
+Como referencia: unas **2 000 facturas** con **unos 5 recibos cada una** ya llegan al máximo de páginas. Con menos facturas, o con menos recibos por factura, el PDF cabe.
+
 El sistema **no recorta el documento en silencio**: si pasa un límite, no genera el PDF.
 
 Qué hacer:
@@ -139,7 +158,7 @@ Qué hacer:
 2. Pulse **Consultar** y, después, **Exportar PDF**.
 3. Si sigue grande, repita la exportación por periodos más cortos (por ejemplo, un trimestre o un mes a la vez).
 
-![Historial demasiado grande](../recursos/img/ficha-historial-pdf/04-demasiado-grande.png)
+![Historial demasiado grande](../recursos/img/ficha-historial-pdf/06-demasiado-grande.png)
 
 ---
 
@@ -151,7 +170,7 @@ Qué hacer:
 | **No se pudo preparar el historial** | Hubo un problema al armar el documento. Pulse **Reintentar** una vez. |
 | **Ocurrió un problema al armar el documento. Puede intentarlo de nuevo.** | Es el texto debajo del mensaje anterior. Si el problema vuelve a aparecer después de reintentar, avise a su administrador. |
 
-![Fallo al preparar el historial, con Reintentar](../recursos/img/ficha-historial-pdf/06-fallo-reintentar.png)
+![Fallo al preparar el historial, con Reintentar](../recursos/img/ficha-historial-pdf/08-fallo-reintentar.png)
 
 ---
 
@@ -162,6 +181,9 @@ El PDF muestra los datos **en el momento en que se arma**. Si otro usuario regis
 ---
 
 ## ❓ Preguntas frecuentes
+
+**¿Por qué el PDF sale en blanco y negro si elegí Color?**
+Revise el selector **Imprimir en**. El color se recuerda solo mientras la ficha esté abierta: al cerrarla, vuelve a **Blanco y negro**.
 
 **¿El PDF es el mismo que veo en la pestaña?**
 Sí, con el mismo rango y filtros. Las cifras de valor cruzado y de facturas coinciden con la pantalla.

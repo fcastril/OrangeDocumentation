@@ -103,6 +103,7 @@ Para no repetir cifras en dos pestañas, esta pantalla no muestra el saldo.
 
 El botón **Exportar PDF** de esta pestaña entrega un documento con las facturas y devoluciones del rango, **con sus recibos de caja debajo de cada factura**, y los totales. Usa el mismo rango de fechas y los mismos filtros de la pantalla.
 
+- El PDF sale en hoja horizontal, a **blanco y negro** por defecto; el selector **Imprimir en** permite elegir **Color**.
 - Sin el permiso de **Recibos de caja**, el PDF solo lista las facturas, con un aviso.
 - El saldo que aparece en el PDF (valor menos valor cruzado) es el saldo del documento, no el de **Cartera**; esta pantalla sigue sin mostrar saldo.
 - Si el cliente tiene mucho movimiento, el botón muestra **Preparando el historial…** y puede salir de la pestaña: le avisamos en la campana.
