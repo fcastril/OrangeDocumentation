@@ -22,3 +22,15 @@ Manuales de las pantallas de Ventas en la nueva versión.
 - [Seguimiento de Cartera](clientes/ficha-seguimiento-cartera.md): gestión de cobro del cliente, con fecha de alerta.
 - [Indicadores](clientes/ficha-indicadores.md): resumen de la cartera del cliente en tarjetas y gráficos.
 - [Consultas que tardan](clientes/ficha-consultas-que-tardan.md): qué hacer cuando una consulta de la ficha se calcula en segundo plano.
+
+## Vendedores · Ficha del vendedor
+
+- [Ventas del vendedor](vendedores/ficha-ventas.md): ventas netas, evolución, mejores clientes y referencias, y comparativos del periodo.
+- [Cartera del vendedor](vendedores/ficha-cartera.md): lo que deben los clientes por lo vendido por el vendedor, por edad y con su documento.
+- [Clientes asignados](vendedores/ficha-clientes-asignados.md): sucursales de clientes que atiende el vendedor.
+- [Clientes no asignados](vendedores/ficha-clientes-no-asignados.md): sucursales que atiende otro vendedor y clientes sin sucursal.
+- [Comisiones](vendedores/ficha-comisiones.md): reglas de comisión por ventas, referencias y recaudo, con su prueba de regla.
+
+## Comisiones
+
+- [Comisión calculada](comisiones/comision-calculada.md): cuánto le corresponde comisión a un vendedor en un periodo, con la regla aplicada a cada línea.
