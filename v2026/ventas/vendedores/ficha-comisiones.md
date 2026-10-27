@@ -22,7 +22,7 @@ La pestaña **Comisiones** define **cuánto gana cada vendedor** por lo que vend
 
 Cada regla se guarda **por separado**, con su propio botón. La pestaña **no usa el botón Guardar** de la ficha del vendedor, y cambiar una regla no altera los datos del vendedor.
 
-Para revisar qué comisión resulta de un periodo, use la consulta [Comisión calculada](../comisiones/comision-calculada.md).
+Para revisar qué comisión resulta de un periodo, use la subsección **Informe** de esta pestaña, o la consulta [Comisión calculada](../comisiones/comision-calculada.md) para cualquier vendedor.
 
 > Para el uso general de las tablas y la ayuda vea [Manejo general de la información](../../Generales/manejo-general-informacion.md).
 
@@ -37,16 +37,19 @@ Para revisar qué comisión resulta de un periodo, use la consulta [Comisión ca
 
 La pestaña solo aparece en un vendedor **guardado** y solo si su perfil puede consultar **Comisiones de vendedores**. En un vendedor nuevo no la verá.
 
+La subsección **Informe** solo aparece si su perfil puede consultar, además, **Comisión calculada**.
+
 ---
 
 ## Pantalla principal
 
 ![Comisiones por ventas del vendedor](../recursos/img/vendedores-comisiones/01-ventas.png)
 
-Dentro de la pestaña hay cuatro subsecciones:
+Dentro de la pestaña hay hasta cinco subsecciones:
 
-| Subsección | Qué configura |
-|------------|---------------|
+| Subsección | Qué configura o muestra |
+|------------|-------------------------|
+| **Informe** | Cuánta comisión dejan las reglas en un periodo, con el vendedor de esta ficha. Solo consulta. Ver [Informe](#informe). |
 | **Ventas** | La tarifa general del vendedor y las excepciones por cliente. |
 | **Referencias** | Las reglas por referencia. |
 | **Recaudo** | La escala general del vendedor y las escalas por cliente. |
@@ -57,7 +60,7 @@ Cada subsección muestra sus reglas en una tabla. Cada regla tiene **Editar** y 
 | Elemento | Para qué sirve |
 |----------|----------------|
 | **?** (junto al título) | Abre esta ayuda en un panel lateral. |
-| **Probar regla** | Simula qué regla se aplicaría a un caso. No guarda nada. Ver [Probar regla](#probar-regla). |
+| **Probar regla** | Simula qué regla se aplicaría a un caso. No guarda nada. No aparece en la subsección **Informe**. Ver [Probar regla](#probar-regla). |
 | **Registrar tarifa general**, **Nueva excepción**, **Nueva regla por referencia**, **Definir escala general**, **Nueva escala por cliente** | Crean una regla nueva en la subsección. |
 
 ### Estado de cada regla
@@ -71,6 +74,62 @@ Cada regla muestra su **vigencia** y su **estado**:
 | **Futura** | Empieza después de hoy. Todavía no aplica. |
 
 La vigencia se muestra como **Del [fecha] al [fecha]** o como **Desde el [fecha], sin fecha de fin**. Use **Solo vigentes** para ocultar las vencidas y futuras.
+
+---
+
+## Informe
+
+El **Informe** es la comisión calculada de **este vendedor** en un periodo, con las reglas que están vigentes hoy. Es el mismo informe de la consulta [Comisión calculada](../comisiones/comision-calculada.md), con el vendedor ya fijado: no tiene que elegirlo.
+
+Solo consulta: no liquida, no paga y no guarda resultados.
+
+Es la primera subsección de la pestaña. Solo aparece si su perfil puede consultar **Comisión calculada**, además de **Comisiones de vendedores**. Si no tiene ese permiso, la pestaña abre en **Ventas**.
+
+*(captura pendiente: subsección Informe con resultado)*
+
+### Periodo y filtros
+
+- **Vendedor**: es el de esta ficha y no se cambia.
+- **Desde** y **Hasta**: al abrir la subsección, el periodo es el **mes en curso** y el informe se calcula solo. Para otro periodo, cambie las fechas y pulse **Consultar**. Máximo 366 días y sin fechas futuras.
+- **Regla aplicada**: filtra las líneas por la regla usada.
+
+### Qué muestra
+
+- **Tarjetas de resumen**: comisión por ventas, comisión por recaudo y comisión total del periodo.
+- **Comisión por regla aplicada**: cuánta comisión dejó cada regla, con su base y su número de líneas.
+- **Líneas sin regla**: si hay líneas sin ninguna regla vigente, aparece el aviso con el botón **Ver solo esas líneas**. Ver [Líneas sin regla](../comisiones/comision-calculada.md#resumen-de-ventas-y-resumen-de-recaudo).
+- **Ventas** y **Recaudo**: el detalle de cada línea, con la regla aplicada. En recaudo se ve también el tramo de la edad. Cada tabla tiene su buscador por cliente y su fila de total del filtro.
+
+### Exportar
+
+Con el permiso **Exportar** en **Comisión calculada**, el informe tiene **Exportar Excel** y **Exportar PDF**. Están deshabilitados hasta que haya un resultado.
+
+- **Exportar Excel**: ver [Exportar a Excel](../comisiones/comision-calculada.md#exportar-a-excel).
+- **Exportar PDF**: elija el papel (**Carta** o **A4**) y **Imprimir en** (**Blanco y negro**, por defecto, o **Color**). El detalle del contenido y el límite de líneas están en [Exportar a PDF](../comisiones/comision-calculada.md#exportar-a-pdf).
+
+*(captura pendiente: exportar PDF desde el informe, con papel e imprimir en)*
+
+### Abrir en pantalla completa
+
+El enlace **Abrir en pantalla completa** abre la consulta [Comisión calculada](../comisiones/comision-calculada.md) con este vendedor y el periodo del informe ya elegidos.
+
+### Cuando cambian las reglas
+
+El informe **no se recalcula solo**, para que las cifras no cambien mientras las mira.
+
+- Si otra persona guarda o da de baja una regla de este vendedor, aparece el aviso **Las reglas cambiaron**, con el texto **Otra persona modificó las reglas de este vendedor. Las cifras del informe pueden estar desactualizadas.** Pulse **Actualizar** para recalcular con las reglas vigentes.
+- Si va a otra subsección para usar **Probar regla** o para editar reglas, el informe conserva sus cifras y no se recalcula hasta que pulse **Actualizar**.
+
+### Mensajes del informe
+
+| Mensaje | Qué hacer |
+|---------|-----------|
+| **Calculando la comisión…** | El cálculo está en curso. Espere. |
+| **Sin ventas ni recaudo en el periodo** | Cambie el periodo y pulse **Consultar**. |
+| **No se puede calcular para este vendedor** | El tercero tiene más de un registro de vendedor en la compañía. Pida que se revise el dato antes de consultar el informe. |
+| **Vendedor no disponible** | El vendedor de la ficha ya no está disponible en la compañía. Revise el maestro de vendedores. |
+| **No tiene permiso para ver el informe de comisión calculada.** | Las reglas siguen disponibles en las otras subsecciones. Pida el permiso a un administrador. |
+| **Las reglas cambiaron** | Pulse **Actualizar**. |
 
 ---
 
@@ -273,6 +332,8 @@ Ejemplo del aviso cuando una regla se cruza con otra vigente:
 | Permiso | Qué ve |
 |---------|--------|
 | Consultar **Comisiones de vendedores** | Las reglas de las subsecciones, sin botones de cambio. Aparece el aviso **Solo puede consultar las reglas. Para crearlas o cambiarlas pida el permiso a un administrador.** |
+| Consultar **Comisiones de vendedores** y **Comisión calculada** | Además, la subsección **Informe**. |
+| Consultar **Comisión calculada** y **Exportar** en esa opción | Además, en el **Informe**, los botones **Exportar Excel** y **Exportar PDF**. |
 | Crear o Actualizar **Comisiones de vendedores** | Los botones **Registrar**, **Nueva**, **Definir**, **Editar** y **Guardar regla**. |
 | Eliminar (dar de baja) **Comisiones de vendedores** | El botón **Dar de baja**. |
 | Actualizar **Comisiones de vendedores** | Además, la subsección **Valores por defecto de la compañía**. |
@@ -285,6 +346,8 @@ Sin permiso de consulta, la pestaña no aparece.
 
 Si otra persona guarda o da de baja una regla de este vendedor mientras usted tiene la pestaña abierta, verá el aviso **Otro usuario modificó las reglas**, con el texto **Los datos que ve pueden estar desactualizados**. Pulse **Actualizar** para recargar las reglas.
 
+En la subsección **Informe** el aviso es **Las reglas cambiaron**. Pulse **Actualizar** para recalcular el informe. Ver [Cuando cambian las reglas](#cuando-cambian-las-reglas).
+
 ---
 
 ## Preguntas frecuentes
@@ -294,6 +357,12 @@ Ninguna regla vigente aplica a esa venta en la fecha del documento. Revise la ta
 
 **¿Por qué no cambió la comisión al editar la tarifa general?**
 Revise si existe una excepción por cliente o una regla por referencia para esa venta. Lo específico manda sobre lo general.
+
+**¿Por qué no veo la subsección Informe?**
+Además de **Comisiones de vendedores**, necesita el permiso para consultar **Comisión calculada**. Pida el acceso a un administrador.
+
+**¿Por qué el informe no cambió después de editar una regla?**
+El informe no se recalcula solo. Cuando el aviso **Las reglas cambiaron** aparezca, pulse **Actualizar**.
 
 **¿Puedo tener dos tarifas generales vigentes?**
 No. Solo puede haber una vigente a la vez.
