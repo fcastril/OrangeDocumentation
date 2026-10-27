@@ -33,3 +33,17 @@ Comando: `gh workflow run "Manual capturas" -f manifiesto=<manifiesto> -f public
 | `10-comision-calculada.png` | `comisiones/comision-calculada.md` |
 | `11-comision-lineas-sin-regla.png` | `comisiones/comision-calculada.md` |
 | `12-comision-exportar.png` | `comisiones/comision-calculada.md` |
+
+## Manifiesto `ventas-pedidos` → `v2026/ventas/recursos/img/ventas-pedidos/`
+
+| Imagen | Manual que la usa |
+|--------|-------------------|
+| `00-listado.png` … `23-imprimir-no-imprimible.png` (24 capturas del manifiesto) | `movimientos/pedidos.md` |
+
+## Manifiesto `ventas-pedidos-importar` → `v2026/ventas/recursos/img/ventas-pedidos-importar/`
+
+| Imagen | Manual que la usa |
+|--------|-------------------|
+| `01-cargar-archivo.png` … `10-error-servidor.png` (10 capturas del manifiesto) | `movimientos/pedidos-importar.md` |
+
+Comandos: `gh workflow run "Manual capturas" -f manifiesto=ventas-pedidos -f publicar=true` y `gh workflow run "Manual capturas" -f manifiesto=ventas-pedidos-importar -f publicar=true`.
