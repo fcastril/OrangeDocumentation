@@ -88,7 +88,9 @@ Puede asignar a este vendedor las sucursales de la lista. La asignación se hace
 5. Opcional: escriba un **Motivo** (hasta 200 caracteres). Queda en la bitácora.
 6. Pulse **Asignar**.
 
-*(captura pendiente: selección de sucursales con casillas, y el diálogo de confirmación)*
+![Clientes no asignados con la columna Elegir y el botón Asignar a este vendedor deshabilitado](../recursos/img/vendedores-asignacion/01-no-asignados-casillas.png)
+
+![Diálogo Asignar sucursales a este vendedor con la casilla de confirmación marcada y el botón Asignar habilitado](../recursos/img/vendedores-asignacion/02-dialogo-confirmacion.png)
 
 ### Si una sucursal ya tiene otro vendedor
 
@@ -96,7 +98,7 @@ Si alguna sucursal marcada ya la atiende otro vendedor, el diálogo muestra el a
 
 Para continuar, marque la casilla **Confirmo que quiero reasignar estas sucursales**. Sin esa casilla no se puede asignar.
 
-*(captura pendiente: aviso de reasignación en el diálogo)*
+![Diálogo con el aviso Hay sucursales que ya tienen otro vendedor, la casilla de confirmación sin marcar y el botón Asignar deshabilitado](../recursos/img/vendedores-asignacion/03-dialogo-aviso-reasignacion.png)
 
 ### Reglas de la asignación
 
