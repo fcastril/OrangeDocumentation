@@ -29,6 +29,7 @@ Consultas de solo lectura del menú **Consultas/Reportes**. Todos exportan a Exc
 ## Maestros
 
 - [Proveedores](maestros/proveedores.md): incluye la pestaña **Cartera** (saldos de cada proveedor a una fecha de corte, documentos, historia y exportación a Excel).
+  - Envío a SIIGO: el proveedor se envía solo al guardar y el botón **Enviar a SIIGO** sirve para reenviarlo (sección *Enviar a SIIGO* del manual).
 - [Compradores](maestros/compradores.md)
 - [Cartera de proveedores](maestros/cartera-proveedores.md): manual de la pestaña Cartera de Proveedores (Saldos, documentos, historia y Dashboard), con acceso por la opción Cartera Terceros.
 - [Importar referencias compradas a un proveedor](maestros/proveedores-importar-referencias.md): trae al catálogo del proveedor lo que se le compró o gastó, con el código con el que el proveedor identifica cada referencia y el último valor.

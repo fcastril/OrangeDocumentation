@@ -123,6 +123,116 @@ Si otro usuario modificó el mismo proveedor mientras lo edita, vea *Cambios de 
 
 ---
 
+## 🧾 Enviar a SIIGO
+
+Si la compañía factura electrónicamente con **SIIGO** y la integración está habilitada, cada proveedor puede enviarse a SIIGO para que sus documentos (por ejemplo, el documento soporte de Gastos) lo encuentren allá. Si la compañía no tiene esa facturación habilitada, no verá el botón.
+
+### Se envía solo al guardar
+
+No tiene que hacer nada para que el proveedor llegue a SIIGO. Después de hacer clic en **Guardar**, el sistema lo envía en segundo plano cuando:
+
+- crea un **proveedor nuevo**;
+- cambia un dato que viaja a SIIGO: documento, nombre, nombre comercial, tipo de persona, régimen de IVA, correo, teléfono o celular, dirección, ciudad, código postal u observaciones;
+- convierte un tercero en **proveedor**.
+
+No se envía si cambia solo otros datos, como los días de plazo o si el proveedor pasa de activo a inactivo.
+
+El guardado nunca depende de SIIGO: aunque SIIGO no responda, el proveedor queda guardado. Si el envío no sale, puede reenviarlo con el botón **Enviar a SIIGO**.
+
+### Cuándo usar el botón
+
+El botón **Enviar a SIIGO** sirve para **reenviar** el proveedor. Úselo cuando:
+
+- un envío anterior **falló** y ya corrigió el dato que faltaba;
+- quiere asegurarse de que SIIGO tiene los datos actuales del proveedor en Orange.
+
+Si pulsa el botón y no hay cambios, el sistema igual envía y le avisa el resultado (aunque sea *Sin cambios*).
+
+### Requisitos
+
+- Tener el permiso **Actualizar** sobre la opción Proveedores de Gastos (99). Sin ese permiso el botón no aparece.
+- Tener habilitada la **facturación electrónica con SIIGO** para la compañía. Si no está habilitada, el botón no aparece. Si la necesita, pida al administrador que la configure.
+- Que el proveedor esté **guardado**: en un proveedor nuevo sin guardar el botón no aparece.
+
+### Cómo reenviar un proveedor
+
+1. Abra la ficha del proveedor con el **lápiz** y entre en edición.
+2. Si tiene cambios sin guardar, haga clic en **Guardar**. Mientras haya cambios sin guardar, el botón **Enviar a SIIGO** queda deshabilitado y un texto le recuerda guardar primero.
+3. Haga clic en **Enviar a SIIGO**. Mientras la solicitud se entrega, el botón muestra *Enviando a SIIGO…* y no se puede pulsar otra vez.
+4. Cuando la solicitud queda registrada, aparece un aviso *Enviando a SIIGO…* y el botón vuelve a quedar disponible.
+
+![Ficha con el botón Enviar a SIIGO disponible](../recursos/img/proveedor-enviar-siigo/01-habilitado.png)
+
+![Botón deshabilitado mientras hay cambios sin guardar](../recursos/img/proveedor-enviar-siigo/02-cambios-sin-guardar.png)
+
+[captura pendiente: proveedor-enviar-siigo-mensajes-en-la-ficha]
+
+> 💡 La ficha no muestra el resultado final. El resultado llega a sus **notificaciones** (el icono de campana), con el nombre del proveedor y un enlace a su ficha. Puede seguir trabajando mientras tanto.
+
+Si aparece un mensaje de error rojo debajo de la barra de botones, el envío no se registró. Lea el mensaje, corríjalo si puede y vuelva a intentarlo (ver la tabla *Mensajes en la ficha*).
+
+### Mensajes en la ficha
+
+| Mensaje | Qué significa | Qué hacer |
+|---------|---------------|-----------|
+| El envío a SIIGO no está habilitado para esta compañía. | La facturación electrónica con SIIGO no está habilitada. | Pida al administrador que la habilite. |
+| Este proveedor ya no existe en la compañía. | El proveedor fue eliminado o no pertenece a esta compañía. | Vuelva al listado y busque el proveedor de nuevo. |
+| No se pudo enviar la solicitud. | Falló la conexión o hubo un problema del sistema. | Espere un momento e inténtelo de nuevo. |
+
+### Avisos del resultado (notificaciones)
+
+Cuando SIIGO termina de procesar el envío, recibe un aviso con el nombre del proveedor como título:
+
+| Aviso | Qué significa | Qué hacer |
+|-------|---------------|-----------|
+| **Creado** | El proveedor no existía en SIIGO y se creó. | Nada. |
+| **Actualizado** | El proveedor ya existía en SIIGO y se actualizaron los datos que cambiaron. | Nada. |
+| **Sin cambios** | SIIGO ya tenía los mismos datos. No se cambió nada. | Nada. |
+| **Datos inválidos** | Faltan datos o tienen un formato que SIIGO no acepta. El aviso indica cuáles: documento, tipo de documento, nombre, correo, teléfono, dirección, ciudad o sucursal. **No se envió nada a SIIGO.** | Corrija esos campos en la ficha, guarde y use **Enviar a SIIGO**. |
+| **Fallido** | SIIGO no aceptó el envío. El aviso trae el motivo. | Lea el motivo, corrija lo que aplique y reenvíe desde la ficha. Vea *Motivos del aviso fallido*. |
+
+[captura pendiente: proveedor-enviar-siigo-avisos-notificaciones]
+
+### Motivos del aviso fallido
+
+- **SIIGO rechazó un dato** (por ejemplo, un correo o un nombre que no acepta): corrija el dato en la ficha, guarde y reenvíe.
+- **SIIGO no permite cambiar el proveedor** (el aviso lo indica como no editable): revise el proveedor en SIIGO, corrija allá lo que haga falta y luego reenvíe desde la ficha de Orange.
+- **Sin conexión o SIIGO no respondió**: el sistema ya lo intentó varias veces. Espere y reenvíe más tarde.
+- **La conexión con SIIGO no es válida**: avise al administrador. No hay nada que corregir en la ficha.
+
+### Proveedor que también es cliente
+
+Un tercero puede ser cliente y proveedor a la vez. SIIGO guarda **un solo registro** para ese tercero:
+
+- si ya existía como **cliente**, sigue siendo cliente en SIIGO; el envío como proveedor no le quita ese papel;
+- si un cambio afecta a los dos papeles, se envían los dos: cliente y proveedor.
+
+Si SIIGO no permite usar ese registro en un documento de compra, el contador debe revisar su tipo en SIIGO.
+
+### ¿Qué no hace el envío?
+
+- No borra ni inactiva el proveedor en SIIGO cuando lo borra en Orange.
+- No trae datos de SIIGO a Orange: solo envía los de Orange.
+
+### ❓ Preguntas frecuentes de envío a SIIGO
+
+**¿Tengo que enviar el proveedor cada vez que lo guardo?**
+No. Se envía solo cuando cambia un dato que viaja a SIIGO. Use el botón para reenviar.
+
+**¿Por qué no veo el botón Enviar a SIIGO?**
+Puede faltarle el permiso **Actualizar** sobre Proveedores, la facturación electrónica con SIIGO no está habilitada para la compañía, o el proveedor es nuevo y aún no está guardado.
+
+**¿Por qué el botón está apagado?**
+Hay cambios sin guardar. Haga clic en **Guardar** y vuelva a intentarlo.
+
+**¿Dónde veo si el último envío salió bien?**
+La ficha no guarda el resultado. Revise sus notificaciones (campana): ahí llegan los avisos *Creado*, *Actualizado*, *Sin cambios*, *Datos inválidos* o *Fallido*.
+
+**¿Cuánto tarda?**
+Depende de SIIGO. No necesita quedarse en la pantalla: el aviso llega cuando termina.
+
+---
+
 ## 📇 Contactos
 
 Los contactos se agregan dentro de la pestaña **Contactos** de la ficha del proveedor.
