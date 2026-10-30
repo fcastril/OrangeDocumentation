@@ -140,8 +140,8 @@ Cada fila tiene botones con nombre, por ejemplo **Anular FV-1205**. Aparecen sol
 | **Editar** | Documentos abiertos, con el periodo abierto y sin documentos dependientes. |
 | **Reenviar a la DIAN** | Facturas pendientes de enviar o con error. |
 | **Crear nota crédito o devolución** | Facturas transmitidas a la DIAN. |
-| **Anular** | Documentos que todavía se pueden anular. |
-| **Eliminar** | Documentos sin documentos dependientes ni factura transmitida. |
+| **Anular** | Documentos que todavía se pueden anular, es decir, que no estén transmitidos ni con el envío en cola. |
+| **Eliminar** | Documentos sin documentos dependientes, sin factura transmitida y sin envío en cola. |
 
 Para ver el detalle de un documento, haga clic en su número o en **Ver**.
 
@@ -285,7 +285,7 @@ En la parte de abajo del documento están los **totales**: Cantidad, Bruto, Desc
 - Las retenciones se aplican solo cuando el subtotal llega a la **base** de cada impuesto.
 - Los totales **no incluyen las líneas que todavía no se guardaron**, y la pantalla lo dice.
 
-Los campos **Seguro y flete** y **Otros valores** se suman al total. En un tipo de **factura electrónica** no se permiten: quedan en 0 y la pantalla lo avisa con *Este tipo es de facturación electrónica: fletes y otros valores no se permiten y se pusieron en 0.*
+Los campos **Seguro y flete** y **Otros valores** se suman al total. En un tipo de **factura electrónica** no existen: no se pueden usar, quedan en 0 y la pantalla lo avisa con *Este tipo es de facturación electrónica: fletes y otros valores no se permiten y se pusieron en 0.*
 
 ---
 
@@ -400,13 +400,13 @@ Estas tres acciones tienen efectos distintos. Elija según el caso:
 
 | Acción | Cuándo se usa | Qué pasa |
 |--------|---------------|----------|
-| **Anular** | El documento se emitió por error y todavía no fue transmitido a la DIAN. | El documento queda **anulado**, con su motivo, su usuario y la fecha. Deja de afectar inventario, cartera y contabilidad. Se conserva para consulta. |
+| **Anular** | El documento se emitió por error y todavía no fue transmitido a la DIAN ni tiene el envío en cola. | El documento queda **anulado**, con su motivo, su usuario y la fecha. Deja de afectar inventario, cartera y contabilidad. Se conserva para consulta. |
 | **Eliminar** | El documento no debe existir y no tiene documentos dependientes. | Se borra de forma definitiva, con sus líneas, sus registros contables y sus adjuntos. **No se puede deshacer.** |
 | **Crear nota crédito o devolución** | La factura ya fue transmitida a la DIAN. | Se crea un documento nuevo que corrige o devuelve la venta. La factura original no cambia. |
 
 ### Anular
 
-> ⚠️ Si la factura electrónica está **en cola** (el envío está en curso), consulte con su administrador antes de anular el documento.
+> ⚠️ **Factura electrónica en cola.** Mientras la factura está **en cola**, no se puede anular ni eliminar: la pantalla oculta esos botones y muestra *El envío de la factura electrónica está en curso; espere a que termine o falle para anular.* Cuando el envío termina o falla, los botones reaparecen según el estado del documento.
 
 1. Haga clic en **Anular** (en el documento o en la fila).
 2. Escriba el **Motivo de la anulación** (de 1 a 200 caracteres, sin comas ni punto y coma).
@@ -425,6 +425,8 @@ Antes de anular, la pantalla revisa si el documento puede anularse. Si no puede,
 ![Eliminar con confirmación](../recursos/img/ventas-devoluciones/22-eliminar.png)
 
 Si el documento ya tiene movimiento contable, la pantalla le recomienda **anularlo** en lugar de eliminarlo.
+
+> ⚠️ **Factura electrónica en cola.** Mientras la factura está **en cola**, no se puede anular ni eliminar: la pantalla oculta esos botones y muestra *El envío de la factura electrónica está en curso; espere a que termine o falle para eliminar.* Cuando el envío termina o falla, los botones reaparecen según el estado del documento.
 
 ### Crear nota crédito o devolución
 
@@ -477,7 +479,7 @@ La nota crédito toma el cliente, la sucursal, el vendedor y las líneas de la f
 <a id="fe"></a>
 ## 🧾 Facturación electrónica
 
-La factura electrónica se envía a la DIAN a través del **proveedor tecnológico** de la compañía. El envío se hace **en segundo plano**: ni cerrar, ni imprimir, ni consultar esperan a la DIAN.
+La factura electrónica se envía a la DIAN a través del **proveedor tecnológico** de la compañía. Cuando el tipo de documento es de factura electrónica y la compañía tiene su proveedor configurado, **al cerrar el documento el envío queda en cola**. El envío se hace **en segundo plano**: ni cerrar, ni imprimir, ni consultar esperan a la DIAN.
 
 ### Seguir el estado
 
@@ -493,6 +495,8 @@ En el documento, el bloque **Factura electrónica** muestra:
 ### Reenviar a la DIAN
 
 Use **Reenviar a la DIAN** cuando la factura esté **pendiente de enviar** o **con error**. El diálogo le dice que el envío se hace en segundo plano y que le avisará cuando responda.
+
+Si la factura ya está **transmitida a la DIAN**, solo un **administrador de la compañía** puede verificarla en el proveedor y reenviarla (ver [Verificar en el proveedor](#fe)).
 
 Si el sistema reenvía muchas veces seguidas, la pantalla le pide esperar unos segundos.
 
@@ -689,12 +693,15 @@ Abra el documento y lea el **Motivo** del bloque **Factura electrónica**. Si di
 **¿Por qué la tirilla sale sin CUFE?**
 Porque el CUFE se consulta al proveedor tecnológico, y la impresión no espera. Si el proveedor no respondió a tiempo, o la factura todavía no está transmitida, la tirilla sale igual. Cuando el proveedor responda, use **Ver CUFE** en el documento.
 
+**¿Por qué no aparece el botón Anular o Eliminar?**
+Si la factura electrónica está **en cola**, el envío está en curso y no se puede anular ni eliminar: espere a que termine o falle. Cuando el envío termina o falla, los botones reaparecen según el estado del documento. Si la factura está **transmitida a la DIAN**, use una nota crédito o una devolución.
+
 **¿Cuál es la diferencia entre anular y nota crédito?**
 - **Anular** deja sin efecto un documento que todavía no fue transmitido a la DIAN. Queda anulado, con su motivo.
 - **Nota crédito** es un documento nuevo que corrige una factura ya transmitida. La factura original no cambia, y la nota se envía a la DIAN.
 
 **¿Puedo cambiar fletes o otros valores en una factura electrónica?**
-No. En un tipo de factura electrónica quedan en 0.
+No. En un tipo de factura electrónica estos valores no existen y quedan en 0.
 
 **¿Por qué no aparece el botón Seleccionar remisiones?**
 Falta completar el tipo, la fecha, el cliente o la sucursal.
