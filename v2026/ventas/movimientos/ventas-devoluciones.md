@@ -406,6 +406,8 @@ Estas tres acciones tienen efectos distintos. Elija según el caso:
 
 ### Anular
 
+> ⚠️ Si la factura electrónica está **en cola** (el envío está en curso), consulte con su administrador antes de anular el documento.
+
 1. Haga clic en **Anular** (en el documento o en la fila).
 2. Escriba el **Motivo de la anulación** (de 1 a 200 caracteres, sin comas ni punto y coma).
 3. Haga clic en **Anular documento**.
@@ -455,6 +457,8 @@ Reglas:
 ### Nota crédito electrónica
 
 Una **nota crédito** corrige una factura electrónica ya transmitida a la DIAN.
+
+> 💡 Por ahora la nota crédito se crea desde una factura transmitida. Crear una nota crédito desde cero llegará después.
 
 1. Haga clic en **Crear nota crédito o devolución** y elija **Crear nota crédito**.
 2. Elija el **Motivo (DIAN)**. Es obligatorio. Los motivos son:
@@ -606,7 +610,43 @@ Un documento **abierto** solo tiene **vista previa**. La vista sale marcada como
 <a id="adjuntos"></a>
 ## 📎 Adjuntos
 
-<!-- ADJUNTOS: completar -->
+El bloque **Adjuntos** guarda archivos de soporte del documento (PDF, imágenes, Word o Excel). Cada documento tiene un cupo de **10 MB** en total; la pantalla muestra cuánto lleva usado (*n de 10 MB usados*).
+
+### Agregar y quitar
+
+Solo puede **agregar** y **quitar** adjuntos mientras el documento está **abierto**.
+
+1. En la pestaña **Adjuntos** del documento, o en el bloque **Adjuntos** de la captura, elija el archivo.
+2. Escriba la **Descripción** (obligatoria, hasta 200 caracteres).
+3. Haga clic en **Agregar a la lista** (en la captura) o en **Adjuntar** (en la pestaña).
+
+En la captura, los archivos quedan en la lista **Se subirán al guardar el documento** y se suben al guardar. Lo mismo pasa si el documento se crea con **Seleccionar remisiones**. Mientras espera, el archivo aparece como *Pendiente de subir*.
+
+Para quitar un adjunto, haga clic en **Quitar** junto al archivo. La pantalla pide confirmación: *Vas a quitar «nombre» del documento. No se puede deshacer.* Confirme con **Quitar adjunto**.
+
+Para **ver** o **descargar** un adjunto, use **Ver** junto al archivo. Esto se puede hacer en cualquier estado del documento.
+
+### Solo lectura
+
+Los adjuntos quedan en solo lectura, aunque pueda verlos, cuando el documento está:
+
+- **cerrado**: *Documento cerrado: los adjuntos se pueden ver, pero no agregar ni quitar.*
+- **anulado**: *Documento anulado: los adjuntos se pueden ver, pero no agregar ni quitar.*
+- **enviado a la DIAN**: *Documento enviado a la DIAN: no se puede modificar. Los adjuntos solo se pueden ver.*
+
+Si su usuario no tiene permiso para cambiar los adjuntos, la pantalla lo dice: *No tienes permiso para cambiar los adjuntos de este documento.*
+
+### Si una subida falla
+
+Si un adjunto no se sube, **el documento no se deshace**: queda guardado. La pantalla avisa *El documento se guardó, pero N adjuntos no se pudieron subir* y ofrece **Reintentar** para cada archivo, o **Descartar** si ya no lo necesita. También puede reintentarlos desde la pestaña **Adjuntos**.
+
+Un archivo que supera el cupo, de un tipo no permitido o con una descripción no válida no se sube, y la pantalla le dice por qué.
+
+### Al eliminar el documento
+
+Si elimina el documento, también se borran sus adjuntos. El diálogo de eliminar le dice cuántos adjuntos se borrarán (ver [Eliminar](#anular)).
+
+<!-- CAPTURA PENDIENTE: adjuntos -->
 
 ---
 

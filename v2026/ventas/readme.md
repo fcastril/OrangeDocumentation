@@ -10,6 +10,7 @@ Manuales de las pantallas de Ventas en la nueva versión.
 
 - [Pedidos](movimientos/pedidos.md): pedidos de venta al cliente, con su captura por línea y por matriz de tallas y colores, cierre, anulación, despacho, impresión y lo que comprometen de inventario.
 - [Importar pedidos desde Excel](movimientos/pedidos-importar.md): carga de varios pedidos nuevos desde una hoja de Excel, con vista previa y resultado.
+- [Ventas y devoluciones](movimientos/ventas-devoluciones.md): ventas, devoluciones y notas crédito, con su captura, cierre, factura electrónica, anulación e impresión.
 
 ## Maestros
 
