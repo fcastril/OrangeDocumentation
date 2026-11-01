@@ -224,7 +224,7 @@ Si el cliente tiene retenciones, la tarjeta **Retenciones del cliente** muestra 
 
 En una venta no hay botón *Guardar documento*. **Cada línea se guarda cuando la confirma.** Así, si la red falla, solo se pierde la línea que estaba escribiendo.
 
-La fila de captura está en la tarjeta **Detalle**. Tiene estos campos, en este orden. Con **Enter** pasa al siguiente campo; en el último, guarda la línea:
+La fila de captura está en la tarjeta **Detalle**. Tiene estos campos, en este orden. Con **Enter** pasa al siguiente campo; en el último, guarda la línea: Según el ancho de la pantalla, la fila se acomoda en dos filas (o en tres si hay atributos o lote), sin cambiar el orden de los campos; en una pantalla angosta va un campo por línea.
 
 | Orden | Campo | Regla |
 |-------|-------|-------|
@@ -339,7 +339,7 @@ Si el código corresponde a **varias variantes** (por ejemplo, talla o color), l
 <a id="autorizacion"></a>
 ### Precio fuera de lo permitido (autorización del administrador)
 
-Si el valor que escribe no está permitido para su usuario, la línea no se guarda y la pantalla abre el diálogo **Autorización del administrador**. Dice el valor que intentó, el precio de la lista y el rango que se acepta, por ejemplo: *El valor ... no está permitido para tu usuario. Precio de lista ...; se acepta entre ... y ....*
+Si el valor que escribe no está permitido para su usuario, la línea no se guarda y la pantalla abre el diálogo **Autorización del administrador**. Dice el valor que intentó y el precio de la lista, por ejemplo: *El valor ... no está permitido para tu usuario. Precio de lista ...; solo se acepta ese valor.* Un usuario que no es administrador solo puede dejar el valor de la lista (sin redondeos), y nunca por debajo del costo. Si el valor viene de un **pedido**, de una **remisión** o de la **factura de origen**, se acepta tal cual, sin pedir autorización.
 
 Para seguir, un administrador escribe **su** usuario y **su** clave en el diálogo, y puede escribir un **Motivo** (hasta 200 caracteres). Después haga clic en **Solicitar autorización**.
 
