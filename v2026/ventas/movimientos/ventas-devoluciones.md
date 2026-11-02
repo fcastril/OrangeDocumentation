@@ -10,7 +10,7 @@
 ![Static Badge](https://img.shields.io/badge/Opcion-VentasDevoluciones-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
-![Static Badge](https://img.shields.io/badge/Actualizacion-20261031-yellow)
+![Static Badge](https://img.shields.io/badge/Actualizacion-20261102-yellow)
 
 ---
 
@@ -71,6 +71,8 @@ Los botones que ve dependen de los permisos de su usuario y del estado del docum
 
 ![Listado de ventas y devoluciones](../recursos/img/ventas-devoluciones/00-listado.png)
 
+*(captura pendiente de actualizar: no muestra el filtro «Tipo de movimiento»)*
+
 En la parte de arriba están los botones de la pantalla:
 
 - **Documentos abiertos (N)**: abre el menú de sus documentos abiertos (ver [Varios documentos abiertos](#abiertos)).
@@ -101,6 +103,7 @@ Los filtros están arriba de la tabla y quedan en la dirección de la página, p
 
 - **Desde** y **Hasta**: fechas del documento. Por defecto es el mes en curso.
 - **Naturaleza**: *Venta*, *Devolución* o *Nota crédito*.
+- **Tipo de movimiento**: puede elegir **varios tipos a la vez**. Cada tipo aparece como una ficha con su código y nombre (*Código - Nombre*). Se pueden elegir hasta 50 tipos. El filtro se conserva con los demás filtros de la página, y **Limpiar filtros** lo quita.
 - **Estado**: *Abierta*, *Cerrada* o *Anulada*.
 - **Factura electrónica**: *Pendiente de enviar*, *En cola*, *Transmitida a la DIAN* o *Error al enviar*. Para filtrar por factura electrónica debe indicar **Desde** y **Hasta**, con un rango de no más de 366 días.
 - **Cliente**: por documento o nombre.
@@ -228,7 +231,7 @@ La fila de captura está en la tarjeta **Detalle**. Tiene estos campos, en este 
 
 | Orden | Campo | Regla |
 |-------|-------|-------|
-| 1 | **Código** | Código de barras o referencia. Lea el código con el lector o escríbalo y pulse Enter. A su lado, la **lupa** abre el buscador de referencias y variantes, y el botón **Matriz** aparece cuando la referencia tiene varias variantes. |
+| 1 | **Código** | Código de barras, EAN o referencia (el campo dice *Código, EAN o descripción*). Lea el código con el lector o escríbalo y pulse Enter. El campo tiene ancho para leer completo un código EAN-13. A su lado, el botón **Buscar** (lupa con la palabra *Buscar*) abre el buscador de referencias y variantes, y el botón **Matriz** aparece cuando la referencia tiene varias variantes. |
 | 2 | **Atributo principal** | Aparece cuando la referencia tiene variantes (por ejemplo, talla o color). |
 | 3 | **Atributo secundario** | Igual que el principal. |
 | 4 | **% Dto.** | De 0 a 100. Aparece si el tipo liquida descuento. Se precarga con el descuento por defecto. |
@@ -246,7 +249,17 @@ La fila de captura está en la tarjeta **Detalle**. Tiene estos campos, en este 
 
 ![Fila de captura](../recursos/img/ventas-devoluciones/39-fila-de-captura.png)
 
+*(captura pendiente de actualizar: muestra la lupa sin el texto «Buscar», el texto anterior del campo Código y sin la confirmación «CÓDIGO · Nombre»)*
+
 Para guardar una línea necesita elegir la **bodega** (la pantalla dice *Elige la bodega para agregar la línea*). Si el tipo exige **centro de costos**, también debe elegirlo.
+
+Bajo el campo **Código** la pantalla confirma lo que encontró:
+
+- **CÓDIGO · Nombre**: la referencia tiene una sola variante.
+- **CÓDIGO · Nombre · N variantes**: la referencia tiene varias. Elija la variante con los atributos o con **Matriz**.
+- **Código no encontrado: …**: no hay confirmación; corrija el código.
+
+La confirmación desaparece al limpiar la fila.
 
 El **IVA** de la fila aparece con el de la referencia y puede cambiarlo:
 
@@ -262,7 +275,7 @@ Si el valor queda fuera de lo que su usuario puede usar, la pantalla pide la aut
 
 ### Buscar una referencia o una variante
 
-La **lupa** abre el buscador **Buscar referencia o variante**. Busque por código o nombre y elija la referencia o la variante de la lista.
+El botón **Buscar** (lupa con la palabra *Buscar*), junto al campo **Código**, abre el buscador **Buscar por descripción o código**. Busque por código o nombre y elija la referencia o la variante de la lista.
 
 ### Atajos de teclado
 
@@ -286,11 +299,12 @@ Cuando una referencia tiene varias variantes, el botón **Matriz** abre la matri
 ![Matriz de variantes](../recursos/img/ventas-devoluciones/43-matriz-variantes.png)
 
 - **Valor** y **Descuento** son comunes a todas las celdas. El valor se muestra con separador de miles. Si el valor está vacío o es 0, cada línea toma el valor sugerido de su lista.
-- Las **filas** son el atributo secundario y las **columnas** son el atributo principal. Cada celda tiene su cantidad y su existencia (*Exist.*).
+- Las **filas** son el atributo secundario y las **columnas** son el atributo principal. Cada celda tiene su cantidad y la existencia de esa variante en la bodega que tiene la fila de captura (*Exist.*).
 - Las celdas **grises** (*No disponible*) son combinaciones que no existen. Las celdas **rojas** no tienen existencia y son de solo lectura, porque la salida no admite saldo negativo.
 - La cantidad no puede superar la existencia de la celda (*La cantidad supera la existencia*).
 - El pie dice cuántas líneas y cuántas unidades se van a guardar, por ejemplo *Se guardarán 5 líneas con 12 unidades en una sola operación*.
-- **Aceptar** guarda todas las líneas en una sola operación. **Cancelar** cierra la matriz sin guardar nada.
+- **Aceptar** guarda todas las líneas en una sola operación. Después, la captura queda limpia, igual que al agregar una línea normal: el código queda vacío y el cursor va a **Código**.
+- **Cancelar** cierra la matriz sin guardar nada.
 
 ### Estados de cada línea
 
@@ -360,10 +374,11 @@ En la parte de abajo del documento están los **totales**: Cantidad, Bruto, Desc
 - Las retenciones se aplican solo cuando el subtotal llega a la **base** de cada impuesto.
 - Los totales **no incluyen las líneas que todavía no se guardaron**, y la pantalla lo dice.
 
-Mientras captura, los totales están en una **barra compacta** llamada **Total General**, pegada al pie de la pantalla. La barra no tapa botones ni el paginador de las líneas. Desde ella puede:
+Mientras captura, los totales están en un **cuadro flotante** llamado **Total General**: una barra compacta, de naranja a azul, que queda pegada al borde inferior de la pantalla mientras se desplaza el documento. Va debajo de las líneas y de su paginador, así que no tapa botones. Es el mismo cuadro en todos los documentos de la aplicación. Desde él puede:
 
-- **Ver desglose**: abre el detalle de los totales. **Ocultar desglose** lo cierra.
-- Cerrar la barra con su botón de cierre (**Ocultar totales**). Para volver a verla, use **Mostrar valores**.
+- **Ver desglose**: abre el detalle de los totales. **Ocultar desglose** lo pliega. En el desglose no aparecen las retenciones que están en cero.
+- Cerrar el cuadro con su botón de cierre (**Ocultar totales**). Para volver a verlo, use **Mostrar valores**.
+- Si hay líneas sin guardar, el cuadro avisa que los totales no las incluyen, aunque el desglose esté plegado.
 
 ![Barra Total General](../recursos/img/ventas-devoluciones/44-total-general.png)
 
@@ -662,13 +677,24 @@ Para elegir otro formato o papel, use **Otras opciones** en el documento. Se abr
 | **Tirilla de texto** | Papel de 80 mm, solo texto, con la fecha y hora de creación, y el CUFE si existe. |
 | **PDF oficial de la factura electrónica** | El PDF que entrega el proveedor tecnológico, con CUFE y QR. Solo con la factura transmitida. |
 
-Si el tipo de documento no tiene un formato propio, la pantalla usa **Carta estándar**.
+Si el tipo de documento no tiene un formato propio, la pantalla usa **Carta estándar**. En un tipo de factura electrónica sin formato propio, la impresión sigue otra regla (ver [PDF del proveedor](#pdf-proveedor)).
 
 ![Carta compacta](../recursos/img/ventas-devoluciones/32-carta-compacta.png)
 
 ![Tirilla con logo de 80 mm](../recursos/img/ventas-devoluciones/33-tirilla-con-logo.png)
 
 ![Tirilla de texto con opciones](../recursos/img/ventas-devoluciones/34-tirilla-de-texto.png)
+
+### Factura electrónica sin formato propio: PDF del proveedor
+
+<a id="pdf-proveedor"></a>
+
+Si el tipo es de **factura electrónica** y **no tiene un formato propio** configurado, **Imprimir** usa el PDF oficial que entrega el proveedor tecnológico, siempre que la factura ya esté transmitida:
+
+- **PDF del proveedor disponible**: se abre en una pestaña nueva y la pantalla dice *PDF oficial del proveedor abierto en otra pestaña.* Esta impresión no cuenta como impresión local.
+- **PDF del proveedor todavía no disponible** (por ejemplo, la factura no se ha enviado), o el proveedor no responde: se imprime el formato propio del tipo (o **Carta estándar**, si el tipo no tiene uno).
+
+La impresión nunca espera al proveedor tecnológico. Si el tipo tiene un formato propio, **Imprimir** siempre usa ese formato.
 
 ### Original y copia
 
