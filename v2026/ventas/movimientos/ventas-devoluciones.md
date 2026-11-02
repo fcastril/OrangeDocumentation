@@ -227,11 +227,13 @@ Si el cliente tiene retenciones, la tarjeta **Retenciones del cliente** muestra 
 
 En una venta no hay botón *Guardar documento*. **Cada línea se guarda cuando la confirma.** Así, si la red falla, solo se pierde la línea que estaba escribiendo.
 
+> 💡 **Existencias.** Solo los tipos de movimiento con **Inventarios** activo mueven existencias de la bodega. Un tipo sin esa marca (por ejemplo, de factura electrónica o de contado) no descuenta existencias.
+
 La fila de captura está en la tarjeta **Detalle**. Tiene estos campos, en este orden. Con **Enter** pasa al siguiente campo; en el último, guarda la línea: Según el ancho de la pantalla, la fila se acomoda en dos filas (o en tres si hay atributos o lote), sin cambiar el orden de los campos; en una pantalla angosta va un campo por línea.
 
 | Orden | Campo | Regla |
 |-------|-------|-------|
-| 1 | **Código** | Código de barras, EAN o referencia (el campo dice *Código, EAN o descripción*). Lea el código con el lector o escríbalo y pulse Enter. El campo tiene ancho para leer completo un código EAN-13. A su lado, el botón **Buscar** (lupa con la palabra *Buscar*) abre el buscador de referencias y variantes, y el botón **Matriz** aparece cuando la referencia tiene varias variantes. |
+| 1 | **Código** | Código de barras, EAN o referencia (el campo dice *Código, EAN o descripción*). Lea el código con el lector o escríbalo y pulse Enter. El campo tiene ancho para leer completo un código EAN-13. A su lado, el botón de **lupa** abre el buscador de referencias y variantes, y el botón de **matriz** (ícono de cuadrícula) aparece cuando la referencia tiene varias variantes. El código digitado se conserva en el campo (ver [Código](#codigo-conservado)). |
 | 2 | **Atributo principal** | Aparece cuando la referencia tiene variantes (por ejemplo, talla o color). |
 | 3 | **Atributo secundario** | Igual que el principal. |
 | 4 | **% Dto.** | De 0 a 100. Aparece si el tipo liquida descuento. Se precarga con el descuento por defecto. |
@@ -243,6 +245,7 @@ La fila de captura está en la tarjeta **Detalle**. Tiene estos campos, en este 
 | 10 | **Detalle** | Texto de la línea. |
 | 11 | **Valor** | Mayor que 0. Se sugiere con la lista de precios elegida. |
 | 12 | **Cantidad** | Mayor que 0, con hasta 4 decimales. Se precarga en 1. |
+| — | **Descripción** | Solo lectura: no recibe el cursor al tabular. Muestra el nombre de la referencia o de la variante encontrada (ver abajo). |
 | — | **Existencia** y **Subtotal** | Solo lectura: no reciben el cursor al tabular. |
 | — | **Limpiar** | Vacía la fila de captura. |
 | — | **Agregar línea** | Guarda la línea. |
@@ -253,13 +256,16 @@ La fila de captura está en la tarjeta **Detalle**. Tiene estos campos, en este 
 
 Para guardar una línea necesita elegir la **bodega** (la pantalla dice *Elige la bodega para agregar la línea*). Si el tipo exige **centro de costos**, también debe elegirlo.
 
-Bajo el campo **Código** la pantalla confirma lo que encontró:
+Al lado del código, el campo **Descripción** confirma lo que encontró. Muestra **solo el nombre**: no repite el código ni cuenta las variantes.
 
-- **CÓDIGO · Nombre**: la referencia tiene una sola variante.
-- **CÓDIGO · Nombre · N variantes**: la referencia tiene varias. Elija la variante con los atributos o con **Matriz**.
-- **Código no encontrado: …**: no hay confirmación; corrija el código.
+- **Una sola variante**: el campo muestra el nombre de la referencia.
+- **Varias variantes**: el campo muestra el nombre de la referencia. Elija la variante con los atributos o con la **Matriz**.
+- **Código no encontrado: …**: el campo **Descripción** queda vacío; corrija el código.
 
-La confirmación desaparece al limpiar la fila.
+El campo **Descripción** se vacía al limpiar la fila.
+
+<a id="codigo-conservado"></a>
+**El código se conserva.** Una referencia (no un EAN) no se agrega sola: el código queda escrito en el campo y la pantalla le deja elegir la variante o completar la línea. El código solo se vacía cuando se agrega un **EAN** (que agrega la línea con cantidad 1), cuando la **Matriz** se guarda bien (ver abajo), o al pulsar **Limpiar** o **Esc**.
 
 El **IVA** de la fila aparece con el de la referencia y puede cambiarlo:
 
@@ -275,7 +281,7 @@ Si el valor queda fuera de lo que su usuario puede usar, la pantalla pide la aut
 
 ### Buscar una referencia o una variante
 
-El botón **Buscar** (lupa con la palabra *Buscar*), junto al campo **Código**, abre el buscador **Buscar por descripción o código**. Busque por código o nombre y elija la referencia o la variante de la lista.
+El botón de **lupa**, junto al campo **Código**, abre el buscador **Buscar por descripción o código**. Busque por código o nombre y elija la referencia o la variante de la lista.
 
 ### Atajos de teclado
 
@@ -298,12 +304,15 @@ Cuando una referencia tiene varias variantes, el botón **Matriz** abre la matri
 
 ![Matriz de variantes](../recursos/img/ventas-devoluciones/43-matriz-variantes.png)
 
-- **Valor** y **Descuento** son comunes a todas las celdas. El valor se muestra con separador de miles. Si el valor está vacío o es 0, cada línea toma el valor sugerido de su lista.
+- **Valor** y **Descuento** son comunes a todas las celdas. El valor se muestra con separador de miles y se digita igual: al escribir *45000* queda **45.000** y no cambia. Si el valor está vacío o es 0, cada línea toma el valor sugerido de su lista.
 - Las **filas** son el atributo secundario y las **columnas** son el atributo principal. Cada celda tiene su cantidad y la existencia de esa variante en la bodega que tiene la fila de captura (*Exist.*).
 - Las celdas **grises** (*No disponible*) son combinaciones que no existen. Las celdas **rojas** no tienen existencia y son de solo lectura, porque la salida no admite saldo negativo.
 - La cantidad no puede superar la existencia de la celda (*La cantidad supera la existencia*).
 - El pie dice cuántas líneas y cuántas unidades se van a guardar, por ejemplo *Se guardarán 5 líneas con 12 unidades en una sola operación*.
-- **Aceptar** guarda todas las líneas en una sola operación. Después, la captura queda limpia, igual que al agregar una línea normal: el código queda vacío y el cursor va a **Código**.
+- **Aceptar** cierra la matriz y las tallas aparecen de inmediato en el detalle, con estado **Guardando…**. El servidor guarda todas las líneas juntas: **todo o nada**.
+  - Si todo sale bien, la captura queda limpia, igual que al agregar una línea normal: el código queda vacío y el cursor va a **Código**.
+  - Si algo falla, no se guarda nada: la matriz se vuelve a abrir con lo que digitó, y la celda con el error queda marcada.
+- Al abrir la matriz otra vez, las cantidades arrancan en cero.
 - **Cancelar** cierra la matriz sin guardar nada.
 
 ### Estados de cada línea
@@ -328,7 +337,7 @@ Mientras haya líneas por guardar, la pantalla dice **N líneas por guardar**. *
 No hay un modo aparte para el lector. Con el lector, lea el código del producto en el campo **Código**:
 
 1. Elija la bodega (y el centro de costos, si el tipo lo exige).
-2. Lea el código. Un código de barras se agrega solo con cantidad 1, y el cursor vuelve al campo de código para la siguiente lectura. Si el código corresponde a una referencia con variantes, la pantalla le deja elegir la variante.
+2. Lea el código. Un código de barras (EAN) se agrega solo con cantidad 1, y el cursor vuelve al campo de código para la siguiente lectura. Una referencia no se agrega sola: su código queda en el campo. Si el código corresponde a una referencia con variantes, la pantalla le deja elegir la variante.
 3. Si lee el mismo producto otra vez, la pantalla **suma 1** a la línea que ya existe y dice *Se sumó a la línea N*.
 4. Los contadores **Lecturas** y **Líneas** muestran cuántas lecturas hizo y cuántas líneas hay.
 
@@ -381,6 +390,10 @@ Mientras captura, los totales están en un **cuadro flotante** llamado **Total G
 - Si hay líneas sin guardar, el cuadro avisa que los totales no las incluyen, aunque el desglose esté plegado.
 
 ![Barra Total General](../recursos/img/ventas-devoluciones/44-total-general.png)
+
+### Los botones del documento: barra fija abajo
+
+Los botones del documento están en una **barra fija al borde inferior** de la pantalla, justo debajo del cuadro **Total General**. No están arriba: quedan a la vista aunque baje por las líneas. Según el estado del documento y sus permisos, ahí aparecen **Cerrar documento**, **Imprimir**, **Anular**, **Eliminar**, **Editar**, **Seleccionar Pedidos** y **Seleccionar Remisiones**. Si una acción no se puede usar en ese momento, el botón aparece deshabilitado.
 
 Los campos **Seguro y flete** y **Otros valores** se suman al total. En un tipo de **factura electrónica** no existen: no se pueden usar, quedan en 0 y la pantalla lo avisa con *Este tipo es de facturación electrónica: fletes y otros valores no se permiten y se pusieron en 0.*
 
@@ -457,7 +470,7 @@ Si el documento todavía no existe, la operación lo crea con su consecutivo y a
 
 ![Documento cerrado, con la factura en cola](../recursos/img/ventas-devoluciones/20-cerrado-en-cola.png)
 
-1. Revise el documento y, cuando esté listo, haga clic en **Cerrar documento**.
+1. Revise el documento y, cuando esté listo, haga clic en **Cerrar documento** (está en la barra fija de abajo, debajo de **Total General**).
 2. En el diálogo, revise el total: *Vas a cerrar FV-1205 por el total. Quedará de solo lectura.*
 3. Confirme con **Cerrar documento**.
 
