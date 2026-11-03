@@ -10,7 +10,7 @@
 ![Static Badge](https://img.shields.io/badge/Opcion-VentasDevoluciones-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
-![Static Badge](https://img.shields.io/badge/Actualizacion-20261030-yellow)
+![Static Badge](https://img.shields.io/badge/Actualizacion-20261103-yellow)
 
 ---
 
@@ -57,6 +57,8 @@ Los botones que ve dependen de los permisos de su usuario y del estado del docum
 | **Eliminar** | Eliminar un documento que no tiene documentos dependientes. |
 | **Imprimir** | Imprimir y ver la vista previa de un documento. |
 | **Administrador de la compañía** | Verificar en el proveedor tecnológico y, si hace falta, restablecer o reenviar una factura que ya está transmitida a la DIAN (ver [Facturación electrónica](#fe)). |
+
+> 💡 Para cerrar una venta con recibo de caja automático también necesita el permiso **Crear** en **Recibos de caja y egresos**. Vea [Cerrar y cobrar](#cerrar-y-cobrar).
 
 > 💡 Si su usuario solo tiene **Consultar**, el listado y los documentos aparecen, pero no verá botones como **Nueva venta**, **Editar**, **Anular** o **Eliminar**.
 
@@ -372,6 +374,87 @@ Si todo está bien, el documento queda **cerrado** y de solo lectura. Si el tipo
 
 > 💡 **Cerrar no espera a la DIAN.** Si el proveedor tecnológico no está disponible, el documento se cierra igual. La factura se envía en segundo plano, y cuando termina le avisamos a quien cerró el documento. Si no se envió, puede reenviarla (ver [Facturación electrónica](#fe)).
 
+<a id="cerrar-y-cobrar"></a>
+### Cerrar y cobrar: venta con recibo de caja automático
+
+Algunos tipos de venta generan su **recibo de caja** al cerrarse. Si el tipo de su documento lo hace, **Cerrar documento** no cierra la venta de inmediato: abre el diálogo **Cerrar y cobrar**. Los demás tipos de venta se cierran como se explicó arriba, sin diálogo.
+
+![Diálogo Cerrar y cobrar con las formas de pago](../recursos/img/ventas-devoluciones/40-cerrar-y-cobrar.png)
+
+**Qué pasa al cerrar**
+
+Al confirmar, la pantalla cierra la venta y crea el recibo de caja en un solo paso:
+
+- El documento queda **cerrado** y de solo lectura.
+- Se crea un **recibo de caja** por el total de la venta, con la forma de pago que eligió.
+- Los asientos contables del recibo quedan registrados, y el cierre queda en la bitácora de la venta y del recibo.
+- Si la venta es factura electrónica, la factura se envía en segundo plano, como siempre. Si ese envío falla, el recibo no se revierte.
+
+Si algo falla antes de terminar, **no queda nada a medias**: la venta sigue abierta, no se crea recibo y el diálogo muestra el error para que pueda reintentar. Si cancela o pulsa **Escape**, no pasa nada.
+
+**Elegir la forma de pago**
+
+1. Revise el **Documento** y el **Total a cobrar**. El total es el de la venta y no se cambia en este diálogo.
+2. Toque la tarjeta de la forma de pago: **Efectivo**, **Banco**, **Tarjeta de crédito** u otra. Cada una muestra su icono o, si la compañía la tiene, su imagen.
+3. Confirme con **Cerrar y generar recibo**.
+
+![Forma de pago que llega marcada desde su cajero](../recursos/img/ventas-devoluciones/41-forma-del-cajero.png)
+
+Si su usuario tiene una forma de pago por defecto (la de su cajero), la pantalla la marca al abrir el diálogo. Si no tiene ninguna, la pantalla dice *Elija una forma de pago para continuar.* y **Cerrar y generar recibo** queda deshabilitado hasta que elija una.
+
+El recibo cubre el total de la venta con **una sola forma de pago**.
+
+**Banco y documento de referencia**
+
+Algunas formas de pago piden datos extra. Si la forma seleccionada los pide, aparecen dos campos **opcionales**:
+
+- **Banco**: busque y elija el banco. Si no aplica, déjelo vacío.
+- **Documento de referencia**: por ejemplo, el número de la transacción. Máximo 20 caracteres, sin comas ni punto y coma.
+
+![Banco y documento de referencia](../recursos/img/ventas-devoluciones/42-banco-y-documento.png)
+
+Si cambia a una forma que no los pide, los campos desaparecen y sus valores se descartan.
+
+![Documento de referencia con caracteres no permitidos](../recursos/img/ventas-devoluciones/43-documento-invalido.png)
+
+**Sin formas de pago**
+
+![Sin formas de pago vigentes](../recursos/img/ventas-devoluciones/44-sin-formas-de-pago.png)
+
+Si la compañía no tiene formas de pago vigentes, la pantalla dice *No hay formas de pago vigentes.* y no se puede cerrar con recibo. Pida al administrador que cree una forma de pago.
+
+**Sin permiso para generar el recibo**
+
+Para cerrar con recibo necesita el permiso **Crear** en **Recibos de caja y egresos**, además de **Actualizar** en esta opción. Si no lo tiene, el diálogo se abre con el aviso *No tiene permiso para generar el recibo de caja.* y sin formas de pago. Puede:
+
+- **Cancelar**: el documento sigue abierto y no cambia nada.
+- **Cerrar sin recibo**: el documento se cierra, pero **sin recibo de caja**. La pantalla muestra *Documento cerrado sin recibo de caja: no tiene permiso para generarlo.* Use esta opción con cuidado: la venta de contado quedará sin su recibo.
+
+![Diálogo sin permiso para generar el recibo](../recursos/img/ventas-devoluciones/46-sin-permiso.png)
+
+**Errores al cerrar**
+
+| Mensaje | Qué hacer |
+|---------|-----------|
+| **No pudimos cargar las formas de pago.** | Pulse **Reintentar**. La venta no cambia. |
+| **No se pudo generar el recibo. La venta sigue abierta; puede reintentar.** | Pulse **Reintentar**. Su selección se conserva. |
+| **Máximo 20 caracteres, sin comas ni punto y coma.** | Corrija el **Documento de referencia**. |
+| **La venta cambió mientras cobraba; recargue para ver los cambios.** | Pulse **Recargar**, revise el documento y vuelva a cerrar. |
+| **El tipo de este documento tiene mal configurado su recibo de caja; avise al administrador.** | El administrador debe corregir el tipo. Mientras tanto, la venta no se cierra. |
+| **El periodo contable de recibos de caja está cerrado para la fecha del documento.** | Elija otra fecha del documento. |
+
+![Error al cargar las formas de pago](../recursos/img/ventas-devoluciones/45-error-al-cargar.png)
+
+![Error al generar el recibo, con Reintentar](../recursos/img/ventas-devoluciones/47-error-al-guardar.png)
+
+**Cómo se ve en el teléfono**
+
+En pantallas pequeñas las tarjetas se muestran en dos columnas. Si no ve todas, desplácese dentro del diálogo.
+
+![Diálogo en teléfono](../recursos/img/ventas-devoluciones/48-movil.png)
+
+> 💡 Si pulsa dos veces **Cerrar y generar recibo**, se crea un solo recibo.
+
 ---
 
 <a id="editar-cerrado"></a>
@@ -382,6 +465,10 @@ Un documento cerrado se puede corregir en una cosa: **el valor o la cantidad de 
 - No puede **agregar** ni **quitar** líneas, ni cambiar el encabezado. La pantalla lo dice: *Documento cerrado: solo puedes editar una línea existente.*
 - Al guardar, la contabilidad del documento se recalcula, y el cambio queda en la bitácora.
 - No se puede editar un documento **anulado**, uno **transmitido a la DIAN**, uno con **periodo cerrado** ni uno con **documentos dependientes** (recibos o pagos sin anular, notas crédito o devoluciones que lo referencian).
+
+### Venta con recibo de caja automático
+
+Si la venta generó un recibo de caja automático, no puede cambiar su **total**, su **cliente** ni su **fecha**: el recibo quedaría distinto de la venta. La pantalla muestra el número del recibo. Para corregir uno de esos datos, anule la venta (si el recibo lo permite) y vuelva a crearla.
 
 ### Si alguien más cambió el documento
 
@@ -416,6 +503,8 @@ Estas tres acciones tienen efectos distintos. Elija según el caso:
 
 Antes de anular, la pantalla revisa si el documento puede anularse. Si no puede, dice por qué. Por ejemplo, con recibos de caja o pagos sin anular, con notas crédito o devoluciones que lo referencian, o con la fecha en un periodo cerrado.
 
+**Venta con recibo de caja automático.** Al anular la venta, también se anula su recibo de caja automático, en el mismo paso, y sus asientos se reconstruyen. Esto solo se permite si el recibo es **anulable**: tiene un solo pago y una sola línea, no se modificó después de crearse, no tiene otros documentos y el periodo de recibos de caja sigue abierto. Si no lo es, la pantalla dice el número del recibo y el motivo, y no cambia nada. Los recibos de caja que se crearon a mano siguen bloqueando la anulación, como antes.
+
 ### Eliminar
 
 1. Haga clic en **Eliminar**.
@@ -425,6 +514,8 @@ Antes de anular, la pantalla revisa si el documento puede anularse. Si no puede,
 ![Eliminar con confirmación](../recursos/img/ventas-devoluciones/22-eliminar.png)
 
 Si el documento ya tiene movimiento contable, la pantalla le recomienda **anularlo** en lugar de eliminarlo.
+
+Si la venta tiene un recibo de caja automático, primero **anule** la venta: la eliminación no se permite hasta entonces.
 
 > ⚠️ **Factura electrónica en cola.** Mientras la factura está **en cola**, no se puede anular ni eliminar: la pantalla oculta esos botones y muestra *El envío de la factura electrónica está en curso; espere a que termine o falle para eliminar.* Cuando el envío termina o falla, los botones reaparecen según el estado del documento.
 
@@ -675,6 +766,12 @@ Si usted está editando un documento que otra persona cambió, la pantalla se lo
 <a id="faq"></a>
 ## ❓ Preguntas frecuentes
 
+**¿Por qué al cerrar aparece «Cerrar y cobrar» y no se cierra directo?**
+Ese tipo de venta genera un recibo de caja automático al cerrarse. Elija la forma de pago y confirme con **Cerrar y generar recibo**. Los demás tipos de venta se cierran directo, como antes.
+
+**¿Puedo cambiar el total desde el diálogo Cerrar y cobrar?**
+No. El diálogo muestra el total de la venta. Si el total no es el que espera, cancele, revise las líneas del documento y vuelva a cerrar.
+
 **¿Por qué un cliente de contado no muestra cartera?**
 La venta de contado no tiene saldo por cobrar. La pantalla muestra **No aplica: venta de contado** y no revisa cupo ni mora. El documento sigue en la cartera de la compañía y en los informes, como siempre.
 
@@ -726,6 +823,8 @@ Porque leyó o escribió un producto igual (misma referencia, descuento, IVA y b
 | **El vendedor no existe o está inactivo.** | Elija otro vendedor. |
 | **Ese consecutivo ya está en uso.** | Elija otro consecutivo, o déjelo vacío. |
 | **El servidor está ocupado. Intenta de nuevo en unos segundos.** | Espere unos segundos e intente de nuevo. |
+| **No tiene permiso para generar el recibo de caja.** | Cancele, o use **Cerrar sin recibo** si así lo decide. Para tener el permiso, pida al administrador. |
+| **No hay formas de pago vigentes.** | Pida al administrador que cree una forma de pago. |
 | **Sin conexión con el servidor. Revise su red e intente de nuevo.** | Las líneas quedan en **No se guardó**: use **Reintentar**. |
 
 ---
