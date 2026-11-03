@@ -468,7 +468,7 @@ Un documento cerrado se puede corregir en una cosa: **el valor o la cantidad de 
 
 ### Venta con recibo de caja automático
 
-Si la venta generó un recibo de caja automático, no puede cambiar su **total**, su **cliente** ni su **fecha**: el recibo quedaría distinto de la venta. La pantalla muestra el número del recibo. Para corregir uno de esos datos, anule la venta (si el recibo lo permite) y vuelva a crearla.
+Si la venta generó un recibo de caja automático, **no se puede modificar nada** de ella: ni el total, el cliente, la fecha, el vendedor, las observaciones ni las líneas. La pantalla muestra el número del recibo. Para corregir, anule la venta (si el recibo lo permite) y vuelva a crearla.
 
 ### Si alguien más cambió el documento
 
@@ -503,7 +503,7 @@ Estas tres acciones tienen efectos distintos. Elija según el caso:
 
 Antes de anular, la pantalla revisa si el documento puede anularse. Si no puede, dice por qué. Por ejemplo, con recibos de caja o pagos sin anular, con notas crédito o devoluciones que lo referencian, o con la fecha en un periodo cerrado.
 
-**Venta con recibo de caja automático.** Al anular la venta, también se anula su recibo de caja automático, en el mismo paso, y sus asientos se reconstruyen. Esto solo se permite si el recibo es **anulable**: tiene un solo pago y una sola línea, no se modificó después de crearse, no tiene otros documentos y el periodo de recibos de caja sigue abierto. Si no lo es, la pantalla dice el número del recibo y el motivo, y no cambia nada. Los recibos de caja que se crearon a mano siguen bloqueando la anulación, como antes.
+**Venta con recibo de caja automático.** Al anular la venta, también se anula su recibo de caja automático, en el mismo paso. Esto solo se permite si el recibo es **anulable**: tiene un solo pago y una sola línea, no se modificó después de crearse, no tiene otros documentos y el periodo de recibos de caja sigue abierto. Si no lo es, la pantalla dice el número del recibo y el motivo, y no cambia nada. Los recibos de caja que se crearon a mano siguen bloqueando la anulación, como antes.
 
 ### Eliminar
 
