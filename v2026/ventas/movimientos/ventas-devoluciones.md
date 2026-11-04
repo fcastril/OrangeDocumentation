@@ -24,7 +24,7 @@ Quién la usa:
 - **Jefe de ventas o de cartera**: filtra el listado, revisa el resumen, reenvía a la DIAN las facturas pendientes o con error y anula lo que corresponda.
 - **Contabilidad**: confía en que una factura transmitida a la DIAN no se altera. Lo que se corrige se corrige con una nota crédito o una devolución.
 
-En esta pantalla puede **consultar, crear, editar, cerrar, anular, eliminar, imprimir y exportar** documentos, y **seguir la factura electrónica** de cada venta. Trabaje siempre con la compañía que aparece en la barra superior.
+En esta pantalla puede **consultar, crear, editar, cerrar, anular, eliminar, imprimir y exportar** documentos, y **seguir la factura electrónica** de cada venta. Puede tener **varios documentos abiertos** a la vez, en pestañas. Trabaje siempre con la compañía que aparece en la barra superior.
 
 > 📘 La búsqueda, el orden y la paginación de las tablas funcionan igual que en el resto de la aplicación: ver [Manejo general de la información](../../Generales/manejo-general-informacion.md).
 
@@ -73,6 +73,17 @@ Los botones que ve dependen de los permisos de su usuario y del estado del docum
 
 ![Listado de ventas y devoluciones](../recursos/img/ventas-devoluciones/00-listado.png)
 
+*(captura pendiente de actualizar: no muestra el filtro «Tipo de movimiento»)*
+
+En la parte de arriba están los botones de la pantalla:
+
+- **Documentos abiertos (N)**: abre el menú de sus documentos abiertos (ver [Varios documentos abiertos](#abiertos)).
+- **Ocultar filtros y resumen** (o **Mostrar filtros y resumen**): oculta o muestra los filtros y las tarjetas del resumen para ganar espacio.
+- **Exportar a Excel**: exporta lo que ve, con los mismos filtros.
+- **Nueva venta**: abre un documento nuevo.
+
+Junto al título aparece el indicador **En vivo** (ver [Cambios de otros usuarios](#en-vivo)).
+
 Si todavía no hay documentos en el rango elegido, la tabla aparece vacía. Cambie las fechas para buscar en otro periodo.
 
 ![Listado sin documentos en el rango](../recursos/img/ventas-devoluciones/07-vacio.png)
@@ -83,7 +94,7 @@ El listado muestra las ventas, devoluciones y notas crédito de la compañía, c
 |---------|-------------|
 | **Ventas netas** | Lo vendido menos las devoluciones del filtro. El texto debajo muestra las ventas brutas y las devoluciones. |
 | **Contado y crédito** | Cuánto se vendió de contado y cuánto a crédito. |
-| **Factura electrónica** | Cuántas facturas están transmitidas a la DIAN, y cuántas están pendientes, en cola o con error. |
+| **Factura electrónica** | Cuántas facturas están transmitidas a la DIAN, y cuántas están en cola, pendientes o con error. |
 | **Por reenviar a la DIAN** | Facturas pendientes de enviar y con error. |
 
 Si el resumen no se puede calcular, la tabla sigue funcionando y el resumen muestra **Reintentar**.
@@ -94,6 +105,7 @@ Los filtros están arriba de la tabla y quedan en la dirección de la página, p
 
 - **Desde** y **Hasta**: fechas del documento. Por defecto es el mes en curso.
 - **Naturaleza**: *Venta*, *Devolución* o *Nota crédito*.
+- **Tipo de movimiento**: puede elegir **varios tipos a la vez**. Cada tipo aparece como una ficha con su código y nombre (*Código - Nombre*). Se pueden elegir hasta 50 tipos. El filtro se conserva con los demás filtros de la página, y **Limpiar filtros** lo quita.
 - **Estado**: *Abierta*, *Cerrada* o *Anulada*.
 - **Factura electrónica**: *Pendiente de enviar*, *En cola*, *Transmitida a la DIAN* o *Error al enviar*. Para filtrar por factura electrónica debe indicar **Desde** y **Hasta**, con un rango de no más de 366 días.
 - **Cliente**: por documento o nombre.
@@ -138,7 +150,7 @@ Cada fila tiene botones con nombre, por ejemplo **Anular FV-1205**. Aparecen sol
 | Botón | Cuándo aparece |
 |-------|----------------|
 | **Ver** | Siempre que tenga permiso para consultar. |
-| **Imprimir** | Con el permiso de imprimir. También para documentos abiertos, como vista previa. |
+| **Imprimir** | Con el permiso de imprimir. Imprime en **un clic** (ver [Imprimir](#imprimir)). También para documentos abiertos, como vista previa. |
 | **Editar** | Documentos abiertos, con el periodo abierto y sin documentos dependientes. |
 | **Reenviar a la DIAN** | Facturas pendientes de enviar o con error. |
 | **Crear nota crédito o devolución** | Facturas transmitidas a la DIAN. |
@@ -149,75 +161,129 @@ Para ver el detalle de un documento, haga clic en su número o en **Ver**.
 
 ![Documento transmitido: sin editar, anular ni eliminar](../recursos/img/ventas-devoluciones/23-transmitida-bloqueada.png)
 
-Para exportar el listado a Excel, use **Exportar a Excel**. Se exporta lo que ve con los mismos filtros.
-
 ---
 
 <a id="crear"></a>
 ## ➕ Crear una venta
 
 1. En el listado, haga clic en **Nueva venta**.
-2. Elija el **Tipo de documento**. Solo aparecen los tipos que su usuario puede usar. Sin tipo no se pueden capturar líneas.
+2. Elija el **Tipo**. Solo aparecen los tipos que su usuario puede usar. Sin tipo no se pueden capturar líneas.
 3. Escriba el **Cliente** por documento y pulse **Enter** o **Tab**, o búsquelo por documento o nombre. Solo puede elegir clientes activos. Si el cliente no existe, créelo primero en el maestro de [Clientes](../maestros/clientes.md).
 4. Revise la **Sucursal**. Si el cliente tiene una sola, se elige sola. Si tiene varias, elija la que corresponde.
-5. Revise el **Vendedor**. Es obligatorio para capturar líneas, y se precarga desde la sucursal.
-6. Revise la **Fecha** y los **Días de plazo**. La fecha es la de hoy de la compañía, según el servidor. **Vence** es la fecha más los días de plazo.
-7. Complete lo que necesite: **Documento de referencia** (hasta 20 caracteres) y **Observaciones** (hasta 200 caracteres, sin comas ni punto y coma).
+5. Revise la **Fecha** y los **Días de plazo**. La fecha es la de hoy de la compañía, según el servidor. **Vence** es la fecha más los días de plazo.
+6. Revise el **Vendedor**. Es obligatorio para capturar líneas, y se precarga desde la sucursal.
+7. Complete lo que necesite: **Documento de referencia** (hasta 20 caracteres), **TRM** y **Observaciones** (hasta 200 caracteres, sin comas ni punto y coma).
 8. Capture las líneas (ver [Captura de líneas](#captura)).
 
 > 💡 El número del documento aparece como *tentativo* hasta que se guarda la primera línea. Si el tipo permite cambiar el consecutivo, puede escribirlo; si lo deja vacío, se usa el siguiente.
 
 ![Venta nueva, antes de elegir cliente](../recursos/img/ventas-devoluciones/10-nueva-venta.png)
 
-### Valores por defecto y de dónde vienen
+### El encabezado, campo por campo
 
-Al elegir el tipo, el cliente y la sucursal, la pantalla llena los valores por defecto: **Días de plazo**, **Vendedor**, **Lista de precios**, **% descuento por defecto** y las retenciones del cliente. **Cada valor muestra su origen** debajo del campo:
+El encabezado sigue este orden. Los campos que no tienen valor no se muestran, y los que dependen del tipo o del cliente aparecen solo cuando hacen falta:
 
-| Origen | Qué significa |
-|--------|---------------|
-| **Compañía** | Valor general de la compañía. Es el que queda cuando todavía no hay cliente. |
-| **Tipo de documento** | Valor que trae el tipo que eligió. |
-| **Cliente** | Valor que trae la ficha del cliente. |
-| **Sucursal** | Valor que trae la sucursal del cliente, como el vendedor o la lista de precios. |
-| **Lo escribiste tú** | Valor que usted cambió a mano. |
+| Campo | Qué hace |
+|-------|----------|
+| **Tipo** | Tipo de documento. Obligatorio. Después de crear el documento no se puede cambiar. |
+| **Consecutivo** | Muestra el número del documento (*tentativo* hasta guardar). Si el tipo lo permite, puede escribirlo; vacío usa el siguiente. |
+| **Documento de referencia** | Hasta 20 caracteres. |
+| **Cliente** | Por documento (Enter o Tab) o por nombre. Solo clientes activos. |
+| **Sucursal** | Sucursales del cliente. Se elige sola si tiene una. |
+| **Fecha** | Fecha del documento, según el servidor. |
+| **Plazo** | **Días de plazo**. |
+| **Vence** | Fecha de vencimiento: la fecha más los días de plazo. |
+| **Forma de pago** | Solo lectura: **Contado** si el plazo es 0; **Crédito** si es mayor que 0. |
+| **Vendedor** | Obligatorio para capturar líneas. |
+| **TRM** | Tasa de cambio. |
+| **Seguro y flete** y **Otros valores** | Solo aparecen si el tipo los permite. En una factura electrónica no se permiten (ver [Totales y retenciones](#totales)). |
+| **Observaciones** | Hasta 200 caracteres, sin comas ni punto y coma. |
+| **Retenciones del cliente** | Tarjeta con una fila por retención (ver abajo). Si el cliente no tiene retenciones, la tarjeta no aparece. |
+| **Adjuntos del documento** | Tarjeta de archivos de soporte (ver [Adjuntos](#adjuntos)). |
+| **Lista de precios** | De la 1 a la 5, o *Costo*. Es la lista que sugiere el valor de cada línea. |
+| **% descuento por defecto** | Descuento que se precarga en cada línea. Aparece solo si el tipo liquida descuento. |
 
-![Valores por defecto del cliente con su origen](../recursos/img/ventas-devoluciones/11-valores-por-defecto.png)
+En un documento ya creado, cada cambio en el encabezado se guarda al salir del campo.
 
-- **Lo que usted escribe nunca se pisa.** Si cambia de cliente, la pantalla actualiza solo los valores que no escribió usted, y un aviso dice qué cambió y qué se conservó.
-- **Restablecer a los del cliente** devuelve todos los valores por defecto a los de su origen.
-- **Lista de precios**: de la 1 a la 5, o *Costo*. Es la lista que sugiere el valor de cada línea.
-- **Retenciones del cliente**: se muestran con su base y su porcentaje, que son de solo lectura. Si el cliente no realiza retenciones, la pantalla lo dice.
+### Valores que trae el tipo, el cliente y la sucursal
 
-![Cambio de cliente: se conserva lo que usted escribió](../recursos/img/ventas-devoluciones/12-cambio-de-cliente.png)
+Al elegir el tipo, el cliente y la sucursal, la pantalla aplica en sus campos los valores que traen: **Días de plazo**, **Vendedor**, **Lista de precios**, **% descuento por defecto** y las retenciones del cliente. **Lo que usted escribe se conserva**: los valores que traen el tipo, el cliente o la sucursal se aplican en los campos y no reemplazan lo que usted ya escribió en ellos.
+
+![Valores por defecto del cliente](../recursos/img/ventas-devoluciones/11-valores-por-defecto.png)
+
+![Cambio de cliente](../recursos/img/ventas-devoluciones/12-cambio-de-cliente.png)
+
+### Retenciones del cliente
+
+Si el cliente tiene retenciones, la tarjeta **Retenciones del cliente** muestra una fila por cada una (por ejemplo, *Retefuente*, *ReteICA* o *ReteIVA (sobre el IVA)*):
+
+- **Impuesto**: selector precargado con la retención del cliente. Puede cambiarlo.
+- **Base** y **%**: son de solo lectura. Los calcula el servidor.
+
+![Retenciones con su selector de impuesto](../recursos/img/ventas-devoluciones/40-retenciones-con-selector.png)
 
 ---
 
 <a id="captura"></a>
 ## ⌨️ Captura de líneas
 
-![Detalle con modo lector y líneas guardadas](../recursos/img/ventas-devoluciones/14-lector-rapido.png)
-
 En una venta no hay botón *Guardar documento*. **Cada línea se guarda cuando la confirma.** Así, si la red falla, solo se pierde la línea que estaba escribiendo.
 
-La fila de captura tiene estos campos, en este orden (con **Enter** pasa al siguiente; en el último, guarda la línea):
+> 💡 **Existencias.** Solo los tipos de movimiento con **Inventarios** activo mueven existencias de la bodega. Un tipo sin esa marca (por ejemplo, de factura electrónica o de contado) no descuenta existencias.
 
-| Campo | Regla |
-|-------|-------|
-| **Código de barras o referencia** | Lea el código con el lector o escríbalo y pulse Enter. |
-| **Cantidad** | Mayor que 0, con hasta 4 decimales. |
-| **Valor unitario** | Mayor que 0. Se sugiere con la lista de precios elegida. |
-| **% Dto.** | De 0 a 100. Se precarga con el descuento por defecto. |
-| **Agregar línea** | Guarda la línea. |
+La fila de captura está en la tarjeta **Detalle**. Tiene estos campos, en este orden. Con **Enter** pasa al siguiente campo; en el último, guarda la línea: Según el ancho de la pantalla, la fila se acomoda en dos filas (o en tres si hay atributos o lote), sin cambiar el orden de los campos; en una pantalla angosta va un campo por línea.
+
+| Orden | Campo | Regla |
+|-------|-------|-------|
+| 1 | **Código** | Código de barras, EAN o referencia (el campo dice *Código, EAN o descripción*). Lea el código con el lector o escríbalo y pulse Enter. El campo tiene ancho para leer completo un código EAN-13. A su lado, el botón de **lupa** abre el buscador de referencias y variantes, y el botón de **matriz** (ícono de cuadrícula) aparece cuando la referencia tiene varias variantes. El código digitado se conserva en el campo (ver [Código](#codigo-conservado)). |
+| 2 | **Atributo principal** | Aparece cuando la referencia tiene variantes (por ejemplo, talla o color). |
+| 3 | **Atributo secundario** | Igual que el principal. |
+| 4 | **% Dto.** | De 0 a 100. Aparece si el tipo liquida descuento. Se precarga con el descuento por defecto. |
+| 5 | **IVA** | Se precarga con el IVA de la referencia (por ejemplo, *IVA 19 %*). Puede cambiarlo en la fila. Aparece si el tipo liquida IVA. |
+| 6 | **Lote** | Aparece si la referencia maneja lote. Si lo exige, la pantalla lo dice. |
+| 7 | **Bodega** | Obligatoria para agregar la línea. |
+| 8 | **Ubicación** | Aparece si el tipo la usa. |
+| 9 | **Centro de costos** | Aparece si el tipo lo exige. |
+| 10 | **Detalle** | Texto de la línea. |
+| 11 | **Valor** | Mayor que 0. Se sugiere con la lista de precios elegida. |
+| 12 | **Cantidad** | Mayor que 0, con hasta 4 decimales. Se precarga en 1. |
+| — | **Descripción** | Solo lectura: no recibe el cursor al tabular. Muestra el nombre de la referencia o de la variante encontrada (ver abajo). |
+| — | **Existencia** y **Subtotal** | Solo lectura: no reciben el cursor al tabular. |
+| — | **Limpiar** | Vacía la fila de captura. |
+| — | **Agregar línea** | Guarda la línea. |
+
+![Fila de captura](../recursos/img/ventas-devoluciones/39-fila-de-captura.png)
+
+*(captura pendiente de actualizar: muestra la lupa sin el texto «Buscar», el texto anterior del campo Código y sin la confirmación «CÓDIGO · Nombre»)*
 
 Para guardar una línea necesita elegir la **bodega** (la pantalla dice *Elige la bodega para agregar la línea*). Si el tipo exige **centro de costos**, también debe elegirlo.
 
-El **IVA** sale de la referencia. El **Total** de la línea se calcula solo.
+Al lado del código, el campo **Descripción** confirma lo que encontró. Muestra **solo el nombre**: no repite el código ni cuenta las variantes.
 
-Debajo del valor unitario, la pantalla le ayuda:
+- **Una sola variante**: el campo muestra el nombre de la referencia.
+- **Varias variantes**: el campo muestra el nombre de la referencia. Elija la variante con los atributos o con la **Matriz**.
+- **Código no encontrado: …**: el campo **Descripción** queda vacío; corrija el código.
 
-- **Valor sugerido (Lista 2): 22.000 (puedes cambiarlo).** Puedes cambiar el valor sin problema.
+El campo **Descripción** se vacía al limpiar la fila.
+
+<a id="codigo-conservado"></a>
+**El código se conserva.** Una referencia (no un EAN) no se agrega sola: el código queda escrito en el campo y la pantalla le deja elegir la variante o completar la línea. El código solo se vacía cuando se agrega un **EAN** (que agrega la línea con cantidad 1), cuando la **Matriz** se guarda bien (ver abajo), o al pulsar **Limpiar** o **Esc**.
+
+El **IVA** de la fila aparece con el de la referencia y puede cambiarlo:
+
+![IVA precargado y editable en la fila](../recursos/img/ventas-devoluciones/41-iva-editable-por-linea.png)
+
+Debajo del valor, la pantalla le ayuda:
+
+- **Valor sugerido (Lista 2): ... (puedes cambiarlo).** Puede cambiar el valor sin problema.
 - **Sin precio en la lista elegida: escriba el valor.** La referencia no tiene precio en esa lista.
 - **Existencia en la bodega: n.** Si no hay existencia, la pantalla avisa, pero el servidor es quien decide.
+
+Si el valor queda fuera de lo que su usuario puede usar, la pantalla pide la autorización de un administrador (ver [Precio fuera de lo permitido](#autorizacion)).
+
+### Buscar una referencia o una variante
+
+El botón de **lupa**, junto al campo **Código**, abre el buscador **Buscar por descripción o código**. Busque por código o nombre y elija la referencia o la variante de la lista.
 
 ### Atajos de teclado
 
@@ -231,6 +297,36 @@ Debajo del valor unitario, la pantalla le ayuda:
 | **Ctrl+D** | Copia la línea elegida a la fila de captura. |
 | **Alt+N** | Va a la fila de captura. |
 | **Alt+R** | Reintenta las líneas que no se guardaron. |
+
+La pantalla muestra estos atajos debajo de la fila de captura.
+
+### Editar una línea
+
+Al editar una línea (**F2** o el botón **Editar** de su fila), la línea queda **resaltada** en el detalle y la fila de captura muestra qué está editando:
+
+- En **Código**, la referencia, y en **Descripción**, su nombre.
+- En **Atributo principal** y **Atributo secundario**, los de la línea. Funcionan como al crear: al elegir uno, el otro ofrece solo lo que existe para esa combinación.
+- La cantidad, el valor, el descuento y el IVA de la línea, listos para cambiarlos.
+
+En las tablas de líneas (la de la captura y la del documento), la **Referencia**, el **Atributo principal** y el **Atributo secundario** van en columnas separadas.
+
+### Matriz de variantes
+
+Cuando una referencia tiene varias variantes, el botón **Matriz** abre la matriz para capturar varias variantes de una vez. El título es *Seleccionar Atributos*, con la referencia y el nombre.
+
+![Matriz de variantes](../recursos/img/ventas-devoluciones/43-matriz-variantes.png)
+
+- **Valor** y **Descuento** son comunes a todas las celdas. El valor se muestra con separador de miles y se digita igual: al escribir *45000* queda **45.000** y no cambia. Si el valor está vacío o es 0, cada línea toma el valor sugerido de su lista.
+- El **IVA** que eligió en la fila de captura vale para todas las tallas de la matriz. Si no eligió ninguno, cada línea toma el IVA de su referencia.
+- Las **filas** son el atributo secundario y las **columnas** son el atributo principal. Cada celda tiene su cantidad y la existencia de esa variante en la bodega que tiene la fila de captura (*Exist.*).
+- Las celdas **grises** (*No disponible*) son combinaciones que no existen. Las celdas **rojas** no tienen existencia y son de solo lectura, porque la salida no admite saldo negativo.
+- La cantidad no puede superar la existencia de la celda (*La cantidad supera la existencia*).
+- El pie dice cuántas líneas y cuántas unidades se van a guardar, por ejemplo *Se guardarán 5 líneas con 12 unidades en una sola operación*.
+- **Aceptar** cierra la matriz y las tallas aparecen de inmediato en el detalle, con estado **Guardando…**. El servidor guarda todas las líneas juntas: **todo o nada**.
+  - Si todo sale bien, la captura queda limpia, igual que al agregar una línea normal: el código queda vacío y el cursor va a **Código**.
+  - Si algo falla, no se guarda nada: la matriz se vuelve a abrir con lo que digitó, y la celda con el error queda marcada.
+- Al abrir la matriz otra vez, las cantidades arrancan en cero.
+- **Cancelar** cierra la matriz sin guardar nada.
 
 ### Estados de cada línea
 
@@ -251,13 +347,14 @@ Mientras haya líneas por guardar, la pantalla dice **N líneas por guardar**. *
 
 ### Lector de código de barras
 
-Con el lector, lea el código del producto y la línea se agrega sola:
+No hay un modo aparte para el lector. Con el lector, lea el código del producto en el campo **Código**:
 
-1. Active **Modo lector de código de barras**. La pantalla avisa: *Modo lector activo: lee un código para agregar la línea*.
-2. Elija la bodega (y el centro de costos, si el tipo lo exige).
-3. Lea el código. La lectura válida agrega la línea con cantidad 1, y el cursor vuelve al campo de código para la siguiente lectura.
-4. Si lee el mismo producto otra vez, la pantalla **suma 1** a la línea que ya existe y dice *Se sumó a la línea N*.
-5. El contador **Lecturas** y **Líneas** le muestra cuántas lecturas hizo y cuántas líneas hay.
+1. Elija la bodega (y el centro de costos, si el tipo lo exige).
+2. Lea el código. Un código de barras (EAN) se agrega solo con cantidad 1, y el cursor vuelve al campo de código para la siguiente lectura. Una referencia no se agrega sola: su código queda en el campo. Si el código corresponde a una referencia con variantes, la pantalla le deja elegir la variante.
+3. Si lee el mismo producto otra vez, la pantalla **suma 1** a la línea que ya existe y dice *Se sumó a la línea N*.
+4. Los contadores **Lecturas** y **Líneas** muestran cuántas lecturas hizo y cuántas líneas hay.
+
+![Captura con lector rápido](../recursos/img/ventas-devoluciones/14-lector-rapido.png)
 
 Si el código no existe, la pantalla muestra **Código no encontrado** y deja el foco en el campo para que lo corrija.
 
@@ -275,6 +372,18 @@ Si el código corresponde a **varias variantes** (por ejemplo, talla o color), l
 | **El documento admite N líneas como máximo.** | El tipo tiene un límite de líneas. Use otro documento. |
 | **Otra persona modificó esta línea.** | Use la **versión actual** o descarte su cambio. |
 
+<a id="autorizacion"></a>
+### Precio fuera de lo permitido (autorización del administrador)
+
+Si el valor que escribe no está permitido para su usuario, la línea no se guarda y la pantalla abre el diálogo **Autorización del administrador**. Dice el valor que intentó y el precio de la lista, por ejemplo: *El valor ... no está permitido para tu usuario. Precio de lista ...; solo se acepta ese valor.* Un usuario que no es administrador solo puede dejar el valor de la lista (sin redondeos), y nunca por debajo del costo. Si el valor viene de un **pedido**, de una **remisión** o de la **factura de origen**, se acepta tal cual, sin pedir autorización.
+
+Para seguir, un administrador escribe **su** usuario y **su** clave en el diálogo, y puede escribir un **Motivo** (hasta 200 caracteres). Después haga clic en **Solicitar autorización**.
+
+- Si la autorización se concede, la línea se guarda con ese valor.
+- Si cancela, la línea no se guarda y el valor vuelve al de la lista: *La línea no se guardó: el valor vuelve al de la lista.*
+- Si escribe muchas veces seguidas, la pantalla le pide esperar unos segundos.
+- Si el servidor no responde, la pantalla dice *No se pudo solicitar la autorización. Inténtalo de nuevo.*
+
 ---
 
 <a id="totales"></a>
@@ -286,6 +395,18 @@ En la parte de abajo del documento están los **totales**: Cantidad, Bruto, Desc
 - **ReteIVA se calcula sobre el IVA.** La pantalla lo dice en el rótulo.
 - Las retenciones se aplican solo cuando el subtotal llega a la **base** de cada impuesto.
 - Los totales **no incluyen las líneas que todavía no se guardaron**, y la pantalla lo dice.
+
+Mientras captura, los totales están en un **cuadro flotante** llamado **Total General**: una barra compacta, de naranja a azul, que queda pegada al borde inferior de la pantalla mientras se desplaza el documento. Va debajo de las líneas y de su paginador, así que no tapa botones. Es el mismo cuadro en todos los documentos de la aplicación. Desde él puede:
+
+- **Ver desglose**: abre el detalle de los totales. **Ocultar desglose** lo pliega. En el desglose no aparecen las retenciones que están en cero.
+- Cerrar el cuadro con su botón de cierre (**Ocultar totales**). Para volver a verlo, use **Mostrar valores**.
+- Si hay líneas sin guardar, el cuadro avisa que los totales no las incluyen, aunque el desglose esté plegado.
+
+![Barra Total General](../recursos/img/ventas-devoluciones/44-total-general.png)
+
+### Los botones del documento: barra fija abajo
+
+Los botones del documento están en una **barra fija al borde inferior** de la pantalla, justo debajo del cuadro **Total General**. No están arriba: quedan a la vista aunque baje por las líneas. Según el estado del documento y sus permisos, ahí aparecen **Cerrar documento**, **Imprimir**, **Anular**, **Eliminar**, **Editar**, **Seleccionar Pedidos** y **Seleccionar Remisiones**. Si una acción no se puede usar en ese momento, el botón aparece deshabilitado.
 
 Los campos **Seguro y flete** y **Otros valores** se suman al total. En un tipo de **factura electrónica** no existen: no se pueden usar, quedan en 0 y la pantalla lo avisa con *Este tipo es de facturación electrónica: fletes y otros valores no se permiten y se pusieron en 0.*
 
@@ -318,13 +439,21 @@ Esto solo cambia lo que la pantalla muestra y revisa en la venta. El documento s
 <a id="pedido"></a>
 ## 📦 Facturar desde un pedido
 
-Use esta opción para facturar lo que el cliente ya pidió.
+Use esta opción para facturar lo que el cliente ya pidió. Puede hacerlo desde un documento **nuevo** (con tipo, fecha, cliente y sucursal) o desde un documento **abierto**.
 
-1. En el documento, haga clic en **Facturar desde pedido**.
-2. Busque el **Pedido** en *Busca un pedido con saldo*. Solo aparecen pedidos de la misma sucursal del documento, con saldo.
-3. Revise las líneas del pedido. Cada una muestra su **Saldo**.
-4. Marque las líneas que quiere facturar y ajuste la **Cantidad** (no puede superar el saldo), el **Lote** y el **Detalle**, si lo necesita.
-5. Haga clic en **Agregar líneas**.
+1. Haga clic en **Seleccionar Pedidos**.
+2. Busque el **Pedido** en *Busca un pedido con saldo*. Puede escribir el consecutivo (*123*) o el código completo (*PE-123*). Solo aparecen pedidos de la misma sucursal del documento, con saldo.
+3. Revise las líneas del pedido. Cada una muestra su **Referencia**, su **Atributo principal** y su **Atributo secundario**, y los valores del pedido: **Pedida**, **Despachada**, **Saldo**, **Valor**, **% Dto.**, **% IVA** y el **Total** de la línea (por su saldo). Ningún valor se parte en dos líneas; si la referencia es larga se recorta con puntos suspensivos y el nombre completo aparece al pasar el cursor.
+4. Si el pedido tiene muchas líneas, use **Buscar en el pedido**: escriba parte de la referencia, del nombre, de un atributo o de la bodega (sin importar mayúsculas ni tildes, y puede combinar palabras, por ejemplo *camiseta negro*). Lo que ya marcó no se pierde al filtrar.
+5. Marque las líneas que quiere facturar (**Facturar**) y ajuste la **Cantidad** (no puede superar el saldo), el **Lote** y el **Detalle**, si lo necesita.
+6. Debajo de la tabla, la pantalla muestra el **Total del pedido (saldo)** y el **Total a facturar (estimado)** de lo que marcó. Es un cálculo con el valor, el descuento y el IVA del pedido; al guardar, el sistema lo recalcula.
+7. Haga clic en **Agregar líneas**.
+
+La ventana es ancha para que todo se vea junto. En pantallas pequeñas la tabla se puede desplazar hacia los lados.
+
+![Seleccionar pedidos](../recursos/img/ventas-devoluciones/47-seleccionar-pedidos.png)
+
+*(captura pendiente de actualizar: no muestra las columnas de referencia, atributos y valores, ni el buscador ni los totales)*
 
 Las líneas se guardan **todas o ninguna**. Si una de ellas no se puede guardar, la pantalla dice cuál fue y no guarda nada. Cada línea queda ligada a su pedido, y el saldo del pedido baja en la cantidad facturada.
 
@@ -337,10 +466,12 @@ Si el pedido ya no está disponible (es de otra sucursal, está anulado o no tie
 
 Use esta opción para facturar una o varias remisiones en un solo documento.
 
-1. Complete el **Tipo de documento**, la **Fecha**, el **Cliente** y la **Sucursal**. Sin ellos, el botón **Seleccionar remisiones** no se activa, y la pantalla dice *Completa tipo, fecha, cliente y sucursal para seleccionar remisiones.*
-2. Haga clic en **Seleccionar remisiones**.
+1. Complete el **Tipo**, la **Fecha**, el **Cliente** y la **Sucursal**. Sin ellos, el botón **Seleccionar Remisiones** no se activa, y la pantalla dice *Completa tipo, fecha, cliente y sucursal para seleccionar remisiones.*
+2. Haga clic en **Seleccionar Remisiones**.
 3. Busque por consecutivo o por documento de referencia, y marque las remisiones que quiere facturar.
 4. Haga clic en **Agregar remisiones**.
+
+![Seleccionar remisiones](../recursos/img/ventas-devoluciones/48-seleccionar-remisiones.png)
 
 Reglas:
 
@@ -358,7 +489,7 @@ Si el documento todavía no existe, la operación lo crea con su consecutivo y a
 
 ![Documento cerrado, con la factura en cola](../recursos/img/ventas-devoluciones/20-cerrado-en-cola.png)
 
-1. Revise el documento y, cuando esté listo, haga clic en **Cerrar documento**.
+1. Revise el documento y, cuando esté listo, haga clic en **Cerrar documento** (está en la barra fija de abajo, debajo de **Total General**).
 2. En el diálogo, revise el total: *Vas a cerrar FV-1205 por el total. Quedará de solo lectura.*
 3. Confirme con **Cerrar documento**.
 
@@ -522,7 +653,7 @@ Estas tres acciones tienen efectos distintos. Elija según el caso:
 
 ![Anular con motivo](../recursos/img/ventas-devoluciones/21-anular-con-motivo.png)
 
-Antes de anular, la pantalla revisa si el documento puede anularse. Si no puede, dice por qué. Por ejemplo, con recibos de caja o pagos sin anular, con notas crédito o devoluciones que lo referencian, o con la fecha en un periodo cerrado.
+Antes de anular, la pantalla revisa si el documento puede anularse. Si no puede, dice por qué. Por ejemplo, con recibos de caja o pagos sin anular, con notas crédito o devoluciones que lo referencian, o con la fecha en un periodo cerrado. En ese caso, la pantalla le propone las alternativas: **Crear una nota crédito** o **Registrar una devolución**.
 
 **Venta con recibo de caja automático.** Al anular la venta, también se anula su recibo de caja automático, en el mismo paso. Esto solo se permite si el recibo es **anulable**: tiene un solo pago y una sola línea, no se modificó después de crearse, no tiene otros documentos y el periodo de recibos de caja sigue abierto. Si no lo es, la pantalla dice el número del recibo y el motivo, y no cambia nada. Los recibos de caja que se crearon a mano siguen bloqueando la anulación, como antes.
 
@@ -530,7 +661,7 @@ Antes de anular, la pantalla revisa si el documento puede anularse. Si no puede,
 
 1. Haga clic en **Eliminar**.
 2. El diálogo dice cuántas líneas, registros contables y adjuntos se borrarán.
-3. Escriba el número del documento para confirmar. El botón **Eliminar documento** solo se activa si el número coincide.
+3. Escriba el número del documento para confirmar. El botón de eliminar del diálogo solo se activa si el número coincide.
 
 ![Eliminar con confirmación](../recursos/img/ventas-devoluciones/22-eliminar.png)
 
@@ -693,28 +824,33 @@ Si la pestaña no pudo cargar el recibo, muestra el aviso y el botón **Reintent
 <a id="imprimir"></a>
 ## 🖨️ Imprimir
 
-Haga clic en **Imprimir** en el documento o en la fila del listado.
+Haga clic en **Imprimir** en el documento o en la fila del listado. **Imprime en un clic**: el documento se abre en una **pestaña nueva** como PDF, con el **formato que corresponde al tipo de movimiento**. No se abre ningún diálogo.
 
 ![Imprimir con formato carta estándar](../recursos/img/ventas-devoluciones/31-carta-estandar.png)
+
+Si el navegador bloquea la pestaña nueva, la pantalla lo dice: *El navegador bloqueó la pestaña nueva. El PDF está listo:* y ofrece el botón **Abrir PDF**.
+
+### Otras opciones
+
+Para elegir otro formato o papel, use **Otras opciones** en el documento. Se abre el diálogo **Imprimir** con estas opciones:
+
+- **Formato**: el formato que sugiere el tipo. Puede elegir otro.
+- **Papel**: el papel del formato (por ejemplo, *Carta* o *80 mm*).
+- **Vista previa (PDF)**: muestra el resultado sin imprimir. No cuenta como impresión.
+- **Descargar PDF**: guarda el archivo.
+- **Imprimir**: envía el documento a la impresora.
 
 ### Formatos
 
 | Formato | Para qué |
 |---------|----------|
-| **Carta estándar** | Factura o documento completo en hoja carta. |
-| **Carta compacta** | Hoja carta con menos espacio. |
-| **Tirilla con logo · 80 mm** | Tirilla de 80 mm con el logo de la compañía. |
-| **Tirilla de texto · 80 mm** | Tirilla de 80 mm, solo texto. |
-| **PDF oficial de la factura electrónica · Carta** | El PDF que entrega el proveedor tecnológico. Solo con la factura transmitida. |
+| **Carta estándar** | Factura o documento completo en hoja carta, con todas las columnas de la línea, los totales con retenciones y la firma de recibido. |
+| **Carta compacta** | Hoja carta con una fila por referencia (agrupa las tallas). |
+| **Tirilla con logo** | Papel de 80 mm, con el logo de la compañía, la forma de pago y las líneas con su valor con IVA. |
+| **Tirilla de texto** | Papel de 80 mm, solo texto, con la fecha y hora de creación, y el CUFE si existe. |
+| **PDF oficial de la factura electrónica** | El PDF que entrega el proveedor tecnológico, con CUFE y QR. Solo con la factura transmitida. |
 
-La pantalla **sugiere** un formato según el tipo de documento, y dice cuál es. Puede elegir otro. Si el tipo no tiene un formato propio, la pantalla sugiere **Carta estándar**.
-
-Según el formato, aparecen opciones:
-
-- **Rótulo de sucursal**: el texto que sale como sucursal. Por defecto es *Sucursal*.
-- **Mostrar CUFE**: incluye el CUFE en la impresión.
-- **Mostrar fecha y hora de creación**: incluye cuándo se creó el documento.
-- **Imprimir en Color** o **Blanco y negro**.
+Si el tipo de documento no tiene un formato propio, la pantalla usa **Carta estándar**. En un tipo de factura electrónica sin formato propio, la impresión sigue otra regla (ver [PDF del proveedor](#pdf-proveedor)).
 
 ![Carta compacta](../recursos/img/ventas-devoluciones/32-carta-compacta.png)
 
@@ -722,7 +858,16 @@ Según el formato, aparecen opciones:
 
 ![Tirilla de texto con opciones](../recursos/img/ventas-devoluciones/34-tirilla-de-texto.png)
 
-Para ver el resultado sin imprimir, use la **Vista previa (PDF)**. Para guardar el archivo, use **Descargar PDF**. Para imprimir, use **Imprimir**.
+### Factura electrónica sin formato propio: PDF del proveedor
+
+<a id="pdf-proveedor"></a>
+
+Si el tipo es de **factura electrónica** y **no tiene un formato propio** configurado, **Imprimir** usa el PDF oficial que entrega el proveedor tecnológico, siempre que la factura ya esté transmitida:
+
+- **PDF del proveedor disponible**: se abre en una pestaña nueva y la pantalla dice *PDF oficial del proveedor abierto en otra pestaña.* Esta impresión no cuenta como impresión local.
+- **PDF del proveedor todavía no disponible** (por ejemplo, la factura no se ha enviado), o el proveedor no responde: se imprime el formato propio del tipo (o **Carta estándar**, si el tipo no tiene uno).
+
+La impresión nunca espera al proveedor tecnológico. Si el tipo tiene un formato propio, **Imprimir** siempre usa ese formato.
 
 <a id="bloque-pago"></a>
 ### El bloque Pago
@@ -742,7 +887,7 @@ La primera impresión sale como **Original**. Las siguientes salen como **Copia*
 
 ![Impresión como copia](../recursos/img/ventas-devoluciones/35-copia.png)
 
-Cada impresión queda registrada con su número, su usuario y la fecha, y la pantalla lo confirma: *Impresión registrada: n.º N (tipo).*
+Cada impresión queda registrada con su número, su usuario y la fecha, y la pantalla lo confirma: *Documento abierto en otra pestaña. Impresión n.º N (tipo).*
 
 ### Documento abierto
 
@@ -752,9 +897,9 @@ Un documento **abierto** solo tiene **vista previa**. La vista sale marcada como
 
 ### La factura electrónica y la impresión
 
-**La impresión nunca se frena por la factura electrónica.**
+**La impresión nunca espera a la DIAN ni al proveedor tecnológico.**
 
-- Si el CUFE no llega en unos 3 segundos, se imprime igual y la pantalla dice **CUFE no disponible por ahora**.
+- Si el CUFE no está disponible en ese momento, se imprime igual y la pantalla dice **CUFE no disponible por ahora**.
 - Si la factura todavía no está transmitida, la impresión sale con un formato local y el aviso **Factura electrónica no disponible: está en proceso de envío.** Si el envío falló, el aviso dice **Factura electrónica sin enviar: se reintentará o puede reenviarse.**
 - El **PDF oficial** solo sale con la factura transmitida. Si no, la pantalla dice *Factura electrónica no disponible: está en proceso de envío.*
 
@@ -762,28 +907,29 @@ Un documento **abierto** solo tiene **vista previa**. La vista sale marcada como
 
 ![PDF oficial de la factura](../recursos/img/ventas-devoluciones/37-pdf-oficial.png)
 
-> 💡 Si el navegador bloquea la ventana de la vista previa, la pantalla lo dice: *Permite las ventanas emergentes e intenta de nuevo.*
-
 ---
 
 <a id="adjuntos"></a>
 ## 📎 Adjuntos
 
-El bloque **Adjuntos** guarda archivos de soporte del documento (PDF, imágenes, Word o Excel). Cada documento tiene un cupo de **10 MB** en total; la pantalla muestra cuánto lleva usado (*n de 10 MB usados*).
+La tarjeta **Adjuntos del documento** guarda archivos de soporte del documento (PDF, imágenes, Word o Excel). Cada documento tiene un cupo de **10 MB** en total; la pantalla muestra cuánto lleva usado (*n de 10 MB usados*).
+
+En el documento, los adjuntos están en la pestaña **Adjuntos**. En la captura, están en la tarjeta del encabezado.
 
 ### Agregar y quitar
 
 Solo puede **agregar** y **quitar** adjuntos mientras el documento está **abierto**.
 
-1. En la pestaña **Adjuntos** del documento, o en el bloque **Adjuntos** de la captura, elija el archivo.
-2. Escriba la **Descripción** (obligatoria, hasta 200 caracteres).
-3. Haga clic en **Agregar a la lista** (en la captura) o en **Adjuntar** (en la pestaña).
+1. Elija el archivo y escriba la **Descripción**.
+2. Haga clic en **Adjuntar** (documento ya creado) o en **Agregar a la lista** (documento nuevo).
 
-En la captura, los archivos quedan en la lista **Se subirán al guardar el documento** y se suben al guardar. Lo mismo pasa si el documento se crea con **Seleccionar remisiones**. Mientras espera, el archivo aparece como *Pendiente de subir*.
+En un documento nuevo, los archivos quedan en la lista **Se subirán al guardar el documento** y se suben al guardar el documento. Lo mismo pasa si el documento se crea con **Seleccionar Remisiones**. Mientras espera, el archivo aparece como *Pendiente de subir*.
 
 Para quitar un adjunto, haga clic en **Quitar** junto al archivo. La pantalla pide confirmación: *Vas a quitar «nombre» del documento. No se puede deshacer.* Confirme con **Quitar adjunto**.
 
 Para **ver** o **descargar** un adjunto, use **Ver** junto al archivo. Esto se puede hacer en cualquier estado del documento.
+
+![Adjuntos de un documento transmitido](../recursos/img/ventas-devoluciones/46-adjuntos.png)
 
 ### Solo lectura
 
@@ -805,16 +951,22 @@ Un archivo que supera el cupo, de un tipo no permitido o con una descripción no
 
 Si elimina el documento, también se borran sus adjuntos. El diálogo de eliminar le dice cuántos adjuntos se borrarán (ver [Eliminar](#anular)).
 
-<!-- CAPTURA PENDIENTE: adjuntos -->
-
 ---
 
-<a id="proximamente"></a>
-## 🔜 Próximamente
+<a id="abiertos"></a>
+## 🗂️ Varios documentos abiertos
 
-- **Documentos abiertos y varios documentos a la vez**: un menú de documentos abiertos y pestañas para trabajar varias ventas al tiempo. **Todavía no está aprobado.** No lo tome como referencia para trabajar hoy.
+Puede trabajar con varias ventas a la vez, cada una en su **pestaña**. Puede tener hasta **5 pestañas** abiertas. La pantalla lo indica arriba, por ejemplo: *3 de 5 pestañas abiertas.*
 
-Mientras tanto, para retomar un documento abierto, búsquelo en el listado con el filtro **Estado** en *Abierta* y ábralo.
+![Documentos abiertos en pestañas](../recursos/img/ventas-devoluciones/45-documentos-abiertos.png)
+
+- **Nueva venta** abre un documento nuevo en una pestaña.
+- **Documentos abiertos (N)** es el menú de sus documentos abiertos que todavía no están en una pestaña. Elija uno para abrirlo.
+- Para cerrar una pestaña, use **Cerrar pestaña**.
+
+Si quiere abrir otro documento con las 5 pestañas ocupadas, la pantalla dice *Ya tienes 5 documentos abiertos* y le pide cerrar una pestaña.
+
+Los cambios se guardan **línea a línea en el servidor**; no hay un borrador en el navegador. Si cierra una pestaña con líneas sin guardar, la pantalla le pregunta: *Hay líneas sin guardar.* Puede elegir **Quedarme** o **Descartar y cerrar**.
 
 ---
 
@@ -870,14 +1022,23 @@ Si la factura electrónica está **en cola**, el envío está en curso y no se p
 **¿Puedo cambiar fletes o otros valores en una factura electrónica?**
 No. En un tipo de factura electrónica estos valores no existen y quedan en 0.
 
-**¿Por qué no aparece el botón Seleccionar remisiones?**
+**¿Por qué no aparecen los campos Seguro y flete o Otros valores?**
+Solo aparecen si el tipo de documento los permite.
+
+**¿Por qué no aparece el campo % descuento por defecto?**
+Solo aparece si el tipo de documento liquida descuento.
+
+**¿Por qué no aparece el botón Seleccionar Remisiones?**
 Falta completar el tipo, la fecha, el cliente o la sucursal.
 
 **¿De dónde sale el valor que trae la línea?**
-De la lista de precios de la sucursal del cliente. Si el valor dice **Lo escribiste tú**, usted lo cambió y no se va a pisar.
+De la lista de precios de la sucursal del cliente. Si usted escribe otro valor, la pantalla no lo reemplaza. Si el valor está fuera de lo que su usuario puede usar, pide la autorización de un administrador (ver [Precio fuera de lo permitido](#autorizacion)).
 
 **¿Por qué la pantalla dice que se sumó a una línea?**
 Porque leyó o escribió un producto igual (misma referencia, descuento, IVA y bodega) a una línea que ya estaba. La cantidad se suma y no se crea otra línea.
+
+**¿Por qué no puedo abrir más documentos?**
+Puede tener hasta 5 pestañas abiertas. Cierre una con **Cerrar pestaña** para abrir otro.
 
 ---
 

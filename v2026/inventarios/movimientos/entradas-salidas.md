@@ -413,7 +413,8 @@ Al abrir un documento (lápiz u ojo en el listado) ve:
 
 ![Documento abierto](../recursos/img/movimientos/11-documento.png)
 
-- **Barra superior**: *Volver al listado*, el estado, *En vivo* y las acciones: **Cerrar transacción** (la principal), **Imprimir**, **Duplicar**, **Anular** y **Eliminar**. Si una acción no se puede usar, aparece deshabilitada con el motivo debajo.
+- **Barra superior**: *Volver al listado*, el estado y *En vivo*.
+- **Barra fija abajo**: al borde inferior de la pantalla, siempre a la vista al desplazarse por las líneas, están las acciones **Cerrar transacción** (la principal), **Imprimir**, **Duplicar**, **Anular** y **Eliminar**. Si una acción no se puede usar, aparece deshabilitada con el motivo debajo.
 - **Encabezado**: editable si el documento está abierto; en un documento cerrado o anulado muestra además quién lo **creó**, quién lo **cerró** y cuántas veces se ha **impreso**.
 - **Resumen**: Líneas, Cantidad y Valor; **Por bodega** y **Por referencia** (las 20 de mayor valor).
 - **Pestañas**:
@@ -664,7 +665,7 @@ Cuando una **entrada tiene una orden de producción (OP)**, puede **registrar un
 
 ### Cuándo aparece la acción
 
-En la **barra de acciones del documento** (arriba, junto a **Cerrar transacción** e **Imprimir**), aparecen botones de producción solo si el documento es elegible:
+En la **barra fija de abajo** del documento (junto a **Cerrar transacción** e **Imprimir**), aparecen botones de producción solo si el documento es elegible:
 
 | Acción | Cuándo aparece |
 |--------|----------------|
@@ -791,7 +792,7 @@ Cuando guarda una **entrada de producción** (un documento donde sus líneas tie
 
 ### Cuándo aparece la acción
 
-En la **barra de acciones del documento** (arriba, junto a **Registrar producción** e **Imprimir**), aparece **Costear producción** solo si:
+En la **barra fija de abajo** del documento (junto a **Registrar producción** e **Imprimir**), aparece **Costear producción** solo si:
 
 - El documento es una **entrada** con una **orden de producción única** (todas las líneas de la OP).
 - El documento está **abierto** o usted tiene el permiso para editarlo cerrado.
