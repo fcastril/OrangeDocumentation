@@ -10,13 +10,15 @@
 ![Static Badge](https://img.shields.io/badge/Opcion-Cajeros-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
-![Static Badge](https://img.shields.io/badge/Actualizacion-20261022-yellow)
+![Static Badge](https://img.shields.io/badge/Actualizacion-20261104-yellow)
 
 ---
 
 ## 📋 Descripción
 
 Crea cajeros nuevos o actualiza los existentes a partir de un archivo de Excel. Antes de guardar, el sistema le muestra qué va a crear, qué va a actualizar y qué filas tienen errores. **Nunca elimina cajeros.**
+
+El archivo tiene **5 columnas**: Caja, Usuario, Tipo de movimiento de venta, Forma de pago y Base. El cliente, la sucursal, la bodega, el centro de costos, el recibo de caja y el descuento **ya no se piden**: se toman del tipo de movimiento de venta.
 
 > 🔐 Necesita el permiso **Exportar** sobre la opción Cajeros (es el mismo permiso de **Exportar a Excel**).
 
@@ -32,24 +34,27 @@ En [Cajeros](cajeros.md), haga clic en **Importar** (junto a **Exportar a Excel*
 
 ![Cargar archivo](../recursos/img/cajeros-importar/01-cargar-archivo.png)
 
-1. Haga clic en **Descargar plantilla**. Se descarga `cajeros-plantilla.xlsx` con las columnas: **Caja, Usuario, Tipo de movimiento de venta, Tipo de recibo de caja, Cliente, Sucursal, Bodega, Centro de costos, Forma de pago, Base** y **Descuento (%)**.
-2. Llene **una fila por cajero**. Las referencias van por su código o documento: usuario (Login), tipos de movimiento, documento del cliente, código de la sucursal del cliente, bodega, centro de costos y forma de pago.
+1. Haga clic en **Descargar plantilla**. Se descarga `cajeros-plantilla.xlsx` con las columnas: **Caja, Usuario, Tipo de movimiento de venta, Forma de pago** y **Base**.
+2. Llene **una fila por cajero**. Las referencias van por su código o documento: usuario (Login), tipo de movimiento de venta y forma de pago.
 3. Guarde el archivo y arrástrelo al recuadro, o haga clic en **Seleccionar archivos**.
 
-La **llave** de cada fila es **Caja + Usuario**: si ya existe un cajero con esa caja y ese usuario, se **actualiza** (todos sus datos); si no, se **crea**.
+La **llave** de cada fila es **Caja + Usuario**: si ya existe un cajero con esa caja y ese usuario, se **actualiza**; si no, se **crea**. Al actualizar, la caja conserva los datos que vienen del tipo de movimiento.
 
 | Regla | Detalle |
 |-------|---------|
 | Formato | Excel `.xlsx`. Solo se lee la **primera hoja**. |
-| Encabezado | La primera fila debe tener los encabezados de la plantilla (con o sin tilde, en mayúsculas o minúsculas). El orden no importa. **Descuento (%)** es opcional. |
+| Encabezado | La primera fila debe tener los encabezados de la plantilla (con o sin tilde, en mayúsculas o minúsculas). El orden no importa. |
 | Tamaño | Hasta **1.000 filas** y **1 MB**. Si tiene más, divida el archivo. |
 | Filas vacías | Se ignoran; en **Revisar** se indica cuántas se omitieron. |
 | Caja | Obligatoria, hasta 50 caracteres, sin comas ni punto y coma. |
+| Usuario | Obligatorio. Debe ser un usuario activo de la compañía. |
+| Tipo de movimiento de venta | Obligatorio. Solo los tipos de venta que usted tiene autorizados, y que tengan recibo de caja automático, cliente por defecto con sucursal y bodega. |
+| Forma de pago | Obligatoria. |
 | Base | Número mayor o igual a 0. |
-| Descuento | Entero de 0 a 100 (vacío = 0). |
-| Sucursal | Debe ser una sucursal del cliente de la fila. |
-| Bodega | Debe ser una de **sus** bodegas. |
-| Tipos de movimiento | Solo los que usted tiene autorizados (venta y recibo de caja). |
+
+### Archivos del formato anterior (11 columnas)
+
+Si tiene un archivo con el formato anterior, **también se acepta**. Las columnas **Cliente, Sucursal, Bodega, Centro de costos, Tipo de recibo de caja y Descuento** se **ignoran**: la vista previa muestra un aviso por cada una (*"columna ignorada: se toma del tipo de movimiento"*). Las cinco columnas de la plantilla se procesan como siempre.
 
 Si el archivo no sirve, verá el motivo y no se envía nada: no es un `.xlsx`, faltan columnas, no tiene filas, tiene más de 1.000 filas o pesa más de 1 MB.
 
@@ -76,10 +81,12 @@ Use las pestañas **Todas / Nuevos / Se actualizan / Sin cambios / Con error** p
 
 | Mensaje | Cómo corregirlo |
 |---------|-----------------|
-| *Falta la caja / el usuario / la bodega…* | Complete la celda. |
+| *Falta la caja / el usuario / el tipo de venta / la forma de pago / la base.* | Complete la celda. |
 | *El usuario no existe o no está activo en esta compañía.* | Revise el Login. |
-| *La sucursal no pertenece al cliente de la fila.* | Use una sucursal del cliente. |
-| *La base debe ser mayor o igual a 0.* / *El descuento debe ser un entero de 0 a 100.* | Corrija el número. |
+| *El tipo de venta no existe o no está autorizado para usted.* | Use un tipo de venta al que tenga acceso. |
+| *El usuario del cajero no está autorizado a este tipo de venta.* | Use un tipo al que ese usuario tenga acceso, o cambie el usuario de la fila. |
+| *El tipo de venta no sirve para el POS: …* | El tipo no tiene recibo de caja automático, cliente con sucursal o bodega. Complételo en Tipos de movimiento, o use otro tipo. |
+| *La base debe ser mayor o igual a 0.* | Corrija el número. |
 | *La fila se repite en el archivo.* | Deje una sola fila por Caja + Usuario. |
 | **Conflicto: ya hay una caja con ese nombre de otro usuario** | Dos cajeros no deberían compartir nombre de caja. El sistema **no lo resuelve solo**: cambie el nombre de la caja o el usuario. |
 
@@ -120,6 +127,9 @@ Si otra persona cambia cajeros mientras usted revisa, verá un aviso para **Volv
 
 **¿Puedo cambiar el nombre de una caja con la importación?**
 No: Caja + Usuario es la llave, así que otro nombre crea un cajero nuevo. Para renombrar use **Editar** en [Cajeros](cajeros.md).
+
+**¿Qué pasa con el cliente, la sucursal o la bodega de mi archivo anterior?**
+Se ignoran y se toman del tipo de movimiento de venta. La vista previa le avisa de cada columna ignorada.
 
 **¿La importación borra los cajeros que no están en el archivo?**
 No. Nunca elimina cajeros.

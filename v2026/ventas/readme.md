@@ -11,12 +11,13 @@ Manuales de las pantallas de Ventas en la nueva versión.
 - [Pedidos](movimientos/pedidos.md): pedidos de venta al cliente, con su captura por línea y por matriz de tallas y colores, cierre, anulación, despacho, impresión y lo que comprometen de inventario.
 - [Importar pedidos desde Excel](movimientos/pedidos-importar.md): carga de varios pedidos nuevos desde una hoja de Excel, con vista previa y resultado.
 - [Ventas y devoluciones](movimientos/ventas-devoluciones.md): ventas, devoluciones y notas crédito, con su captura, cierre, factura electrónica, anulación e impresión.
+- [Punto de venta](movimientos/punto-de-venta.md): venta rápida de mostrador desde la caja del cajero, con búsqueda por código o EAN, favoritos, variantes, cobro en un solo paso con recibo de caja automático y atajos de teclado.
 
 ## Maestros
 
 - [Clientes](maestros/clientes.md): terceros a quienes la compañía vende, con su ficha comercial, sucursales, contactos y archivos.
 - [Vendedores](maestros/vendedores.md): personas que venden y recaudan, con su código, zona y comisiones.
-- [Cajeros](maestros/cajeros.md): cajas de venta rápida que unen a un usuario con su cliente, bodega, forma de pago, base y descuento por defecto.
+- [Cajeros](maestros/cajeros.md): cajas de venta rápida que unen a un usuario con su tipo de movimiento de venta, su forma de pago y su base; el cliente, la sucursal y la bodega salen del tipo.
 
 ## Clientes · Ficha del cliente
 
