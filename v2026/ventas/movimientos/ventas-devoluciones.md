@@ -298,6 +298,16 @@ El botón de **lupa**, junto al campo **Código**, abre el buscador **Buscar por
 
 La pantalla muestra estos atajos debajo de la fila de captura.
 
+### Editar una línea
+
+Al editar una línea (**F2** o el botón **Editar** de su fila), la línea queda **resaltada** en el detalle y la fila de captura muestra qué está editando:
+
+- En **Código**, la referencia, y en **Descripción**, su nombre.
+- En **Atributo principal** y **Atributo secundario**, los de la línea. Funcionan como al crear: al elegir uno, el otro ofrece solo lo que existe para esa combinación.
+- La cantidad, el valor, el descuento y el IVA de la línea, listos para cambiarlos.
+
+En las tablas de líneas (la de la captura y la del documento), la **Referencia**, el **Atributo principal** y el **Atributo secundario** van en columnas separadas.
+
 ### Matriz de variantes
 
 Cuando una referencia tiene varias variantes, el botón **Matriz** abre la matriz para capturar varias variantes de una vez. El título es *Seleccionar Atributos*, con la referencia y el nombre.
@@ -305,6 +315,7 @@ Cuando una referencia tiene varias variantes, el botón **Matriz** abre la matri
 ![Matriz de variantes](../recursos/img/ventas-devoluciones/43-matriz-variantes.png)
 
 - **Valor** y **Descuento** son comunes a todas las celdas. El valor se muestra con separador de miles y se digita igual: al escribir *45000* queda **45.000** y no cambia. Si el valor está vacío o es 0, cada línea toma el valor sugerido de su lista.
+- El **IVA** que eligió en la fila de captura vale para todas las tallas de la matriz. Si no eligió ninguno, cada línea toma el IVA de su referencia.
 - Las **filas** son el atributo secundario y las **columnas** son el atributo principal. Cada celda tiene su cantidad y la existencia de esa variante en la bodega que tiene la fila de captura (*Exist.*).
 - Las celdas **grises** (*No disponible*) son combinaciones que no existen. Las celdas **rojas** no tienen existencia y son de solo lectura, porque la salida no admite saldo negativo.
 - La cantidad no puede superar la existencia de la celda (*La cantidad supera la existencia*).
@@ -429,12 +440,18 @@ Esto solo cambia lo que la pantalla muestra y revisa en la venta. El documento s
 Use esta opción para facturar lo que el cliente ya pidió. Puede hacerlo desde un documento **nuevo** (con tipo, fecha, cliente y sucursal) o desde un documento **abierto**.
 
 1. Haga clic en **Seleccionar Pedidos**.
-2. Busque el **Pedido** en *Busca un pedido con saldo*. Solo aparecen pedidos de la misma sucursal del documento, con saldo.
-3. Revise las líneas del pedido. Cada una muestra su **Saldo**.
-4. Marque las líneas que quiere facturar (**Facturar**) y ajuste la **Cantidad** (no puede superar el saldo), el **Lote** y el **Detalle**, si lo necesita.
-5. Haga clic en **Agregar líneas**.
+2. Busque el **Pedido** en *Busca un pedido con saldo*. Puede escribir el consecutivo (*123*) o el código completo (*PE-123*). Solo aparecen pedidos de la misma sucursal del documento, con saldo.
+3. Revise las líneas del pedido. Cada una muestra su **Referencia**, su **Atributo principal** y su **Atributo secundario**, y los valores del pedido: **Pedida**, **Despachada**, **Saldo**, **Valor**, **% Dto.**, **% IVA** y el **Total** de la línea (por su saldo). Ningún valor se parte en dos líneas; si la referencia es larga se recorta con puntos suspensivos y el nombre completo aparece al pasar el cursor.
+4. Si el pedido tiene muchas líneas, use **Buscar en el pedido**: escriba parte de la referencia, del nombre, de un atributo o de la bodega (sin importar mayúsculas ni tildes, y puede combinar palabras, por ejemplo *camiseta negro*). Lo que ya marcó no se pierde al filtrar.
+5. Marque las líneas que quiere facturar (**Facturar**) y ajuste la **Cantidad** (no puede superar el saldo), el **Lote** y el **Detalle**, si lo necesita.
+6. Debajo de la tabla, la pantalla muestra el **Total del pedido (saldo)** y el **Total a facturar (estimado)** de lo que marcó. Es un cálculo con el valor, el descuento y el IVA del pedido; al guardar, el sistema lo recalcula.
+7. Haga clic en **Agregar líneas**.
+
+La ventana es ancha para que todo se vea junto. En pantallas pequeñas la tabla se puede desplazar hacia los lados.
 
 ![Seleccionar pedidos](../recursos/img/ventas-devoluciones/47-seleccionar-pedidos.png)
+
+*(captura pendiente de actualizar: no muestra las columnas de referencia, atributos y valores, ni el buscador ni los totales)*
 
 Las líneas se guardan **todas o ninguna**. Si una de ellas no se puede guardar, la pantalla dice cuál fue y no guarda nada. Cada línea queda ligada a su pedido, y el saldo del pedido baja en la cantidad facturada.
 
