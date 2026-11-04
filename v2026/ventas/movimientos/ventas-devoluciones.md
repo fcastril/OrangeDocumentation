@@ -49,7 +49,7 @@ Los botones que ve dependen de los permisos de su usuario y del estado del docum
 
 | Permiso | Qué le permite |
 |---------|----------------|
-| **Consultar** | Ver el listado, abrir un documento y ver su estado de factura electrónica. |
+| **Consultar** | Ver el listado, abrir un documento, ver su estado de factura electrónica y ver su pestaña **Recibo de caja** (ver [Ver el recibo de caja de una venta](#recibo-caja)). |
 | **Crear** | Crear una venta, una devolución o una nota crédito, y facturar desde un pedido o desde remisiones. |
 | **Actualizar** | Capturar y cambiar líneas de un documento abierto, cerrarlo y reenviar a la DIAN una factura pendiente o con error. |
 | **Editar documento cerrado** | Cambiar una línea existente de un documento cerrado (ver [Editar un documento cerrado](#editar-cerrado)). |
@@ -386,7 +386,7 @@ Algunos tipos de venta generan su **recibo de caja** al cerrarse. Si el tipo de 
 Al confirmar, la pantalla cierra la venta y crea el recibo de caja en un solo paso:
 
 - El documento queda **cerrado** y de solo lectura.
-- Se crea un **recibo de caja** por el total de la venta, con la forma de pago que eligió.
+- Se crea un **recibo de caja** por el total de la venta, con la forma de pago que eligió. Si escribió el **valor recibido**, también se guarda con el recibo.
 - Los asientos contables del recibo quedan registrados, y el cierre queda en la bitácora de la venta y del recibo.
 - Si la venta es factura electrónica, la factura se envía en segundo plano, como siempre. Si ese envío falla, el recibo no se revierte.
 
@@ -417,6 +417,25 @@ Si cambia a una forma que no los pide, los campos desaparecen y sus valores se d
 
 ![Documento de referencia con caracteres no permitidos](../recursos/img/ventas-devoluciones/43-documento-invalido.png)
 
+**Valor recibido y cambio (solo formas sin banco ni documento)**
+
+Con las formas de pago que no piden banco ni documento de referencia (por ejemplo, **Efectivo**), el diálogo muestra el campo **Valor recibido**. Sirve para ver cuánto debe devolver al cliente.
+
+1. Escriba el valor que le entregó el cliente.
+2. Si el valor es igual o mayor al total, aparece la banda verde **Cambio: $X**. Es lo que debe devolver.
+3. Si el valor es menor al total, aparece **Faltan $X** en rojo y **Cerrar y generar recibo** queda deshabilitado. Corrija el valor, pulse **Exacto** o deje el campo vacío.
+
+![Valor recibido con cambio](../recursos/img/ventas-devoluciones/49-valor-recibido-cambio.png)
+
+![Valor recibido insuficiente: faltan dinero](../recursos/img/ventas-devoluciones/50-valor-recibido-faltan.png)
+
+- **Exacto** escribe el total en el campo. El cambio queda en $0.
+- Si deja el campo **vacío**, el cobro es exacto: no hay cambio y no bloquea el cierre.
+- Si escribe algo que no es un número, la pantalla dice *Escriba un valor numérico válido.* y tampoco deja cerrar.
+- Si cambia la forma de pago, el valor recibido se borra.
+- El **valor recibido se guarda** con el recibo y se imprime en el bloque **Pago** (ver [El bloque Pago](#bloque-pago)). El **cambio** no se guarda como dato: es el valor recibido menos el total.
+- El recibo siempre es por el total de la venta. El valor recibido no cambia el total.
+
 **Sin formas de pago**
 
 ![Sin formas de pago vigentes](../recursos/img/ventas-devoluciones/44-sin-formas-de-pago.png)
@@ -439,6 +458,8 @@ Para cerrar con recibo necesita el permiso **Crear** en **Recibos de caja y egre
 | **No pudimos cargar las formas de pago.** | Pulse **Reintentar**. La venta no cambia. |
 | **No se pudo generar el recibo. La venta sigue abierta; puede reintentar.** | Pulse **Reintentar**. Su selección se conserva. |
 | **Máximo 20 caracteres, sin comas ni punto y coma.** | Corrija el **Documento de referencia**. |
+| **Faltan $X** | El valor recibido es menor al total. Corrija el valor, pulse **Exacto** o deje el campo vacío. |
+| **Escriba un valor numérico válido.** | Corrija el **Valor recibido**. |
 | **La venta cambió mientras cobraba; recargue para ver los cambios.** | Pulse **Recargar**, revise el documento y vuelva a cerrar. |
 | **El tipo de este documento tiene mal configurado su recibo de caja; avise al administrador.** | El administrador debe corregir el tipo. Mientras tanto, la venta no se cierra. |
 | **El periodo contable de recibos de caja está cerrado para la fecha del documento.** | Elija otra fecha del documento. |
@@ -638,6 +659,37 @@ Después, la factura queda pendiente y se puede reenviar normalmente.
 
 ---
 
+<a id="recibo-caja"></a>
+## 💵 Ver el recibo de caja de una venta
+
+Una venta con recibo de caja automático tiene su recibo a la vista, sin salir del documento.
+
+1. En el listado, pulse **Ver** en la fila de la venta (o su número).
+2. Pulse la pestaña **Recibo de caja**. Está después de **Contabilidad**.
+
+- La pestaña aparece solo cuando el documento está **cerrado** o **anulado**. Un documento abierto todavía no tiene recibo.
+- Es solo de consulta: no tiene botones para cambiar, anular ni imprimir el recibo.
+- Necesita el permiso **Consultar** de esta opción.
+- Si el recibo cambia (por ejemplo, se anula), la pestaña se actualiza sola.
+
+Lo que ve:
+
+- El **número** del recibo, su **tipo**, la **fecha**, el **estado** (**Vigente** o **Anulado**) y el **valor total**.
+- La tabla de pagos: **forma de pago**, **banco**, **documento de referencia** y **valor**.
+- **Valor recibido** y **Cambio**, solo si se registraron al cobrar. El cambio sale destacado.
+
+![Recibo de caja vigente con valor recibido y cambio](../recursos/img/ventas-devoluciones/51-pestana-con-recibido.png)
+
+Si la venta no tiene recibo, la pestaña dice *Esta venta no tiene recibo de caja automático.*
+
+![Venta sin recibo de caja automático](../recursos/img/ventas-devoluciones/52-pestana-sin-recibo.png)
+
+Si la pestaña no pudo cargar el recibo, muestra el aviso y el botón **Reintentar**.
+
+![Error al cargar el recibo de caja](../recursos/img/ventas-devoluciones/53-pestana-error.png)
+
+---
+
 <a id="imprimir"></a>
 ## 🖨️ Imprimir
 
@@ -671,6 +723,18 @@ Según el formato, aparecen opciones:
 ![Tirilla de texto con opciones](../recursos/img/ventas-devoluciones/34-tirilla-de-texto.png)
 
 Para ver el resultado sin imprimir, use la **Vista previa (PDF)**. Para guardar el archivo, use **Descargar PDF**. Para imprimir, use **Imprimir**.
+
+<a id="bloque-pago"></a>
+### El bloque Pago
+
+Si la venta tiene recibo de caja, la impresión incluye el bloque **Pago**, después de los totales, con:
+
+- **Forma de pago** de cada pago.
+- **Banco** y **Documento**, solo si la forma de pago los tiene.
+- **Valor pagado**.
+- **Recibido** y **Cambio**, solo si al cobrar se registró el valor recibido y cubre el valor pagado.
+
+El bloque sale en las impresiones en carta y en las tirillas. Si la venta no tiene recibo, no sale. Al reimprimir, sale igual.
 
 ### Original y copia
 
@@ -771,6 +835,12 @@ Ese tipo de venta genera un recibo de caja automático al cerrarse. Elija la for
 
 **¿Puedo cambiar el total desde el diálogo Cerrar y cobrar?**
 No. El diálogo muestra el total de la venta. Si el total no es el que espera, cancele, revise las líneas del documento y vuelva a cerrar.
+
+**¿Se guarda el valor recibido?**
+Sí, con el recibo. Sale en el bloque **Pago** de la impresión y en la pestaña **Recibo de caja**. El recibo siempre es por el total de la venta.
+
+**¿Por qué no veo el campo Valor recibido?**
+Solo aparece con las formas de pago que no piden banco ni documento de referencia, como **Efectivo**. Con las formas que sí los piden, el diálogo no lo muestra.
 
 **¿Por qué un cliente de contado no muestra cartera?**
 La venta de contado no tiene saldo por cobrar. La pantalla muestra **No aplica: venta de contado** y no revisa cupo ni mora. El documento sigue en la cartera de la compañía y en los informes, como siempre.
