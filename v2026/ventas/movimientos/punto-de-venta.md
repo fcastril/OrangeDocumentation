@@ -10,7 +10,7 @@
 ![Static Badge](https://img.shields.io/badge/Opcion-PuntoDeVenta-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
-![Static Badge](https://img.shields.io/badge/Actualizacion-20261104-yellow)
+![Static Badge](https://img.shields.io/badge/Actualizacion-20261105-yellow)
 
 ---
 
@@ -18,11 +18,13 @@
 
 El **punto de venta** es la pantalla para vender en el mostrador de forma rápida. Usted escanea o toca los productos, ajusta cantidades y descuentos, y cobra en **un solo paso**: al cobrar se cierra la venta y se crea el **recibo de caja** automáticamente.
 
-La pantalla usa la **caja** que tiene asignada su usuario en [Cajeros](../maestros/cajeros.md). La caja le dice con qué tipo de movimiento de venta vende, a qué cliente y bodega, y qué forma de pago aparece por defecto. La venta queda guardada como una venta normal de [Ventas y devoluciones](ventas-devoluciones.md): lo que registra aquí aparece también allá.
+La pantalla usa la **caja** que tiene asignada su usuario en [Cajeros](../maestros/cajeros.md). La caja le dice con qué tipo de movimiento de venta vende, a qué cliente y bodega, y qué forma de pago aparece por defecto. Los tipos que se asignan a una caja son los del **punto de venta**, no los de [Ventas y devoluciones](ventas-devoluciones.md).
+
+Las ventas cobradas aquí aparecen también en [Ventas y devoluciones](ventas-devoluciones.md), pero **solo para consulta**: con el origen *Punto de venta*, no se pueden editar allí. Gestiónelas desde el punto de venta.
 
 > 📘 Cada pestaña del navegador trabaja con **una compañía**. El nombre y el color de la compañía se ven en la barra superior.
 
-> 💡 La venta se guarda al agregar cada producto. Si se cierra la pestaña o se recarga la página, al volver puede **continuar la venta abierta**.
+> 💡 La venta se guarda al agregar cada producto. Si se cierra la pestaña o se recarga la página, al volver puede **continuar la venta abierta**, desde la caja o desde el listado con **Editar**.
 
 ---
 
@@ -30,6 +32,36 @@ La pantalla usa la **caja** que tiene asignada su usuario en [Cajeros](../maestr
 
 1. En el menú principal, haga clic en **Ventas**.
 2. En **Movimientos**, haga clic en **Punto de venta**.
+
+Se abre el **listado de ventas del punto de venta** (ver [Listado de ventas del punto de venta](#-listado-de-ventas-del-punto-de-venta)). Para vender, pulse **Nueva venta (F2)**.
+
+---
+
+## 📋 Listado de ventas del punto de venta
+
+![Listado de ventas del punto de venta](../recursos/img/punto-venta/23-listado-ventas.png)
+
+Al entrar a **Punto de venta** ve las ventas hechas en el punto de venta. Por defecto muestra las de **hoy**. Cambie **Desde** y **Hasta** para ver otro rango.
+
+El listado usa la misma tabla que [Ventas y devoluciones](ventas-devoluciones.md), sin la columna ni el filtro **Origen**, porque todas sus filas son del punto de venta.
+
+**Nueva venta (F2)**: abre la caja con una venta nueva. La tecla **F2** también funciona desde el listado.
+
+| Venta | Qué hacer |
+|-------|-----------|
+| **Abierta** (en curso) | Pulse **Editar**. La venta vuelve a la caja con sus líneas, cliente y datos, para seguir o cobrar. |
+| **Cerrada** (cobrada) | Pulse **Ver** para abrir el detalle (solo consulta). Desde la fila también puede imprimir, anular o crear una devolución. |
+
+Los botones de cada fila son íconos. Al pasar el cursor aparece su nombre:
+
+- **Ver**: abre el detalle de la venta.
+- **Editar**: solo en una venta abierta. La vuelve a la caja.
+- **Imprimir**: abre el PDF de la venta en una pestaña nueva.
+- **Crear nota crédito o devolución**: abre el detalle para hacer la devolución.
+- **Anular**: pide un motivo (de 1 a 200 caracteres, sin comas ni punto y coma). Si la venta no se puede anular, la pantalla dice por qué.
+- **Eliminar**: pide confirmación antes de borrar la venta.
+
+Si un botón aparece deshabilitado, su perfil no tiene el permiso correspondiente (ver *¿No ve algún botón?* en la pantalla principal).
 
 ---
 
@@ -42,7 +74,7 @@ Al entrar, la pantalla revisa su caja. Si algo no está listo, **no muestra el b
 | **Cargando** | La pantalla está revisando su caja. | Espere unos segundos. |
 | **Este usuario no está configurado como cajero** | Su usuario no tiene caja asignada. | Si tiene acceso a Cajeros, haga clic en **Ir a Cajeros** y cree su caja. Si no, pida a un administrador con acceso a Ventas › Maestros › Cajeros que lo configure. |
 | **La caja no está lista para vender** | La caja existe, pero le falta algo. La lista indica qué (por ejemplo, el tipo de movimiento de venta, la forma de pago, o que el tipo no tiene recibo de caja automático, cliente por defecto, sucursal o bodega). | Pida a un administrador de Ventas que complete la caja o el tipo de movimiento. |
-| **No tiene permiso para vender** | Su perfil puede abrir el punto de venta, pero no crear ventas. | Pida a un administrador que le asigne el permiso (ver [Permisos](#-permisos)). |
+| **No tiene permiso para vender** | Su perfil puede abrir el punto de venta, pero no crear ventas. | Pida a un administrador que le asigne el permiso (ver la tabla *¿No ve algún botón?* en la pantalla principal). |
 | **No se pudo cargar la caja** | Hubo un problema de conexión. | Haga clic en **Reintentar**. Lo que escribió no se pierde. |
 
 ![Sin cajero](../recursos/img/punto-venta/01-sin-cajero.png)
@@ -68,6 +100,7 @@ Al entrar, la pantalla revisa su caja. Si algo no está listo, **no muestra el b
 | **Cliente** | El cliente y la sucursal de la venta. Un clic (o **F4**) lo cambia. |
 | **Vendedor**, **Lista** y **Observaciones** | Datos opcionales de la venta. No son obligatorios para vender. |
 | **Atajos** | Abre el panel de teclas rápidas. |
+| **Ventas** | Abre el listado de ventas del punto de venta. La venta en curso queda abierta. |
 | **Código, EAN o nombre** | El buscador. Siempre queda enfocado. |
 | **Favoritos** y **Catálogo** | Las pestañas con los productos para tocar. |
 | **Venta actual** | Las líneas de la venta, con los totales y el botón **Cobrar**. |
@@ -77,12 +110,13 @@ Al entrar, la pantalla revisa su caja. Si algo no está listo, **no muestra el b
 
 | Permiso | Qué habilita |
 |---------|--------------|
-| Consultar **Puntos de venta** | Entrar a la pantalla. |
-| Crear y Actualizar en **Ventas y devoluciones** | Agregar, cambiar y cobrar ventas. |
+| Consultar **Punto de venta** | Entrar a la pantalla y ver el listado de ventas. |
+| Crear y Actualizar en **Punto de venta** | Agregar, cambiar y cobrar ventas. |
 | Crear en **Recibos de Caja y Egresos** | Que el cobro cree el recibo de caja automáticamente. |
-| Eliminar en **Ventas y devoluciones** | Cancelar la venta y borrarla. Sin este permiso, la venta queda guardada como abierta. |
-| Imprimir en **Ventas y devoluciones** | El botón **Imprimir tirilla**. |
-| Crear en **Puntos de venta** | Crear un cliente nuevo desde la pantalla. |
+| Eliminar en **Punto de venta** | Cancelar la venta y borrarla. Sin este permiso, la venta queda guardada como abierta. |
+| Imprimir en **Punto de venta** | El botón **Imprimir tirilla** y la impresión desde el listado. |
+| Crear en **Punto de venta** | Crear un cliente nuevo desde la pantalla. |
+| Consultar e Imprimir en **Ventas y devoluciones** | Ver e imprimir, desde esa pantalla, las ventas del punto de venta (solo lectura). No hace falta para vender. |
 | Cambiar precio en el punto de venta | El botón **Cambiar precio** (ver más abajo). |
 
 ---
@@ -107,7 +141,8 @@ Si escribe un nombre **sin pulsar Enter**, aparece una lista de coincidencias co
 - **Favoritos** muestra los productos marcados como favoritos para el punto de venta.
 - **Catálogo** muestra todos los productos que se pueden vender en el punto de venta.
 - Use el filtro de **grupo** y **subgrupo** para encontrar productos del catálogo.
-- Un clic en la tarjeta agrega el producto. Si el producto tiene foto, la verá; si no, verá un ícono. Un producto sin existencia aparece como **Agotada**.
+- Un clic en la tarjeta agrega el producto. Si el producto tiene foto, la verá; si no, verá un ícono.
+- Un producto sin existencia en la bodega de la caja lleva la etiqueta **Agotada**. La etiqueta **no aparece al mismo tiempo que las fichas**: se consulta aparte, así que se pone un instante después de que se pintan los productos. Si un cambio de existencia hecho en otro lugar tarda en reflejarse, la etiqueta puede demorar **hasta 60 segundos**. Si una ficha no tiene la etiqueta, el producto puede estar agotado igual: al intentar venderlo sin existencia, la pantalla muestra *Sin existencia en la bodega.* y no lo agrega.
 
 > 📸 Los favoritos, el catálogo del punto de venta y la foto se administran en el maestro de [Referencias](../../inventarios/maestros/referencias.md). Un producto sin foto **sigue apareciendo**: se muestra con un ícono.
 
@@ -139,6 +174,25 @@ Si el producto tiene **una sola variante**, se agrega directamente, sin pregunta
 
 ![Elegir variante](../recursos/img/punto-venta/09-selector-variantes.png)
 
+### Fecha de vencimiento y lote
+
+Algunos productos exigen **fecha de vencimiento** o **lote**. Si es así, la pantalla se lo pide **antes** de agregar el producto:
+
+1. **Fecha de vencimiento** (primero). Aparece cuando el producto exige fecha de vencimiento. Escríbala en el calendario y pulse **Agregar**.
+   - Es **obligatoria**: no puede agregar el producto sin ella.
+   - No puede ser **anterior a hoy**. La pantalla lo avisa: *La fecha de vencimiento no puede ser anterior a hoy.*
+2. **Lote** (después). Aparece cuando el producto exige lote. Escriba el lote (máximo 20 caracteres) y pulse **Agregar**. Enter agrega, Esc cancela.
+
+**Esc** o **Cancelar** en cualquiera de las dos ventanas **cancela la acción**: el producto no se agrega a la venta.
+
+> ℹ️ Si el producto exige fecha y lote, primero le pide la fecha y luego el lote.
+
+![Ventana de fecha de vencimiento](../recursos/img/punto-venta/20-fecha-vencimiento.png)
+
+![Ventana con la fecha indicada](../recursos/img/punto-venta/21-fecha-vencimiento-con-fecha.png)
+
+![Aviso cuando la fecha ya pasó](../recursos/img/punto-venta/22-fecha-vencimiento-pasada.png)
+
 ---
 
 ## 🧾 La venta actual (carrito)
@@ -168,7 +222,7 @@ Si el valor está **fuera del rango permitido**, la pantalla le pide la **autori
 ### Cancelar, nueva venta y retomar
 
 - **Cancelar venta (Esc)** descarta todas las líneas. Se pide confirmación.
-  - Si su perfil tiene el permiso de **Eliminar**, la venta se borra.
+  - Si su perfil tiene el permiso de **Eliminar** en Punto de venta, la venta se borra.
   - Si **no** lo tiene, la venta queda guardada como **abierta** y la pantalla se lo avisa: un supervisor puede eliminarla.
 - **Nueva venta (F2)** empieza una venta limpia. Si hay líneas, pide confirmación.
 - **Retomar**: si al entrar hay una venta abierta, la pantalla pregunta **Continuar** o **Descartar**. Con **Continuar** recupera las líneas, el cliente y los datos de la venta.
@@ -215,6 +269,7 @@ Al crear el cliente, el sistema también crea su **sucursal 0000** (la sucursal 
 | El correo no es válido. | Corríjalo. |
 | *Ya existe un cliente con ese documento: [nombre]. ¿Quiere usarlo en esta venta?* | Pulse **Usar este cliente**. No se crea uno repetido. |
 | *La compañía no tiene vendedor o zona por defecto para crear la sucursal 0000.* | Pida a un administrador que configure esos datos de la compañía. |
+| *No se pudo registrar el cliente porque el intento anterior quedó en conflicto. Revise los datos y pulse Guardar de nuevo.* | Revise los datos y pulse **Crear y usar** otra vez. La pantalla prepara un intento nuevo: el cliente no se duplica. |
 
 ![Nuevo cliente](../recursos/img/punto-venta/12-cliente-nuevo.png)
 
@@ -254,6 +309,7 @@ Al cobrar, la pantalla muestra **Venta cerrada** con el número de venta, el **r
 
 - **Imprimir tirilla (F8)**: solo aparece si tiene el permiso de imprimir.
 - **Nueva venta (F2)**: empieza la siguiente venta.
+- **Ver ventas**: abre el listado de ventas del punto de venta.
 
 ![Venta cerrada](../recursos/img/punto-venta/15-venta-cerrada.png)
 
@@ -323,7 +379,7 @@ La pantalla se mantiene conectada: no tiene que recargar para ver cambios import
 Porque la caja no está lista para vender (no está configurada, está incompleta o su perfil no tiene permiso). Vea *Antes de vender* arriba.
 
 **¿Por qué la venta quedó como abierta y no se eliminó?**
-Porque su perfil no tiene el permiso de **Eliminar** en Ventas y devoluciones. Pida a un supervisor que la elimine.
+Porque su perfil no tiene el permiso de **Eliminar** en Punto de venta. Pida a un supervisor que la elimine.
 
 **¿Por qué no puedo cambiar el descuento de una línea?**
 Porque el tipo de movimiento de venta de su caja no permite descuentos.
@@ -341,7 +397,7 @@ Sí. Se muestra con un ícono. La foto se agrega en el maestro de Referencias.
 La venta siempre tiene el cliente de la caja o el que usted elija. Si no tiene uno, cree un cliente nuevo desde la pantalla.
 
 **¿Dónde veo las ventas que cobré?**
-En [Ventas y devoluciones](ventas-devoluciones.md). Cada venta del punto de venta aparece allí como una venta más.
+En el **listado de ventas** de este punto de venta (hoy por defecto). Las mismas ventas aparecen en [Ventas y devoluciones](ventas-devoluciones.md) con el origen *Punto de venta*, solo para consulta.
 
 ---
 
@@ -351,6 +407,10 @@ En [Ventas y devoluciones](ventas-devoluciones.md). Cada venta del punto de vent
 |---------|----------|
 | *Código no encontrado* | Revise el código o el EAN, o busque por nombre. |
 | *Agotada en la bodega* | No hay existencia de esa variante en la bodega de la caja. |
+| *Sin existencia en la bodega.* | No hay existencia en la bodega de la caja para esa cantidad. Revise la existencia o use otra cantidad. |
+| *No tiene autorizada la bodega de esta venta. Pida a un administrador que se la asigne o use otra caja.* | La bodega de la caja no está entre las bodegas autorizadas a su usuario. Pida que se la asignen, o use otra caja. No se agrega la línea. |
+| *La fecha de vencimiento no puede ser anterior a hoy.* | Escriba una fecha de hoy en adelante. |
+| *La referencia exige una fecha de vencimiento válida. Agréguela de nuevo indicando la fecha.* | Vuelva a agregar el producto e indique la fecha de vencimiento. |
 | *Ya existe un cliente con ese documento* | Pulse **Usar este cliente**. |
 | *No se pudo cargar la caja* | Pulse **Reintentar**. Si sigue igual, revise su conexión. |
 | *No se pudieron cargar los productos.* | Pulse **Reintentar** o cambie de pestaña. |

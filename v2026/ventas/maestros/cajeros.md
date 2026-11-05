@@ -10,7 +10,7 @@
 ![Static Badge](https://img.shields.io/badge/Opcion-Cajeros-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
-![Static Badge](https://img.shields.io/badge/Actualizacion-20261104-yellow)
+![Static Badge](https://img.shields.io/badge/Actualizacion-20261105-yellow)
 
 ---
 
@@ -93,7 +93,7 @@ Con solo el permiso de consulta el listado se ve completo, pero no aparecen los 
 |-------|:-----------:|--------|
 | **Caja** | ✅ | Nombre de la caja, hasta 50 caracteres. No admite comas (,) ni punto y coma (;). Puede haber dos cajas con el mismo nombre. |
 | **Usuario** | ✅ | El usuario dueño de la caja. Solo se ofrecen usuarios activos con acceso a la compañía. Un usuario puede tener más de un cajero; la pantalla se lo avisa, pero no se lo impide. Al iniciar sesión se usa el primero que se registró. |
-| **Tipo de movimiento de venta** | ✅ | Solo los tipos de venta que usted tiene autorizados. El tipo debe tener recibo de caja automático, cliente por defecto con sucursal y bodega. |
+| **Tipo de movimiento de venta** | ✅ | Solo los tipos de movimiento del **Punto de venta** que usted tiene autorizados (no los de Ventas y devoluciones). El tipo debe tener recibo de caja automático, cliente por defecto con sucursal y bodega. |
 | **Forma de pago** | ✅ | La forma de pago que aparece por defecto al cobrar en el punto de venta. |
 | **Base** | ✅ | Efectivo inicial de la caja. Debe ser mayor o igual a 0. |
 
@@ -112,9 +112,9 @@ Si algo no es válido, la pantalla no guarda y le indica qué corregir. El curso
 | Escriba el nombre de la caja. / Elija el usuario, el tipo de venta o la forma de pago. | Complete el campo. |
 | La caja admite hasta 50 caracteres y no puede tener comas ni punto y coma. | Corrija el nombre. |
 | La base debe ser mayor o igual a 0. | Escriba un valor válido. |
-| Este tipo no tiene recibo de caja automático; configúrelo en Tipos de movimiento. | El tipo elegido no se puede usar en la caja. Pida a un administrador que lo complete, o elija otro tipo. |
-| Este tipo no se puede usar en el punto de venta: … Configúrelo en Tipos de movimiento. | Lo que falta aparece en el mensaje (cliente por defecto, sucursal o bodega). Complételo en el tipo, o elija otro. |
-| El usuario no está autorizado a este tipo de movimiento. | Elija un tipo al que el usuario tenga acceso. |
+| Este tipo de movimiento del Punto de venta no tiene recibo de caja automático; configúrelo en Tipos de movimiento. | El tipo elegido no se puede usar en la caja. Pida a un administrador que lo complete, o elija otro tipo. |
+| Este tipo de movimiento del Punto de venta no se puede usar: … Configúrelo en Tipos de movimiento. | Lo que falta aparece en el mensaje (cliente por defecto, sucursal o bodega). Complételo en el tipo, o elija otro. |
+| El usuario no está autorizado a este tipo de movimiento del Punto de venta. | Elija un tipo al que el usuario tenga acceso. |
 | No se pudo guardar. Tus datos siguen aquí: inténtalo de nuevo. | Revise su conexión y haga clic en **Guardar** otra vez. Lo que escribió se conserva. |
 
 ![Tipo incompleto](../recursos/img/cajeros/05-tipo-incompleto.png)
@@ -205,7 +205,7 @@ Porque la caja los toma del tipo de movimiento de venta. Para cambiarlos, edite 
 Que el tipo de movimiento de venta de esa caja no tiene todo lo necesario para vender (recibo de caja automático, cliente por defecto con sucursal, o bodega), o que el usuario ya no está autorizado a usarlo. El punto de venta no deja vender con esa caja hasta completarla.
 
 **¿Por qué no veo algún tipo de movimiento?**
-La lista de tipos se limita a los de venta que usted tiene autorizados. Pida a su administrador que lo revise.
+La lista muestra solo los tipos de movimiento del Punto de venta que usted tiene autorizados. Los tipos de Ventas y devoluciones no aparecen aquí. Pida a su administrador que lo revise.
 
 **¿Por qué no puedo eliminar un cajero?**
 Porque tiene información relacionada en otros módulos. Vea *Cajero en uso* más arriba.
