@@ -73,7 +73,7 @@ Los botones que ve dependen de los permisos de su usuario y del estado del docum
 
 ![Listado de ventas y devoluciones](../recursos/img/ventas-devoluciones/00-listado.png)
 
-*(captura pendiente de actualizar: no muestra el filtro «Tipo de movimiento»)*
+*(captura pendiente de actualizar: no muestra el filtro «Tipo de movimiento», ni la columna ni el filtro «Origen»)*
 
 En la parte de arriba están los botones de la pantalla:
 
@@ -106,6 +106,7 @@ Los filtros están arriba de la tabla y quedan en la dirección de la página, p
 - **Desde** y **Hasta**: fechas del documento. Por defecto es el mes en curso.
 - **Naturaleza**: *Venta*, *Devolución* o *Nota crédito*.
 - **Tipo de movimiento**: puede elegir **varios tipos a la vez**. Cada tipo aparece como una ficha con su código y nombre (*Código - Nombre*). Se pueden elegir hasta 50 tipos. El filtro se conserva con los demás filtros de la página, y **Limpiar filtros** lo quita.
+- **Origen**: *Todos*, *Ventas* o *Punto de venta*. Las ventas del punto de venta se ven en solo lectura (ver [Ventas del punto de venta](#ventas-del-punto-de-venta)).
 - **Estado**: *Abierta*, *Cerrada* o *Anulada*.
 - **Factura electrónica**: *Pendiente de enviar*, *En cola*, *Transmitida a la DIAN* o *Error al enviar*. Para filtrar por factura electrónica debe indicar **Desde** y **Hasta**, con un rango de no más de 366 días.
 - **Cliente**: por documento o nombre.
@@ -122,6 +123,14 @@ Para quitar todos los filtros, use **Limpiar filtros**.
 ### Columnas
 
 Cada fila muestra el **documento** (por ejemplo, *FV-1205* para una factura o *DV-1204* para una devolución), la **naturaleza**, la **fecha**, el **documento de referencia**, el **cliente**, la **cantidad**, el **valor total**, el **estado** y el **estado de la factura electrónica**. El estado siempre lleva texto además del color.
+
+### Ventas del punto de venta
+
+Las ventas que se hacen en el [Punto de venta](punto-de-venta.md) también aparecen aquí, **en solo lectura**:
+
+- En su fila, la columna **Origen** muestra **Punto de venta**. Las demás filas muestran **Ventas**.
+- Puede abrirlas para consultarlas e imprimirlas. No se editan, no se anulan, no se eliminan y no se les crea una devolución desde aquí.
+- El documento muestra el aviso *Documento del Punto de venta: solo lectura. Edítelo o gestiónelo desde Punto de venta.* con el botón **Abrir en Punto de venta**.
 
 ### Estados del documento
 
