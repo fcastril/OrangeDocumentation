@@ -39,7 +39,7 @@ Se abre el **listado de ventas del punto de venta** (ver [Listado de ventas del 
 
 ## 📋 Listado de ventas del punto de venta
 
-*(captura pendiente: listado de ventas del punto de venta)*
+![Listado de ventas del punto de venta](../recursos/img/punto-venta/23-listado-ventas.png)
 
 Al entrar a **Punto de venta** ve las ventas hechas en el punto de venta. Por defecto muestra las de **hoy**. Cambie **Desde** y **Hasta** para ver otro rango.
 
@@ -187,7 +187,11 @@ Algunos productos exigen **fecha de vencimiento** o **lote**. Si es así, la pan
 
 > ℹ️ Si el producto exige fecha y lote, primero le pide la fecha y luego el lote.
 
-*(captura pendiente: ventana de fecha de vencimiento)*
+![Ventana de fecha de vencimiento](../recursos/img/punto-venta/20-fecha-vencimiento.png)
+
+![Ventana con la fecha indicada](../recursos/img/punto-venta/21-fecha-vencimiento-con-fecha.png)
+
+![Aviso cuando la fecha ya pasó](../recursos/img/punto-venta/22-fecha-vencimiento-pasada.png)
 
 ---
 
