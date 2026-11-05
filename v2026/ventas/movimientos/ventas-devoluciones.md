@@ -73,8 +73,6 @@ Los botones que ve dependen de los permisos de su usuario y del estado del docum
 
 ![Listado de ventas y devoluciones](../recursos/img/ventas-devoluciones/00-listado.png)
 
-*(captura pendiente de actualizar: no muestra el filtro «Tipo de movimiento», ni la columna ni el filtro «Origen»)*
-
 En la parte de arriba están los botones de la pantalla:
 
 - **Documentos abiertos (N)**: abre el menú de sus documentos abiertos (ver [Varios documentos abiertos](#abiertos)).
