@@ -141,7 +141,8 @@ Si escribe un nombre **sin pulsar Enter**, aparece una lista de coincidencias co
 - **Favoritos** muestra los productos marcados como favoritos para el punto de venta.
 - **Catálogo** muestra todos los productos que se pueden vender en el punto de venta.
 - Use el filtro de **grupo** y **subgrupo** para encontrar productos del catálogo.
-- Un clic en la tarjeta agrega el producto. Si el producto tiene foto, la verá; si no, verá un ícono. Un producto sin existencia aparece como **Agotada**.
+- Un clic en la tarjeta agrega el producto. Si el producto tiene foto, la verá; si no, verá un ícono.
+- Un producto sin existencia en la bodega de la caja lleva la etiqueta **Agotada**. La etiqueta **no aparece al mismo tiempo que las fichas**: se consulta aparte, así que se pone un instante después de que se pintan los productos. Si un cambio de existencia hecho en otro lugar tarda en reflejarse, la etiqueta puede demorar **hasta 60 segundos**. Si una ficha no tiene la etiqueta, el producto puede estar agotado igual: al intentar venderlo sin existencia, la pantalla muestra *Sin existencia en la bodega.* y no lo agrega.
 
 > 📸 Los favoritos, el catálogo del punto de venta y la foto se administran en el maestro de [Referencias](../../inventarios/maestros/referencias.md). Un producto sin foto **sigue apareciendo**: se muestra con un ícono.
 
@@ -172,6 +173,21 @@ Las opciones que están **agotadas en la bodega** aparecen marcadas y no se pued
 Si el producto tiene **una sola variante**, se agrega directamente, sin preguntar.
 
 ![Elegir variante](../recursos/img/punto-venta/09-selector-variantes.png)
+
+### Fecha de vencimiento y lote
+
+Algunos productos exigen **fecha de vencimiento** o **lote**. Si es así, la pantalla se lo pide **antes** de agregar el producto:
+
+1. **Fecha de vencimiento** (primero). Aparece cuando el producto exige fecha de vencimiento. Escríbala en el calendario y pulse **Agregar**.
+   - Es **obligatoria**: no puede agregar el producto sin ella.
+   - No puede ser **anterior a hoy**. La pantalla lo avisa: *La fecha de vencimiento no puede ser anterior a hoy.*
+2. **Lote** (después). Aparece cuando el producto exige lote. Escriba el lote (máximo 20 caracteres) y pulse **Agregar**. Enter agrega, Esc cancela.
+
+**Esc** o **Cancelar** en cualquiera de las dos ventanas **cancela la acción**: el producto no se agrega a la venta.
+
+> ℹ️ Si el producto exige fecha y lote, primero le pide la fecha y luego el lote.
+
+*(captura pendiente: ventana de fecha de vencimiento)*
 
 ---
 
@@ -249,6 +265,7 @@ Al crear el cliente, el sistema también crea su **sucursal 0000** (la sucursal 
 | El correo no es válido. | Corríjalo. |
 | *Ya existe un cliente con ese documento: [nombre]. ¿Quiere usarlo en esta venta?* | Pulse **Usar este cliente**. No se crea uno repetido. |
 | *La compañía no tiene vendedor o zona por defecto para crear la sucursal 0000.* | Pida a un administrador que configure esos datos de la compañía. |
+| *No se pudo registrar el cliente porque el intento anterior quedó en conflicto. Revise los datos y pulse Guardar de nuevo.* | Revise los datos y pulse **Crear y usar** otra vez. La pantalla prepara un intento nuevo: el cliente no se duplica. |
 
 ![Nuevo cliente](../recursos/img/punto-venta/12-cliente-nuevo.png)
 
@@ -386,6 +403,10 @@ En el **listado de ventas** de este punto de venta (hoy por defecto). Las mismas
 |---------|----------|
 | *Código no encontrado* | Revise el código o el EAN, o busque por nombre. |
 | *Agotada en la bodega* | No hay existencia de esa variante en la bodega de la caja. |
+| *Sin existencia en la bodega.* | No hay existencia en la bodega de la caja para esa cantidad. Revise la existencia o use otra cantidad. |
+| *No tiene autorizada la bodega de esta venta. Pida a un administrador que se la asigne o use otra caja.* | La bodega de la caja no está entre las bodegas autorizadas a su usuario. Pida que se la asignen, o use otra caja. No se agrega la línea. |
+| *La fecha de vencimiento no puede ser anterior a hoy.* | Escriba una fecha de hoy en adelante. |
+| *La referencia exige una fecha de vencimiento válida. Agréguela de nuevo indicando la fecha.* | Vuelva a agregar el producto e indique la fecha de vencimiento. |
 | *Ya existe un cliente con ese documento* | Pulse **Usar este cliente**. |
 | *No se pudo cargar la caja* | Pulse **Reintentar**. Si sigue igual, revise su conexión. |
 | *No se pudieron cargar los productos.* | Pulse **Reintentar** o cambie de pestaña. |
