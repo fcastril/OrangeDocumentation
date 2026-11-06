@@ -24,7 +24,7 @@ Las ventas cobradas aquí aparecen también en [Ventas y devoluciones](ventas-de
 
 > 📘 Cada pestaña del navegador trabaja con **una compañía**. El nombre y el color de la compañía se ven en la barra superior.
 
-> 💡 La venta se guarda al agregar cada producto. Si se cierra la pestaña o se recarga la página, al volver puede **continuar la venta abierta**, desde la caja o desde el listado con **Editar**.
+> 💡 La venta se guarda al agregar cada producto. Si se cierra la pestaña o se recarga la página, al volver puede **continuar la venta abierta**, desde la caja o desde el listado con **Editar**. La caja solo ofrece retomar las ventas abiertas **del mismo día** (vea [Cancelar, nueva venta y retomar](#cancelar-nueva-venta-y-retomar)).
 
 ---
 
@@ -225,7 +225,9 @@ Si el valor está **fuera del rango permitido**, la pantalla le pide la **autori
   - Si su perfil tiene el permiso de **Eliminar** en Punto de venta, la venta se borra.
   - Si **no** lo tiene, la venta queda guardada como **abierta** y la pantalla se lo avisa: un supervisor puede eliminarla.
 - **Nueva venta (F2)** empieza una venta limpia. Si hay líneas, pide confirmación.
-- **Retomar**: si al entrar hay una venta abierta, la pantalla pregunta **Continuar** o **Descartar**. Con **Continuar** recupera las líneas, el cliente y los datos de la venta.
+- **Retomar**: si al entrar hay una venta abierta **creada hoy**, la pantalla pregunta **Continuar** o **Descartar**. Con **Continuar** recupera las líneas, el cliente y los datos de la venta.
+  - La caja **solo ofrece retomar las ventas abiertas del mismo día** (el día de la compañía, según la hora en que se creó la venta). Una venta abierta de un día anterior **no se ofrece** ni se cuenta en el aviso, y no impide empezar una venta nueva. Un supervisor puede eliminarla desde el listado de [Ventas](ventas-devoluciones.md).
+  - **Descartar** o **Cancelar** muestra un aviso si no se pudo completar (por ejemplo, por falla de conexión). En ese caso la venta sigue abierta y la pantalla vuelve a ofrecer retomarla.
 
 ![Venta abierta para retomar](../recursos/img/punto-venta/16-venta-abierta-retomar.png)
 
@@ -380,6 +382,9 @@ Porque la caja no está lista para vender (no está configurada, está incomplet
 
 **¿Por qué la venta quedó como abierta y no se eliminó?**
 Porque su perfil no tiene el permiso de **Eliminar** en Punto de venta. Pida a un supervisor que la elimine.
+
+**¿Por qué la caja no me ofrece retomar una venta que dejé abierta ayer?**
+Porque la caja solo ofrece retomar las ventas abiertas del mismo día. La venta de un día anterior sigue guardada: un supervisor puede revisarla o eliminarla desde el listado de [Ventas](ventas-devoluciones.md).
 
 **¿Por qué no puedo cambiar el descuento de una línea?**
 Porque el tipo de movimiento de venta de su caja no permite descuentos.
