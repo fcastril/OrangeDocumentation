@@ -10,7 +10,7 @@
 ![Static Badge](https://img.shields.io/badge/Opcion-Referencias-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
-![Static Badge](https://img.shields.io/badge/Actualizacion-20260928-yellow)
+![Static Badge](https://img.shields.io/badge/Actualizacion-20261106-yellow)
 
 ---
 
@@ -213,7 +213,7 @@ Tiene asignado un subgrupo que ya no existe en la compañía (suele pasar con re
 Vienen de la versión anterior. Se listan y se editan normalmente; solo si cambia el código se exige el formato actual.
 
 **¿Cómo cargo muchas referencias o cambio muchos precios a la vez?**
-Con **Importar**: descargue la plantilla (o sus referencias en el formato de la plantilla), llénela y cárguela. Ver [Importar referencias desde Excel](referencias-importar.md).
+Con **Importar**: descargue la plantilla (o sus referencias en el formato de la plantilla), llénela y cárguela. Para cambiar precios necesita el permiso **Cambiar precio POS**. Ver [Importar referencias desde Excel](referencias-importar.md).
 
 **No veo "En vivo".**
 La conexión en vivo no está disponible en este momento (por ejemplo, por la red de su empresa). La pantalla funciona igual; para ver cambios de otros usuarios, recargue la página.

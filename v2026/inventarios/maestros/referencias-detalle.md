@@ -10,7 +10,7 @@
 ![Static Badge](https://img.shields.io/badge/Opcion-Referencias-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
-![Static Badge](https://img.shields.io/badge/Actualizacion-20260929-yellow)
+![Static Badge](https://img.shields.io/badge/Actualizacion-20261106-yellow)
 
 ---
 
@@ -230,6 +230,8 @@ La tabla muestra: Atributo principal · Atributo secundario · Unidad · Cantida
 | | **Peso**, **Tiempo estándar (min)** | Hasta 2 decimales. |
 | | **Participación (%)** | De 0 a 100. |
 
+> 🔐 **Precios y costos.** Los **Precio 1** a **Precio 5** solo los cambia con el permiso **Cambiar precio POS**; ser administrador no basta. Sin ese permiso, esos campos quedan en solo lectura y verá el aviso *"No tienes el permiso para cambiar precios (Cambiar precio POS). Pídele a un administrador que te lo asigne."* Los **costos** (esperado y calculado) solo los cambian los administradores de la compañía.
+
 > 📱 En el celular el diálogo ocupa toda la pantalla y las secciones se apilan.
 
 ### Generar EAN13
@@ -254,7 +256,7 @@ Si cambia otros datos de la variante sin tocar el EAN13, la fecha no cambia.
 
 ### Calcular precios
 
-Con **Calcular precios** no tiene que calcular a mano el costo y los cinco precios:
+Con **Calcular precios** no tiene que calcular a mano el costo y los cinco precios. El botón no pide el permiso **Cambiar precio POS**.
 
 1. Escriba el **Costo esperado** (mayor que 0).
 2. Haga clic en **Calcular precios**. Se llenan el **Costo calculado** y **Precio 1** a **Precio 5** con los porcentajes configurados en la compañía, y verá *"Precios calculados con los porcentajes de la compañía. Revísalos antes de guardar."*
@@ -961,7 +963,7 @@ No pregunta si no hay cambios, si ya guardó, o si solo trabajó en variantes o 
 
 ## 🔒 Solo consulta
 
-Si su perfil tiene permiso de **consultar** pero no de **actualizar** la opción Referencias, la página se abre con el aviso *"Solo consulta: tu perfil no permite modificar referencias."*: todos los campos son de solo lectura, no hay **Guardar referencia** y las tablas de variantes, proveedores y producción no tienen botones para agregar, editar ni eliminar, ni para enviar variantes a facturación electrónica. En **Foto y documentos** puede ver y ampliar la foto y abrir los documentos, pero no aparecen **Nueva foto**, **Quitar foto**, **Agregar documento** ni la papelera. Las pestañas **Inventario** y **Movimientos** funcionan igual, porque son de consulta; **Bitácora** también, si su usuario es administrador de la compañía. **Copiar** y **Eliminar** aparecen solo si su perfil tiene esos permisos.
+Si su perfil tiene permiso de **consultar** pero no de **actualizar** la opción Referencias, la página se abre con el aviso *"Solo consulta: tu perfil no permite modificar referencias."*: todos los campos son de solo lectura, no hay **Guardar referencia** y las tablas de variantes, proveedores y producción no tienen botones para agregar, editar ni eliminar, ni para enviar variantes a facturación electrónica. En **Foto y documentos** puede ver y ampliar la foto y abrir los documentos, pero no aparecen **Nueva foto**, **Quitar foto**, **Agregar documento** ni la papelera. Las pestañas **Inventario** y **Movimientos** funcionan igual, porque son de consulta; **Bitácora** también, si su usuario es administrador de la compañía. **Copiar** y **Eliminar** aparecen solo si su perfil tiene esos permisos. Si su perfil puede actualizar Referencias pero no tiene **Cambiar precio POS**, los **Precio 1** a **Precio 5** también quedan en solo lectura, con el aviso de permiso.
 
 ---
 
@@ -1018,6 +1020,9 @@ Cada código de barras identifica una sola variante en la compañía. Búsquelo 
 
 **Calcular precios dejó los precios iguales al costo.**
 La compañía no tiene porcentajes de precios configurados. Escriba los precios a mano o pida que se configuren esos porcentajes en la compañía.
+
+**¿Por qué los precios 1 a 5 aparecen en solo lectura?**
+Su usuario no tiene el permiso **Cambiar precio POS**, y ser administrador no lo reemplaza. Pida a un administrador que se lo asigne. Los costos siguen siendo solo de administradores.
 
 **¿Por qué no puedo marcar "Es material" en una referencia comercializada?**
 Una referencia comercializada se compra y se vende sin transformarla, así que no puede ser material ni semielaborada. Desmarque *Comercializada* si la referencia se usa en producción.

@@ -10,7 +10,7 @@
 ![Static Badge](https://img.shields.io/badge/Opcion-PuntoDeVenta-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
-![Static Badge](https://img.shields.io/badge/Actualizacion-20261105-yellow)
+![Static Badge](https://img.shields.io/badge/Actualizacion-20261106-yellow)
 
 ---
 
@@ -117,7 +117,7 @@ Al entrar, la pantalla revisa su caja. Si algo no está listo, **no muestra el b
 | Imprimir en **Punto de venta** | El botón **Imprimir tirilla** y la impresión desde el listado. |
 | Crear en **Punto de venta** | Crear un cliente nuevo desde la pantalla. |
 | Consultar e Imprimir en **Ventas y devoluciones** | Ver e imprimir, desde esa pantalla, las ventas del punto de venta (solo lectura). No hace falta para vender. |
-| Cambiar precio en el punto de venta | El botón **Cambiar precio** (ver más abajo). |
+| **Cambiar precio POS** | El botón **Cambiar precio** y el cambio de precio de una línea a cualquier valor. Es el único permiso para cambiar precios; ser administrador no basta (ver más abajo). |
 
 ---
 
@@ -204,7 +204,7 @@ Cada línea muestra el producto, la variante, la **cantidad**, el valor unitario
 | **Cambiar cantidad** | Use **+** y **−**, o escriba el número. También **+** y **−** del teclado sobre la línea seleccionada. |
 | **Descuento** | Escriba el porcentaje en **Dto. %** (de 0 a 100). Solo se puede si el tipo de venta permite descuentos; si no, el campo aparece deshabilitado. |
 | **Quitar una línea** | Toque la **papelera** y confirme con **Quitar**. Con la línea seleccionada, también **Supr**. |
-| **Cambiar precio** | Ver *Cambio de precio* más abajo. |
+| **Cambiar precio** | Solo aparece con el permiso **Cambiar precio POS**. Ver *Cambio de precio* más abajo. |
 
 Los **totales** (artículos, subtotal, descuento, IVA y total) los calcula el sistema. Siempre se ven en la parte inferior de la venta.
 
@@ -212,12 +212,14 @@ Los **totales** (artículos, subtotal, descuento, IVA y total) los calcula el si
 
 ### Cambio de precio
 
-El precio de cada línea es el de la **lista de precios** elegida. Solo se puede cambiar si su usuario tiene autorizado el cambio de precios en el punto de venta.
+El precio de cada línea es el de la **lista de precios** elegida. Para cambiarlo, su usuario necesita el permiso **Cambiar precio POS**. Ser administrador no basta si ese permiso no está asignado.
+
+**Con el permiso Cambiar precio POS:**
 
 1. Seleccione la línea y haga clic en **Cambiar precio**.
-2. Escriba el nuevo valor unitario y pulse **Aplicar**.
+2. Escriba el **Nuevo valor unitario** (cualquier valor) y pulse **Aplicar**. El precio cambia directamente, sin pedir autorización.
 
-Si el valor está **fuera del rango permitido**, la pantalla le pide la **autorización de un administrador**: el administrador escribe su propio usuario y clave en la ventana de autorización. La clave no se guarda en la pantalla ni en la venta. Si la autorización se vence, vuelva a pedirla.
+**Sin el permiso** no aparece el botón **Cambiar precio**. Si la venta necesita un precio distinto del de la lista, otro usuario que sí tenga el permiso puede autorizarlo: en la ventana **Autorización de precio**, escribe su **Usuario autorizador** y su **Clave del autorizador**. La autorización vale solo para ese cambio: no inicia sesión en la pantalla y la clave no se guarda en la pantalla ni en la venta. Si la autorización se vence, vuelva a pedirla.
 
 ### Cancelar, nueva venta y retomar
 
@@ -385,7 +387,7 @@ Porque su perfil no tiene el permiso de **Eliminar** en Punto de venta. Pida a u
 Porque el tipo de movimiento de venta de su caja no permite descuentos.
 
 **¿Por qué no puedo cambiar el precio?**
-Porque su usuario no tiene autorizado el cambio de precios en el punto de venta. Un administrador puede autorizarlo puntualmente con su propio usuario y clave.
+Porque su usuario no tiene el permiso **Cambiar precio POS**. Ser administrador no lo reemplaza. Sin ese permiso, otro usuario que lo tenga puede autorizar ese cambio puntual con su usuario y clave (ventana **Autorización de precio**).
 
 **¿Por qué sale marcada esa forma de pago?**
 Es la forma de pago por defecto de su caja. Puede elegir otra en la ventana de cobro, pero la que sale por defecto la define la caja en [Cajeros](../maestros/cajeros.md).

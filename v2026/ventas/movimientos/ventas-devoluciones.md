@@ -10,7 +10,7 @@
 ![Static Badge](https://img.shields.io/badge/Opcion-VentasDevoluciones-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
-![Static Badge](https://img.shields.io/badge/Actualizacion-20261103-yellow)
+![Static Badge](https://img.shields.io/badge/Actualizacion-20261106-yellow)
 
 ---
 
@@ -56,6 +56,7 @@ Los botones que ve dependen de los permisos de su usuario y del estado del docum
 | **Anular** | Anular un documento que aún puede anularse. |
 | **Eliminar** | Eliminar un documento que no tiene documentos dependientes. |
 | **Imprimir** | Imprimir y ver la vista previa de un documento. |
+| **Cambiar precio POS** | Fijar el precio de una línea a cualquier valor, sin autorización. Sin este permiso, el cambio de precio lo autoriza otro usuario que sí lo tenga (ver [Precio fuera de lo permitido](#autorizacion)). Es el único permiso para cambiar precios: ser administrador no basta. El costo sigue siendo solo de administradores. |
 | **Administrador de la compañía** | Verificar en el proveedor tecnológico y, si hace falta, restablecer o reenviar una factura que ya está transmitida a la DIAN (ver [Facturación electrónica](#fe)). |
 
 > 💡 Para cerrar una venta con recibo de caja automático también necesita el permiso **Crear** en **Recibos de caja y egresos**. Vea [Cerrar y cobrar](#cerrar-y-cobrar).
@@ -282,11 +283,11 @@ El **IVA** de la fila aparece con el de la referencia y puede cambiarlo:
 
 Debajo del valor, la pantalla le ayuda:
 
-- **Valor sugerido (Lista 2): ... (puedes cambiarlo).** Puede cambiar el valor sin problema.
+- **Valor sugerido (Lista 2): ... (puedes cambiarlo).** Con el permiso **Cambiar precio POS** puede cambiarlo a cualquier valor. Sin ese permiso, un valor distinto pide autorización.
 - **Sin precio en la lista elegida: escriba el valor.** La referencia no tiene precio en esa lista.
 - **Existencia en la bodega: n.** Si no hay existencia, la pantalla avisa, pero el servidor es quien decide.
 
-Si el valor queda fuera de lo que su usuario puede usar, la pantalla pide la autorización de un administrador (ver [Precio fuera de lo permitido](#autorizacion)).
+Si el valor cambia el precio de la lista y su usuario no tiene el permiso **Cambiar precio POS**, la pantalla pide la autorización de otro usuario que sí lo tenga (ver [Precio fuera de lo permitido](#autorizacion)).
 
 ### Buscar una referencia o una variante
 
@@ -380,11 +381,13 @@ Si el código corresponde a **varias variantes** (por ejemplo, talla o color), l
 | **Otra persona modificó esta línea.** | Use la **versión actual** o descarte su cambio. |
 
 <a id="autorizacion"></a>
-### Precio fuera de lo permitido (autorización del administrador)
+### Cambio de precio y autorización de precio
 
-Si el valor que escribe no está permitido para su usuario, la línea no se guarda y la pantalla abre el diálogo **Autorización del administrador**. Dice el valor que intentó y el precio de la lista, por ejemplo: *El valor ... no está permitido para tu usuario. Precio de lista ...; solo se acepta ese valor.* Un usuario que no es administrador solo puede dejar el valor de la lista (sin redondeos), y nunca por debajo del costo. Si el valor viene de un **pedido**, de una **remisión** o de la **factura de origen**, se acepta tal cual, sin pedir autorización.
+Con el permiso **Cambiar precio POS**, usted fija **cualquier valor** en la línea, sin autorización.
 
-Para seguir, un administrador escribe **su** usuario y **su** clave en el diálogo, y puede escribir un **Motivo** (hasta 200 caracteres). Después haga clic en **Solicitar autorización**.
+Sin ese permiso, si el valor que escribe cambia el precio de la lista, la línea no se guarda y la pantalla abre el diálogo **Autorización de precio**. Dice el valor que intentó y el precio de la lista, por ejemplo: *El valor ... no está permitido para tu usuario. Precio de lista ...; solo se acepta ese valor.* Si el valor viene de un **pedido**, de una **remisión** o de la **factura de origen**, se acepta tal cual, sin pedir autorización.
+
+Para seguir, otro usuario que sí tenga el permiso **Cambiar precio POS** escribe en el diálogo su **Usuario autorizador** y su **Clave del autorizador**, puede escribir un **Motivo** (hasta 200 caracteres) y hace clic en **Solicitar autorización**. La autorización vale solo para ese cambio: no inicia sesión en la pantalla y la clave no se guarda.
 
 - Si la autorización se concede, la línea se guarda con ese valor.
 - Si cancela, la línea no se guarda y el valor vuelve al de la lista: *La línea no se guardó: el valor vuelve al de la lista.*
@@ -1039,7 +1042,7 @@ Solo aparece si el tipo de documento liquida descuento.
 Falta completar el tipo, la fecha, el cliente o la sucursal.
 
 **¿De dónde sale el valor que trae la línea?**
-De la lista de precios de la sucursal del cliente. Si usted escribe otro valor, la pantalla no lo reemplaza. Si el valor está fuera de lo que su usuario puede usar, pide la autorización de un administrador (ver [Precio fuera de lo permitido](#autorizacion)).
+De la lista de precios de la sucursal del cliente. Si usted escribe otro valor, la pantalla no lo reemplaza. Si su usuario no tiene el permiso **Cambiar precio POS**, el cambio de precio pide la autorización de otro usuario que sí lo tenga (ver [Cambio de precio y autorización de precio](#autorizacion)).
 
 **¿Por qué la pantalla dice que se sumó a una línea?**
 Porque leyó o escribió un producto igual (misma referencia, descuento, IVA y bodega) a una línea que ya estaba. La cantidad se suma y no se crea otra línea.
