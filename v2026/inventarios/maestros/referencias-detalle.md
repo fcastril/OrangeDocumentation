@@ -225,7 +225,7 @@ La tabla muestra: Atributo principal · Atributo secundario · Unidad · Cantida
 | | **EAN8** | Opcional. 8 dígitos. |
 | | **Código abierto (20)**, **(40)**, **(100)** | Opcionales. Texto libre de hasta 20, 40 o 100 caracteres. |
 | **Costos y precios** | **Costo esperado**, **Costo calculado**, **Precio 1** a **Precio 5** | Valores de 0 o más, con hasta 2 decimales. |
-| | **Descuento en el punto de venta (%)** | De 0 a 100, hasta 2 decimales. |
+| | **Descuento en el punto de venta (%)** | De 0 a 100, hasta 2 decimales. Cambiar solo el descuento no exige el permiso **Cambiar precio POS**. |
 | **Inventario y producción** | **Mínimo**, **Máximo**, **Crítico** | Unidades enteras de 0 a 32.767. |
 | | **Peso**, **Tiempo estándar (min)** | Hasta 2 decimales. |
 | | **Participación (%)** | De 0 a 100. |
@@ -256,7 +256,7 @@ Si cambia otros datos de la variante sin tocar el EAN13, la fecha no cambia.
 
 ### Calcular precios
 
-Con **Calcular precios** no tiene que calcular a mano el costo y los cinco precios. El botón no pide el permiso **Cambiar precio POS**.
+Con **Calcular precios** no tiene que calcular a mano el costo y los cinco precios. El botón exige el permiso **Cambiar precio POS**: sin él está deshabilitado, y ser administrador no lo reemplaza. Si el cálculo cambia costos, además hace falta ser administrador, porque los costos siguen siendo solo de administradores.
 
 1. Escriba el **Costo esperado** (mayor que 0).
 2. Haga clic en **Calcular precios**. Se llenan el **Costo calculado** y **Precio 1** a **Precio 5** con los porcentajes configurados en la compañía, y verá *"Precios calculados con los porcentajes de la compañía. Revísalos antes de guardar."*
@@ -267,6 +267,8 @@ Con **Calcular precios** no tiene que calcular a mano el costo y los cinco preci
 ### Aplicar precios a todas
 
 Al **editar** una variante, abajo a la izquierda está **Aplicar precios a todas**. Copia el **costo esperado**, el **costo calculado**, los **5 precios** y el **descuento** de esa variante a **todas** las variantes de la referencia (útil cuando todas las tallas valen lo mismo).
+
+Exige el permiso **Cambiar precio POS**: sin él el botón no se muestra, y un administrador sin ese permiso tampoco puede usarlo. Si copia costos, además hace falta ser administrador.
 
 1. Deje la variante con los precios correctos.
 2. Haga clic en **Aplicar precios a todas** y confirme con **Aplicar a todas**.
