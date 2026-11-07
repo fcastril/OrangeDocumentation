@@ -16,7 +16,7 @@
 
 El **cuadre de caja** es el cierre del día de una caja. Para cada **usuario** y **fecha** registra cuánto se vendió, cuánto se devolvió y cuánto se recaudó, y compara lo que **debería** haber en efectivo con lo que **realmente** cuenta al final del día.
 
-La pantalla **se llena sola**. Usted no escoge documentos: el sistema toma los documentos que **creó ese usuario** en esa fecha:
+La pantalla **se llena sola**. Usted no escoge documentos: el sistema toma los documentos que **creó ese usuario** con esa fecha de documento (la fecha del movimiento, no la hora en que se digitó):
 
 - **Ventas y devoluciones** (de contado y a crédito), hechas en **Ventas y devoluciones** y en el **Punto de venta**.
 - **Recibos de caja** creados por ese usuario.
