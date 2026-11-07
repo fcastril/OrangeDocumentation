@@ -9,7 +9,7 @@
 ![Static Badge](https://img.shields.io/badge/Opcion-Referencias-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
-![Static Badge](https://img.shields.io/badge/Actualizacion-20261002-yellow)
+![Static Badge](https://img.shields.io/badge/Actualizacion-20261106-yellow)
 
 ---
 
@@ -22,6 +22,8 @@ Antes de guardar, el sistema le muestra qué va a crear, qué va a cambiar (con 
 La importación **nunca borra** nada (ni referencias, ni variantes, ni proveedores, ni consumos, ni operaciones) y **nunca cambia el código** de una referencia.
 
 > 🔐 Necesita el permiso **Exportar** sobre la opción Referencias (es el mismo permiso de Exportar a Excel).
+
+> 🔐 Para importar **precios 1 a 5** de las variantes necesita además el permiso **Cambiar precio POS**; ser administrador no basta. Los **costos** solo los pueden cambiar los administradores. Si el archivo cambia precios o costos sin el permiso que corresponde, la vista previa lo marca y no se importa nada.
 
 ---
 
@@ -193,6 +195,7 @@ El sistema valida cada fila **sin guardar nada** y le muestra el resultado **por
 | Falta el nombre / el subgrupo / la unidad (obligatorio al crear). | La referencia es nueva: complete la celda. Si quería actualizar una existente, revise que el código esté bien escrito. |
 | El código de producto … supera 30 caracteres o tiene espacios (facturación electrónica). | Solo en compañías con facturación electrónica y en variantes nuevas: el código *referencia-atributo principal-atributo secundario* no cabe en SIIGO. Use atributos con códigos más cortos o acorte el código de la referencia. |
 | Subgrupo …: no existe en la compañía. | Escriba el **código** del subgrupo (no el nombre). |
+| *Este archivo cambia precios o costos en N filas y no tienes el permiso para hacerlo (precios: Cambiar precio POS; costos: administrador). No se podrá importar.* | Quite de las hojas las columnas de precio o costo que no puede cambiar, o pida el permiso **Cambiar precio POS** (precios) o que lo haga un administrador (costos). |
 | Liquida IVA es Sí: faltan … | Escriba los tres impuestos, o ponga *Liquida IVA* en No. |
 | Tercero …: no existe o está inactivo. | Escriba el documento de un tercero activo. |
 | …: la cuenta … no es de movimiento. | Use una cuenta auxiliar (de movimiento). |
@@ -275,7 +278,7 @@ No. Nunca elimina referencias ni variantes.
 No. En una fila que actualiza, la celda vacía deja el valor actual. Por eso es seguro dejar vacías las columnas que no quiere cambiar.
 
 **Solo quiero cambiar precios. ¿Qué lleno?**
-En la hoja **Variantes**, una fila por variante con **Código referencia**, **Código atributo principal**, **Código atributo secundario** y las columnas de precio que cambian. Puede quitar la hoja Referencias.
+En la hoja **Variantes**, una fila por variante con **Código referencia**, **Código atributo principal**, **Código atributo secundario** y las columnas de precio que cambian. Puede quitar la hoja Referencias. Para cambiar precios necesita el permiso **Cambiar precio POS**.
 
 **¿Cómo quito un dato, por ejemplo una cuenta?**
 La importación no vacía campos (una celda vacía no cambia nada). Para quitar un dato, hágalo en el [detalle de la referencia](referencias-detalle.md).
