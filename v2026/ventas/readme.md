@@ -12,6 +12,7 @@ Manuales de las pantallas de Ventas en la nueva versión.
 - [Importar pedidos desde Excel](movimientos/pedidos-importar.md): carga de varios pedidos nuevos desde una hoja de Excel, con vista previa y resultado.
 - [Ventas y devoluciones](movimientos/ventas-devoluciones.md): ventas, devoluciones y notas crédito, con su captura, cierre, factura electrónica, anulación e impresión.
 - [Punto de venta](movimientos/punto-de-venta.md): venta rápida de mostrador desde la caja del cajero, con búsqueda por código o EAN, favoritos, variantes, cobro en un solo paso con recibo de caja automático y atajos de teclado.
+- [Cuadre de caja](movimientos/cuadre-caja.md): cierre diario por usuario que se llena solo con sus ventas, devoluciones y recibos de caja; el usuario digita el arqueo y el sistema calcula faltante, sobrante y total a entregar.
 
 ## Maestros
 
