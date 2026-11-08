@@ -1,4 +1,4 @@
-# Capturas pendientes de publicar (V2026 · Ventas · Vendedores y Comisiones)
+# Capturas pendientes de publicar (V2026 · Ventas)
 
 Imágenes que los manuales ya referencian y que todavía no están en el repositorio. Se publican con el workflow **Manual capturas** (`publicar` = true) desde el manifiesto indicado. Cuando estén todas subidas, borre este archivo.
 
@@ -47,3 +47,18 @@ Comando: `gh workflow run "Manual capturas" -f manifiesto=<manifiesto> -f public
 | `01-cargar-archivo.png` … `10-error-servidor.png` (10 capturas del manifiesto) | `movimientos/pedidos-importar.md` |
 
 Comandos: `gh workflow run "Manual capturas" -f manifiesto=ventas-pedidos -f publicar=true` y `gh workflow run "Manual capturas" -f manifiesto=ventas-pedidos-importar -f publicar=true`.
+
+## Manifiesto `ventas-por-cliente` → `v2026/ventas/recursos/img/ventas-por-cliente/`
+
+| Imagen | Manual que la usa |
+|--------|-------------------|
+| `01-inicial.png` | `consultas/ventas-por-cliente.md` |
+| `02-cliente-tipo.png` | `consultas/ventas-por-cliente.md` |
+| `03-tipo-cliente.png` | `consultas/ventas-por-cliente.md` |
+| `04-drill-down-documentos.png` | `consultas/ventas-por-cliente.md` |
+| `05-detallado.png` | `consultas/ventas-por-cliente.md` |
+| `06-exportar-terminado.png` | `consultas/ventas-por-cliente.md` |
+| `07-pdf-demasiado-grande.png` | `consultas/ventas-por-cliente.md` |
+| `08-vacio.png` | `consultas/ventas-por-cliente.md` |
+
+Comando: `gh workflow run "Manual capturas" -f manifiesto=ventas-por-cliente -f publicar=true`
