@@ -14,6 +14,10 @@ Manuales de las pantallas de Ventas en la nueva versión.
 - [Punto de venta](movimientos/punto-de-venta.md): venta rápida de mostrador desde la caja del cajero, con búsqueda por código o EAN, favoritos, variantes, cobro en un solo paso con recibo de caja automático y atajos de teclado.
 - [Cuadre de caja](movimientos/cuadre-caja.md): cierre diario por usuario que se llena solo con sus ventas, devoluciones y recibos de caja; el usuario digita el arqueo y el sistema calcula faltante, sobrante y total a entregar.
 
+## Consultas
+
+- [Ventas por cliente / detallado](consultas/ventas-por-cliente.md): ventas y devoluciones por cliente, tipo de movimiento o referencia, y el detalle con referencias, con exportación a Excel y PDF.
+
 ## Maestros
 
 - [Clientes](maestros/clientes.md): terceros a quienes la compañía vende, con su ficha comercial, sucursales, contactos y archivos.
