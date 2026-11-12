@@ -15,3 +15,4 @@ Manuales de las pantallas de Tesorería en la nueva versión.
 ## Movimientos
 
 - [Notas bancarias](movimientos/notas-bancarias.md): lo que el banco hace por su cuenta (GMF, comisiones, intereses, rendimientos y devoluciones), cómo crear, cerrar, editar y anular una nota, los asientos que genera, la importación desde Excel y los mensajes de error.
+- [Recibos de caja](movimientos/recibos-egresos.md): el dinero que entra por un cobro a un cliente, cómo cruzar facturas, registrar formas de pago, cerrar, anular, adjuntar, imprimir y los mensajes de error.
