@@ -457,6 +457,8 @@ Para eliminar necesita el permiso **Eliminar**, y el documento debe cumplir esta
 2. En el diálogo *¿Eliminar el documento …?* lea el aviso: se borran el documento completo, con sus líneas (facturas cruzadas), pagos, asientos y adjuntos, y no se puede deshacer.
 3. Confirme con **Eliminar documento**.
 
+![Diálogo de confirmación para eliminar el documento](../recursos/img/recibos-egresos/47-eliminar-dialogo.png)
+
 ![Diálogo de confirmación con el mensaje de dependientes del servidor](../recursos/img/recibos-egresos/45-eliminar-con-dependientes.png)
 
 Si el servidor rechaza la eliminación porque el documento tiene dependientes, el diálogo lo muestra: *No se puede eliminar: su anticipo o saldo ya fue cruzado por otro documento.* El documento no se borra. Si solo quiere corregirlo, anúlelo.
