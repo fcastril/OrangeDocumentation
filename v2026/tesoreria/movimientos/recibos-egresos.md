@@ -2,7 +2,7 @@
 
 ---
 
-# 🧾 Recibos de caja
+# 🧾 Recibos de caja y egresos
 
 ![Static Badge](https://img.shields.io/badge/Tipo-Movimiento-red)
 ![Static Badge](https://img.shields.io/badge/Module-Tesorer%C3%ADa-orange)
@@ -10,7 +10,7 @@
 ![Static Badge](https://img.shields.io/badge/Opcion-RecibosDeCaja-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
-![Static Badge](https://img.shields.io/badge/Actualizacion-20261111-yellow)
+![Static Badge](https://img.shields.io/badge/Actualizacion-20261112-yellow)
 
 ---
 
@@ -18,15 +18,17 @@
 
 Un **recibo de caja** registra el dinero que **entra** a la compañía por un cobro a un cliente: a qué **facturas** se aplica y con qué **formas de pago** (efectivo, transferencia, cheque, tarjeta u otra que tenga configurada).
 
-Cada recibo tiene una **fecha**, un **cliente**, las **facturas que cruza** (una línea por factura, con sus valores) y uno o varios **pagos**. El total de los pagos debe ser igual al total de las líneas. Al **cerrarlo**, OrangeERP registra los asientos contables del cobro y el recibo ya no se edita.
+Un **egreso** registra el dinero que **sale** de la compañía por un pago a un proveedor: a qué **compras por pagar** se aplica y de qué **forma de pago** sale el dinero.
 
-Use esta pantalla cuando un cliente le pagó. Si lo que hace es pagar a un proveedor, use la opción de egresos de esta misma pantalla, cuando esté disponible en su compañía; el banco que se mueve por su cuenta se registra en [Notas bancarias](notas-bancarias.md).
+Cada documento tiene una **fecha**, un **tercero** (cliente o proveedor), las **facturas que cruza** (una fila por factura, con sus valores) y uno o varios **pagos**. El total de los pagos debe ser igual al total de las líneas. Al **cerrarlo**, OrangeERP registra los asientos contables del cobro o del pago, y el documento ya no se edita (salvo con la marca especial que se describe en [Editar un recibo cerrado](#-editar-un-recibo-cerrado)).
+
+Use esta pantalla cuando un cliente le pagó (recibo de caja) o cuando usted le paga a un proveedor (egreso). El banco que se mueve por su cuenta se registra en [Notas bancarias](notas-bancarias.md).
 
 > 📘 La búsqueda, el orden, la paginación y la ayuda funcionan igual en todas las tablas: ver [Manejo general de la información](../../Generales/manejo-general-informacion.md).
 
 > 💡 Cada pestaña del navegador trabaja con **una compañía**. El nombre de la compañía se ve en el título de la pestaña y en la barra superior.
 
-> ℹ️ Un recibo **no se elimina** desde esta pantalla. Si está mal, **anúlelo** con un motivo: queda en el listado con su historia.
+> ℹ️ Si un documento está mal y solo necesita corregirse, **anúlelo** con un motivo: queda en el listado con su historia. **Eliminar** borra el documento por completo; solo se ofrece con el permiso correspondiente. Vea [Eliminar un documento](#-eliminar-un-documento).
 
 Antes de empezar, revise que el cliente, las formas de pago y los bancos existan. Las formas de pago se mantienen en [Formas de pago](../maestros/formas-pago.md) y los bancos en [Bancos](../maestros/bancos.md).
 
@@ -46,9 +48,10 @@ Cada acción depende de los permisos de su perfil sobre la opción **Recibos de 
 | Permiso | Qué habilita |
 |---------|--------------|
 | Consultar | Ver el listado, abrir los recibos, descargar sus adjuntos y ver la bitácora. |
-| Crear | **Nuevo documento**, **Guardar** de un recibo nuevo y subir adjuntos a un recibo guardado. |
-| Actualizar | **Guardar** de un recibo abierto y **Cerrar transacción**. |
+| Crear | **Nuevo documento**, **Guardar** de un documento nuevo y subir adjuntos a un documento guardado. |
+| Actualizar | **Guardar** de un documento abierto y **Cerrar transacción**. Con la marca **Editar documentos cerrados**, también **Guardar** de un documento cerrado (ver [Editar un recibo cerrado](#-editar-un-recibo-cerrado)). |
 | Anular | **Anular documento**. |
+| Eliminar | **Eliminar documento**, en el documento y en la fila del listado. Ver [Eliminar un documento](#-eliminar-un-documento). |
 | Imprimir | **Imprimir**, en el recibo y en la fila del listado. |
 
 > ℹ️ Si su perfil no tiene **Consultar**, la pantalla le avisa: *No tienes acceso a esta pantalla.* Pida a su administrador el permiso que necesite.
@@ -73,7 +76,7 @@ Las columnas son:
 
 | Columna | Qué muestra |
 |---------|-------------|
-| **Acciones** | Los botones del recibo (ver, imprimir, editar, anular, según el caso). Siempre están en la **primera columna**. |
+| **Acciones** | Los botones del documento (ver, imprimir, editar, anular, eliminar, según el caso). Siempre están en la **primera columna**. |
 | **Tipo** | El tipo de movimiento del recibo. |
 | **Número** | El número del recibo. |
 | **Fecha** | La fecha del recibo. |
@@ -130,9 +133,11 @@ Los filtros están sobre la tabla y se pueden combinar:
 ## ➕ Crear un recibo
 
 1. En el listado, haga clic en **Nuevo documento**.
-2. Elija el **Tipo de movimiento**. Solo verá los tipos autorizados para su usuario.
-3. Complete el **encabezado** (ver la tabla siguiente).
-4. En **Facturas que se cruzan**, haga clic en **Seleccionar facturas** y marque las que cubre el cobro.
+2. Elija el **Tipo de movimiento**. Solo verá los tipos autorizados para su usuario. Para un pago a proveedores, vea [Egreso a proveedores](#-egreso-a-proveedores).
+3. Complete el **encabezado** (ver la tabla siguiente). Si el documento es un anticipo, marque la casilla **Anticipo** (vea [Anticipos y saldos a favor](#-anticipos-y-saldos-a-favor)).
+4. En **Facturas que se cruzan**, cruce las facturas de una de estas dos formas:
+   - haga clic en **Seleccionar facturas**, marque las que cubre el cobro y ajuste sus valores ahí mismo; o
+   - escriba el **Valor total del recibo** y haga clic en **Distribuir** (vea [Valor total del recibo y Distribuir](#valor-total-del-recibo-y-distribuir)).
 5. Revise las **Formas de pago** y el **total**.
 6. Haga clic en **Guardar**.
 
@@ -142,13 +147,14 @@ Los filtros están sobre la tabla y se pueden combinar:
 
 | Campo | Qué debe tener |
 |-------|----------------|
-| **Tipo de movimiento** | El tipo del recibo. Define la cartera (clientes) y si el consecutivo se puede escribir. |
+| **Tipo de movimiento** | El tipo del documento: recibo de caja o egreso. Define la cartera (clientes o proveedores) y si el consecutivo se puede escribir. Si cambia el tipo de recibo a egreso, se limpian las facturas que ya estaban cruzadas. |
 | **Consecutivo** | Se asigna al guardar. Si el tipo permite escribirlo, puede digitar un número; si lo deja vacío, se usa el siguiente libre. Si el número ya está usado, verá: *Ese consecutivo ya está usado. Elige otro o déjalo vacío.* |
 | **Fecha** | La fecha del recibo. Por defecto es hoy; si ya pasó la hora de cierre de la compañía, es mañana. |
 | **Fecha efectiva** | Igual a la fecha por defecto. No puede ser posterior a la fecha: *La fecha efectiva no puede ser posterior a la fecha.* |
 | **Documento de referencia** | Hasta 20 caracteres, sin «,» ni «;». Si lo deja vacío, se usa el código del tipo y el consecutivo. |
 | **Centro de costos** | Obligatorio solo si el tipo lo exige: *Este tipo exige centro de costos.* |
-| **Cliente (tercero)** | Busque por documento o por nombre. Un cliente inactivo no se puede usar: *Tercero inactivo.* |
+| **Cliente (tercero)** | Busque por documento o por nombre. Un cliente inactivo no se puede usar: *Tercero inactivo.* En un egreso el campo se llama **Proveedor (tercero)**. |
+| **Anticipo (sin facturas, un solo pago)** | Casilla de un documento nuevo. Oculta el cruce de facturas y admite un solo pago. Ver [Anticipos y saldos a favor](#-anticipos-y-saldos-a-favor). |
 | **Observaciones** | Hasta 200 caracteres, sin «,» ni «;». |
 
 Si el cliente tiene una alerta en sus observaciones, la verá en el recuadro **Alerta del tercero**, con su texto. Puede continuar con el recibo; la alerta solo informa.
@@ -157,37 +163,84 @@ Si el cliente tiene una alerta en sus observaciones, la verá en el recuadro **A
 
 ### Facturas que se cruzan
 
-Este bloque dice a qué facturas del cliente aplica el cobro.
+Este bloque dice a qué facturas del cliente aplica el cobro (o, en un egreso, a qué compras del proveedor se aplica el pago). Hay dos formas de cruzar: **Seleccionar facturas**, para elegir factura por factura y ajustar sus valores, y **Valor total del recibo** con **Distribuir**, para repartir un valor total entre las facturas.
 
-1. Elija primero el **Cliente** y la **Fecha**. Sin ellos, **Seleccionar facturas** está deshabilitado.
-2. Haga clic en **Seleccionar facturas**. Verá las facturas del cliente con saldo a esa fecha, ordenadas por fecha. Si quiere ver también las que tienen saldo cero, marque **Mostrar facturas sin saldo**.
-3. Marque las facturas que cubre el cobro y haga clic en **Agregar … al documento**. Cada factura queda como una **línea**, con el valor propuesto igual a su saldo.
+1. Elija primero el **Cliente** (o el **Proveedor**, en un egreso) y la **Fecha**. Sin ellos, **Seleccionar facturas** y **Distribuir** están deshabilitados.
+2. Haga clic en **Seleccionar facturas**. Verá las facturas del tercero con saldo a esa fecha, ordenadas por fecha. Si quiere ver también las que tienen saldo cero, marque **Mostrar facturas sin saldo**. Si las oculta de nuevo, se desmarcan las que estaban marcadas.
 
 ![Seleccionar facturas del cliente](../recursos/img/recibos-egresos/10-cruce-seleccionar-facturas.png)
 
+3. Marque la casilla **Abonar** de cada factura que cubre el cobro. Al marcarla, el **Valor** propone el saldo de la factura, y puede ajustar ahí mismo el descuento, el IVA, las retenciones y los demás valores.
+
+![Selector de facturas con los nueve valores para ajustar](../recursos/img/recibos-egresos/32-selector-ajustar-valores.png)
+
+Los campos de una factura están deshabilitados hasta que la marca. El **total de la fila** lleva signo, y abajo verá los **Totales de la selección**. Si el **Valor** de una factura marcada queda vacío o inválido, no deja agregar y le avisa.
+
+4. Revise la selección y haga clic en **Agregar … al documento**. Cada factura marcada queda como una **línea** de la tabla **Facturas que se cruzan**.
+
 ![Facturas marcadas para abonar](../recursos/img/recibos-egresos/11-cruce-abonar.png)
 
-Cada línea muestra el **documento afectado**, el **saldo vigente** y una rejilla de valores:
+Las líneas se editan directamente en la tabla. Cada factura es una **fila** y cada valor, una **columna**:
 
-| Valor | Para qué sirve |
-|-------|----------------|
+| Columna | Para qué sirve |
+|---------|----------------|
+| **Documento** | El documento afectado, con su movimiento y su fecha. Si la factura tiene saldo negativo, aparece la insignia **Saldo a favor**. |
+| **Saldo** | El saldo vigente de la factura. |
 | **Valor** | Lo que se abona de la factura. |
 | **Descuento**, **IVA**, **Retefuente**, **ReteIVA**, **ReteICA**, **Segufletes**, **Intereses** | Los valores que acompañan el cobro, según corresponda. |
 | **Otros valores** | Otros conceptos. Es el único campo que admite negativos (por ejemplo, -5000). |
+| **Neto de la línea** | El resultado de la línea con sus conceptos. Lo calcula el sistema. |
+| **Quitar la línea** | Quita esa factura del documento. |
 
-Al pie de cada línea verá el **Neto de la línea** y el botón **Quitar la línea n**. El neto se actualiza mientras escribe.
+Escriba directamente en las celdas: el **neto de la línea** y los **totales** del pie (fila **Totales**) se actualizan mientras escribe.
 
-![Editar los valores de una línea](../recursos/img/recibos-egresos/12-cruce-editar-linea.png)
+![Editar los valores de una línea en la tabla](../recursos/img/recibos-egresos/12-cruce-editar-linea.png)
 
 > ⚠️ Si abona más que el saldo de la factura, verá: *Abonas más que el saldo (…). Se permite y quedará un saldo a favor.* Puede guardar; el sistema deja el saldo a favor del cliente.
 
 ![Abono mayor al saldo](../recursos/img/recibos-egresos/13-cruce-exceso-abono.png)
 
-Si una factura tiene saldo negativo, aparece marcada como **Saldo a favor**. Sus valores se restan del total.
+Si una factura tiene saldo negativo, aparece marcada como **Saldo a favor**. Sus valores se suman con signo: el neto del documento puede ser menor. Vea [Anticipos y saldos a favor](#-anticipos-y-saldos-a-favor).
+
+### Valor total del recibo y Distribuir
+
+Use esta opción si el cliente le entregó un valor global y no quiere elegir factura por factura. En un egreso el campo se llama **Valor total del egreso**.
+
+1. Escriba en **Valor total del recibo** el valor total. Es el **Total a pagar** neto, es decir, lo que sumarán los pagos. Distribuir está deshabilitado sin tercero.
+
+![Campo Valor total del recibo y botón Distribuir](../recursos/img/recibos-egresos/33-distribuir-campo.png)
+
+2. Haga clic en **Distribuir**. El sistema reparte el valor de la factura más vieja a la más nueva (por fecha, luego por vencimiento y número), hasta el saldo de cada una:
+   - la última factura con abono puede quedar **parcial**;
+   - las facturas sin abono no generan línea;
+   - los saldos a favor que ya estén agregados se conservan y restan del total.
+3. El resultado son **líneas normales** de la tabla. Puede editarlas como cualquier otra.
+
+![Resultado de Distribuir: líneas repartidas por factura](../recursos/img/recibos-egresos/34-distribuir-resultado.png)
+
+Mensajes de Distribuir:
+
+| Mensaje | Qué hacer |
+|---------|-----------|
+| *Escribe un valor mayor que cero para distribuir.* | Escriba el valor total y vuelva a hacer clic en **Distribuir**. |
+| *El tercero no tiene facturas con saldo para distribuir.* | Revise el tercero y la fecha. Si no tiene saldo, no hay nada que repartir. |
+
+#### Si el valor supera las facturas con saldo
+
+Si el valor total es mayor que la suma de las facturas con saldo, **Distribuir** no aplica nada y pregunta en el diálogo *El valor supera las facturas con saldo*. El diálogo le dice cuánto sobra y ofrece dos opciones:
+
+- **Sí, colocar la diferencia**: la última factura (la más nueva) queda con su saldo más la diferencia. Es un mayor valor abonado que deja un **saldo a favor** del tercero. El sistema muestra la advertencia de abono mayor al saldo, pero no bloquea el documento.
+- **No, solo lo que cubren las facturas**: se aplican solo las facturas, y el campo **Valor total del recibo** se ajusta al valor que cubren.
+
+Cerrar el diálogo con **Escape** no cambia nada.
+
+![Diálogo: el valor supera las facturas con saldo](../recursos/img/recibos-egresos/35-distribuir-exceso-dialogo.png)
+
+![Resultado de Sí, colocar la diferencia en la última factura](../recursos/img/recibos-egresos/36-distribuir-exceso-si.png)
 
 ### Formas de pago
 
-En **Formas de pago** registre cómo entró el dinero.
+En **Formas de pago** registre cómo entró el dinero. En un egreso, registre de dónde sale: el dinero sale de la forma de pago elegida, y la cuenta de banco se toma de esa forma de pago.
 
 1. Haga clic en **Agregar forma de pago**.
 2. Elija la **Forma de pago** (obligatoria).
@@ -224,6 +277,67 @@ Un recibo guardado queda **Abierto**. Puede volver a editarlo, o cerrarlo cuando
 
 ---
 
+## 💸 Egreso a proveedores
+
+Un **egreso** es el pago que la compañía hace a un proveedor. Se crea en la misma pantalla que los recibos, con **Nuevo documento**: en **Tipo de movimiento**, elija un tipo de egreso (por ejemplo, *EG - Egreso a proveedores*). Solo verá los tipos autorizados para su usuario.
+
+![Nuevo egreso a proveedores](../recursos/img/recibos-egresos/37-egreso-nuevo.png)
+
+En un egreso cambian estos puntos:
+
+- El campo del tercero se llama **Proveedor (tercero)**. Busque por documento o por nombre.
+- El selector de **Seleccionar facturas** trae las **compras por pagar** de ese proveedor, con su saldo a la fecha.
+- Si el tipo de egreso lo exige, el **Centro de costos** es obligatorio: *Este tipo exige centro de costos.*
+- El **neto** de cada línea incluye retenciones e intereses:
+
+  > **Valor** − **Descuento** + **IVA** − **Retefuente** − **ReteIVA** − **ReteICA** + **Segufletes** + **Intereses** + **Otros valores**
+
+- El campo de valor total se llama **Valor total del egreso**, y **Distribuir** funciona igual que en un recibo.
+- El dinero sale de la **forma de pago** elegida. La cuenta de banco se toma de esa forma de pago.
+
+![Egreso con retenciones: campo Valor total del egreso y acciones del documento](../recursos/img/recibos-egresos/38-egreso-retenciones.png)
+
+Pasos para un egreso:
+
+1. En **Nuevo documento**, elija el tipo de egreso y complete el encabezado con el **Proveedor (tercero)**.
+2. En **Facturas que se cruzan**, use **Seleccionar facturas** o **Distribuir** con el **Valor total del egreso**.
+3. En **Formas de pago**, elija de dónde sale el dinero y el valor de cada pago.
+4. Haga clic en **Guardar**.
+
+![Egreso con el valor distribuido entre las compras por pagar](../recursos/img/recibos-egresos/39-egreso-distribuir.png)
+
+> ℹ️ Si cambia el tipo de un recibo a egreso después de cruzar facturas, el sistema limpia las facturas cruzadas. Vuelva a seleccionarlas.
+
+---
+
+## 💰 Anticipos y saldos a favor
+
+Un **saldo a favor** es un valor que queda a favor del tercero. Aparece cuando se abona más que el saldo de una factura, o cuando el documento es un **anticipo**.
+
+### Anticipo (sin facturas, un solo pago)
+
+En el encabezado de un documento **nuevo**, marque la casilla **Anticipo (sin facturas, un solo pago)**. Entonces:
+
+- Se oculta el cruce de facturas: el documento no lleva facturas.
+- Admite **exactamente un pago**. El aviso dice: *Un anticipo no lleva facturas: registra su pago abajo.*
+- El documento queda como **saldo a favor** del tercero, y luego ese saldo se puede cruzar en otro recibo.
+
+![Anticipo nuevo: casilla marcada, sin cruce de facturas y un solo pago](../recursos/img/recibos-egresos/41-anticipo-nuevo.png)
+
+Un anticipo cerrado se ve así: sin facturas, con su pago y solo las acciones de impresión y anulación.
+
+![Anticipo cerrado](../recursos/img/recibos-egresos/42-anticipo-cerrado.png)
+
+### Saldo a favor cruzado con facturas
+
+Cuando un documento con saldo a favor se cruza con facturas, su valor se **suma con signo**, por eso el neto puede ser menor que la suma de las facturas. Si el total sale negativo, los pagos se registran por el valor absoluto (vea [El total: Total a pagar](#el-total-total-a-pagar)).
+
+![Documento con saldo a favor cruzado](../recursos/img/recibos-egresos/40-saldo-a-favor.png)
+
+> ⚠️ Si otro documento activo ya cruzó el anticipo o el saldo a favor de este, ese otro documento depende de él, y este no se puede eliminar (vea [Eliminar un documento](#-eliminar-un-documento)).
+
+---
+
 ## ✏️ Editar un recibo abierto
 
 1. En el listado, haga clic en **Editar el documento** de la fila, o abra el recibo con **Ver**.
@@ -235,7 +349,7 @@ Después de guardar, el encabezado no cambia. Se pueden cambiar las **observacio
 
 Si otro usuario cambió el recibo mientras lo edita, no se pierde su trabajo, pero no se guarda sobre el cambio ajeno. Vea [Cambios de otros usuarios](#-cambios-de-otros-usuarios-en-vivo).
 
-> ℹ️ Un recibo **cerrado**, **anulado** o de un **periodo cerrado** no se edita. Lo verá con su aviso: *Este documento está cerrado: ya no se edita. Puedes imprimirlo o anularlo.*
+> ℹ️ Un recibo **anulado** o de un **periodo cerrado** no se edita. Un recibo **cerrado** tampoco, salvo con la marca especial que se describe en [Editar un recibo cerrado](#-editar-un-recibo-cerrado). Si no se puede editar, lo verá con su aviso: *Este documento está cerrado: ya no se edita. Puedes imprimirlo o anularlo.*
 
 ![Recibo cerrado: solo lectura](../recursos/img/recibos-egresos/19-cerrado.png)
 
@@ -262,6 +376,24 @@ Si el cierre no se puede hacer, verá el motivo y el recibo sigue abierto:
 | *Los pagos no suman el total; no se guardó nada.* | Revise los pagos y guarde de nuevo. |
 | *El periodo de la fecha está cerrado para recibos y egresos.* | Pida a Contabilidad que abra el periodo. |
 | *El documento ya está cerrado.* | Recargue el recibo para ver su estado. |
+
+Si el servidor rechaza el cierre, el motivo aparece dentro del mismo diálogo, que queda abierto.
+
+---
+
+## ✏️ Editar un recibo cerrado
+
+Un recibo cerrado solo se puede editar si se cumplen **las tres** condiciones:
+
+1. Su perfil tiene el permiso **Actualizar**.
+2. Su usuario tiene la marca especial **Editar documentos cerrados**. Si no la tiene, pida el acceso a su administrador.
+3. El periodo de la fecha del recibo está **abierto**.
+
+Al guardar los cambios, los asientos contables se **recalculan** y el recibo **sigue cerrado**. El aviso lo dice: *Este documento está cerrado: al guardar se recalculan sus asientos contables y sigue cerrado.*
+
+![Recibo cerrado editable por un usuario con la marca](../recursos/img/recibos-egresos/43-cerrado-editable.png)
+
+Sin la marca, o si el periodo está cerrado, el recibo cerrado es de **solo lectura**: puede imprimirlo o anularlo, pero no cambiarlo.
 
 ---
 
@@ -304,6 +436,38 @@ Si el recibo ya fue cruzado por otros recibos, el diálogo lo advierte: *Este do
 | *El periodo de la fecha está cerrado para recibos y egresos.* | Contabilidad debe abrir el periodo, o el recibo queda como está. |
 | *El documento ya está anulado.* | Revise el listado: ya no hay nada que anular. |
 | *No tienes permiso para esta acción.* | Pida el permiso de **Anular** a su administrador. |
+
+Igual que en el cierre, si el servidor rechaza la anulación, el motivo aparece dentro del diálogo, que no se cierra.
+
+---
+
+## 🗑️ Eliminar un documento
+
+**Eliminar documento** borra el documento **completo**: su encabezado, sus facturas, sus pagos, sus asientos contables y sus adjuntos. **No se puede deshacer.**
+
+> ⚠️ Si solo quiere corregir un documento, **anúlelo** en lugar de eliminarlo. La anulación conserva la historia en el listado.
+
+Para eliminar necesita el permiso **Eliminar**, y el documento debe cumplir estas condiciones:
+
+- No está **anulado**.
+- No tiene **dependientes**: ningún otro documento activo cruzó su anticipo o su saldo a favor.
+- El periodo de su fecha está **abierto**.
+
+1. Abra el documento y haga clic en **Eliminar documento**, o en la fila del listado, en la acción **Eliminar el documento …**.
+2. En el diálogo *¿Eliminar el documento …?* lea el aviso: se borran el documento completo, con sus facturas, pagos, asientos y adjuntos, y no se puede deshacer.
+3. Confirme con **Eliminar documento**.
+
+![Diálogo de confirmación con el mensaje de dependientes del servidor](../recursos/img/recibos-egresos/45-eliminar-con-dependientes.png)
+
+Si el servidor rechaza la eliminación porque el documento tiene dependientes, el diálogo lo muestra: *No se puede eliminar: su anticipo o saldo ya fue cruzado por otro documento.* El documento no se borra. Si solo quiere corregirlo, anúlelo.
+
+Cuando la eliminación se completa, la pantalla vuelve al listado con el aviso *Documento … eliminado*.
+
+![Aviso de documento eliminado](../recursos/img/recibos-egresos/44-eliminar-confirmar.png)
+
+Si el documento no ofrece **Eliminar documento**, no cumple alguna de las condiciones de arriba: está anulado, tiene dependientes, su periodo está cerrado o su perfil no tiene el permiso **Eliminar**.
+
+![Documento sin el botón Eliminar documento](../recursos/img/recibos-egresos/46-eliminar-sin-boton.png)
 
 ---
 
@@ -357,6 +521,7 @@ En la pestaña **Bitácora** queda el historial del recibo, de solo lectura, con
 | *Otro usuario modificó este documento. Revisa sus cambios antes de guardar.* | Otra persona cambió el recibo mientras usted lo editaba. | Haga clic en **Ver sus cambios**, revise, y vuelva a guardar sus cambios. |
 | *El documento ya no se puede editar (cerrado, anulado o periodo cerrado).* | El recibo ya no es editable. | Recargue el recibo para ver su estado actual. |
 | *Este documento no existe.* | El recibo ya no está disponible o no pertenece a esta compañía. | Vuelva al listado. |
+| *No se puede eliminar: su anticipo o saldo ya fue cruzado por otro documento.* | Otro documento activo depende de este. | Revise el otro documento. Si solo quiere corregir este, anúlelo. |
 | *No se pudo completar la acción. Reintenta.* | Error del servidor. No se guardó nada. | Haga clic en **Reintentar**. Si se repite, avise al administrador. |
 
 ![Descuadre al guardar](../recursos/img/recibos-egresos/25-error-descuadre.png)
@@ -405,7 +570,13 @@ En un celular, la ayuda ocupa toda la pantalla y se cierra con la **✕**.
 ## ❓ Preguntas frecuentes
 
 **¿Puedo eliminar un recibo?**
-No. Anúlelo con un motivo: queda en el listado como **Anulado**, con su historia.
+Sí, si su perfil tiene el permiso **Eliminar**, el documento no está anulado, no tiene dependientes y su periodo está abierto. Eliminar borra el documento por completo y no se puede deshacer. Si solo quiere corregirlo, anúlelo con un motivo: queda en el listado como **Anulado**, con su historia. Vea [Eliminar un documento](#-eliminar-un-documento).
+
+**¿Por qué no veo Eliminar documento?**
+Porque el documento está anulado, tiene dependientes, su periodo está cerrado o su perfil no tiene el permiso **Eliminar**.
+
+**¿Por qué no puedo editar un recibo cerrado?**
+Porque para editarlo necesita el permiso **Actualizar**, la marca **Editar documentos cerrados** y que el periodo esté abierto. Vea [Editar un recibo cerrado](#-editar-un-recibo-cerrado).
 
 **¿Qué diferencia hay entre abierto y cerrado?**
 El recibo abierto se puede editar y todavía no registró sus asientos contables. El recibo cerrado ya los registró y no se edita.
@@ -414,7 +585,7 @@ El recibo abierto se puede editar y todavía no registró sus asientos contables
 Porque el recibo debe estar guardado, sin cambios pendientes, y su perfil necesita el permiso **Actualizar**. Guarde primero el recibo.
 
 **¿Por qué no aparece Seleccionar facturas?**
-Porque falta el **Cliente** o la **Fecha**. Elíjalos primero.
+Porque falta el **Cliente** (o el **Proveedor**, en un egreso) o la **Fecha**. Elíjalos primero. Lo mismo pasa con **Distribuir**.
 
 **¿Por qué el total sale negativo?**
 Porque el cliente tiene saldo a favor y sus valores se restan del total. Los pagos se registran por el valor absoluto.
