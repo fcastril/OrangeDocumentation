@@ -386,7 +386,7 @@ Si el servidor rechaza el cierre, el motivo aparece dentro del mismo diálogo, q
 Un recibo cerrado solo se puede editar si se cumplen **las tres** condiciones:
 
 1. Su perfil tiene el permiso **Actualizar**.
-2. Su usuario tiene la marca especial **Editar documentos cerrados**. Si no la tiene, pida el acceso a su administrador.
+2. Su usuario tiene la marca especial **Editar documentos cerrados**.
 3. El periodo de la fecha del recibo está **abierto**.
 
 Al guardar los cambios, los asientos contables se **recalculan** y el recibo **sigue cerrado**. El aviso lo dice: *Este documento está cerrado: al guardar se recalculan sus asientos contables y sigue cerrado.*
