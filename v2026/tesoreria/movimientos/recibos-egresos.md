@@ -188,13 +188,13 @@ Si quiere ver también las facturas con saldo cero, marque **Mostrar facturas si
 
    Los campos de una factura están deshabilitados hasta que la marca.
 
-![Selector de facturas con los nueve valores para ajustar](../recursos/img/recibos-egresos/12-ajustar-en-el-selector.png)
+![Factura marcada con sus nueve valores habilitados: si el Valor queda vacío, el selector no deja agregar](../recursos/img/recibos-egresos/12-ajustar-en-el-selector.png)
 
 El **total de la fila** lleva signo (un saldo a favor sale negativo) y, abajo, la fila **Totales de la selección** suma los netos de las facturas marcadas (**Vr. total**). Si el **Valor** de una factura marcada queda vacío o en cero, no deja agregar y le avisa: *Corrige los valores marcados antes de agregar.*
 
 4. Revise la selección y haga clic en **Agregar … al documento**. Cada factura marcada queda como una **línea** de la tabla **Facturas que se cruzan**.
 
-![Facturas marcadas para abonar](../recursos/img/recibos-egresos/13-abonar-facturas.png)
+![Selector: los campos de cada factura están deshabilitados hasta marcarla](../recursos/img/recibos-egresos/13-abonar-facturas.png)
 
 #### Tabla de líneas
 
