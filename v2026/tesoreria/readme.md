@@ -6,6 +6,10 @@
 
 Manuales de las pantallas de Tesorería en la nueva versión.
 
+## Inicio del módulo
+
+- [Resumen del módulo (Dashboard de Tesorería)](dashboard.md): el saldo de caja y bancos por forma de pago o por cuenta contable, recaudos, egresos y comparativo, tendencia, rankings que llevan a los reportes, cartera por cobrar y por pagar, notas bancarias, pendientes, permisos por bloque, actualización y exportación a Excel.
+
 ## Maestros
 
 - [Bancos](maestros/bancos.md): lista de los bancos de la compañía, cómo crearlos, editarlos, eliminarlos y exportarlos, y cómo importarlos desde Excel.
@@ -19,7 +23,6 @@ Manuales de las pantallas de Tesorería en la nueva versión.
 
 ## Reportes
 
-- [Dashboard de Tesorería](reportes/dashboard.md): el saldo de caja y bancos por forma de pago o por cuenta contable, recaudos, egresos y comparativo, tendencia, rankings que llevan a los reportes, cartera por cobrar y por pagar, notas bancarias, pendientes, permisos por bloque, actualización y exportación a Excel.
 - [Por formas de pago](reportes/formas-pago.md): lo recibido y pagado por medio de pago, en detalle o resumido, con el saldo inicial opcional, los totales, Ver más pagos y la exportación a Excel y PDF.
 - [Por tipo de movimiento](reportes/tipo-movimiento.md): los recibos o egresos de un tipo, agrupados por tercero, con sus diez valores y el total a pagar.
 - [Por tercero](reportes/tercero.md): todo lo recibido o pagado de cada tercero para un tipo de movimiento.

@@ -1,13 +1,12 @@
-[Regresar a Tesorería](../readme.md)
+[Regresar a Tesorería](readme.md)
 
 ---
 
-# 📈 Dashboard de Tesorería
+# 📈 Resumen del módulo (Dashboard de Tesorería)
 
 ![Static Badge](https://img.shields.io/badge/Tipo-Dashboard-red)
 ![Static Badge](https://img.shields.io/badge/Module-Tesorer%C3%ADa-orange)
-![Static Badge](https://img.shields.io/badge/Submodule-Consultas%20y%20reportes-blue)
-![Static Badge](https://img.shields.io/badge/Opcion-340-green)
+![Static Badge](https://img.shields.io/badge/Pantalla-Inicio%20del%20m%C3%B3dulo-blue)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
 ![Static Badge](https://img.shields.io/badge/Actualizacion-20261112-yellow)
@@ -16,7 +15,7 @@
 
 ## 📋 Descripción
 
-El dashboard resume en una sola pantalla cómo está el dinero de la compañía: cuánto hay en caja y bancos, cuánto entró y cuánto salió en el período, de dónde viene y a dónde va, cuánto se debe cobrar y pagar, las notas bancarias y lo que quedó pendiente.
+El **Resumen del módulo** es la pantalla de inicio de Tesorería y resume en una sola pantalla cómo está el dinero de la compañía: cuánto hay en caja y bancos, cuánto entró y cuánto salió en el período, de dónde viene y a dónde va, cuánto se debe cobrar y pagar, las notas bancarias y lo que quedó pendiente.
 
 Todas las cifras salen de las mismas reglas de los reportes de Tesorería y de las carteras. Si un número del dashboard no coincide con el reporte correspondiente, avise a su administrador.
 
@@ -26,29 +25,29 @@ Cada bloque se carga por separado. Si un bloque falla o su perfil no tiene acces
 
 > ℹ️ El dashboard **no se actualiza solo**. Para ver los cambios de otras personas, pulse **Actualizar**.
 
-> 💡 Los reportes de detalle están en esta misma sección. Desde los rankings puede abrir el reporte correspondiente con el período y el elemento ya elegidos. Ver [Rankings](#-rankings).
+> 💡 Los reportes de detalle están en **Consultas y reportes**. Desde los rankings puede abrir el reporte correspondiente con el período y el elemento ya elegidos. Ver [Rankings](#-rankings).
 
 ---
 
 ## 🎯 Acceso
 
 1. En el menú principal, haga clic en **Tesorería**.
-2. En **Consultas y reportes**, haga clic en **Dashboard de Tesorería**.
+2. El resumen se abre solo: es la pantalla de inicio del módulo. No tiene una opción propia en el menú.
 
-El dashboard es el primer ítem de **Consultas y reportes**, antes de los reportes de detalle.
+Para volver a él desde otra pantalla de Tesorería, haga clic en **Tesorería** en la ruta de navegación (migas de pan) o en el menú principal.
 
-![Menú de Consultas y reportes con el dashboard](recursos/img/td-01-tablero.png)
+![Resumen del módulo de Tesorería](recursos/img/td-01-tablero.png)
 
 ---
 
 ## 🔐 Permisos
 
-El dashboard se autoriza por su propia opción. Además, cada bloque exige permiso sobre la pantalla de la que sale su información.
+El resumen no tiene permiso propio: lo ve cualquier usuario de la compañía que entre a Tesorería. Cada bloque exige permiso sobre la pantalla de la que sale su información.
 
 | Permiso | Qué habilita |
 |---------|--------------|
-| Consultar | Abrir el dashboard y ver los bloques a los que tenga acceso. |
-| Exportar | El botón **Exportar a Excel**. |
+| Consultar | Ver los bloques para los que tenga **Consultar** en su pantalla de origen (tabla siguiente). |
+| Exportar | El botón **Exportar a Excel**: requiere **Exportar** en **Por formas de pago**. |
 
 Cada bloque necesita, además, uno de estos permisos:
 
@@ -66,15 +65,15 @@ Cada bloque necesita, además, uno de estos permisos:
 
 En los rankings, cada fila solo se puede abrir si su perfil tiene **Consultar** en el reporte al que lleva. Ver [Rankings](#-rankings).
 
-> ℹ️ Si su perfil no tiene **Consultar** en el dashboard, la opción no aparece en el menú. Si intenta abrirla por dirección directa, vuelve a la pantalla de inicio. Pida a su administrador el permiso que necesite.
+> ℹ️ Los bloques para los que su perfil no tiene permiso muestran *Sin acceso* y los demás siguen visibles. Pida a su administrador el permiso que necesite.
 
 ![Bloque sin acceso](recursos/img/td-13-sin-acceso-a-un-bloque.png)
 
-> ℹ️ Si ve el dashboard pero no el botón **Exportar a Excel**, su perfil no tiene **Exportar**.
+> ℹ️ Si ve el dashboard pero no el botón **Exportar a Excel**, su perfil no tiene **Exportar** en **Por formas de pago**.
 
 ![Sin permiso de exportar](recursos/img/td-17-sin-permiso-exportar.png)
 
-> ℹ️ Si su perfil no tiene acceso a ningún bloque, verá el mensaje *No tienes acceso al dashboard de Tesorería*.
+> ℹ️ Si su perfil no tiene acceso a ningún bloque, el resumen no consulta nada y verá el mensaje *No tienes acceso al dashboard de Tesorería*.
 
 ![Sin acceso al dashboard](recursos/img/td-19-sin-acceso-al-tablero.png)
 
@@ -135,7 +134,7 @@ Muestra cuánto hay en caja y bancos **a la fecha de corte** (el campo **Hasta**
 
 | Vista | Qué suma | Para qué sirve |
 |-------|----------|----------------|
-| **Por forma de pago** | Los recibos y egresos de cada forma de pago (efectivo, transferencia, tarjeta, etc.). | Saber cuánto hay en cada medio de pago. Cuadra con el saldo inicial del reporte [Por formas de pago](formas-pago.md). |
+| **Por forma de pago** | Los recibos y egresos de cada forma de pago (efectivo, transferencia, tarjeta, etc.). | Saber cuánto hay en cada medio de pago. Cuadra con el saldo inicial del reporte [Por formas de pago](reportes/formas-pago.md). |
 | **Por cuenta contable** | Todos los asientos de las cuentas de caja y bancos del plan de cuentas. | Saber cuánto dice la contabilidad en caja y bancos. |
 
 ### ¿Por qué las dos cifras pueden ser distintas?
@@ -212,9 +211,9 @@ Al hacer clic en una fila se abre el reporte de detalle con el período y el ele
 
 | Agrupado por | Reporte que se abre |
 |--------------|---------------------|
-| Forma de pago | [Por formas de pago](formas-pago.md), con la forma de pago elegida. |
-| Tipo de movimiento | [Por tipo de movimiento](tipo-movimiento.md), con el tipo elegido. |
-| Tercero | [Por tercero](tercero.md), con el período y el tercero. El tipo de movimiento lo elige usted en el reporte. |
+| Forma de pago | [Por formas de pago](reportes/formas-pago.md), con la forma de pago elegida. |
+| Tipo de movimiento | [Por tipo de movimiento](reportes/tipo-movimiento.md), con el tipo elegido. |
+| Tercero | [Por tercero](reportes/tercero.md), con el período y el tercero. El tipo de movimiento lo elige usted en el reporte. |
 
 ![Ranking con una fila abierta al reporte](recursos/img/td-07-ranking-al-reporte.png)
 
@@ -246,7 +245,7 @@ Si su perfil no tiene acceso a la cartera, el bloque muestra *No tienes acceso a
 
 ![Bloque de cartera sin acceso](recursos/img/td-13-sin-acceso-a-un-bloque.png)
 
-Para ver el detalle de un tercero, use su ficha de cartera en la pantalla correspondiente de [Compras](../../compras/maestros/cartera-proveedores.md) o de [Ventas](../../ventas/clientes/ficha-cartera.md).
+Para ver el detalle de un tercero, use su ficha de cartera en la pantalla correspondiente de [Compras](../compras/maestros/cartera-proveedores.md) o de [Ventas](../ventas/clientes/ficha-cartera.md).
 
 ---
 
@@ -265,7 +264,7 @@ Si la compañía todavía no tiene activas las notas bancarias, el bloque muestr
 
 ![Notas bancarias no disponibles](recursos/img/td-11-notas-no-disponibles.png)
 
-Para registrar o cerrar notas, vea [Notas bancarias](../movimientos/notas-bancarias.md).
+Para registrar o cerrar notas, vea [Notas bancarias](movimientos/notas-bancarias.md).
 
 ---
 
@@ -281,7 +280,7 @@ El bloque **Pendientes** avisa de trabajo sin cerrar:
 | **Notas bancarias en borrador** | Cuántas notas están en borrador y su valor. |
 | **Anticipos sin cruzar** | El saldo a favor de clientes (o de proveedores) que aún no se ha aplicado a facturas. Es el mismo saldo que muestra la cartera. |
 
-- **Horizonte de 365 días**: los recibos y egresos sin cerrar se cuentan solo de los últimos **365 días**. Los más antiguos no se cuentan y se indican aparte, por ejemplo: *Y 12 anteriores a 365 días (histórico, no se cuentan).* Para revisarlos, use [Recibos y egresos](../movimientos/recibos-egresos.md).
+- **Horizonte de 365 días**: los recibos y egresos sin cerrar se cuentan solo de los últimos **365 días**. Los más antiguos no se cuentan y se indican aparte, por ejemplo: *Y 12 anteriores a 365 días (histórico, no se cuentan).* Para revisarlos, use [Recibos y egresos](movimientos/recibos-egresos.md).
 - **Abrir**: cada pendiente tiene un botón **Abrir** que lleva a su pantalla (Recibos y egresos, Notas bancarias o la cartera), si su perfil tiene acceso. Si no lo tiene, el pendiente aparece sin botón y con el texto *Sin acceso a la pantalla*.
 
 Si no hay pendientes, verá: *Todo al día: no hay documentos sin cerrar ni anticipos sin cruzar.*
@@ -329,7 +328,7 @@ Porque su perfil no tiene **Consultar** en el reporte al que llevaría. Pida el 
 Porque en el período de comparación la base es cero. No es un error.
 
 **¿Por qué no veo un documento viejo en Pendientes?**
-Porque solo se cuentan los documentos de los últimos 365 días. Los anteriores se indican aparte y se revisan en [Recibos y egresos](../movimientos/recibos-egresos.md).
+Porque solo se cuentan los documentos de los últimos 365 días. Los anteriores se indican aparte y se revisan en [Recibos y egresos](movimientos/recibos-egresos.md).
 
 **¿Por qué no veo un recibo que acabo de registrar?**
 El dashboard no se actualiza solo. Pulse **Actualizar**.
@@ -339,4 +338,4 @@ Porque la respuesta viene de la memoria del dashboard (hasta 5 minutos). Pulse *
 
 ---
 
-Los demás reportes de esta sección están en el [índice de Tesorería](../readme.md#reportes): [Por formas de pago](formas-pago.md), [Por tipo de movimiento](tipo-movimiento.md), [Por tercero](tercero.md) y [Por vendedor/comprador](comprador-vendedor.md).
+Los demás reportes de esta sección están en el [índice de Tesorería](readme.md#reportes): [Por formas de pago](reportes/formas-pago.md), [Por tipo de movimiento](reportes/tipo-movimiento.md), [Por tercero](reportes/tercero.md) y [Por vendedor/comprador](reportes/comprador-vendedor.md).
