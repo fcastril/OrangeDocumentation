@@ -93,6 +93,10 @@ En los rankings, cada fila solo se puede abrir si su perfil tiene **Consultar** 
 | **Aplicar** | Aplica los cambios de período y de comparación. Mientras no lo pulse, el tablero no cambia. |
 | Bloques | Saldos, comparativo, tendencia, rankings, cartera, notas bancarias y pendientes. Cada uno se explica en su sección. |
 
+Al pulsar **?** se abre el panel de ayuda junto a la pantalla:
+
+![Panel de ayuda abierto desde el botón de ayuda](recursos/img/td-18-ayuda.png)
+
 ---
 
 ## 📅 Período y comparativo
