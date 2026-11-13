@@ -127,6 +127,8 @@ Cada estado se distingue por el **color**, por un **ícono** y por un **texto**.
 
 ![Sin valor base: solo el total seleccionado](../recursos/img/pagos-bloque/05-sin-base.png)
 
+![Base excedida: diferencia en rojo y vista previa bloqueada](../recursos/img/pagos-bloque/04-base-excedida.png)
+
 ### Barra de progreso
 
 Con valor base fijado, una barra muestra qué parte de la base ocupa el total seleccionado, con el texto *n % de la base*. El color de la barra sigue el mismo estado de la diferencia (verde, amarillo o rojo).
@@ -346,9 +348,18 @@ El texto debajo resume el resultado, por ejemplo: *3 egresos creados y 1 con err
 
 Si algunos proveedores fallaron, verá **Lote con fallos**. Corrija la causa y use **Reintentar fallidos**.
 
+![Informe con un proveedor fallido y el botón Reintentar fallidos](../recursos/img/pagos-bloque/13-informe-parcial-reintento.png)
+
+Al hacer clic en **Reintentar fallidos**, se abre una **vista previa del reintento**. Por cada proveedor que falló verá:
+
+- el **nuevo valor a pagar**, calculado con los saldos vigentes;
+- las **facturas rechazadas** y su **saldo actual**.
+
+Puede quitar facturas de la lista. Luego haga clic en **Continuar sin las facturas rechazadas** para confirmar el reintento.
+
 - El reintento solo procesa los proveedores que fallaron. Los que ya se crearon no se tocan.
-- Usa los **saldos vigentes**: nunca paga más de lo que la factura debe hoy.
-- Si una factura cambió, verá el nuevo neto antes de confirmar. Puede quitar esa factura y confirmar.
+- Nunca se paga más de lo que la factura debe hoy: el valor queda limitado al saldo vigente.
+- Revise el neto de cada proveedor antes de confirmar.
 
 Algunas causas comunes de fallo, con su mensaje:
 
@@ -393,6 +404,8 @@ Si tiene facturas seleccionadas y sale de la pantalla sin generar, el sistema le
 
 Si intenta cerrar la pestaña del navegador con una selección sin generar, el navegador también le pedirá confirmación.
 
+![Advertencia al salir con una selección sin generar](../recursos/img/pagos-bloque/10-advertencia-al-salir.png)
+
 ---
 
 ## 📚 Lotes de pago
@@ -424,6 +437,8 @@ Al hacer clic en **Ver**, verá:
 
 Un egreso del lote se anula desde [Recibos de caja y egresos](recibos-egresos.md), como cualquier otro egreso.
 
+![Detalle de un lote con fallos](../recursos/img/pagos-bloque/17-detalle-de-lote.png)
+
 ---
 
 ## 📤 Exportar la selección
@@ -441,6 +456,8 @@ Si la selección es demasiado grande para exportarla, verá *La selección es de
 ## 🔄 Cambios de otros usuarios (en vivo)
 
 La pantalla está conectada en vivo. El indicador **En vivo** aparece junto a la descripción.
+
+En el encabezado de la lista de cartera por pagar verá **Actualizado hace N s** y el botón **Actualizar**. La lista guarda sus datos durante un minuto; haga clic en **Actualizar** para verla al día. La **vista previa** y **Generar egresos** siempre validan el saldo real, aunque la lista esté guardada.
 
 - En **Lotes de pago**, cuando otro usuario genera o cambia un lote, la lista se actualiza sola.
 - Si la conexión se corta, el indicador dice **Reconectando…**. La pantalla sigue funcionando; cuando vuelva la conexión, se actualiza.
@@ -485,6 +502,10 @@ En una pantalla de 480 px o menos, cada factura se muestra como una tarjeta. El 
 Si la cartera no carga, verá *No se pudo cargar la cartera*. Haga clic en **Reintentar**. Su selección y la configuración del lote no se pierden.
 
 ![Cartera vacía](../recursos/img/pagos-bloque/19-vacio.png)
+
+![Sin resultados en los filtros](../recursos/img/pagos-bloque/20-sin-resultados.png)
+
+![Error al cargar la cartera](../recursos/img/pagos-bloque/21-error.png)
 
 ![Sin permiso de crear: solo consulta](../recursos/img/pagos-bloque/18-sin-permiso-crear.png)
 
