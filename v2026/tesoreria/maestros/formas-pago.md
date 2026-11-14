@@ -54,6 +54,7 @@ Las columnas son:
 |---------|-------------|
 | **Icono** | La imagen de la forma de pago o, si no tiene, un icono según su tipo. Ver [Imagen e icono](#-imagen-e-icono). |
 | **Código** y **Nombre** | Identificación de la forma de pago. |
+| **Cuenta** (opcional) | Los últimos 4 dígitos de la cuenta bancaria de la empresa, si la tiene. Se activa desde el selector de columnas. Ver [Cuenta bancaria de la empresa](#-cuenta-bancaria-de-la-empresa). |
 | **Cuenta CxC** | La cuenta por cobrar, como *código - nombre*. |
 | **Cuenta CxP** | La cuenta por pagar, como *código - nombre*. |
 | **Otros datos** | **Sí** si la forma pide banco y documento de referencia al pagar; **No** si no. |
@@ -191,6 +192,43 @@ Si la imagen registrada no está disponible, el listado muestra el icono y **no 
 
 ---
 
+## 🏦 Cuenta bancaria de la empresa
+
+La cuenta bancaria de la empresa es la cuenta desde la que sale el dinero de esta forma de pago. La usa el **archivo de pagos a banco** (ver [Archivo de pagos a banco](../movimientos/archivo-banco.md)) para generar el archivo que se sube a la banca virtual. Es **opcional** para el resto de usos.
+
+Al crear o editar, al final del formulario, encontrará la sección **Cuenta bancaria de la empresa** con tres campos:
+
+| Campo | Reglas |
+|-------|--------|
+| **Número de cuenta** | Solo dígitos, hasta 11. No acepta letras ni espacios. |
+| **Tipo de cuenta** | **Sin definir**, **Ahorros** o **Corriente**. |
+| **Banco de la cuenta** | El banco de la compañía donde está la cuenta. Busque por nombre o código. Es obligatorio para generar el archivo, pero no para guardar la forma de pago. |
+
+- Los tres campos van **juntos o ninguno**. Si completa solo uno, verá *Completa número y tipo de cuenta, o déjalos vacíos*.
+- Al editar, el número se muestra **enmascarado** (por ejemplo, `****1234`). Para cambiarlo, escriba el número completo.
+- La cuenta completa no aparece en el listado ni en el Excel.
+
+![Forma de pago con cuenta bancaria de la empresa](../recursos/img/formas-pago/16-editar-con-cuenta-bancaria.png)
+
+### ¿Qué puede salir mal?
+
+| Mensaje | Qué hacer |
+|---------|-----------|
+| *Solo dígitos, hasta 11* | Quite letras, espacios o guiones del número de cuenta. |
+| *Completa número y tipo de cuenta, o déjalos vacíos* | Complete los dos campos, o deje los dos vacíos. |
+| *El banco elegido no existe en esta compañía* | Busque el banco de nuevo y elija uno de la lista. |
+| *Banco no disponible* | Reintente la búsqueda. Si sigue igual, consulte a su administrador. |
+
+![Cuenta incompleta](../recursos/img/formas-pago/17-cuenta-incompleta.png)
+
+![Número de cuenta inválido](../recursos/img/formas-pago/18-numero-de-cuenta-invalido.png)
+
+En el listado, la columna **Cuenta** muestra los últimos 4 dígitos:
+
+![Columna Cuenta enmascarada](../recursos/img/formas-pago/19-columna-cuenta-enmascarada.png)
+
+---
+
 ## 🗑️ Eliminar una forma de pago
 
 1. Haga clic en la **papelera** de la forma de pago.
@@ -212,7 +250,7 @@ Cuando esto ocurre, el botón **Eliminar forma de pago** no aparece.
 
 ## 📤 Exportar a Excel
 
-Haga clic en **Exportar a Excel**. Se descarga un archivo de Excel con **todas** las formas de pago del filtro actual (no solo la página visible), con el encabezado fijo y filtros de Excel.
+Haga clic en **Exportar a Excel**. Se descarga un archivo de Excel con **todas** las formas de pago del filtro actual (no solo la página visible), con el encabezado fijo y filtros de Excel. Las cuentas bancarias salen **enmascaradas** (solo los últimos 4 dígitos).
 
 > ℹ️ Esta pantalla no tiene importación desde Excel: cree o cambie las formas de pago una por una.
 
@@ -244,6 +282,9 @@ Si estaba por confirmar la eliminación de una forma de pago que otro ya elimin�
 ---
 
 ## ❓ Preguntas frecuentes
+
+**¿Para qué sirve la cuenta bancaria de la empresa?**
+Solo para generar el archivo de pagos a banco. Si no la completa, la forma de pago sigue funcionando en todo lo demás, pero el archivo no se puede generar con ella.
 
 **¿Qué cambia si marco "Pide banco y documento de referencia al pagar"?**
 Las pantallas donde se registra un pago con esa forma piden el banco (opcional) y el documento de referencia. Marcarla o desmarcarla no cambia los pagos que ya están registrados.

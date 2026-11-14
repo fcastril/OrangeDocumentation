@@ -20,6 +20,7 @@ Manuales de las pantallas de Tesorería en la nueva versión.
 
 - [Notas bancarias](movimientos/notas-bancarias.md): lo que el banco hace por su cuenta (GMF, comisiones, intereses, rendimientos y devoluciones), cómo crear, cerrar, editar y anular una nota, los asientos que genera, la importación desde Excel y los mensajes de error.
 - [Pagos en bloque a proveedores](movimientos/pagos-bloque.md): cómo pagar a varios proveedores a la vez desde la cartera por pagar, fijar un valor base y ver en vivo cuánto queda, revisar una vista previa, generar un egreso por proveedor, reintentar los fallidos, consultar los lotes y exportar la selección y el informe a Excel.
+- [Archivo de pagos a banco](movimientos/archivo-banco.md): el archivo plano para pagar a proveedores desde la banca virtual del banco: elegir forma de pago y fechas, validar los datos bancarios de cada proveedor con un informe que no guarda nada, confirmar las opciones del archivo, excluir las incompletas, descargar, consultar el historial y descargar de nuevo.
 - [Recibos de caja y egresos](movimientos/recibos-egresos.md): el dinero que entra por un cobro a un cliente y el que sale por un pago a un proveedor; cómo cruzar facturas (selector con ajuste de valores, ventana de 12 meses y Distribuir del valor total), retenciones, anticipos y saldos a favor, cerrar, anular, eliminar, adjuntar, imprimir y los mensajes de error.
 
 ## Reportes
