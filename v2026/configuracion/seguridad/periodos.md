@@ -20,10 +20,11 @@ Los **períodos** definen **qué fechas admiten registrar documentos** en su com
 Desde aquí usted puede:
 
 - Crear, editar y eliminar períodos (estos últimos, solo si están abiertos y no tienen saldos).
-- **Abrir o cerrar cada opción** del sistema (ventas, compras, recibos, notas, etc.) para cada período.
-- **Cerrar un período**: OrangeERP calcula y guarda los saldos del mes y cierra sus opciones.
-- **Reabrir un período**: OrangeERP elimina los saldos del mes para poder corregirlo.
-- Ver el **historial** de cambios de cada período.
+- **Marcar o desmarcar las casillas de cada opción** del sistema (ventas, compras, recibos, notas, etc.) para cada período.
+- **Cerrar un período** con el botón **Cerrar Período** del formulario: OrangeERP calcula y guarda los saldos del mes.
+- **Abrir un período cerrado** con el botón **Período Cerrado - Abrir Período**: OrangeERP elimina los saldos del mes para poder corregirlo.
+
+> 💡 La pantalla funciona como siempre: la lista, **un solo formulario** para crear y editar, las casillas en el mismo orden y los mismos botones. Lo nuevo (columna **Estado**, avisos y cambios en vivo) es discreto y no cambia la forma de trabajar.
 
 > ⚠️ Cerrar y reabrir afectan los saldos de su compañía. Lea la confirmación antes de aceptar: le dice qué saldos se calculan o se eliminan y qué opciones quedan cerradas.
 
@@ -44,9 +45,9 @@ Para ver la pantalla necesita el permiso **Consultar** de esta opción. Si su pe
 
 | Permiso | Qué le permite |
 |---------|----------------|
-| **Consultar** | Ver la lista, los avisos, la ficha de cada período y su historial. Los botones de cambio no aparecen; en la fila verá **Ver** en lugar de **Editar**. |
-| **Crear** | Crear períodos con **Nuevo período**. |
-| **Actualizar** | Editar fechas y descripción, abrir y cerrar opciones, **cerrar** y **reabrir** un período. |
+| **Consultar** | Ver la lista, los avisos y el formulario de cada período. Los botones de cambio no aparecen; en la fila verá **Ver** en lugar de **Editar**. |
+| **Crear** | Crear períodos con **Crear Periodo**. |
+| **Actualizar** | Editar el período, marcar o desmarcar sus opciones y usar **Cerrar Período** / **Período Cerrado - Abrir Período**. |
 | **Eliminar** | Eliminar períodos abiertos que no tengan saldos. |
 | **Exportar** | Descargar la lista con el botón **Exportar a Excel**. |
 
@@ -65,13 +66,11 @@ En la parte superior verá:
 | **?** (junto al título) | Abre esta ayuda en un panel lateral, sin salir de la pantalla. |
 | **En vivo** | La lista se actualiza sola cuando otro usuario crea, cambia o cierra un período. Ver [Cambios en vivo](#-cambios-en-vivo). |
 | **Ver cierres de saldos** | Lleva a la pantalla de [Cierres de saldos](cierres-saldos.md). |
-| **Nuevo período** | Crea un período (requiere **Crear**). |
-
-Debajo aparece un **resumen de la compañía**: **Períodos**, **Abiertos**, **Cerrados**, **Último cierre hasta** (la fecha final del último período cerrado) y **Avisos**.
+| **Crear Periodo** | Crea un período (requiere **Crear**). |
 
 ### Avisos
 
-Si hay algo que revisar, aparece un panel amarillo **"N avisos en los períodos de la compañía"**. Pulse **Ver detalle** para desplegar la lista; cada aviso tiene un enlace **Abrir** con el código del período.
+Si hay algo que revisar, aparece un panel amarillo plegable **"N avisos en los períodos de la compañía"**. Pulse **Ver detalle** u **Ocultar detalle** para desplegarlo o plegarlo; cada aviso tiene un enlace **Abrir** con el código del período.
 
 | Aviso | Qué significa |
 |-------|---------------|
@@ -92,41 +91,38 @@ Cada fila es **un período** de la compañía en la que está trabajando.
 | **Acciones** | Los botones de la fila (ver [Acciones de cada fila](#acciones-de-cada-fila)). |
 | **Código** | Identificador corto del período, por ejemplo `JUL-26`. |
 | **Descripción** | Texto que describe el período. |
-| **Fecha inicial** y **Fecha final** | Rango de fechas del período (se muestran como día/mes/año). |
-| **Estado** | **Abierto**, **Cerrado** o **Cerrado con opciones abiertas (inconsistente)**. |
-| **Opciones abiertas** | Cuántas de las 13 opciones aceptan documentos, por ejemplo **4 de 13**. Los puntos debajo muestran el mismo dato de forma visual. |
+| **Fecha Inicial** y **Fecha Final** | Rango de fechas del período (se muestran como día/mes/año). |
+| **Estado** | **Abierto**, **Cerrado** o **Cerrado con opciones abiertas (inconsistente)**. Esta columna es nueva respecto a la versión anterior. |
 | **Avisos** | Los avisos que afectan a esa fila, por ejemplo **Hueco antes** o **Solapa con NOV-26**. |
-| **Última modificación** | Cuándo y quién lo cambió por última vez, en la zona horaria de la compañía. |
 
 Para ordenar, pulse el encabezado de la columna. En la búsqueda puede escribir un código, una descripción o un estado; no importan las tildes ni las mayúsculas.
 
-Si no hay períodos, verá **"Aún no hay períodos"**. Sin períodos no se pueden registrar documentos con fecha; cree el primero con **Nuevo período**.
+Si no hay períodos, verá **"Aún no hay períodos"**. Sin períodos no se pueden registrar documentos con fecha; cree el primero con **Crear Periodo**.
 
 ### Acciones de cada fila
 
 | Botón | Para qué sirve | Permiso |
 |-------|----------------|---------|
-| **Editar** (lápiz) | Abre la ficha para cambiar datos. Si solo tiene **Consultar**, el botón se llama **Ver**. | Actualizar |
-| **Opciones** (engranaje) | Abre la ficha en la pestaña **Opciones**. | Actualizar |
-| **Cerrar el período** (candado) | Aparece en los períodos abiertos. | Actualizar |
-| **Reabrir el período** (candado abierto) | Aparece en los períodos cerrados. | Actualizar |
+| **Editar** (lápiz) | Abre el formulario del período. Si solo tiene **Consultar**, el botón se llama **Ver**. | Actualizar |
 | **Eliminar** (papelera) | Aparece solo en períodos abiertos sin saldos. | Eliminar |
+
+Cerrar y abrir un período se hace **dentro del formulario**, como siempre (ver [Cerrar un período](#-cerrar-un-período)).
 
 ---
 
 ## ➕ Crear un período
 
-1. Pulse **Nuevo período**.
-2. Complete los datos:
+1. Pulse **Crear Periodo**.
+2. Complete los datos del formulario **Periodos | Crear nuevo**:
    - **Código**: hasta 8 caracteres. Se guarda en mayúsculas.
    - **Descripción**: hasta 50 caracteres.
-   - **Fecha inicial** y **Fecha final**: la final no puede ser anterior a la inicial.
-3. Opcional: marque **Abrir todas las opciones al crear**.
-4. Pulse **Guardar**.
+   - **Fecha Inicio** y **Fecha Finalización**: la final no puede ser anterior a la inicial.
+3. Opcional: marque las **casillas de las opciones** que quiera dejar abiertas (ver [Opciones del período](#-opciones-del-período)).
+4. Pulse **Guardar** (o **Cancelar** para salir sin guardar).
 
 ![Crear un período](../recursos/img/periodos/03-crear.png)
 
-Por defecto, el período **nace con todas las opciones cerradas**: no se podrá registrar ningún documento con fecha en él hasta que las abra. Si marca **Abrir todas las opciones al crear**, nace con todas abiertas (las opciones que correspondan).
+Por defecto, el período **nace con todas las casillas desmarcadas** (opciones cerradas): no se podrá registrar ningún documento con fecha en él hasta que las marque. Las casillas que marque al crear quedan abiertas al guardar.
 
 Al guardar aparece **"Período JUL-26 creado."** y la fila nueva queda resaltada.
 
@@ -140,64 +136,55 @@ Si las fechas se cruzan con un período existente, el sistema no lo guarda y le 
 
 ## ✏️ Editar un período
 
-1. En la fila, pulse **Editar** (o **Opciones** para ir directamente a las opciones).
-2. Cambie lo que necesite y pulse **Guardar**.
+1. En la fila, pulse **Editar**.
+2. Cambie lo que necesite en el formulario **Periodos | Editar existente**.
+3. Pulse **Guardar**. Las casillas **no se aplican solas**: se guardan junto con los datos al pulsar **Guardar**.
 
-La ficha tiene tres pestañas:
-
-| Pestaña | Contenido |
-|---------|-----------|
-| **Datos** | Código, descripción, fechas y la última modificación. |
-| **Opciones** | Las 13 opciones con su estado. Ver [Abrir y cerrar opciones](#-abrir-y-cerrar-opciones). |
-| **Historial** | Quién creó, modificó, abrió, cerró o reabrió el período y cuándo. Ver [Historial](#-historial). |
+El formulario es **uno solo**, sin pestañas. Al pie muestra **Última modificación: usuario, fecha y hora**. No hay pestaña de historial.
 
 ### Período cerrado
 
-Un período cerrado **solo permite cambiar el código y la descripción**. Las fechas y las opciones aparecen deshabilitadas con la nota:
-
-> **"El período está cerrado: solo puedes cambiar el código y la descripción. Reabre el período para cambiar las fechas y las opciones."**
+En un período cerrado las **fechas y las casillas aparecen deshabilitadas** y verá la nota **"Período cerrado: las opciones no se pueden modificar."** El código y la descripción sí se pueden corregir. El botón del formulario dice **Período Cerrado - Abrir Período**.
 
 ![Editar un período cerrado](../recursos/img/periodos/05-editar-cerrado.png)
 
-Para cambiar las fechas o las opciones de un período cerrado, primero **reábralo** (ver [Reabrir un período](#-reabrir-un-período)).
+Para cambiar las fechas o las opciones de un período cerrado, primero **ábralo** (ver [Reabrir un período](#-reabrir-un-período)).
 
 ---
 
-## 🔘 Abrir y cerrar opciones
+## 🔘 Opciones del período
 
-En la pestaña **Opciones** de la ficha verá cada una de las 13 opciones con su estado **Abierta** o **Cerrada**. Cada opción muestra la opción de menú que gobierna (por ejemplo, **Venta**), para que sepa dónde se usa.
+En el formulario verá **una casilla por opción, una por línea**, en este orden. **Marcada = la opción está abierta** y acepta documentos; **desmarcada = cerrada**.
 
 ![Opciones de un período](../recursos/img/periodos/06-opciones.png)
 
 | Opción | Qué documentos regula |
 |--------|-----------------------|
 | Entrada/Salida | Movimientos de inventario de entrada y salida. |
-| Orden de compra | Órdenes de compra. |
-| Compra/Devolución | Compras y devoluciones de compra. |
+| Órden de Compra | Órdenes de compra. |
+| Compra/Devolucion | Compras y devoluciones de compra. |
 | Pedido | Pedidos de venta. |
 | Venta | Ventas. |
-| Recibo de caja/Egreso | Recibos de caja y de egreso. |
-| Nota débito/crédito | Notas débito y crédito. |
-| Solicitud de gasto | Solicitudes de gasto. |
-| Causación de gasto | Causaciones de gasto. |
-| Nota bancaria | Notas bancarias. |
-| Asientos contables | Asientos contables. |
+| Recibo de Caja/Egreso | Recibos de caja y de egreso. |
+| Nota Débito/Crédito | Notas débito y crédito. |
+| Solicitud de Gasto | Solicitudes de gasto. |
+| Causación de Gasto | Causaciones de gasto. |
+| Nota Bancaria | Notas bancarias. |
+| Asientos Contables | Asientos contables. |
 | Traslado | Traslados. |
 | Punto de venta | Documentos del punto de venta. |
 
-- **Cada interruptor aplica de inmediato**. No hay botón **Guardar** para las opciones.
-- **Abrir todas** y **Cerrar todas** cambian las 13 de una vez.
-- Si la opción no se puede cambiar, el interruptor vuelve a su valor anterior y aparece **"No se pudo cambiar la opción. Se restauró el valor anterior."**
-
-Con el período abierto, puede abrir o cerrar opciones sin cerrar el período. Para **cerrar el período** no hace falta apagar antes las opciones: al cerrar, se cierran solas.
+- Las casillas **se guardan con el botón Guardar**, junto con el resto del formulario. Una sola operación guarda los datos y todas las casillas que cambió.
+- **Punto de venta** es la opción nueva y está **al final** de la lista; las demás conservan su lugar de siempre.
+- Si no se pueden guardar las opciones, el formulario sigue abierto con el estado real y aparece **"No se pudo cambiar la opción. Se restauró el valor anterior."** (lo demás ya se había guardado).
 
 ### Cerrado con opciones abiertas
 
-Un período cerrado no debería tener opciones abiertas. Si lo tiene, la fila y la ficha lo marcan como **Cerrado con opciones abiertas (inconsistente)** y lo listan.
+Un período cerrado no debería tener casillas marcadas. Si las tiene, la fila y el formulario lo marcan como **Cerrado con opciones abiertas (inconsistente)** con el aviso **"Este período está cerrado pero tiene opciones marcadas. Desmárcalas y guarda."**
 
 ![Período cerrado con opciones abiertas](../recursos/img/periodos/07-cerrado-con-opciones-abiertas.png)
 
-Para corregirlo, pulse **Cerrar las opciones abiertas**. Esta es la única acción permitida en un período cerrado: solo apaga opciones. Si prefiere, también puede reabrir el período y volver a cerrarlo.
+Para corregirlo, **desmarque las casillas y pulse Guardar**. En ese caso solo se permite desmarcar. Si prefiere, también puede abrir el período y volver a cerrarlo.
 
 ---
 
@@ -206,13 +193,18 @@ Para corregirlo, pulse **Cerrar las opciones abiertas**. Esta es la única acci�
 Cerrar un período hace dos cosas:
 
 1. **Calcula y guarda los saldos** del mes: de terceros, de cuentas contables y de centros de costo, acumulados hasta la fecha final del período.
-2. **Cierra todas las opciones** que estaban abiertas.
+2. Deja el período en estado **Cerrado**.
+
+El botón **Cerrar Período** está **en el formulario del período**, a todo el ancho, debajo de las casillas. Solo aparece **cuando todas las casillas están desmarcadas**; si hay alguna marcada verá en su lugar la nota **"Para cerrar el período, desmarca primero todas las opciones."** Si cambió casillas y aún no guardó, el botón queda deshabilitado con la nota **"Guarda los cambios antes de cerrar o abrir el período."**
 
 Para cerrarlo:
 
-1. En la fila del período abierto, pulse **Cerrar el período** o use **Cerrar período…** en la ficha.
-2. Lea la confirmación.
-3. Pulse **Cerrar período**.
+1. En la fila, pulse **Editar**.
+2. Desmarque todas las casillas y pulse **Guardar** (si hacía falta), y vuelva a abrir el formulario.
+3. Pulse **Cerrar Período**. Se abre la confirmación **Realizar Cierre de Período**; lea el detalle.
+4. Pulse **Cerrar período** para confirmar, o **Cancelar** para volver al formulario.
+
+Al terminar (o al cancelar) **vuelve al formulario**, y el botón ya dice **Período Cerrado - Abrir Período**.
 
 ![Confirmar el cierre](../recursos/img/periodos/08-confirmar-cerrar.png)
 
@@ -220,7 +212,7 @@ La confirmación le muestra:
 
 - El **mes** cuyos saldos se calcularán y hasta qué fecha.
 - Los tipos de saldos que se calcularán.
-- Las **opciones que se cerrarán** (o "Ninguna opción está abierta").
+- Las opciones que se cerrarán (como el botón solo aparece con todo desmarcado, normalmente dice "Ninguna opción está abierta").
 - Que, después del cierre, **no se podrá registrar ninguna transacción con fecha dentro del período**.
 
 Mientras el sistema calcula, el botón queda deshabilitado y aparece **"Calculando los saldos del mes. Puede tardar; no cierres esta ventana."**. Al terminar, verá **"Período JUL-26 cerrado: saldos calculados."**.
@@ -244,18 +236,20 @@ Revise los períodos antes de cerrarlos. Si el otro período ya está cerrado, e
 Reabrir sirve para corregir un período ya cerrado. Al reabrirlo:
 
 - Se **eliminan los saldos del mes** (terceros, cuentas contables, centros de costo y saldos contables del período).
-- **Las opciones quedan cerradas**. Usted las abre después, una por una o todas juntas.
+- **Las opciones quedan cerradas** (casillas desmarcadas). Usted las marca después y guarda.
 - Los **saldos acumulados de los períodos posteriores no se recalculan**. Cuando termine, vuelva a cerrar el período.
 
 Para reabrirlo:
 
-1. En la fila del período cerrado, pulse **Reabrir el período** o use **Reabrir período…** en la ficha.
-2. Lea la confirmación.
-3. Pulse **Reabrir período** (botón rojo).
+1. En la fila del período cerrado, pulse **Editar**.
+2. Pulse **Período Cerrado - Abrir Período** (botón rojo, a todo el ancho). Se abre la confirmación **Abrir Período**; lea el detalle.
+3. Pulse **Reabrir período** para confirmar, o **Cancelar** para volver al formulario.
+
+Al terminar, **vuelve al formulario** y el botón ya dice **Cerrar Período** otra vez.
 
 ![Confirmar la reapertura](../recursos/img/periodos/10-confirmar-reabrir.png)
 
-Al terminar verá **"Período JUL-26 reabierto: saldos eliminados. Sus opciones quedaron cerradas."**
+Verá **"Período JUL-26 reabierto: saldos eliminados. Sus opciones quedaron cerradas."**
 
 > ⚠️ Reabra un período solo cuando sea necesario. Mientras esté reabierto, sus saldos no existen hasta que vuelva a cerrarlo.
 
@@ -288,28 +282,6 @@ Si no ve el botón, su perfil no tiene el permiso **Exportar**.
 
 ---
 
-## 📜 Historial
-
-En la pestaña **Historial** de la ficha verá, de más reciente a más antigua:
-
-| Columna | Qué muestra |
-|---------|-------------|
-| **Fecha y hora** | Cuándo ocurrió, en la zona horaria de la compañía. |
-| **Usuario** | Quién lo hizo. |
-| **Acción** | **Creó el período**, **Modificó el período**, **Abrió opciones**, **Cerró opciones**, **Cerró el período** o **Reabrió el período**. |
-| **Detalle** | Información adicional de la acción. |
-| **Resultado** | **Completado** o **Con error**. |
-
-![Historial de un período](../recursos/img/periodos/11-historial.png)
-
-Si el período nunca ha cambiado, verá **"Sin movimientos registrados"**.
-
-### Historial pendiente de activar
-
-Mientras el administrador de la base de datos no active el índice de historial, la pestaña muestra **"Historial detallado pendiente de activar"**. Los cambios se registran igual; lo que no aparece es la lista detallada. Mientras tanto, verá la **última modificación** (usuario, fecha y hora).
-
----
-
 ## 🔄 Cambios en vivo
 
 Mientras la pantalla está abierta y el indicador dice **En vivo**, la lista se actualiza sola cuando otro usuario:
@@ -320,9 +292,9 @@ Mientras la pantalla está abierta y el indicador dice **En vivo**, la lista se 
 
 La fila cambiada se resalta unos segundos y su búsqueda y su orden se conservan.
 
-### Si tiene una ficha o una confirmación abiertas
+### Si tiene el formulario o una confirmación abiertos
 
-Si tiene abierta la ficha o la confirmación de un período que otro usuario cambió, **la pantalla no se cierra sola**. Verá un aviso:
+Si tiene abierto el formulario o la confirmación de un período que otro usuario cambió, **la pantalla no se cierra sola**. Verá un aviso:
 
 > **"Otro usuario cambió este período mientras lo tenías abierto. Si guardas sin recargar, el servidor lo rechazará."**
 
@@ -360,7 +332,7 @@ Si el indicador dice **Reconectando…**, la conexión se interrumpió; al recup
 Si su compañía usa **cierre diario**, verá el aviso **"Esta compañía usa cierre diario"**. En ese caso:
 
 - Las opciones de los períodos **no restringen los documentos**; se guardan igual, pero no bloquean nada.
-- Puede seguir creando, editando, cerrando y reabriendo períodos, y revisando los avisos.
+- Puede seguir creando, editando, cerrando y abriendo períodos, y revisando los avisos.
 
 ![Compañía con cierre diario](../recursos/img/periodos/02-cierre-diario.png)
 
@@ -372,13 +344,13 @@ Si su compañía usa **cierre diario**, verá el aviso **"Esta compañía usa ci
 La fecha cae en un hueco (sin período) o en un período cerrado, o la opción correspondiente está cerrada. Revise la lista: el aviso **Hueco** indica el rango afectado.
 
 **¿Qué es "Cerrado con opciones abiertas"?**
-Es una situación inconsistente: el período está cerrado, pero algunas opciones siguen abiertas. Pulse **Cerrar las opciones abiertas** en la pestaña **Opciones**.
+Es una situación inconsistente: el período está cerrado, pero algunas opciones siguen abiertas. Desmarque las casillas en el formulario y pulse **Guardar**.
 
 **¿Puedo cerrar un período cuya fecha final todavía no ha llegado?**
 Sí, por defecto el sistema lo permite. Tenga en cuenta que los documentos posteriores a la fecha final seguirán sin período hasta que lo cree.
 
 **¿Cerrar un período es reversible?**
-Sí. Al reabrirlo se eliminan los saldos del mes y se cierran sus opciones. Luego puede volver a cerrarlo. Los saldos acumulados de los períodos posteriores no se recalculan automáticamente.
+Sí. Al abrirlo de nuevo se eliminan los saldos del mes y sus opciones quedan cerradas. Luego puede volver a cerrarlo. Los saldos acumulados de los períodos posteriores no se recalculan automáticamente.
 
 **¿Por qué el cierre tarda?**
 Calcular los saldos de toda la compañía puede tardar unos minutos. No cierre la ventana mientras aparece **"Calculando los saldos del mes"**.
@@ -390,7 +362,7 @@ Porque está cerrado. Reábralo para cambiar las fechas y las opciones.
 Solo uno lo consigue. El otro recibe **"El período ya estaba cerrado (otro usuario lo cerró)"** y la lista se actualiza.
 
 **¿Por qué no veo los botones de cambio?**
-Su perfil tiene solo el permiso **Consultar**. Para crear, editar, cerrar o reabrir necesita los permisos correspondientes (ver [Permisos](#permisos)).
+Su perfil tiene solo el permiso **Consultar**. Para crear, editar, cerrar o abrir necesita los permisos correspondientes (ver [Permisos](#permisos)).
 
 **¿Dónde veo los cierres de saldos?**
 Desde el botón **Ver cierres de saldos** de esta pantalla. Ahí verá el estado de los saldos que se guardan al cerrar cada período: ver [Cierres de saldos](cierres-saldos.md).
