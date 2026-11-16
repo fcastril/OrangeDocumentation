@@ -45,7 +45,7 @@ Para ver la pantalla necesita el permiso **Consultar** de esta opción. Si su pe
 
 | Permiso | Qué le permite |
 |---------|----------------|
-| **Consultar** | Ver la lista, los avisos y el formulario de cada período. Los botones de cambio no aparecen; en la fila verá **Ver** en lugar de **Editar**. |
+| **Consultar** | Ver la lista, los avisos, el formulario de cada período y su historial. Los botones de cambio no aparecen; en la fila verá **Ver** en lugar de **Editar**. |
 | **Crear** | Crear períodos con **Crear Periodo**. |
 | **Actualizar** | Editar el período, marcar o desmarcar sus opciones y usar **Cerrar Período** / **Período Cerrado - Abrir Período**. |
 | **Eliminar** | Eliminar períodos abiertos que no tengan saldos. |
@@ -140,7 +140,7 @@ Si las fechas se cruzan con un período existente, el sistema no lo guarda y le 
 2. Cambie lo que necesite en el formulario **Periodos | Editar existente**.
 3. Pulse **Guardar**. Las casillas **no se aplican solas**: se guardan junto con los datos al pulsar **Guardar**.
 
-El formulario es **uno solo**, sin pestañas. Al pie muestra **Última modificación: usuario, fecha y hora**. No hay pestaña de historial.
+El formulario es **uno solo**, sin pestañas. Al pie muestra **Última modificación: usuario, fecha y hora** y, a su lado, el enlace discreto **Historial** (ver [Historial](#-historial)).
 
 ### Período cerrado
 
@@ -154,7 +154,7 @@ Para cambiar las fechas o las opciones de un período cerrado, primero **ábralo
 
 ## 🔘 Opciones del período
 
-En el formulario verá **una casilla por opción, una por línea**, en este orden. **Marcada = la opción está abierta** y acepta documentos; **desmarcada = cerrada**.
+En el formulario verá **una casilla por opción (12), una por línea**, en este orden. **Marcada = la opción está abierta** y acepta documentos; **desmarcada = cerrada**.
 
 ![Opciones de un período](../recursos/img/periodos/06-opciones.png)
 
@@ -172,10 +172,8 @@ En el formulario verá **una casilla por opción, una por línea**, en este orde
 | Nota Bancaria | Notas bancarias. |
 | Asientos Contables | Asientos contables. |
 | Traslado | Traslados. |
-| Punto de venta | Documentos del punto de venta. |
 
 - Las casillas **se guardan con el botón Guardar**, junto con el resto del formulario. Una sola operación guarda los datos y todas las casillas que cambió.
-- **Punto de venta** es la opción nueva y está **al final** de la lista; las demás conservan su lugar de siempre.
 - Si no se pueden guardar las opciones, el formulario sigue abierto con el estado real y aparece **"No se pudo cambiar la opción. Se restauró el valor anterior."** (lo demás ya se había guardado).
 
 ### Cerrado con opciones abiertas
@@ -279,6 +277,27 @@ Verá **"Período JUL-26 eliminado."**.
 Con el permiso **Exportar** aparece el botón **Exportar a Excel**. Descarga un archivo de Excel con las filas que ve en la lista, en el mismo orden y con el estado y las 13 opciones de cada período.
 
 Si no ve el botón, su perfil no tiene el permiso **Exportar**.
+
+---
+
+## 📜 Historial
+
+Al editar un período, junto a **Última modificación** hay un enlace pequeño **Historial**. Al pulsarlo, el formulario se reemplaza por una **lista de solo lectura**, de la más reciente a la más antigua:
+
+| Columna | Qué muestra |
+|---------|-------------|
+| **Fecha y hora** | Cuándo ocurrió, en la zona horaria de la compañía. |
+| **Usuario** | Quién lo hizo. |
+| **Acción** | **Creó el período**, **Modificó el período**, **Abrió opciones**, **Cerró opciones**, **Cerró el período** o **Reabrió el período**. |
+| **Detalle** | Información adicional de la acción. |
+
+Pulse **Cerrar** para volver al formulario: lo que había escrito sin guardar se conserva. Al crear un período no hay historial todavía. Si el período nunca ha cambiado, verá **"Sin movimientos registrados"**.
+
+![Historial de un período](../recursos/img/periodos/11-historial.png)
+
+### Historial pendiente de activar
+
+Mientras el administrador de la base de datos no active el índice de historial, la lista muestra **"Historial detallado pendiente de activar"** y la **última modificación** (usuario, fecha y hora). Los cambios se registran igual.
 
 ---
 
