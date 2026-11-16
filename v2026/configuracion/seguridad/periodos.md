@@ -29,7 +29,7 @@ Desde aquí usted puede:
 
 > 📘 La búsqueda y el orden de la lista funcionan como en el resto de pantallas: ver [Manejo general de la información](../../Generales/manejo-general-informacion.md).
 
-> 🕒 Si su compañía usa **cierre diario**, las opciones de los períodos **no restringen los documentos**. Ver [Compañías con cierre diario](#compañías-con-cierre-diario).
+> 🕒 Si su compañía usa **cierre diario**, las opciones de los períodos **no restringen los documentos**. Ver [Compañías con cierre diario](#-compañías-con-cierre-diario).
 
 ---
 
@@ -63,8 +63,8 @@ En la parte superior verá:
 | Elemento | Para qué sirve |
 |----------|----------------|
 | **?** (junto al título) | Abre esta ayuda en un panel lateral, sin salir de la pantalla. |
-| **En vivo** | La lista se actualiza sola cuando otro usuario crea, cambia o cierra un período. Ver [Cambios en vivo](#cambios-en-vivo). |
-| **Ver cierres de saldos** | Lleva a la pantalla de cierres de saldos. |
+| **En vivo** | La lista se actualiza sola cuando otro usuario crea, cambia o cierra un período. Ver [Cambios en vivo](#-cambios-en-vivo). |
+| **Ver cierres de saldos** | Lleva a la pantalla de [Cierres de saldos](cierres-saldos.md). |
 | **Nuevo período** | Crea un período (requiere **Crear**). |
 
 Debajo aparece un **resumen de la compañía**: **Períodos**, **Abiertos**, **Cerrados**, **Último cierre hasta** (la fecha final del último período cerrado) y **Avisos**.
@@ -148,8 +148,8 @@ La ficha tiene tres pestañas:
 | Pestaña | Contenido |
 |---------|-----------|
 | **Datos** | Código, descripción, fechas y la última modificación. |
-| **Opciones** | Las 13 opciones con su estado. Ver [Abrir y cerrar opciones](#abrir-y-cerrar-opciones). |
-| **Historial** | Quién creó, modificó, abrió, cerró o reabrió el período y cuándo. Ver [Historial](#historial). |
+| **Opciones** | Las 13 opciones con su estado. Ver [Abrir y cerrar opciones](#-abrir-y-cerrar-opciones). |
+| **Historial** | Quién creó, modificó, abrió, cerró o reabrió el período y cuándo. Ver [Historial](#-historial). |
 
 ### Período cerrado
 
@@ -159,7 +159,7 @@ Un período cerrado **solo permite cambiar el código y la descripción**. Las f
 
 ![Editar un período cerrado](../recursos/img/periodos/05-editar-cerrado.png)
 
-Para cambiar las fechas o las opciones de un período cerrado, primero **reábralo** (ver [Reabrir un período](#reabrir-un-período)).
+Para cambiar las fechas o las opciones de un período cerrado, primero **reábralo** (ver [Reabrir un período](#-reabrir-un-período)).
 
 ---
 
@@ -235,7 +235,7 @@ Si otro período de la compañía termina en el mismo mes, la confirmación lo a
 
 > **"Cerrar este recalcula los saldos del mes completo; si cierras también el otro, el último cierre pisa los saldos del anterior."**
 
-Revise los períodos antes de cerrarlos. Si el otro período ya está cerrado, el sistema no permitirá el cierre (ver [Mensajes de error](#mensajes-de-error-frecuentes)).
+Revise los períodos antes de cerrarlos. Si el otro período ya está cerrado, el sistema no permitirá el cierre (ver [Mensajes de error](#-mensajes-de-error-frecuentes)).
 
 ---
 
@@ -393,7 +393,7 @@ Solo uno lo consigue. El otro recibe **"El período ya estaba cerrado (otro usua
 Su perfil tiene solo el permiso **Consultar**. Para crear, editar, cerrar o reabrir necesita los permisos correspondientes (ver [Permisos](#permisos)).
 
 **¿Dónde veo los cierres de saldos?**
-Desde el botón **Ver cierres de saldos** de esta pantalla.
+Desde el botón **Ver cierres de saldos** de esta pantalla. Ahí verá el estado de los saldos que se guardan al cerrar cada período: ver [Cierres de saldos](cierres-saldos.md).
 
 **¿Qué diferencia hay con [Usuarios conectados](usuarios-conectados.md)?**
 Esa pantalla muestra quién está conectado. Esta muestra los períodos contables de la compañía.
