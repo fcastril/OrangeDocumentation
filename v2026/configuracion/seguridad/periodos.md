@@ -92,7 +92,7 @@ Cada fila es **un período** de la compañía en la que está trabajando.
 | **Código** | Identificador corto del período, por ejemplo `JUL-26`. |
 | **Descripción** | Texto que describe el período. |
 | **Fecha Inicial** y **Fecha Final** | Rango de fechas del período (se muestran como día/mes/año). |
-| **Estado** | **Abierto**, **Cerrado** o **Cerrado con opciones abiertas (inconsistente)**. Esta columna es nueva respecto a la versión anterior. |
+| **Estado** | **Abierto**, **Cerrado**, **En proceso** (mientras se cierra o se abre) o **Cerrado con opciones abiertas (inconsistente)**. Esta columna es nueva respecto a la versión anterior. |
 | **Avisos** | Los avisos que afectan a esa fila, por ejemplo **Hueco antes** o **Solapa con NOV-26**. |
 
 Para ordenar, pulse el encabezado de la columna. En la búsqueda puede escribir un código, una descripción o un estado; no importan las tildes ni las mayúsculas.
@@ -202,7 +202,7 @@ Para cerrarlo:
 3. Pulse **Cerrar Período**. Se abre la confirmación **Realizar Cierre de Período**; lea el detalle.
 4. Pulse **Cerrar período** para confirmar, o **Cancelar** para volver al formulario.
 
-Al terminar (o al cancelar) **vuelve al formulario**, y el botón ya dice **Período Cerrado - Abrir Período**.
+Al confirmar (o al cancelar) **vuelve al formulario**. Si confirmó, el cierre queda **en proceso** (ver [Cierre y apertura en proceso](#-cierre-y-apertura-en-proceso)) y, cuando termina, el botón dice **Período Cerrado - Abrir Período**.
 
 ![Confirmar el cierre](../recursos/img/periodos/08-confirmar-cerrar.png)
 
@@ -213,9 +213,7 @@ La confirmación le muestra:
 - Las opciones que se cerrarán (como el botón solo aparece con todo desmarcado, normalmente dice "Ninguna opción está abierta").
 - Que, después del cierre, **no se podrá registrar ninguna transacción con fecha dentro del período**.
 
-Mientras el sistema calcula, el botón queda deshabilitado y aparece **"Calculando los saldos del mes. Puede tardar; no cierres esta ventana."**. Al terminar, verá **"Período JUL-26 cerrado: saldos calculados."**.
-
-Si el cierre no se completa, **no se guarda ningún cambio** y el período sigue abierto. Verá **"El cierre no se completó y no se guardó ningún cambio. Inténtalo de nuevo; si persiste, avisa al administrador."**
+El cierre **no se espera en pantalla**: puede tardar varios minutos (en el primer cierre de un período grande, hasta cerca de 20 minutos). Mientras tanto verá el formulario en estado **Cerrando período…** y la fila en la lista como **En proceso**. Ver [Cierre y apertura en proceso](#-cierre-y-apertura-en-proceso).
 
 ### Mes compartido
 
@@ -247,9 +245,31 @@ Al terminar, **vuelve al formulario** y el botón ya dice **Cerrar Período** ot
 
 ![Confirmar la reapertura](../recursos/img/periodos/10-confirmar-reabrir.png)
 
-Verá **"Período JUL-26 reabierto: saldos eliminados. Sus opciones quedaron cerradas."**
+La reapertura también queda **en proceso** (**Reabriendo período…**). Al terminar verá **"Período JUL-26 reabierto: saldos eliminados. Sus opciones quedaron cerradas."**
 
 > ⚠️ Reabra un período solo cuando sea necesario. Mientras esté reabierto, sus saldos no existen hasta que vuelva a cerrarlo.
+
+---
+
+## ⏳ Cierre y apertura en proceso
+
+Cerrar y abrir un período son procesos largos que corren en segundo plano. Después de confirmar:
+
+- El formulario muestra el estado **Cerrando período…** (o **Reabriendo período…**) con un indicador de espera y la nota **"Puede tardar varios minutos. Puedes seguir trabajando: te avisaremos al terminar."**
+- La lista **sigue disponible**: puede consultar otros períodos y trabajar con normalidad. En la columna **Estado**, el período aparece como **En proceso**.
+- Mientras el período está en proceso **no se puede editar, cambiar sus opciones, eliminar, cerrar ni abrir**: el formulario queda de solo lectura. Si intenta una acción desde otra pantalla o sesión, verá **"El período tiene un cierre o una reapertura en proceso. Espera a que termine."**
+- Puede **cerrar el formulario, recargar la página o salir**: el estado **En proceso** se conserva y se vuelve a mostrar al volver. Otros usuarios también lo ven.
+- Al terminar, el formulario abierto (si lo dejó abierto) muestra el período final y aparece el aviso **"Período JUL-26 cerrado: saldos calculados."** (o el de reapertura). Además recibe una notificación en la campana de avisos.
+
+| Estado que verá | Qué significa |
+|-----------------|---------------|
+| **Cerrando período…** / **Reabriendo período…** | El proceso está corriendo. |
+| **Reintentando…** | Hubo un fallo transitorio y el sistema lo reintenta solo. No es un error. |
+| **El proceso se interrumpió y se reanudará solo…** | El servicio se reinició; el proceso continúa por sí mismo. |
+| **"El proceso no se completó y no se guardó ningún cambio. Puedes reintentarlo desde la campana de avisos."** | Falló después de los reintentos. El período queda como estaba: puede volver a intentar el cierre o la apertura, o usar **Reintentar** en la campana de avisos. |
+| **"Los procesos en segundo plano no están disponibles…"** | El servicio de procesos está apagado en su entorno. Avise al administrador. |
+
+![Período en proceso](../recursos/img/periodos/13-en-proceso.png)
 
 ---
 
@@ -341,7 +361,7 @@ Si el indicador dice **Reconectando…**, la conexión se interrumpió; al recup
 | **No se puede cerrar: NOV-26 ya está cerrado y comparte el mes 2026-11; cerrar este pisaría sus saldos. Reabre NOV-26 primero.** | Reabra primero el otro período que comparte el mes. |
 | **El período está cerrado: reábrelo para cambiar sus fechas, sus opciones o eliminarlo.** | Reabra el período para hacer el cambio. |
 | **No se pudo completar la acción. No se guardó ningún cambio; inténtalo de nuevo.** | Vuelva a intentarlo. Si persiste, avise al administrador. |
-| **El cierre tardó más de lo permitido. Revisa el estado del período antes de reintentar.** | Revise si el período quedó cerrado antes de volver a intentarlo. |
+| **El período tiene un cierre o una reapertura en proceso. Espera a que termine.** | No hay nada que corregir: espere el aviso de que terminó. |
 | **No tienes permiso para ver los períodos.** | Pida al administrador de la compañía el permiso **Consultar** de la opción. |
 
 ---
@@ -372,7 +392,7 @@ Sí, por defecto el sistema lo permite. Tenga en cuenta que los documentos poste
 Sí. Al abrirlo de nuevo se eliminan los saldos del mes y sus opciones quedan cerradas. Luego puede volver a cerrarlo. Los saldos acumulados de los períodos posteriores no se recalculan automáticamente.
 
 **¿Por qué el cierre tarda?**
-Calcular los saldos de toda la compañía puede tardar unos minutos. No cierre la ventana mientras aparece **"Calculando los saldos del mes"**.
+Calcular los saldos de toda la compañía puede tardar varios minutos. El cierre corre en segundo plano: puede seguir trabajando y se le avisa al terminar; el período aparece **En proceso** mientras tanto.
 
 **¿Por qué no puedo editar las fechas de un período?**
 Porque está cerrado. Reábralo para cambiar las fechas y las opciones.
