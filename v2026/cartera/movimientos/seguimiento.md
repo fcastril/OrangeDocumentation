@@ -358,7 +358,7 @@ El archivo tiene:
 
 Si el filtro supera **50.000 filas**, el sistema no genera el archivo y dice *El Excel supera 50.000 filas. Acote el corte o los filtros.*
 
-![Excel que supera el tope](../recursos/img/seguimiento/l-05-exportar-413-excel.png)
+![Excel que supera el tope](../recursos/img/seguimiento/l-05-exportar-413.png)
 
 Si no ve el botón **Exportar Excel**, su perfil no tiene el permiso **Exportar** de la opción 300.
 
