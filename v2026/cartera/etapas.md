@@ -1,4 +1,4 @@
-[Regresar a Cartera](../readme.md)
+[Regresar a Cartera](readme.md)
 
 ---
 
@@ -14,9 +14,7 @@
 
 ---
 
-> ⚠️ **Aviso.** Esta pantalla es del **cobro prejurídico** (nivel 2). Requiere que el nivel 2 esté activo en [Parámetros de cartera](../parametros.md).
->
-> ⚠️ **Funciones que aún no están disponibles:** comunicaciones, acuerdos de pago, intereses, centrales de riesgo y prescripción.
+> ⚠️ **Aviso.** Esta pantalla es del **cobro prejurídico** (nivel 2). Requiere que el nivel 2 esté activo en [Parámetros de cartera](parametros.md).
 >
 > ⚠️ **Los parámetros legales los debe validar el abogado de su empresa.** Este manual describe cómo usar la pantalla; **no es asesoría jurídica**.
 
@@ -37,7 +35,7 @@ La compañía recibe cinco etapas ya cargadas, que puede cambiar.
 
 ## 🖥️ Pantalla principal
 
-![Lista de etapas](../recursos/img/prejuridico/m-01-etapas.png)
+![Lista de etapas](recursos/img/prejuridico/m-01-etapas.png)
 
 | Columna | Qué muestra |
 |---------|-------------|
@@ -139,6 +137,6 @@ Porque la etapa existe para marcar el caso. El expediente jurídico no se abre d
 
 ## 🧷 Relacionado
 
-- [Casos de cobro](../movimientos/casos.md)
-- [Parámetros de cartera](../parametros.md)
-- [Cobradores](../cobradores.md): los responsables por defecto de las etapas.
+- [Casos de cobro](movimientos/casos.md)
+- [Parámetros de cartera](parametros.md)
+- [Cobradores](cobradores.md): los responsables por defecto de las etapas.

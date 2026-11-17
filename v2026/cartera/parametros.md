@@ -101,13 +101,13 @@ Para activar el nivel 2:
 2. La fase 2 de Seguimiento de Cartera debe estar habilitada, porque los responsables de los casos son cobradores. Si no lo está, el nivel 2 no se puede elegir.
 3. Elija **Nivel 2 · Prejurídico** y guarde.
 
-Al activarlo, las **etapas de cobro** se cargan (Preventivo, Administrativo, Prejurídico, Acuerdo de pago, Jurídico y Cerrado). Puede cambiarlas en [Etapas de cobro](maestros/etapas-cobro.md).
+Al activarlo, las **etapas de cobro** se cargan (Preventivo, Administrativo, Prejurídico, Acuerdo de pago, Jurídico y Cerrado). Puede cambiarlas en [Etapas de cobro](etapas.md).
 
 Bajar de nivel 2 a nivel 1 **no borra nada**: los casos siguen guardados, pero ocultos. Los acuerdos vigentes siguen avisando hasta cerrarse.
 
-> ⚠️ **Funciones que aún no están disponibles** con el nivel 2: las comunicaciones con el cliente, los acuerdos de pago, los intereses de mora, los reportes a centrales de riesgo y la alerta de prescripción. Los casos, las etapas y el escalamiento sí funcionan.
+> ℹ️ Con el nivel 2 están disponibles los casos, las comunicaciones, los acuerdos de pago, los intereses, el control de centrales, las partes y la prescripción. Su manual está en [Casos de cobro](movimientos/casos.md).
 >
-> ⚠️ **Los parámetros legales los debe validar el abogado de su empresa.** Esta pantalla no es asesoría jurídica.
+> ⚠️ **Por validar.** Los parámetros legales los debe validar el abogado de su empresa. Esta pantalla no es asesoría jurídica.
 
 Ver el uso de los casos en [Casos de cobro](movimientos/casos.md).
 
@@ -191,6 +191,41 @@ Antes de guardar, la **vista previa con datos ficticios** muestra cómo queda el
 | **Revisa N campos de la plantilla.** | Corrija los campos marcados. |
 
 > ℹ️ Si la compañía no ha guardado una plantilla, se usa el texto inicial del sistema. Al guardarla, reemplaza ese texto para todos los envíos nuevos. Los envíos ya registrados no cambian.
+
+---
+
+## ⚖️ Cobro prejurídico: parámetros legales
+
+Esta sección aparece con el nivel 2 activo. Reúne los valores que usa el cobro prejurídico. **Todos están por validar** y los debe validar el abogado de la empresa.
+
+![Parámetros de cobro prejurídico](recursos/img/prejuridico/p-01-parametros.png)
+
+| Parámetro | Por defecto | Qué hace |
+|-----------|-------------|----------|
+| **Días de aviso previo a centrales** | **Sin valor** | Días entre el aviso a centrales y la fecha en que se puede reportar. La compañía lo define; el sistema no lo supone. Mientras esté vacío, el control de centrales dice que falta configurarlo. |
+| **Factor sobre la tasa de mora (%)** | 100 | Porcentaje de la tasa de mora que se aplica en la liquidación de intereses. |
+| **Días del año para los intereses** | 365 | Base de días para convertir la tasa anual en diaria. |
+| **Días de tolerancia por cuota** | 0 | Días después del vencimiento en que una cuota todavía se considera cubierta. |
+| **Días de anticipación de la alerta de prescripción** | 90 | Con cuántos días de anticipación se avisa que un documento se acerca a su prescripción. |
+
+### Plazos de prescripción
+
+Son los años que, según su tipo de movimiento, transcurren antes de la prescripción. Se toman desde la fecha de vencimiento del documento (o desde su última interrupción).
+
+| Columna | Qué muestra |
+|---------|-------------|
+| **Tipo de movimiento** | Cada tipo de documento de la compañía. |
+| **Plazo (años)** | Un número entero de 1 a 20. Vacío = **Sin plazo**. |
+
+La fila **Los demás tipos (por defecto)** aplica a los tipos que no tengan plazo propio.
+
+> ℹ️ Las reglas nacen **sin plazo**: el sistema no inventa términos. Mientras un tipo no tenga plazo, no hay alertas de prescripción para él. La pantalla de prescripción dice dónde configurarlo.
+
+### Validación
+
+Cada parámetro y plazo muestra **Por validar** hasta que el abogado lo valide en la validación legal (permiso **Actualizar** de la opción 356). Cambiar el valor lo devuelve a **Por validar**. Use **Guardar parámetros** para guardar los cambios.
+
+Las advertencias de horario y frecuencia se muestran con confirmación. Ninguna bloquea el trabajo, salvo que falte un dato imprescindible, como la tasa de un mes o los días de aviso previo.
 
 ---
 
