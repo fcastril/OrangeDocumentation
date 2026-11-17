@@ -13,7 +13,12 @@ Manuales de las pantallas de Cartera en la nueva versión.
 ## Maestros
 
 - [Edades de cartera](edades.md): los tramos de antigüedad con los que se agrupa la cartera por vencer y vencida de la compañía; cómo crear, editar, eliminar, restaurar los valores del legado y exportar los tramos, y qué pasa cuando otro usuario los cambia.
+- [Maestros de Cartera por tipo](maestros.md): cómo se organiza el menú **Maestros** en cuentas por cobrar (clientes y vendedores), cuentas por pagar (proveedores y compradores) y configuración de cartera; qué permisos hacen falta para cada uno.
 - [Parámetros de cartera](parametros.md): la configuración de la cobranza de la compañía: nivel de cobranza, semáforo de cupo, reparto de cartera y horarios de contacto, con sus valores por validar.
+
+## Movimientos
+
+- [Seguimiento de Cartera](movimientos/seguimiento.md): la lista de clientes (por cobrar) y proveedores (por pagar) con su saldo, vencido y mora a una fecha de corte; registro de gestiones en un panel lateral, **Mis alertas**, semáforo de cupo y exportar a Excel o PDF.
 
 ## Consultas y reportes
 
@@ -25,4 +30,4 @@ Están en el grupo **Consultas** del menú de Cartera. Cada reporte se consulta 
 
 ## Accesos desde otros módulos
 
-- **Clientes** y **Vendedores** se abren desde Cartera, pero sus pantallas están en el módulo [Ventas](../ventas/readme.md).
+- **Clientes** y **Vendedores** se abren desde Cartera, pero sus pantallas están en el módulo [Ventas](../ventas/readme.md). **Proveedores** y **Compradores** se abren desde Cartera con las pantallas de [Compras](../compras/readme.md); ver [Maestros de Cartera por tipo](maestros.md).
