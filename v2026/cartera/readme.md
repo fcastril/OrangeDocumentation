@@ -10,6 +10,10 @@ Manuales de las pantallas de Cartera en la nueva versión.
 
 - Al abrir **Cartera** verá el menú del módulo con los grupos que tiene su perfil. Los grupos sin pantallas disponibles no aparecen. Desde el botón **?** de la pantalla de inicio puede abrir este índice.
 
+## Gerencia
+
+- [Dashboard de Cartera](dashboard.md): la vista de gerencia de la cartera en una pantalla: saldo, vencido y días de cartera con comparación, aging por tramos, terceros con mayor saldo, clientes sobre cupo, cubrimiento y efectividad de cobro; exportar a Excel. Requiere el permiso del menú gerencial.
+
 ## Maestros
 
 - [Cobradores](cobradores.md): las personas que hacen la gestión de cobro, su suplente y su tope diario; reglas de asignación por zona, vendedor, saldo o mora, y ausencias. Requiere la fase 2 habilitada.
