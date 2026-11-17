@@ -36,6 +36,7 @@ Manuales de las pantallas de Cartera en la nueva versión.
 
 Están en el grupo **Consultas** del menú de Cartera. Cada reporte se consulta con **Consultar** y se exporta a Excel o a PDF con sus propios permisos.
 
+- [Proyección de recaudo](consultas/proyeccion.md): cuándo va a entrar la plata (y cuándo salen los pagos), por semana o por mes, con tres escenarios (contractual, esperado y con compromisos), desglose, terceros de cada semana y la medida de su precisión. Es una estimación, no una promesa.
 - [Cartera de terceros](reportes/terceros.md): el saldo de cada tercero a una fecha de corte, en resumen o con sus documentos; por cobrar (CxC) o por pagar (CxP), con valores o rangos de edad.
 - [Cartera de terceros por sucursal](reportes/sucursales.md): el mismo saldo separado por sucursal, con los documentos sin sucursal agrupados en **Sin sucursal**.
 - [Cartera por vendedores](reportes/vendedores.md): el saldo por vendedor (o comprador), con su zona o ciudad; los terceros sin zona ni ciudad aparecen en **Sin ciudad/zona**.
