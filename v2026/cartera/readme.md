@@ -12,6 +12,7 @@ Manuales de las pantallas de Cartera en la nueva versión.
 
 ## Maestros
 
+- [Cobradores](cobradores.md): las personas que hacen la gestión de cobro, su suplente y su tope diario; reglas de asignación por zona, vendedor, saldo o mora, y ausencias. Requiere la fase 2 habilitada.
 - [Edades de cartera](edades.md): los tramos de antigüedad con los que se agrupa la cartera por vencer y vencida de la compañía; cómo crear, editar, eliminar, restaurar los valores del legado y exportar los tramos, y qué pasa cuando otro usuario los cambia.
 - [Maestros de Cartera por tipo](maestros.md): cómo se organiza el menú **Maestros** en cuentas por cobrar (clientes y vendedores), cuentas por pagar (proveedores y compradores) y configuración de cartera; qué permisos hacen falta para cada uno.
 - [Parámetros de cartera](parametros.md): la configuración de la cobranza de la compañía: nivel de cobranza, semáforo de cupo, reparto de cartera y horarios de contacto, con sus valores por validar.
@@ -19,6 +20,8 @@ Manuales de las pantallas de Cartera en la nueva versión.
 ## Movimientos
 
 - [Seguimiento de Cartera](movimientos/seguimiento.md): la lista de clientes (por cobrar) y proveedores (por pagar) con su saldo, vencido y mora a una fecha de corte; registro de gestiones en un panel lateral, **Mis alertas**, semáforo de cupo y exportar a Excel o PDF.
+- [Cola de cobro](movimientos/cola.md): a quién cobrar hoy, ordenado por prioridad y con el motivo de cada cliente; vistas Mi cola, Equipo y Sin asignar; exportar a Excel o PDF. Requiere la fase 2.
+- [Generación de cobros](movimientos/generacion.md): genera los cobros del día (asignaciones, reparto y cola) con vista previa, progreso, historial, deshacer y reintentar. Requiere la fase 2.
 
 ## Consultas y reportes
 

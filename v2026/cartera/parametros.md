@@ -79,6 +79,13 @@ Si algún campo no es válido, no se guarda nada. Aparece el aviso **"Corrija lo
 
 ## 🧩 Bloques de la pantalla
 
+> ⚠️ Los valores de **Reparto de cartera** y **Horarios de contacto** son los que usan las funciones de cobro de la **fase 2** (cobradores, cola de cobro y generación de cobros). Esas funciones requieren que el administrador haya habilitado sus tablas y permisos.
+
+En la fase 2, esta pantalla muestra estos bloques dentro de la sección **Cobro: reparto, horarios y frecuencia**:
+
+![Sección de cobro en parámetros](recursos/img/seguimiento-f2/pm-01-cobro.png)
+
+
 ### Cobranza
 
 - **Nivel de cobranza**: por ahora solo puede elegir **Nivel 1 · Básico**, que cubre la consulta de cartera, el seguimiento y los cobradores.
@@ -103,11 +110,13 @@ Los mensajes de error son *La alerta debe estar entre 1 y 200 y ser menor que el
 
 ### Reparto de cartera
 
-- **Modo de reparto por defecto**: **Manual**, **Por zona** o **Por carga de trabajo**. Es el modo que se propone al repartir la cartera.
-- **Tope diario por cobrador**: número de gestiones por día. Déjelo **vacío** para no poner tope. Si escribe algo, debe ser un entero de 1 o más.
-- **Los apoyos reciben aviso**: si está activado, se avisa a los cobradores de apoyo cuando se les asigna cartera.
+- **Modo de reparto por defecto**: **Manual** (solo aplica las reglas y las asignaciones), **Por zona** (reparte los clientes de cada zona entre los cobradores que tienen regla en esa zona) o **Por carga de trabajo** (reparte entre todos los cobradores activos según su carga). Es el modo que se propone al generar los cobros.
+- **Tope diario por cobrador**: número de cuentas que puede recibir un cobrador en un día. Déjelo **vacío** para no poner tope. Si escribe algo, debe ser un entero de 1 o más. Un tope propio del cobrador tiene prioridad sobre este.
+- **Los apoyos reciben aviso**: si está activado, se avisa también a los cobradores de apoyo cuando se les asigna cartera.
 
-> ℹ️ En esta pantalla estos valores se **guardan**. La asignación automática de cartera usará estos parámetros cuando esté disponible.
+> ℹ️ Un cambio aplica a la **siguiente** generación de cobros o a la **siguiente** gestión que se registre. **No recalcula** la cola de hoy.
+>
+> Si la empresa no tiene parámetros guardados, se usan los valores iniciales: modo **Manual**, apoyos avisados y frecuencia de 2 contactos por semana.
 
 ### Horarios de contacto (por validar)
 
@@ -119,6 +128,8 @@ Estos valores se toman de la norma de contacto a deudores tal como la entiende e
 | **Sábado, desde / hasta** | 08:00 a 15:00 | Formato HH:MM. Si los dos están **vacíos**, no se contacta los sábados. |
 | **Permitir contacto domingos y festivos** | Apagado | Por defecto no se contacta domingos ni festivos. |
 | **Máximo de contactos por tercero y semana** | 2 | Entero de 1 o más. Déjelo **vacío** para no limitar. |
+
+Las advertencias de horario y frecuencia aparecen en la gestión de cobro antes de guardar. Son **solo advertencias**: nunca impiden registrar una gestión, y no son asesoría legal.
 
 Los errores típicos son *Escriba la hora como HH:MM (por ejemplo 07:00).* y *La hora inicial debe ser anterior a la final.*
 

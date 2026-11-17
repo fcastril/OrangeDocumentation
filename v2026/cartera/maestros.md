@@ -22,7 +22,7 @@ El menú **Maestros** de Cartera reúne los maestros que usa la cartera, organiz
 - **Cuentas por pagar**: los **proveedores** y los **compradores**.
 - **Configuración de cartera**: las **edades de cartera** y los **parámetros de cartera**.
 
-Antes, el menú de Cartera solo ofrecía los maestros de cuentas por cobrar. Ahora también puede abrir **Proveedores** y **Compradores** sin salir del módulo de Cartera.
+Antes, el menú de Cartera solo ofrecía los maestros de cuentas por cobrar. Ahora el grupo **Cuentas por cobrar** también incluye **Cobradores** (cuando su administrador habilitó la fase 2). Ahora también puede abrir **Proveedores** y **Compradores** sin salir del módulo de Cartera.
 
 > 💡 Los grupos y las opciones aparecen solo si su perfil tiene permiso para verlas. Un grupo sin ninguna opción disponible no aparece.
 
@@ -45,6 +45,7 @@ Antes, el menú de Cartera solo ofrecía los maestros de cuentas por cobrar. Aho
 |-------|--------|--------|-------------------------|
 | **Cuentas por cobrar** | **Clientes** | Los clientes, con su ficha completa. | Consultar **Clientes** (Ventas). |
 | **Cuentas por cobrar** | **Vendedores** | Los vendedores y su zona. | Consultar **Vendedores** (Ventas). |
+| **Cuentas por cobrar** | **Cobradores** | Las personas que hacen la gestión de cobro, sus suplentes, reglas de asignación y ausencias. Ver [Cobradores](cobradores.md). | Consultar **Cobradores** (opción 348). Crear, editar o eliminar según sus permisos de la 348. |
 | **Cuentas por pagar** | **Proveedores** | Los proveedores, con su ficha y sus pestañas (Cartera, Indicadores, Inventario y las demás). | Consultar **Proveedores** en Cartera **y** en Compras. |
 | **Cuentas por pagar** | **Compradores** | Los compradores de la compañía. | Consultar **Compradores** en Cartera **y** en Compras. |
 | **Configuración de cartera** | **Edades de cartera** | Los tramos de antigüedad de la cartera. Ver [Edades de cartera](edades.md). | Consultar **Edades de cartera**. |
