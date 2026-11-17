@@ -390,6 +390,12 @@ Antes de enviar, revisa la vista previa del PDF y del correo. Si la compañía t
 
 Los envíos, los lotes y sus estados se revisan en [Estado de cuenta por correo](estado-cuenta.md).
 
+## ⚖️ Escalar a cobro prejurídico
+
+Si la compañía tiene el **nivel 2** de cobranza activo, en el panel de un cliente aparece la pestaña **Documentos**. Desde allí puede marcar documentos vencidos y **Escalar** para crear un caso de cobro. Un cliente tiene un solo caso abierto: si ya lo tiene, los documentos se agregan a ese caso.
+
+Con el nivel 1 esta pestaña no aparece. Los detalles están en [Casos de cobro](casos.md).
+
 ## 🔄 Cambios de otros usuarios (en vivo)
 
 Esta pantalla **se actualiza sola**. Si otro usuario registra una gestión de un tercero que está en su lista, la fila de ese tercero se actualiza (**Última gestión** y **Próxima alerta**) sin recargar la pantalla y sin perder sus filtros.
@@ -478,6 +484,7 @@ Porque la gestión está fuera del horario de contacto configurado para la empre
 
 ## 🧷 Relacionado
 
+- [Casos de cobro](casos.md): escalar documentos de un cliente al cobro prejurídico (nivel 2).
 - [Estado de cuenta por correo](estado-cuenta.md): enviar el estado de cuenta a un cliente o en lote, y su registro.
 - [Cobradores](../cobradores.md): titulares, apoyos, reglas y ausencias.
 - [Cola de cobro](cola.md): a quién cobrar hoy.

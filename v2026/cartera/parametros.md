@@ -88,12 +88,28 @@ En la fase 2, esta pantalla muestra estos bloques dentro de la sección **Cobro:
 
 ### Cobranza
 
-- **Nivel de cobranza**: por ahora solo puede elegir **Nivel 1 · Básico**, que cubre la consulta de cartera, el seguimiento y los cobradores.
-- **Nivel 2 · Prejurídico** y **Nivel 3 · Jurídico** aparecen deshabilitados, con la nota de que estarán disponibles con esa cobranza. No se pueden elegir todavía.
+- **Nivel de cobranza**: puede elegir **Nivel 1 · Básico** o **Nivel 2 · Prejurídico**.
+  - **Nivel 1 · Básico** (por defecto): la consulta de cartera, el seguimiento, los cobradores y el estado de cuenta. Con este nivel, la cobranza prejurídica no aparece en ninguna pantalla.
+  - **Nivel 2 · Prejurídico**: agrega los casos de cobro, las etapas y el escalamiento de documentos. Ver *Nivel 2 · Prejurídico* más abajo.
+- **Nivel 3 · Jurídico** aparece deshabilitado. Estará disponible con el cobro jurídico, todavía no está disponible. Si se intenta guardar, el sistema lo rechaza con el mensaje *Ese nivel de cobranza todavía no está disponible para esta compañía.*
 
-![Nivel de cobranza no disponible](recursos/img/parametros/04-nivel-no-disponible.png)
+### Nivel 2 · Prejurídico
 
-Si se intenta guardar el nivel 2 o 3, el sistema lo rechaza con el mensaje *Ese nivel de cobranza todavía no está disponible para esta compañía.*
+Para activar el nivel 2:
+
+1. Necesita el permiso **Actualizar** de esta opción (344).
+2. La fase 2 de Seguimiento de Cartera debe estar habilitada, porque los responsables de los casos son cobradores. Si no lo está, el nivel 2 no se puede elegir.
+3. Elija **Nivel 2 · Prejurídico** y guarde.
+
+Al activarlo, las **etapas de cobro** se cargan (Preventivo, Administrativo, Prejurídico, Acuerdo de pago, Jurídico y Cerrado). Puede cambiarlas en [Etapas de cobro](maestros/etapas-cobro.md).
+
+Bajar de nivel 2 a nivel 1 **no borra nada**: los casos siguen guardados, pero ocultos. Los acuerdos vigentes siguen avisando hasta cerrarse.
+
+> ⚠️ **Funciones que aún no están disponibles** con el nivel 2: las comunicaciones con el cliente, los acuerdos de pago, los intereses de mora, los reportes a centrales de riesgo y la alerta de prescripción. Los casos, las etapas y el escalamiento sí funcionan.
+>
+> ⚠️ **Los parámetros legales los debe validar el abogado de su empresa.** Esta pantalla no es asesoría jurídica.
+
+Ver el uso de los casos en [Casos de cobro](movimientos/casos.md).
 
 ### Semáforo de cupo
 
@@ -195,8 +211,11 @@ Puede seguir y guardar: **gana el último que guarda**, es decir, sus valores re
 **¿Por qué la pantalla muestra valores si nunca los guardé?**
 Son los valores por defecto. Se guardan la primera vez que pulse **Guardar**. Hasta entonces, la pantalla le avisa con *Esta compañía aún no guardó parámetros: se muestran los valores por defecto.*
 
-**¿Por qué no puedo elegir el nivel 2 o 3?**
-Esos niveles dependen de la cobranza prejurídica y jurídica, que todavía no está disponible para la compañía.
+**¿Por qué no puedo elegir el nivel 2?**
+Porque la fase 2 de Seguimiento de Cartera (cobradores) no está habilitada para la compañía, o porque su perfil no tiene el permiso de Actualizar en esta opción.
+
+**¿Por qué no puedo elegir el nivel 3?**
+El nivel jurídico todavía no está disponible para la compañía.
 
 **¿Qué significa "Por validar"?**
 Que los horarios de contacto son una propuesta basada en la norma, pendiente de confirmación por un abogado de cobranza. Puede usarlos y guardarlos, pero no los trate como una regla definitiva hasta esa confirmación.

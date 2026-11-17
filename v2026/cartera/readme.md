@@ -20,12 +20,14 @@ Manuales de las pantallas de Cartera en la nueva versión.
 - [Edades de cartera](edades.md): los tramos de antigüedad con los que se agrupa la cartera por vencer y vencida de la compañía; cómo crear, editar, eliminar, restaurar los valores del legado y exportar los tramos, y qué pasa cuando otro usuario los cambia.
 - [Maestros de Cartera por tipo](maestros.md): cómo se organiza el menú **Maestros** en cuentas por cobrar (clientes y vendedores), cuentas por pagar (proveedores y compradores) y configuración de cartera; qué permisos hacen falta para cada uno.
 - [Parámetros de cartera](parametros.md): la configuración de la cobranza de la compañía: nivel de cobranza, semáforo de cupo, reparto de cartera y horarios de contacto, con sus valores por validar.
+- [Etapas de cobro](maestros/etapas-cobro.md): las etapas por las que pasa un caso prejurídico (precargadas), con sus días esperados y responsables por defecto.
 
 ## Movimientos
 
 - [Seguimiento de Cartera](movimientos/seguimiento.md): la lista de clientes (por cobrar) y proveedores (por pagar) con su saldo, vencido y mora a una fecha de corte; registro de gestiones en un panel lateral, **Mis alertas**, semáforo de cupo y exportar a Excel o PDF.
 - [Cola de cobro](movimientos/cola.md): a quién cobrar hoy, ordenado por prioridad y con el motivo de cada cliente; vistas Mi cola, Equipo y Sin asignar; exportar a Excel o PDF. Requiere la fase 2.
 - [Estado de cuenta por correo](movimientos/estado-cuenta.md): enviar a un cliente o en lote el PDF con sus documentos pendientes, con vista previa, registro de envíos, reintentos y plantilla del correo. Requiere la fase de envío de correo habilitada.
+- [Casos de cobro](movimientos/casos.md): escalar documentos vencidos de un cliente al cobro prejurídico (nivel 2), lista de casos, ficha, cambio de etapa y responsable, cerrar y reabrir. Requiere el nivel 2 activo y la fase 2 habilitada. Las comunicaciones, acuerdos, intereses, centrales y prescripción todavía no están disponibles.
 - [Generación de cobros](movimientos/generacion.md): genera los cobros del día (asignaciones, reparto y cola) con vista previa, progreso, historial, deshacer y reintentar. Requiere la fase 2.
 
 ## Consultas y reportes
