@@ -25,6 +25,7 @@ Manuales de las pantallas de Cartera en la nueva versión.
 
 - [Seguimiento de Cartera](movimientos/seguimiento.md): la lista de clientes (por cobrar) y proveedores (por pagar) con su saldo, vencido y mora a una fecha de corte; registro de gestiones en un panel lateral, **Mis alertas**, semáforo de cupo y exportar a Excel o PDF.
 - [Cola de cobro](movimientos/cola.md): a quién cobrar hoy, ordenado por prioridad y con el motivo de cada cliente; vistas Mi cola, Equipo y Sin asignar; exportar a Excel o PDF. Requiere la fase 2.
+- [Estado de cuenta por correo](movimientos/estado-cuenta.md): enviar a un cliente o en lote el PDF con sus documentos pendientes, con vista previa, registro de envíos, reintentos y plantilla del correo. Requiere la fase de envío de correo habilitada.
 - [Generación de cobros](movimientos/generacion.md): genera los cobros del día (asignaciones, reparto y cola) con vista previa, progreso, historial, deshacer y reintentar. Requiere la fase 2.
 
 ## Consultas y reportes

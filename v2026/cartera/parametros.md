@@ -135,6 +135,49 @@ Los errores típicos son *Escriba la hora como HH:MM (por ejemplo 07:00).* y *La
 
 ---
 
+## ✉️ Plantilla del correo de estado de cuenta
+
+Aquí se configura el texto del correo que recibe el cliente con su estado de cuenta, y el pie que también sale en el PDF. Necesita el permiso **Actualizar** de esta opción (344).
+
+![Plantilla del correo](recursos/img/estado-cuenta/p-01-plantilla.png)
+
+| Campo | Regla |
+|-------|-------|
+| **Asunto** | Obligatorio. Hasta 200 caracteres. |
+| **Mensaje** | Texto sin formato (sin HTML ni imágenes). Hasta 2.000 caracteres. Puede usar los campos combinados. |
+| **Pie del mensaje y del PDF** | Hasta 500 caracteres. Aparece al final del correo y del PDF (por ejemplo, datos de pago o de contacto). |
+| **Copia por defecto (CC)** | Hasta 5 correos separados por coma. Vienen cargados en cada envío y puede cambiarlos solo para ese envío. |
+| **Responder a** | Opcional. El correo al que responde el cliente. Hasta 150 caracteres. |
+
+### Campos combinados
+
+Escriba el campo en el texto y, al enviar, el sistema lo reemplaza por el dato del cliente. También puede usar el botón **Insertar** de cada campo.
+
+| Campo | Se reemplaza por |
+|-------|------------------|
+| `{{tercero}}` | Nombre del cliente. |
+| `{{empresa}}` | Nombre de la compañía. |
+| `{{corte}}` | Fecha de corte del estado de cuenta. |
+| `{{saldo}}` | Saldo total del cliente. |
+| `{{vencido}}` | Saldo vencido. |
+| `{{documentos}}` | Cantidad de documentos con saldo. |
+| `{{contacto}}` | Nombre del usuario que envía. |
+
+Cualquier otro campo entre llaves no se reconoce: al guardar, el sistema le indica el campo a corregir.
+
+Antes de guardar, la **vista previa con datos ficticios** muestra cómo queda el correo. Los datos de la vista previa no son de ningún cliente real.
+
+![Validación de la plantilla](recursos/img/estado-cuenta/p-02-validacion.png)
+
+| Mensaje | Qué hacer |
+|---------|-----------|
+| **El asunto no puede estar vacío.** | Escriba el asunto. |
+| **Revisa N campos de la plantilla.** | Corrija los campos marcados. |
+
+> ℹ️ Si la compañía no ha guardado una plantilla, se usa el texto inicial del sistema. Al guardarla, reemplaza ese texto para todos los envíos nuevos. Los envíos ya registrados no cambian.
+
+---
+
 ## ⚠️ Cambios de otros usuarios
 
 Esta pantalla **no se actualiza sola** cuando otro usuario cambia los parámetros. Si otra persona guardó mientras usted los editaba, verá el aviso:

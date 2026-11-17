@@ -382,6 +382,14 @@ Si no ve **Exportar PDF**, su perfil no tiene el permiso **Imprimir** de la opci
 
 ---
 
+## ✉️ Enviar el estado de cuenta
+
+Desde el listado y desde el panel de cada cliente puede enviarle su **estado de cuenta** por correo: un PDF con sus documentos pendientes a la fecha de corte. Con la fila seleccionada use **Estado de cuenta**; con varias filas, use la acción de envío en lote de la barra del listado.
+
+Antes de enviar, revisa la vista previa del PDF y del correo. Si la compañía todavía no tiene el envío real habilitado, el correo **no se envía**: aparece **Modo de prueba**.
+
+Los envíos, los lotes y sus estados se revisan en [Estado de cuenta por correo](estado-cuenta.md).
+
 ## 🔄 Cambios de otros usuarios (en vivo)
 
 Esta pantalla **se actualiza sola**. Si otro usuario registra una gestión de un tercero que está en su lista, la fila de ese tercero se actualiza (**Última gestión** y **Próxima alerta**) sin recargar la pantalla y sin perder sus filtros.
@@ -470,6 +478,7 @@ Porque la gestión está fuera del horario de contacto configurado para la empre
 
 ## 🧷 Relacionado
 
+- [Estado de cuenta por correo](estado-cuenta.md): enviar el estado de cuenta a un cliente o en lote, y su registro.
 - [Cobradores](../cobradores.md): titulares, apoyos, reglas y ausencias.
 - [Cola de cobro](cola.md): a quién cobrar hoy.
 - [Generación de cobros](generacion.md): cómo se asignan los clientes y se arma la cola del día.
