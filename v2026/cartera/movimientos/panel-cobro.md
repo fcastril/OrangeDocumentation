@@ -125,7 +125,7 @@ En la columna azul aparecen:
 
 El PDF lista las facturas del cliente y los recibos de caja que las afectan.
 
-Este PDF requiere el permiso de **Facturas de venta**. Si además no tiene el permiso de **Recibos de caja**, la pantalla le avisa que falta ese permiso, porque el historial no puede mostrar los recibos.
+Este PDF requiere el permiso de **Facturas de venta**. Si además no tiene el permiso de **Recibos de caja**, la ventana le avisa que **el PDF solo traerá las facturas**, sin los recibos.
 
 [captura pendiente: diálogo del historial del cliente en PDF con rango de fechas y opciones]
 
@@ -250,7 +250,7 @@ Desde la columna del cliente, el icono **Enviar estado de cuenta** envía por co
 Además:
 
 - **Detalle** (ficha del cliente) aparece solo si tiene permiso para ver la ficha.
-- **Historial del cliente en PDF** requiere el permiso de **Facturas de venta**. Si falta el de **Recibos de caja**, la pantalla se lo avisa.
+- **Historial del cliente en PDF** requiere el permiso de **Facturas de venta**. Si falta el de **Recibos de caja**, la ventana avisa que el PDF solo trae las facturas.
 - **Registrar pago** requiere el permiso de **Crear** en **Recibos de caja** (opción 73).
 
 > ⚠️ Si no ve una acción, pida a su administrador el permiso que corresponde.
