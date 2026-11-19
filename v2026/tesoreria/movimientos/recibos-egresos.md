@@ -10,7 +10,7 @@
 ![Static Badge](https://img.shields.io/badge/Opcion-RecibosDeCaja-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
-![Static Badge](https://img.shields.io/badge/Actualizacion-20261112-yellow)
+![Static Badge](https://img.shields.io/badge/Actualizacion-20261118-yellow)
 
 ---
 
@@ -127,6 +127,21 @@ Los filtros están sobre la tabla y se pueden combinar:
 ![Sin permiso de consulta](../recursos/img/recibos-egresos/08-sin-permiso.png)
 
 > 📱 En el celular, o en una ventana angosta, cada documento se muestra como una tarjeta, con sus acciones visibles.
+
+---
+
+## 💼 Llegar desde el Panel de Cobro
+
+Cuando un cliente le informa que ya pagó, el cobrador puede abrir el recibo desde el [Panel de Cobro](../../cartera/movimientos/panel-cobro.md) de Cartera, sin buscarlo aquí.
+
+1. En el Panel de Cobro, pulse **Registrar pago** (icono de billetera) en la columna del cliente o en el formulario de gestión.
+2. Se abre en **otra pestaña** el **Nuevo recibo de caja**, con el **Cliente (tercero)** ya cargado. Así el cliente aparece de una vez.
+3. Elija el **Tipo de movimiento**. Al elegirlo, se cargan la factura y su saldo.
+4. Revise el recibo y guárdelo como cualquier otro.
+
+El Panel de Cobro queda abierto en su pestaña original.
+
+> ℹ️ El botón solo aparece para **clientes** y si tiene permiso de **Crear** en **Recibos de caja**.
 
 ---
 

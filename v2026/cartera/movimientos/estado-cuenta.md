@@ -10,7 +10,7 @@
 ![Static Badge](https://img.shields.io/badge/Opcion-351-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
-![Static Badge](https://img.shields.io/badge/Actualizacion-20261117-yellow)
+![Static Badge](https://img.shields.io/badge/Actualizacion-20261118-yellow)
 
 ---
 
@@ -56,6 +56,8 @@ El PDF es vertical y tiene:
 - **Resumen por edades**, con los tramos de la compañía (los de [Edades de cartera](../edades.md)).
 - **Total a pagar**, con el saldo y el vencido.
 - **Saldos a favor**, si el cliente tiene alguno, aparte del total.
+
+En el PDF, las columnas **Referencia** y **Tramo** tienen más ancho para que el texto se lea completo, y los totales van al pie de la tabla, en celdas propias.
 - **Pie**: el texto que la compañía configura (por ejemplo, datos de pago o contacto).
 
 El estado de cuenta usa las mismas cifras que el [Seguimiento de Cartera](seguimiento.md) y que [Cartera de terceros](../reportes/terceros.md) a la misma fecha de corte.

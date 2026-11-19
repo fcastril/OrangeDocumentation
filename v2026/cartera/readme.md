@@ -27,7 +27,8 @@ Manuales de las pantallas de Cartera en la nueva versión.
 ## Movimientos
 
 - [Seguimiento de Cartera](movimientos/seguimiento.md): la lista de clientes (por cobrar) y proveedores (por pagar) con su saldo, vencido y mora a una fecha de corte; registro de gestiones en un panel lateral, **Mis alertas**, semáforo de cupo y exportar a Excel o PDF.
-- [Cola de cobro](movimientos/cola.md): a quién cobrar hoy, ordenado por prioridad y con el motivo de cada cliente; vistas Mi cola, Equipo y Sin asignar; exportar a Excel o PDF. Requiere la fase 2.
+- [Panel de Cobro](movimientos/panel-cobro.md): la pantalla de trabajo diario del cobrador, cliente por cliente: cartera, historia de facturas, gestiones y compromisos, alertas, historial en PDF y registro del pago en el recibo de caja. Requiere la fase 2.
+- [Cola de cobro](movimientos/cola.md): a quién cobrar hoy, ordenado por prioridad y con el motivo de cada cliente; vistas Mi cola, Equipo y Sin asignar; exportar a Excel o PDF. Ya no está en el menú: el trabajo del día se hace desde el Panel de Cobro. Requiere la fase 2.
 - [Estado de cuenta por correo](movimientos/estado-cuenta.md): enviar a un cliente o en lote el PDF con sus documentos pendientes, con vista previa, registro de envíos, reintentos y plantilla del correo. Requiere la fase de envío de correo habilitada.
 - [Casos de cobro](movimientos/casos.md): escalar documentos vencidos de un cliente al cobro prejurídico (nivel 2); lista y ficha del caso, etapas, responsable, comunicaciones (PDF o correo), acuerdos de pago con cuotas, intereses de mora, control de centrales de riesgo, partes y prescripción. Requiere el nivel 2 activo y la fase 2 habilitada. El reporte a centrales lo hace la empresa fuera del sistema.
 - [Generación de cobros](movimientos/generacion.md): genera los cobros del día (asignaciones, reparto y cola) con vista previa, progreso, historial, deshacer y reintentar. Requiere la fase 2.

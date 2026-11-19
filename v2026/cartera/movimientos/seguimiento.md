@@ -487,7 +487,8 @@ Porque la gestión está fuera del horario de contacto configurado para la empre
 - [Casos de cobro](casos.md): escalar documentos de un cliente al cobro prejurídico (nivel 2).
 - [Estado de cuenta por correo](estado-cuenta.md): enviar el estado de cuenta a un cliente o en lote, y su registro.
 - [Cobradores](../cobradores.md): titulares, apoyos, reglas y ausencias.
-- [Cola de cobro](cola.md): a quién cobrar hoy.
+- [Panel de Cobro](panel-cobro.md): el trabajo diario de cobro, cliente por cliente.
+- [Cola de cobro](cola.md): a quién cobrar hoy (ya no está en el menú; use el Panel de Cobro).
 - [Generación de cobros](generacion.md): cómo se asignan los clientes y se arma la cola del día.
 - [Maestros de Cartera por tipo](../maestros.md): Clientes, Vendedores, Proveedores y Compradores desde el menú de Cartera.
 - [Ficha del cliente · Seguimiento de Cartera](../../ventas/clientes/ficha-seguimiento-cartera.md)

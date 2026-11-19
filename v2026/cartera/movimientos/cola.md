@@ -10,9 +10,11 @@
 ![Static Badge](https://img.shields.io/badge/Opcion-349-green)
 ![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
 
-![Static Badge](https://img.shields.io/badge/Actualizacion-20261117-yellow)
+![Static Badge](https://img.shields.io/badge/Actualizacion-20261118-yellow)
 
 ---
+
+> ℹ️ **Esta opción ya no aparece en el menú.** El trabajo diario de cobro se hace desde el [Panel de Cobro](panel-cobro.md), que está en el menú justo debajo de **Seguimiento de Cartera**. Lo que sigue se conserva como referencia.
 
 > ⚠️ Esta pantalla requiere que el administrador haya habilitado las tablas y los permisos de la **fase 2** de Seguimiento de Cartera. Si no los ve, consulte con su administrador.
 
@@ -31,7 +33,7 @@ Cada cobrador ve su propia cola en orden de prioridad. Quien supervisa el equipo
 ## 🎯 Acceso
 
 1. En el menú principal, haga clic en **Cartera**.
-2. En **Movimientos**, haga clic en **Cola de cobro**.
+2. En **Movimientos**, la opción **Cola de cobro** ya no aparece. Para el trabajo del día, use el [Panel de Cobro](panel-cobro.md).
 
 ---
 
