@@ -33,7 +33,7 @@ Responde a la pregunta **¿a quién llamo ahora?** Va cliente por cliente y, cua
 1. En el menú principal, haga clic en **Cartera**.
 2. En **Movimientos**, haga clic en **Panel de Cobro**. Aparece justo debajo de **Seguimiento de Cartera**.
 
-[captura pendiente: menú Movimientos de Cartera con Panel de Cobro debajo de Seguimiento de Cartera]
+![Menú Movimientos de Cartera con Panel de Cobro debajo de Seguimiento de Cartera](../recursos/img/panel-cobro/01-menu-panel-cobro.png)
 
 También puede llegar desde el aviso de alertas que aparece al entrar a Cartera (ver [Alertas al entrar a Cartera](#-alertas-al-entrar-a-cartera)).
 
@@ -41,7 +41,7 @@ También puede llegar desde el aviso de alertas que aparece al entrar a Cartera 
 
 ## 🖥️ Pantalla principal
 
-[captura pendiente: Panel de Cobro completo con la cabecera, la columna del cliente y las pestañas]
+![Panel de Cobro con la cabecera, la columna del cliente y las pestañas](../recursos/img/panel-cobro/02-panel-completo.png)
 
 La pantalla tiene tres partes que no se mueven al desplazarse ni al cambiar de pestaña:
 
@@ -96,7 +96,7 @@ No tiene que buscar dónde iba.
 
 ## 🧍 Columna del cliente
 
-[captura pendiente: columna del cliente con sus datos, sucursal e iconos de acción]
+![Columna del cliente con sus datos, sucursal e iconos de acción](../recursos/img/panel-cobro/03-columna-cliente.png)
 
 En la columna azul aparecen:
 
@@ -127,13 +127,13 @@ El PDF lista las facturas del cliente y los recibos de caja que las afectan.
 
 Este PDF requiere el permiso de **Facturas de venta**. Si además no tiene el permiso de **Recibos de caja**, la ventana le avisa que **el PDF solo traerá las facturas**, sin los recibos.
 
-[captura pendiente: diálogo del historial del cliente en PDF con rango de fechas y opciones]
+![Ventana del historial del cliente en PDF con rango de fechas y opciones](../recursos/img/panel-cobro/04-historial-pdf.png)
 
 ---
 
 ## 📊 Pestaña Cartera
 
-[captura pendiente: pestaña Cartera con las dos tablas y una factura seleccionada]
+![Pestaña Cartera con las dos tablas y una factura seleccionada](../recursos/img/panel-cobro/05-pestana-cartera.png)
 
 La pestaña tiene dos tablas, cada una con su propio desplazamiento:
 
@@ -146,7 +146,7 @@ Haga clic en una factura para ver su historia a la derecha. Los saldos y la mora
 
 ## ✍️ Pestaña Gestiones y compromisos
 
-[captura pendiente: formulario de gestión con el panel de acento, listas de canal y resultado, e historial a la derecha]
+![Formulario de gestión con la lista de Canal abierta (icono y color) e historial a la derecha](../recursos/img/panel-cobro/06-gestion-listas.png)
 
 Aquí registra lo que pasó con el cliente. El formulario está a la izquierda, con su propio desplazamiento, y el historial a la derecha.
 
@@ -219,7 +219,7 @@ Los botones son:
 
 Si no tiene alertas, el aviso no aparece.
 
-[captura pendiente: aviso «Tienes alertas de cobro por atender» con sus botones]
+![Aviso «Tienes alertas de cobro por atender» con sus botones](../recursos/img/panel-cobro/07-aviso-alertas.png)
 
 ---
 
