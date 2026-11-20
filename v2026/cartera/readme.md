@@ -12,7 +12,7 @@ Manuales de las pantallas de Cartera en la nueva versión.
 
 ## Gerencia
 
-- [Dashboard de Cartera](dashboard.md): la vista de gerencia de la cartera en una pantalla: saldo, vencido y días de cartera con comparación, aging por tramos, terceros con mayor saldo, clientes sobre cupo, cubrimiento y efectividad de cobro; exportar a Excel. Requiere el permiso del menú gerencial.
+- [Dashboard de Cartera](dashboard.md): la vista de gerencia de la cartera en cinco pestañas (Resumen, Comparativos, Análisis financiero, Edades y Cobro): saldo, vencido y días de cartera con comparación, explorador por dimensión y Pareto, campana de Gauss, evolución de 12 meses, indicadores financieros, cubrimiento, embudo de cobro y «Qué mirar hoy»; exportar a Excel. Requiere el permiso del menú gerencial.
 
 ## Maestros
 
