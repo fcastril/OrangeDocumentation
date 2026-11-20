@@ -1,0 +1,268 @@
+[Regresar a Cartera](readme.md)
+
+---
+
+# ⚙️ Parámetros de cartera
+
+![Static Badge](https://img.shields.io/badge/Tipo-Configuraci%C3%B3n-red)
+![Static Badge](https://img.shields.io/badge/Module-Cartera-orange)
+![Static Badge](https://img.shields.io/badge/Submodule-Maestros-blue)
+![Static Badge](https://img.shields.io/badge/Opcion-Par%C3%A1metros%20de%20cartera-green)
+![Static Badge](https://img.shields.io/badge/Version-V2026-purple)
+
+![Static Badge](https://img.shields.io/badge/Actualizacion-20261115-yellow)
+
+---
+
+## 📋 Descripción
+
+Los **parámetros de cartera** son la configuración de la cobranza de la compañía. Están en una sola página, con cuatro bloques:
+
+- **Cobranza**: el nivel de cobranza.
+- **Semáforo de cupo**: a qué porcentaje del cupo de crédito cambia el color del semáforo.
+- **Reparto de cartera**: el modo de reparto por defecto y el tope diario por cobrador.
+- **Horarios de contacto**: en qué horas y días se puede contactar a un deudor, y cuántas veces por semana.
+
+Cada compañía tiene **un solo juego de parámetros**. Si todavía no los ha guardado, la pantalla muestra los valores por defecto y no guarda nada hasta que usted pulse **Guardar**.
+
+> ⚠️ Los **horarios de contacto** están marcados **Por validar**: un abogado de cobranza debe confirmarlos antes de usarlos como regla definitiva.
+
+> 📘 Cada pestaña del navegador trabaja con **una compañía**. El nombre de la compañía se ve en el título de la pestaña y en la barra superior.
+
+---
+
+## 🎯 Acceso
+
+1. En el menú principal, haga clic en **Cartera**.
+2. En **Maestros**, haga clic en **Parámetros de cartera**.
+
+---
+
+## 🖥️ Pantalla principal
+
+![Parámetros de cartera](recursos/img/parametros/01-formulario.png)
+
+| Elemento | Para qué sirve |
+|----------|----------------|
+| **?** (junto al título) | Abre esta ayuda en un panel lateral, sin salir de la pantalla. |
+| **Descartar cambios** | Vuelve a los valores guardados sin guardar lo que escribió. |
+| **Guardar** | Guarda los parámetros de la compañía. Es el único botón de color sólido. |
+
+Los botones de la parte inferior solo aparecen cuando su perfil puede cambiar los parámetros.
+
+**¿No ve los botones?** Su perfil solo tiene el permiso **Consultar** sobre la opción Parámetros de cartera. Verá la pantalla con el aviso *Tu perfil solo permite consultar estos parámetros.*, con todos los campos deshabilitados.
+
+![Solo consulta](recursos/img/parametros/05-solo-consulta.png)
+
+| Permiso | Qué habilita |
+|---------|--------------|
+| Consultar | Ver la pantalla |
+| Actualizar | Cambiar los campos, **Guardar** y **Descartar cambios** |
+
+> 📱 En pantallas angostas, los bloques se muestran uno debajo del otro, y los botones ocupan todo el ancho.
+
+---
+
+## 💾 Guardar los parámetros
+
+1. Cambie los valores que necesite.
+2. Haga clic en **Guardar**.
+3. Verá el mensaje **"Parámetros de cartera guardados."**
+
+Si no está seguro de un cambio, use **Descartar cambios** antes de guardar: la pantalla vuelve a lo último que se guardó.
+
+Si algún campo no es válido, no se guarda nada. Aparece el aviso **"Corrija los campos marcados para guardar."**, el campo con error queda marcado con su motivo y el cursor va al primero que debe corregir.
+
+![Validación al guardar](recursos/img/parametros/03-validacion.png)
+
+---
+
+## 🧩 Bloques de la pantalla
+
+> ⚠️ Los valores de **Reparto de cartera** y **Horarios de contacto** son los que usan las funciones de cobro de la **fase 2** (cobradores, cola de cobro y generación de cobros). Esas funciones requieren que el administrador haya habilitado sus tablas y permisos.
+
+En la fase 2, esta pantalla muestra estos bloques dentro de la sección **Cobro: reparto, horarios y frecuencia**:
+
+![Sección de cobro en parámetros](recursos/img/seguimiento-f2/pm-01-cobro.png)
+
+
+### Cobranza
+
+- **Nivel de cobranza**: puede elegir **Nivel 1 · Básico** o **Nivel 2 · Prejurídico**.
+  - **Nivel 1 · Básico** (por defecto): la consulta de cartera, el seguimiento, los cobradores y el estado de cuenta. Con este nivel, la cobranza prejurídica no aparece en ninguna pantalla.
+  - **Nivel 2 · Prejurídico**: agrega los casos de cobro, las etapas y el escalamiento de documentos. Ver *Nivel 2 · Prejurídico* más abajo.
+- **Nivel 3 · Jurídico** aparece deshabilitado. Estará disponible con el cobro jurídico, todavía no está disponible. Si se intenta guardar, el sistema lo rechaza con el mensaje *Ese nivel de cobranza todavía no está disponible para esta compañía.*
+
+### Nivel 2 · Prejurídico
+
+Para activar el nivel 2:
+
+1. Necesita el permiso **Actualizar** de esta opción (344).
+2. La fase 2 de Seguimiento de Cartera debe estar habilitada, porque los responsables de los casos son cobradores. Si no lo está, el nivel 2 no se puede elegir.
+3. Elija **Nivel 2 · Prejurídico** y guarde.
+
+Al activarlo, las **etapas de cobro** se cargan (Preventivo, Administrativo, Prejurídico, Acuerdo de pago, Jurídico y Cerrado). Puede cambiarlas en [Etapas de cobro](etapas.md).
+
+Bajar de nivel 2 a nivel 1 **no borra nada**: los casos siguen guardados, pero ocultos. Los acuerdos vigentes siguen avisando hasta cerrarse.
+
+> ℹ️ Con el nivel 2 están disponibles los casos, las comunicaciones, los acuerdos de pago, los intereses, el control de centrales, las partes y la prescripción. Su manual está en [Casos de cobro](movimientos/casos.md).
+>
+> ⚠️ **Por validar.** Los parámetros legales los debe validar el abogado de su empresa. Esta pantalla no es asesoría jurídica.
+
+Ver el uso de los casos en [Casos de cobro](movimientos/casos.md).
+
+### Semáforo de cupo
+
+El semáforo de cupo indica qué tan cerca está un cliente de su límite de crédito. Estos dos porcentajes marcan los cambios de color:
+
+| Campo | Por defecto | Regla |
+|-------|:-----------:|-------|
+| **Alerta desde (% del cupo)** | 80 | Entero entre 1 y 200, y menor que el sobrecupo. |
+| **Sobrecupo desde (% del cupo)** | 100 | Entero entre 1 y 200, y mayor que la alerta. |
+
+Ejemplo: con alerta en 70 y sobrecupo en 90, un cliente que usa el 75 % de su cupo entra en **alerta**.
+
+Los mensajes de error son *La alerta debe estar entre 1 y 200 y ser menor que el sobrecupo.* y *El sobrecupo debe estar entre 1 y 200 y ser mayor que la alerta.*
+
+### Reparto de cartera
+
+- **Modo de reparto por defecto**: **Manual** (solo aplica las reglas y las asignaciones), **Por zona** (reparte los clientes de cada zona entre los cobradores que tienen regla en esa zona) o **Por carga de trabajo** (reparte entre todos los cobradores activos según su carga). Es el modo que se propone al generar los cobros.
+- **Tope diario por cobrador**: número de cuentas que puede recibir un cobrador en un día. Déjelo **vacío** para no poner tope. Si escribe algo, debe ser un entero de 1 o más. Un tope propio del cobrador tiene prioridad sobre este.
+- **Los apoyos reciben aviso**: si está activado, se avisa también a los cobradores de apoyo cuando se les asigna cartera.
+
+> ℹ️ Un cambio aplica a la **siguiente** generación de cobros o a la **siguiente** gestión que se registre. **No recalcula** la cola de hoy.
+>
+> Si la empresa no tiene parámetros guardados, se usan los valores iniciales: modo **Manual**, apoyos avisados y frecuencia de 2 contactos por semana.
+
+### Horarios de contacto (por validar)
+
+Estos valores se toman de la norma de contacto a deudores tal como la entiende el equipo, y están marcados **Por validar**. Puede editarlos y guardarlos; un abogado de cobranza debe confirmarlos antes de usarlos como regla definitiva.
+
+| Campo | Por defecto | Regla |
+|-------|-------------|-------|
+| **Lunes a viernes, desde / hasta** | 07:00 a 19:00 | Formato HH:MM de 24 horas. La hora inicial debe ser anterior a la final. |
+| **Sábado, desde / hasta** | 08:00 a 15:00 | Formato HH:MM. Si los dos están **vacíos**, no se contacta los sábados. |
+| **Permitir contacto domingos y festivos** | Apagado | Por defecto no se contacta domingos ni festivos. |
+| **Máximo de contactos por tercero y semana** | 2 | Entero de 1 o más. Déjelo **vacío** para no limitar. |
+
+Las advertencias de horario y frecuencia aparecen en la gestión de cobro antes de guardar. Son **solo advertencias**: nunca impiden registrar una gestión, y no son asesoría legal.
+
+Los errores típicos son *Escriba la hora como HH:MM (por ejemplo 07:00).* y *La hora inicial debe ser anterior a la final.*
+
+---
+
+## ✉️ Plantilla del correo de estado de cuenta
+
+Aquí se configura el texto del correo que recibe el cliente con su estado de cuenta, y el pie que también sale en el PDF. Necesita el permiso **Actualizar** de esta opción (344).
+
+![Plantilla del correo](recursos/img/estado-cuenta/p-01-plantilla.png)
+
+| Campo | Regla |
+|-------|-------|
+| **Asunto** | Obligatorio. Hasta 200 caracteres. |
+| **Mensaje** | Texto sin formato (sin HTML ni imágenes). Hasta 2.000 caracteres. Puede usar los campos combinados. |
+| **Pie del mensaje y del PDF** | Hasta 500 caracteres. Aparece al final del correo y del PDF (por ejemplo, datos de pago o de contacto). |
+| **Copia por defecto (CC)** | Hasta 5 correos separados por coma. Vienen cargados en cada envío y puede cambiarlos solo para ese envío. |
+| **Responder a** | Opcional. El correo al que responde el cliente. Hasta 150 caracteres. |
+
+### Campos combinados
+
+Escriba el campo en el texto y, al enviar, el sistema lo reemplaza por el dato del cliente. También puede usar el botón **Insertar** de cada campo.
+
+| Campo | Se reemplaza por |
+|-------|------------------|
+| `{{tercero}}` | Nombre del cliente. |
+| `{{empresa}}` | Nombre de la compañía. |
+| `{{corte}}` | Fecha de corte del estado de cuenta. |
+| `{{saldo}}` | Saldo total del cliente. |
+| `{{vencido}}` | Saldo vencido. |
+| `{{documentos}}` | Cantidad de documentos con saldo. |
+| `{{contacto}}` | Nombre del usuario que envía. |
+
+Cualquier otro campo entre llaves no se reconoce: al guardar, el sistema le indica el campo a corregir.
+
+Antes de guardar, la **vista previa con datos ficticios** muestra cómo queda el correo. Los datos de la vista previa no son de ningún cliente real.
+
+![Validación de la plantilla](recursos/img/estado-cuenta/p-02-validacion.png)
+
+| Mensaje | Qué hacer |
+|---------|-----------|
+| **El asunto no puede estar vacío.** | Escriba el asunto. |
+| **Revisa N campos de la plantilla.** | Corrija los campos marcados. |
+
+> ℹ️ Si la compañía no ha guardado una plantilla, se usa el texto inicial del sistema. Al guardarla, reemplaza ese texto para todos los envíos nuevos. Los envíos ya registrados no cambian.
+
+---
+
+## ⚖️ Cobro prejurídico: parámetros legales
+
+Esta sección aparece con el nivel 2 activo. Reúne los valores que usa el cobro prejurídico. **Todos están por validar** y los debe validar el abogado de la empresa.
+
+![Parámetros de cobro prejurídico](recursos/img/prejuridico/p-01-parametros.png)
+
+| Parámetro | Por defecto | Qué hace |
+|-----------|-------------|----------|
+| **Días de aviso previo a centrales** | **Sin valor** | Días entre el aviso a centrales y la fecha en que se puede reportar. La compañía lo define; el sistema no lo supone. Mientras esté vacío, el control de centrales dice que falta configurarlo. |
+| **Factor sobre la tasa de mora (%)** | 100 | Porcentaje de la tasa de mora que se aplica en la liquidación de intereses. |
+| **Días del año para los intereses** | 365 | Base de días para convertir la tasa anual en diaria. |
+| **Días de tolerancia por cuota** | 0 | Días después del vencimiento en que una cuota todavía se considera cubierta. |
+| **Días de anticipación de la alerta de prescripción** | 90 | Con cuántos días de anticipación se avisa que un documento se acerca a su prescripción. |
+
+### Plazos de prescripción
+
+Son los años que, según su tipo de movimiento, transcurren antes de la prescripción. Se toman desde la fecha de vencimiento del documento (o desde su última interrupción).
+
+| Columna | Qué muestra |
+|---------|-------------|
+| **Tipo de movimiento** | Cada tipo de documento de la compañía. |
+| **Plazo (años)** | Un número entero de 1 a 20. Vacío = **Sin plazo**. |
+
+La fila **Los demás tipos (por defecto)** aplica a los tipos que no tengan plazo propio.
+
+> ℹ️ Las reglas nacen **sin plazo**: el sistema no inventa términos. Mientras un tipo no tenga plazo, no hay alertas de prescripción para él. La pantalla de prescripción dice dónde configurarlo.
+
+### Validación
+
+Cada parámetro y plazo muestra **Por validar** hasta que el abogado lo valide en la validación legal (permiso **Actualizar** de la opción 356). Cambiar el valor lo devuelve a **Por validar**. Use **Guardar parámetros** para guardar los cambios.
+
+Las advertencias de horario y frecuencia se muestran con confirmación. Ninguna bloquea el trabajo, salvo que falte un dato imprescindible, como la tasa de un mes o los días de aviso previo.
+
+---
+
+## ⚠️ Cambios de otros usuarios
+
+Esta pantalla **no se actualiza sola** cuando otro usuario cambia los parámetros. Si otra persona guardó mientras usted los editaba, verá el aviso:
+
+> *Otro usuario guardó parámetros mientras editabas. Al guardar se reemplazarán por los tuyos.*
+
+Puede seguir y guardar: **gana el último que guarda**, es decir, sus valores reemplazan los de la otra persona. Si prefiere ver lo que guardó el otro usuario, use **Descartar cambios** o recargue la página antes de guardar.
+
+![Otro usuario guardó](recursos/img/parametros/06-otro-usuario-guardo.png)
+
+---
+
+## ❓ Preguntas frecuentes
+
+**¿Por qué la pantalla muestra valores si nunca los guardé?**
+Son los valores por defecto. Se guardan la primera vez que pulse **Guardar**. Hasta entonces, la pantalla le avisa con *Esta compañía aún no guardó parámetros: se muestran los valores por defecto.*
+
+**¿Por qué no puedo elegir el nivel 2?**
+Porque la fase 2 de Seguimiento de Cartera (cobradores) no está habilitada para la compañía, o porque su perfil no tiene el permiso de Actualizar en esta opción.
+
+**¿Por qué no puedo elegir el nivel 3?**
+El nivel jurídico todavía no está disponible para la compañía.
+
+**¿Qué significa "Por validar"?**
+Que los horarios de contacto son una propuesta basada en la norma, pendiente de confirmación por un abogado de cobranza. Puede usarlos y guardarlos, pero no los trate como una regla definitiva hasta esa confirmación.
+
+**¿Dejar vacío el tope diario o la frecuencia cambia algo?**
+Sí, quita el límite: sin tope diario por cobrador, o sin máximo de contactos por tercero y semana.
+
+**¿Cambiar los parámetros cambia la cartera que ya vi?**
+No. Los cambios aplican a las consultas que se hagan después de guardar. No modifican los datos guardados.
+
+**No puedo guardar y no veo el botón Guardar.**
+Su perfil solo puede consultar esta pantalla. Consulte con el administrador de OrangeERP si necesita cambiarla.
+
+**Veo "Tu perfil ya no permite esta acción".**
+Sus permisos cambiaron mientras tenía la pantalla abierta. Recargue la página para ver sus permisos actualizados.

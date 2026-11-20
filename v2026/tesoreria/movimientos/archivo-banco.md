@@ -26,7 +26,7 @@ El trabajo se hace en tres pasos, que se ven arriba de la pantalla:
 
 > ℹ️ Generar el archivo **no crea ni cambia egresos ni asientos**. Solo registra que ese egreso ya se envió al banco.
 
-> ⚠️ Un egreso marcado como exportado **no se vuelve a incluir** en otro archivo. Si necesita el mismo archivo otra vez, use **Descargar de nuevo** en el historial (ver [Historial y Descargar de nuevo](#-historial-y-descargar-de-nuevo)).
+> ⚠️ Un egreso exportado en un archivo vigente **no se vuelve a incluir** en otro archivo. Si anula el archivo, sus egresos vuelven a la selección. Para descargar otra vez el mismo archivo, use **Descargar de nuevo** en el historial (ver [Historial y Descargar de nuevo](#-historial-y-descargar-de-nuevo)).
 
 > 💡 Antes de empezar, revise que la **forma de pago** tenga su cuenta bancaria de la empresa (ver [Requisitos](#-requisitos)). Si no la tiene, la pantalla le dice qué falta.
 
@@ -50,7 +50,7 @@ Antes de generar un archivo, revise estos cuatro puntos. La pantalla le avisa si
 
 | Requisito | Dónde se revisa | Qué debe tener |
 |-----------|-----------------|----------------|
-| **Permisos** | Su perfil | **Consultar** para ver y validar. **Exportar** para generar, descargar y exportar el informe. Ver [Permisos](#-permisos). |
+| **Permisos** | Su perfil | **Consultar** para ver y validar, **Exportar** para generar y descargar, y **Anular** para anular archivos. Ver [Permisos](#-permisos). |
 | **Cuenta bancaria de la empresa** | [Formas de pago](../maestros/formas-pago.md#-cuenta-bancaria-de-la-empresa) | Número de cuenta (solo dígitos, hasta 11), tipo de cuenta (**Ahorros** o **Corriente**) y **Banco de la cuenta**. Los tres van juntos. |
 | **Banco PAB** | [Bancos](../maestros/bancos.md#-banco-pab-archivo-de-pagos-a-banco) | Cada banco en el que tiene proveedores debe tener su **Banco PAB**, el código del banco en el archivo. Sin él, esos proveedores salen con error. |
 | **Datos bancarios completos del proveedor** | Ficha del proveedor | Tipo de cuenta (ahorros o corriente), número de cuenta, banco, tipo y número de documento, y nombre. |
@@ -69,10 +69,12 @@ Cada acción depende de los permisos de su perfil sobre la opción **Archivo de 
 |---------|--------------|
 | Consultar | Ver la pantalla, buscar egresos, **Validar**, ver el informe y el **Historial**. |
 | Exportar | **Generar archivo**, **Generar y descargar**, **Descargar de nuevo** y **Exportar informe**. |
+| Anular | **Anular** un archivo del historial. También necesita el permiso **Exportar**. |
 
 Qué ve según sus permisos:
 
-- **Solo Consultar**: puede buscar y validar. No ve **Generar archivo**, **Descargar de nuevo** ni **Exportar informe**. Verá el aviso *Solo puedes consultar y validar; generar requiere el permiso de exportar.*
+- **Solo Consultar**: puede buscar y validar. No ve **Generar archivo**, **Descargar de nuevo**, **Anular** ni **Exportar informe**. Verá el aviso *Solo puedes consultar y validar; generar requiere el permiso de exportar.*
+- **Sin Anular**: en el historial no aparece el botón **Anular**.
 - **Sin acceso a la opción**: la pantalla muestra *No tienes permiso para ver Archivo de pagos a banco*, y la opción no aparece en el menú.
 
 ![Solo consulta: sin botones de generar ni exportar](../recursos/img/archivo-banco/34-solo-consulta.png)
@@ -116,7 +118,7 @@ Por defecto, las fechas van desde el primer día del mes hasta hoy.
 | *El rango no puede superar 92 días* | Acorte las fechas. |
 | *Desde no puede ser mayor que hasta* | Corrija el orden de las fechas. |
 
-> ℹ️ Solo se listan egresos **vigentes** (no anulados) de su compañía, de la forma de pago elegida, que todavía **no se hayan enviado** en un archivo.
+> ℹ️ Solo se listan egresos **vigentes** (no anulados) de su compañía, de la forma de pago elegida, que no estén enviados en un archivo vigente.
 
 ### Marcar egresos
 
@@ -259,7 +261,7 @@ En ese resultado tiene tres opciones:
 
 El archivo es **plano**: no lo abra ni lo edite en Excel ni en un editor de texto, porque puede cambiar sus espacios y su longitud. Súbalo tal como se descargó, en la banca virtual de su banco, según el procedimiento de pagos a proveedores que tenga habilitado su empresa.
 
-> ⚠️ Si el banco rechaza el archivo, no lo corrija a mano. Los egresos ya quedaron marcados como exportados y reenviarlos requiere un ajuste de la compañía: consulte con su administrador de OrangeERP.
+> ⚠️ Si el banco rechaza el archivo, no lo corrija a mano. Anúlelo con un motivo y genere uno nuevo con los egresos liberados. Anule **solo si el banco lo rechazó**: hacerlo después de que el banco procese los pagos podría permitir que se paguen dos veces. Vea [Anular un archivo](#-anular-un-archivo).
 
 > 📌 Antes de usar esta herramienta para pagos reales, coordine con su banco una prueba con un archivo de ejemplo, para confirmar que lo acepta.
 
@@ -282,6 +284,8 @@ La pestaña **Historial** lista los archivos generados por su compañía.
 | **Estado** | **Vigente**, o **Anulado** si se anuló (solo lectura). |
 
 Puede filtrar por **Fecha desde** y **Fecha hasta**, y limpiar el filtro con **Limpiar filtros**. Si no hay archivos, verá *Aún no se han generado archivos*. Si el rango no tiene archivos, verá *No hay archivos en ese rango*.
+
+**Mostrar anulados** está activado al abrir la pantalla. Si lo desmarca, el historial oculta los archivos anulados; vuelva a marcarlo para verlos.
 
 ### Descargar de nuevo
 
@@ -308,6 +312,62 @@ Sin el permiso **Exportar**, el **Historial** se ve, pero no aparece **Descargar
 
 ---
 
+## ⛔ Anular un archivo
+
+Anular **da de baja un archivo** que no debe usarse. No se borra: queda en el historial como **Anulado**, con su motivo, y sus egresos vuelven a la selección para incluirse en un archivo nuevo.
+
+### Cuándo anular
+
+Anule un archivo **solo si el banco lo rechazó**. Si el banco ya recibió y procesó el archivo, anularlo en OrangeERP no cancela esos pagos: los egresos quedarían libres para enviarse otra vez y el proveedor podría cobrar dos veces.
+
+> ⚠️ **Advertencia de pago doble.** Si ya subió el archivo al banco, anúlelo solo si el banco lo rechazó; si no, se puede pagar dos veces.
+
+### Pasos
+
+1. En la pestaña **Historial**, busque el archivo y haga clic en **Anular** en esa fila.
+2. Lea la advertencia: los egresos quedarán libres para un archivo nuevo y la acción no se puede deshacer.
+3. Escriba el **Motivo de la anulación**, de **1 a 200 caracteres**. El motivo es obligatorio.
+4. Haga clic en **Anular archivo**.
+
+![Diálogo para anular el archivo](../recursos/img/archivo-banco/40-anular-dialogo-advertencia.png)
+
+Mientras se anula, el botón muestra una carga y el diálogo no se puede cerrar. Al terminar, la pantalla confirma: *Archivo {nombre} anulado; sus egresos volvieron a la selección.*
+
+![Anulación en curso](../recursos/img/archivo-banco/41-anular-en-curso.png)
+
+### Qué pasa con los egresos
+
+- Los egresos del archivo anulado vuelven a aparecer en la **selección** y se pueden incluir en un archivo nuevo.
+- El número de secuencia del día de ese archivo queda libre.
+- Ningún egreso se borra ni cambia de valor.
+
+### Cómo se ve un archivo anulado
+
+En el historial, el archivo muestra la etiqueta **Anulado**, el motivo y quién lo anuló y cuándo.
+
+![Historial con archivos anulados](../recursos/img/archivo-banco/38-anulados-en-historial.png)
+
+En un archivo anulado, **Descargar de nuevo** aparece deshabilitado. Si intenta bajarlo, la pantalla dice: *El archivo está anulado y no se puede descargar de nuevo.*
+
+![Historial sin archivos anulados](../recursos/img/archivo-banco/39-filtro-ocultar-anulados.png)
+
+Si otra persona anula el mismo archivo antes que usted, la pantalla avisa que ya estaba anulado y actualiza el historial. No se anula dos veces.
+
+![Archivo ya anulado](../recursos/img/archivo-banco/42-ya-anulado-409.png)
+
+---
+
+## ✏️ Corregir un archivo
+
+El archivo generado **no se edita**. Corrija el dato de origen —del proveedor, de la cuenta de la empresa en la forma de pago o del **Banco PAB**— y luego:
+
+- Use **Descargar de nuevo** si el banco todavía no recibió el archivo. La pantalla lo regenera con el dato corregido y avisa si el contenido cambió.
+- **Anule** el archivo y genere uno nuevo con los egresos liberados si el banco lo rechazó.
+
+> ⚠️ Nunca suba al banco dos archivos con los mismos pagos. Si el original ya llegó al banco, no genere ni suba otro sin anularlo antes.
+
+---
+
 ## ⚙️ Configuración que falta
 
 Si la forma de pago no está lista para generar el archivo, la pantalla no muestra el informe. En su lugar verá una alerta con el dato que falta:
@@ -327,7 +387,7 @@ Si el banco de la cuenta todavía no tiene generador de archivo, verá *El banco
 
 ## 🔄 Cambios de otros usuarios (en vivo)
 
-Si otra persona genera un archivo mientras usted tiene esta pantalla abierta, **no tiene que recargar**. Los egresos enviados salen de su tabla. Si los tenía marcados, se desmarcan solos, y verá el aviso *Otro usuario generó un archivo: se quitaron n egresos de la selección*.
+Si otra persona genera un archivo mientras usted tiene esta pantalla abierta, **no tiene que recargar**. Los egresos enviados salen de su tabla. Si los tenía marcados, se desmarcan solos, y verá el aviso *Otro usuario generó un archivo: se quitaron n egresos de la selección*. Si otra persona anula un archivo, el historial se actualiza solo.
 
 La validación anterior también se descarta, así que debe validar de nuevo. El **Historial** suma el nuevo archivo.
 
@@ -403,10 +463,10 @@ No. Use el enlace **Corregir** del informe: se abre la ficha del proveedor en ot
 Sí. Cada archivo del día tiene su propia secuencia (A1, A2 y así sucesivamente) para ese banco. Hay un máximo de archivos por día; si se agota, genere al día siguiente.
 
 **¿Qué hago si el banco rechaza el archivo?**
-No lo corrija a mano. Consulte el motivo con su banco y con su administrador de OrangeERP, porque los egresos ya quedaron marcados como exportados.
+No lo corrija a mano. Si el banco lo rechazó, anule el archivo con un motivo y genere uno nuevo con los egresos liberados. No lo anule si el banco ya procesó los pagos.
 
 **¿Puedo anular un archivo para volver a enviar sus egresos?**
-Por ahora no desde esta pantalla. Consulte con su administrador de OrangeERP.
+Sí, si el banco lo rechazó. Anularlo libera sus egresos para otro archivo, pero no cancela pagos que el banco ya procesó. Vea [Anular un archivo](#-anular-un-archivo).
 
 **¿Por qué las cuentas aparecen con asteriscos?**
 Por privacidad. En pantalla, en el informe y en el Excel solo se muestran los últimos 4 dígitos.
