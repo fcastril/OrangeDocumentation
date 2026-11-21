@@ -107,6 +107,8 @@ Estas reglas se revisan solo cuando guarda una cuenta nueva o editada. Las cuent
 
 Si cambia algo y sale sin guardar, la pantalla le pregunta **¿Salir sin guardar?**. Si sale, se pierden los cambios.
 
+Al guardar, la pantalla confirma en la misma ficha con el aviso **Cuenta 1105 guardada.** (con el código de la cuenta). Antes, ese aviso solo aparecía al crear una cuenta.
+
 Si otro usuario cambia la misma cuenta mientras usted la edita, la pantalla le avisa. Puede seguir con sus cambios o pulsar **Recargar la cuenta**.
 
 ### Cambios que afectan los movimientos
@@ -126,7 +128,7 @@ El servidor vuelve a revisar estas reglas al guardar. Si un cambio queda bloquea
 
 ## Las pestañas de la ficha
 
-Al crear, la ficha tiene tres pestañas: **General**, **Comportamiento** y **Equivalencia**. Al editar, aparecen también **Movimientos**, **Saldos por tercero**, **Jerarquía** e **Historial**.
+Al crear, la ficha tiene tres pestañas: **General**, **Comportamiento** y **Equivalencia**. Al editar, aparecen también **Movimientos**, **Saldos por tercero**, **Jerarquía**, **Dónde se usa** e **Historial**.
 
 ### General
 
@@ -159,6 +161,20 @@ Si la cuenta tiene un mayor que no existe en su compañía, la pestaña dice **S
 
 ![Jerarquía: elegir otro mayor](recursos/img/plan-cuentas/16-jerarquia-mover.png)
 
+### Dónde se usa
+
+Aparece al editar una cuenta guardada. Muestra todo lo que usa esa cuenta, con una tabla de tres columnas:
+
+- **Dónde**: la categoría de uso (por ejemplo, movimientos contables, saldos con valor, cuentas hijas o terceros).
+- **Cantidad**: cuántos registros hay en esa categoría.
+- **Impide eliminar**: **Sí, bloquea** cuando esa categoría impide eliminar la cuenta; **No** cuando no la impide.
+
+Si la cuenta no tiene ningún uso, la tabla dice **Sin uso** y **Nada la usa: se puede eliminar.**
+
+Si solo tiene **filas de saldo en cero** del cierre de períodos, la pestaña avisa que esas filas no cuentan como uso y que se eliminan junto con la cuenta.
+
+Esta pestaña usa la misma comprobación que bloquea **Eliminar**: lo que aquí aparece como bloqueo es lo que impide eliminar la cuenta. Si no puede consultarla, aparece **No se pudo consultar dónde se usa la cuenta.**
+
 ## Movimientos y saldos por tercero
 
 Estas dos pestañas son las únicas donde se ven valores de la cuenta. Se consultan al abrirlas, no al abrir la ficha, y necesitan permiso de **consulta**.
@@ -169,7 +185,9 @@ Es el libro de la cuenta por período contable.
 
 1. Elija el **Período**. Viene seleccionado el período actual. Un período cerrado aparece marcado como **Período cerrado**.
 2. Use los filtros **Tercero**, **Centro de costos** y **Tipo de movimiento** si necesita acotar.
-3. Revise la tabla: fecha, tipo de movimiento, consecutivo, documento de referencia, tercero, centro de costos, descripción, débito, crédito y saldo acumulado.
+3. Revise la tabla: fecha, tipo de movimiento, consecutivo, documento de referencia, **Tercero**, centro de costos, descripción, débito, crédito y saldo acumulado.
+
+La columna **Tercero** muestra el documento y el nombre del tercero del movimiento. Si el movimiento no tiene tercero, aparece **—**.
 
 Los totales de arriba son de **toda la cuenta en el período**, no de la página que ve: saldo inicial, débitos, créditos, neto (D − C) y saldo final. El saldo final es el saldo inicial, más débitos, menos créditos.
 
@@ -219,7 +237,7 @@ No se elimina nada. La pantalla muestra **No se puede eliminar** y, para cada ti
 - Notas bancarias y sus conceptos.
 - Otras configuraciones, como formas de pago, impuestos o grupos.
 
-Para poder eliminarla, primero libere cada uso.
+Para poder eliminarla, primero libere cada uso. Para ver el detalle por categoría, abra la pestaña **Dónde se usa** de la ficha.
 
 ![Eliminar: cuenta en uso](recursos/img/plan-cuentas/22-eliminar-en-uso.png)
 
@@ -229,7 +247,7 @@ Para poder eliminarla, primero libere cada uso.
 
 El botón **Consultas** del listado abre tres consultas. Necesita permiso de **consulta**.
 
-- **Auxiliar de la cuenta**: el libro de una cuenta en un rango de períodos, a pantalla completa. Elija la cuenta, el **Período desde** y el **Período hasta**, y pulse **Consultar**. Si el período inicial es posterior al final, la pantalla no consulta y se lo indica.
+- **Auxiliar de la cuenta**: el libro de una cuenta en un rango de períodos, a pantalla completa. Elija la cuenta, el **Período desde** y el **Período hasta**, y pulse **Consultar**. Si el período inicial es posterior al final, la pantalla no consulta y se lo indica. Trae la columna **Tercero** (documento y nombre; **—** si el movimiento no tiene tercero), igual que la pestaña Movimientos.
 - **Cuentas sin movimiento**: las cuentas de movimiento que no tuvieron ningún movimiento contable en el rango de períodos. Sirve para depurar el plan. No cambia nada. Pulse **Ver** para abrir la cuenta.
 - **Cuentas con banderas incoherentes**: cuentas cuyas banderas se contradicen, por ejemplo, una cuenta con hijas marcada de movimiento. Se muestran en dos grupos: **Para corregir** e **Informativos**. Estas cuentas siguen funcionando. Para corregir una, ábrala y guárdela: al guardar se revisan sus reglas.
 
