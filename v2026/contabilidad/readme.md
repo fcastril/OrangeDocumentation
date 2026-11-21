@@ -18,7 +18,8 @@ Contabilidad reúne el trabajo contable de la compañía: el plan de cuentas, lo
 ## Qué verá hoy
 
 - **Inicio de Contabilidad**: es la página de bienvenida. Muestra el título del módulo, una breve descripción y un estado vacío, porque todavía no hay indicadores ni datos para mostrar.
-- **Menú del módulo**: hoy no tiene opciones disponibles. Los grupos **Maestros**, **Movimientos**, **Consultas/Reportes** y **Procesos** aparecen cuando se habilita su primera pantalla.
+- **Menú del módulo**: hoy tiene la opción **Maestros > Terceros**. Los grupos **Movimientos**, **Consultas/Reportes** y **Procesos** aparecen cuando se habilita su primera pantalla.
+- **Terceros**: el listado de personas y empresas de la compañía, con su ficha, su importación desde Excel y la consulta de su movimiento contable por período. Consulte el manual en [Terceros](terceros.md).
 - **Ayuda**: el botón **?** junto al título abre este manual sin salir de la pantalla.
 
 Este manual no incluye imágenes porque la página de inicio no tiene todavía contenido que mostrar.
@@ -35,15 +36,13 @@ Las siguientes pantallas se habilitarán en el orden que indique la compañía. 
 6. **Procesos**: importaciones, exportaciones, recálculos y el cierre contable.
 7. **Resumen gerencial y medios magnéticos**: indicadores financieros y formatos para la información exógena de la DIAN.
 
-**Terceros** no está disponible en Contabilidad por ahora. Para trabajar con terceros, use las pantallas que ya los tienen disponibles en cada módulo.
-
 ## Preguntas frecuentes
 
-**¿Por qué el menú de Contabilidad no tiene opciones?**
+**¿Por qué el menú de Contabilidad tiene pocas opciones?**
 Porque las pantallas del módulo se habilitan por etapas. Mientras no se publique una pantalla, no aparece en el menú.
 
 **¿Por qué no veo Contabilidad en el menú principal?**
 Su usuario no tiene permiso de consulta sobre el módulo. Pida a su administrador que lo revise.
 
 **¿Dónde están los datos contables de hoy?**
-Hasta que se habiliten las pantallas de cada etapa, no hay datos para consultar desde este módulo.
+Hoy puede consultar el movimiento contable de cada tercero desde su ficha, en la pestaña **Contabilidad** de [Terceros](terceros.md). Las demás consultas llegarán con las siguientes etapas.
