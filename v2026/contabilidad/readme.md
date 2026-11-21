@@ -1,0 +1,48 @@
+[Regresar al Inicio](../README.md)
+
+---
+
+# CONTABILIDAD (V2026)
+
+Bienvenida al módulo **Contabilidad**. Este manual explica qué encontrará hoy en el módulo, cómo llegar a él y qué se incorporará en las próximas etapas.
+
+## Qué es el módulo
+
+Contabilidad reúne el trabajo contable de la compañía: el plan de cuentas, los documentos contables, las consultas y los reportes, y los procesos de importación, exportación y cierre. En la nueva versión se construye por etapas. Cada etapa habilita pantallas nuevas en el menú del módulo.
+
+## Cómo llegar
+
+- Abra **Contabilidad** en el menú principal de OrangeERP.
+- Necesita permiso de **consulta** sobre el módulo. Si no ve Contabilidad en el menú, pida a su administrador que se lo asigne.
+
+## Qué verá hoy
+
+- **Inicio de Contabilidad**: es la página de bienvenida. Muestra el título del módulo, una breve descripción y un estado vacío, porque todavía no hay indicadores ni datos para mostrar.
+- **Menú del módulo**: hoy tiene las opciones **Maestros > Terceros** y **Maestros > Plan de cuentas**. Los grupos **Movimientos**, **Consultas/Reportes** y **Procesos** aparecen cuando se habilita su primera pantalla.
+- **Terceros**: el listado de personas y empresas de la compañía, con su ficha, su importación desde Excel y la consulta de su movimiento contable por período. Consulte el manual en [Terceros](terceros.md).
+- **Plan de cuentas**: el listado de cuentas contables, con su vista en lista o en árbol, su ficha, sus consultas y su importación desde Excel. Consulte el manual en [Plan de cuentas](plan-cuentas.md) y, para cargar cuentas desde Excel, [Importar el plan de cuentas](plan-cuentas-importar.md).
+- **Ayuda**: el botón **?** junto al título abre este manual sin salir de la pantalla.
+
+Este manual no incluye imágenes porque la página de inicio no tiene todavía contenido que mostrar.
+
+## Próximas etapas
+
+Las siguientes pantallas se habilitarán en el orden que indique la compañía. El orden previsto es:
+
+1. **Maestros contables**: comprobantes, centros de costo e impuestos.
+2. **Asientos contables**: registrar documentos contables con líneas de débito y crédito, anularlos y importarlos desde Excel. Un asiento solo se guarda si cuadra.
+3. **Diferidos y activos fijos**: según lo que se decida para la compañía.
+4. **Consultas y reportes**: auxiliar contable, movimiento contable y balance de prueba.
+5. **Procesos**: importaciones, exportaciones, recálculos y el cierre contable.
+6. **Resumen gerencial y medios magnéticos**: indicadores financieros y formatos para la información exógena de la DIAN.
+
+## Preguntas frecuentes
+
+**¿Por qué el menú de Contabilidad tiene pocas opciones?**
+Porque las pantallas del módulo se habilitan por etapas. Mientras no se publique una pantalla, no aparece en el menú.
+
+**¿Por qué no veo Contabilidad en el menú principal?**
+Su usuario no tiene permiso de consulta sobre el módulo. Pida a su administrador que lo revise.
+
+**¿Dónde están los datos contables de hoy?**
+Hoy puede consultar el movimiento contable de cada tercero desde su ficha, en la pestaña **Contabilidad** de [Terceros](terceros.md), y los movimientos y saldos de cada cuenta desde su ficha en [Plan de cuentas](plan-cuentas.md). Las demás consultas llegarán con las siguientes etapas.
