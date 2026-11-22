@@ -25,6 +25,20 @@ Contabilidad reúne el trabajo contable de la compañía: el plan de cuentas, lo
 
 Este manual no incluye imágenes porque la página de inicio no tiene todavía contenido que mostrar.
 
+## Manuales de pantallas en preparación
+
+Estos manuales describen pantallas de Contabilidad que se habilitan en esta etapa. Si una opción no aparece en su menú, su pantalla todavía no está disponible para su compañía.
+
+- **Consultas/Reportes**
+  - [Auxiliar contable](auxiliar-contable.md): movimientos y saldos por cuenta y tercero en un rango de fechas, con Excel y PDF.
+  - [Movimiento contable](movimiento-contable.md): líneas del libro por tipo de movimiento, tercero, cuenta, centro de costos y documento de referencia, con Excel.
+- **Maestros**
+  - [Comprobantes](comprobantes.md): tipos de comprobante contable de la compañía.
+  - [Clasificación de estados financieros](clasificaciones-estados-financieros.md): clasificación de las cuentas en el Balance y en Pérdidas y ganancias.
+  - [Impuestos](impuestos.md): impuestos y retenciones, con su cuenta contable, su vigencia y su porcentaje.
+  - [Centros de costo](centros-costo.md): centros de costo, sus clasificaciones y sus tipos de movimiento.
+  - [Importar centros de costo](centros-costo-importar.md): carga de centros desde Excel, con vista previa.
+
 ## Próximas etapas
 
 Las siguientes pantallas se habilitarán en el orden que indique la compañía. El orden previsto es:
