@@ -28,6 +28,8 @@ Si solo tiene **Consultar**, no ve los botones de crear, editar ni eliminar.
 
 La pantalla muestra una tabla con las columnas **Código**, **Tipo**, **Concepto**, **Nivel** y **Última modificación**. La lista llega ordenada por **Concepto**.
 
+![Listado de clasificaciones](recursos/img/clasificaciones-estados-financieros/01-listado.png)
+
 - **Buscar**: escriba parte del código, del tipo, del concepto o del nivel. No importan las mayúsculas ni las tildes.
 - **Ordenar**: pulse el encabezado de una columna.
 - **Páginas**: la tabla se divide en páginas, con controles de abajo.
@@ -39,12 +41,16 @@ Estados de la pantalla:
 - **Sin resultados**: la búsqueda no encuentra nada. Cambie el texto para buscar de nuevo.
 - **Error**: la lista no carga. Pulse **Reintentar**.
 
+![Clasificaciones vacías](recursos/img/clasificaciones-estados-financieros/02-vacio.png)
+
 ## Crear una clasificación
 
 1. Pulse **Nueva clasificación**.
 2. Elija el **Tipo**: **P&G (Pérdidas y ganancias)** o **Balance**.
 3. Escriba el **Código**, el **Concepto** y el **Nivel**.
 4. Pulse **Guardar**.
+
+![Crear una clasificación](recursos/img/clasificaciones-estados-financieros/03-crear.png)
 
 Reglas de los campos:
 
@@ -56,6 +62,8 @@ Reglas de los campos:
 
 Si un campo no cumple, la pantalla lo señala y conserva lo que escribió en el diálogo.
 
+![Validación al guardar](recursos/img/clasificaciones-estados-financieros/04-crear-validacion.png)
+
 ## Editar una clasificación
 
 1. Busque la clasificación y pulse **Editar** en su fila.
@@ -64,12 +72,18 @@ Si un campo no cumple, la pantalla lo señala y conserva lo que escribió en el 
 
 Si cambia el código de una clasificación que ya existía, la pantalla le avisa antes de guardar. Las cuentas del plan se enlazan con la clasificación y no se pierden al cambiar su código.
 
+![Editar una clasificación](recursos/img/clasificaciones-estados-financieros/05-editar.png)
+
 ## Eliminar una clasificación
 
 1. Pulse **Eliminar** en la fila de la clasificación.
 2. Revise los datos en el diálogo y confirme.
 
+![Confirmar eliminar](recursos/img/clasificaciones-estados-financieros/06-eliminar-confirmar.png)
+
 Si alguna cuenta del plan de cuentas usa la clasificación, no se elimina. La pantalla lo indica y la clasificación sigue en la lista. Para eliminarla, primero cambie esas cuentas a otra clasificación en el [Plan de cuentas](plan-cuentas.md).
+
+![Clasificación en uso](recursos/img/clasificaciones-estados-financieros/07-eliminar-en-uso.png)
 
 ## Cambios de otros usuarios en vivo
 

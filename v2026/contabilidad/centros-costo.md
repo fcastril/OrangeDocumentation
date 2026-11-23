@@ -29,6 +29,8 @@ Si solo tiene **Consultar**, no ve los botones de crear, editar, eliminar ni imp
 
 La pantalla muestra una tabla con las columnas **Código**, **Nombre** y **Última modificación**. La lista llega ordenada por **Nombre**.
 
+![Listado de centros de costo](recursos/img/centros-costo/01-listado.png)
+
 - **Buscar**: escriba parte del código o del nombre. No importan las mayúsculas ni las tildes.
 - **Ordenar**: pulse el encabezado de una columna.
 - **Páginas**: la tabla se divide en páginas, con controles de abajo.
@@ -40,6 +42,8 @@ Estados de la pantalla:
 - **Sin resultados**: la búsqueda no encuentra nada. Cambie el texto para buscar de nuevo.
 - **Error**: la lista no carga. Pulse **Reintentar**.
 
+![Centros de costo vacíos](recursos/img/centros-costo/02-vacio.png)
+
 ## Crear un centro de costos
 
 1. Pulse **Nuevo centro de costos**.
@@ -47,6 +51,8 @@ Estados de la pantalla:
 3. Marque las casillas de **Clasificación del centro** que correspondan.
 4. Si el centro se usa en ventas o en recibos de caja, elija los tipos de movimiento en **Tipos de movimiento**. Si no, déjelos vacíos.
 5. Pulse **Guardar**.
+
+![Crear un centro de costos](recursos/img/centros-costo/04-crear.png)
 
 Campos:
 
@@ -63,6 +69,8 @@ Solo puede elegir los tipos de movimiento a los que su usuario tiene acceso.
 
 Si un campo no cumple, la pantalla lo señala y conserva lo que escribió en el diálogo.
 
+![Validación al guardar](recursos/img/centros-costo/05-crear-validacion.png)
+
 ## Editar un centro de costos
 
 1. Busque el centro y pulse **Editar** en su fila.
@@ -73,16 +81,24 @@ Si cambia el código de un centro que ya existía, la pantalla le avisa antes de
 
 Si un centro tiene un tipo de movimiento que su usuario no tiene autorizado, ese tipo se conserva sin cambios al editar el centro. Solo puede cambiarlo si tiene acceso a ese tipo.
 
+![Tipo no autorizado que se conserva](recursos/img/centros-costo/06-editar-tipo-no-autorizado.png)
+
 ## Eliminar un centro de costos
 
 1. Pulse **Eliminar** en la fila del centro.
 2. Revise los datos en el diálogo y confirme.
 
+![Confirmar eliminar](recursos/img/centros-costo/07-eliminar-confirmar.png)
+
 Si el centro ya se usa en otros módulos (por ejemplo, en activos fijos, cajeros, diferidos, saldos contables, movimientos contables, documentos o tipos de movimiento), no se elimina. La pantalla lo indica y el centro sigue en la lista.
+
+![Centro en uso](recursos/img/centros-costo/08-eliminar-en-uso.png)
 
 ## Importar centros de costo
 
 Desde la lista, con el botón **Importar**, puede cargar muchos centros a la vez desde un archivo de Excel. El proceso tiene tres pasos: **Cargar archivo**, **Revisar** (vista previa) y **Resultado**.
+
+![Botón Importar en el listado](recursos/img/centros-costo/03-con-importar.png)
 
 - **Plantilla**: pulse **Descargar plantilla**. Tiene 6 columnas: **Código** (obligatorio), **Nombre** (obligatorio), **Administrativo**, **Ventas**, **Producción** y **Otras ventas**. En las cuatro últimas escriba **1** para sí y **0** o vacío para no.
 - **Vista previa**: cada fila dice si es **Nuevo**, **Se actualiza**, **Sin cambios** o **Error**, con el motivo. No se guarda nada hasta confirmar.

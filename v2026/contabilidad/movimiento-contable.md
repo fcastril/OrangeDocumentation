@@ -45,6 +45,10 @@ Cuando combina filtros, la consulta muestra solo las líneas que cumplen **todos
 
 **Limpiar filtros** deja todos los filtros vacíos, salvo las fechas.
 
+![Filtro por tercero](recursos/img/movimiento-contable/03-filtro-tercero.png)
+
+![Filtro por documento de referencia](recursos/img/movimiento-contable/05-filtro-documento.png)
+
 ## Cómo se lee el resultado
 
 La tabla muestra estas columnas:
@@ -62,6 +66,8 @@ Las filas se agrupan por **tipo de movimiento** y, dentro de cada tipo, por **co
 Los importes están en pesos (COP), con separador de miles y dos decimales. Un importe en cero aparece vacío.
 
 La consulta no muestra totales en la pantalla. Si necesita sumas, use el Excel o el [Auxiliar contable](auxiliar-contable.md).
+
+![Resultado de la consulta](recursos/img/movimiento-contable/01-resultado.png)
 
 ### Páginas
 

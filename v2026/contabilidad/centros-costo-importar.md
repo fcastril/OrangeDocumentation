@@ -31,14 +31,24 @@ La importación tiene tres pasos, que se ven arriba de la pantalla: **Cargar arc
 3. En las cuatro columnas de clasificación escriba **1** para sí, o **0** o vacío para no. Cualquier otro valor es un error.
 4. Cargue el archivo: arrástrelo a la pantalla o elíjalo desde su equipo.
 
+![Cargar el archivo](recursos/img/centros-costo-importar/01-cargar-archivo.png)
+
 Reglas del archivo:
 
 - Formato **.xlsx**, con hasta **5.000 filas** y **2 MB**. Se usa la primera hoja.
 - Si el archivo supera el tamaño o el número de filas, la pantalla no lo procesa y le pide dividirlo en varios archivos.
+
 - Si el archivo no es un Excel válido, la pantalla no lo procesa. Si no tiene filas para importar, lo indica.
+
 - Las filas vacías se omiten. La pantalla dice cuántas omitió.
 
+![Archivo inválido](recursos/img/centros-costo-importar/02-archivo-invalido.png)
+
+![Archivo demasiado grande](recursos/img/centros-costo-importar/03-archivo-demasiado-grande.png)
+
 ## Paso 2: revisar la vista previa
+
+![Vista previa con errores](recursos/img/centros-costo-importar/04-vista-previa-con-errores.png)
 
 Antes de guardar, la pantalla revisa todas las filas y muestra la vista previa. Arriba aparece un resumen con cuatro conteos: **Nuevos**, **Se actualizan**, **Sin cambios** y **Con error**.
 
@@ -72,6 +82,8 @@ Los motivos más comunes:
 
 ## Paso 3: aplicar la importación
 
+![Vista previa sin errores](recursos/img/centros-costo-importar/05-vista-previa-sin-errores.png)
+
 Cuando no quede ninguna fila con error, pulse **Aplicar** con el número de cambios (por ejemplo, **Aplicar 40 cambios**). Si solo hay uno, dice **Aplicar 1 cambio**.
 
 - La importación es **todo o nada**: si algo falla al aplicar, no se guarda ninguna fila.
@@ -82,6 +94,8 @@ Cuando no quede ninguna fila con error, pulse **Aplicar** con el número de camb
 Mientras se aplica, la pantalla muestra **Aplicando…**.
 
 Al terminar, la pantalla muestra **Importación terminada**, con el resultado. Desde ahí pulse **Ver centros de costo** para revisarlos, o **Importar otro archivo**.
+
+![Resultado de la importación](recursos/img/centros-costo-importar/06-resultado.png)
 
 ## Si algo sale mal
 

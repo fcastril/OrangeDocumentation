@@ -44,6 +44,8 @@ Reglas que conviene conocer:
 - Si filtra por **tercero**, solo aparecen las filas de esos terceros.
 - **Limpiar filtros** deja las fechas y los demás filtros vacíos.
 
+![Filtro por tipo de movimiento](recursos/img/auxiliar-contable/02-filtro-tipo.png)
+
 ## Cómo se lee el resultado
 
 El resultado está agrupado en tres tipos de fila:
@@ -57,6 +59,8 @@ Las columnas son: **Tipo de movimiento**, **Consecutivo**, **Fecha**, **Doc. ref
 Los importes están en pesos (COP), con separador de miles y dos decimales. Un importe en cero aparece vacío.
 
 Para ver las columnas completas en un teléfono o una pantalla pequeña, desplácese en horizontal.
+
+![Resultado de la consulta](recursos/img/auxiliar-contable/01-resultado.png)
 
 ### Páginas
 

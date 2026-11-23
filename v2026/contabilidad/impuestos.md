@@ -28,6 +28,8 @@ Si solo tiene **Consultar**, no ve los botones de crear, editar ni eliminar.
 
 La pantalla muestra una tabla con las columnas **Código**, **Nombre**, **Tipo**, **Cuenta contable** (código y nombre) y **Última modificación**.
 
+![Listado de impuestos](recursos/img/impuestos/01-listado.png)
+
 - **Buscar**: escriba parte del código, del nombre, del tipo o de la cuenta. No importan las mayúsculas ni las tildes.
 - **Ordenar**: pulse el encabezado de una columna.
 - **Páginas**: la tabla se divide en páginas, con controles de abajo.
@@ -39,11 +41,15 @@ Estados de la pantalla:
 - **Sin resultados**: la búsqueda no encuentra nada. Cambie el texto para buscar de nuevo.
 - **Error**: la lista no carga. Pulse **Reintentar**.
 
+![Impuestos vacíos](recursos/img/impuestos/02-vacio.png)
+
 ## Crear un impuesto
 
 1. Pulse **Nuevo impuesto**.
 2. Complete los campos del diálogo.
 3. Pulse **Guardar**.
+
+![Crear un impuesto](recursos/img/impuestos/03-crear.png)
 
 Campos:
 
@@ -54,11 +60,16 @@ Campos:
 - **Fecha de inicio de vigencia** y **Fecha de fin de vigencia**: obligatorias.
 - **Base**: obligatoria. Es un número de 0 o más.
 - **Porcentaje (%)**: obligatorio. Va de 0 a 100 y admite hasta 4 decimales. Escriba el número como se lee: **19** es 19 %.
+
 - **Código proveedor tecnológico**: opcional. Es el código que el proveedor de facturación electrónica usa para este impuesto.
 
 Revise que la fecha de fin de vigencia sea posterior a la de inicio: la pantalla no lo valida.
 
+![Porcentaje fuera de rango](recursos/img/impuestos/06-porcentaje-fuera-de-rango.png)
+
 Si un campo no cumple, la pantalla lo señala y conserva lo que escribió en el diálogo.
+
+![Validación al guardar](recursos/img/impuestos/04-crear-validacion.png)
 
 ## Editar un impuesto
 
@@ -70,12 +81,18 @@ El porcentaje se muestra como se lee (por ejemplo, **19**). Si edita un impuesto
 
 Si cambia el código de un impuesto que ya existía, la pantalla le avisa antes de guardar.
 
+![Editar un impuesto](recursos/img/impuestos/05-editar.png)
+
 ## Eliminar un impuesto
 
 1. Pulse **Eliminar** en la fila del impuesto.
 2. Revise los datos en el diálogo y confirme.
 
+![Confirmar eliminar](recursos/img/impuestos/07-eliminar-confirmar.png)
+
 Si el impuesto ya se usa en movimientos, clientes, proveedores o referencias, no se elimina. La pantalla lo indica y el impuesto sigue en la lista.
+
+![Impuesto en uso](recursos/img/impuestos/08-eliminar-en-uso.png)
 
 ## Cambios de otros usuarios en vivo
 
