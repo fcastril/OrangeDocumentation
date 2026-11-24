@@ -29,6 +29,9 @@ Este manual no incluye imágenes porque la página de inicio no tiene todavía c
 
 Estos manuales describen pantallas de Contabilidad que se habilitan en esta etapa. Si una opción no aparece en su menú, su pantalla todavía no está disponible para su compañía.
 
+- **Movimientos**
+  - [Asientos contables](asientos.md): comprobantes manuales con sus líneas de débito y crédito. Se crean, se editan, se cierran cuando cuadran, se eliminan si están abiertos y se imprimen. Aún no están activos en el menú.
+  - [Importar asientos contables](asientos-importar.md): carga de asientos desde Excel, con vista previa y todo o nada. Aún no están activos en el menú.
 - **Consultas/Reportes**
   - [Balance de prueba](balance-prueba.md): saldos por cuenta por período, en vista General, Por tercero o Por centros de costo, con Excel y PDF.
   - [Auxiliar contable](auxiliar-contable.md): movimientos y saldos por cuenta y tercero, con fechas dentro de un período, con Excel y PDF.
