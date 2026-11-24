@@ -6,7 +6,7 @@
 
 ## Qué es
 
-El **Movimiento contable** es el libro de las líneas contables de la compañía en un rango de fechas. Muestra cada línea de los movimientos contabilizados, con su cuenta, su tercero, su centro de costos, su documento de referencia y sus débitos y créditos.
+El **Movimiento contable** es el libro de las líneas contables de la compañía en un **período contable**. Dentro del período, usted elige las fechas de inicio y fin. Muestra las líneas de los movimientos contabilizados, con su cuenta, su tercero, su centro de costos, su documento de referencia y sus débitos y créditos. Puede verlas **agrupadas** por documento o **detalladas**, línea por línea.
 
 Sirve para encontrar un movimiento concreto, por ejemplo el de un tercero, un tipo de movimiento o un documento de referencia.
 
@@ -30,11 +30,12 @@ Sin **Exportar**, el botón **Exportar Excel** no está disponible. La consulta 
 
 ## Filtros
 
-Las fechas son obligatorias. Los demás filtros son opcionales: si se dejan vacíos, la consulta incluye todos los valores.
+El período y las fechas son obligatorios. Los demás filtros son opcionales: si se dejan vacíos, la consulta incluye todos los valores.
 
 | Filtro | Qué hace |
 |---|---|
-| **Fecha inicio** y **Fecha fin** | Rango de fechas de la consulta. Son obligatorias. Si falta una, o si la fecha inicio es posterior a la fecha fin, la pantalla lo indica y no consulta. |
+| **Período** | Período contable de la consulta. Es obligatorio. La lista muestra cada período con su estado, **Abierto** o **Cerrado**, y tiene **Buscar período**. |
+| **Fecha inicio** y **Fecha fin** | Rango de fechas dentro del período elegido. Son obligatorias y se habilitan al elegir el período. Al elegirlo, se llenan con su primer y último día, y usted puede acotarlas. Si una fecha queda fuera del período, o si la fecha inicio es posterior a la fecha fin, la pantalla lo indica y no consulta: **La fecha debe estar dentro del período ({inicio} a {fin}).** |
 | **Tipo de movimiento** | Muestra solo los movimientos de ese tipo. Se elige uno. |
 | **Tercero** | Muestra solo las líneas de ese tercero. Se elige uno. |
 | **Cuenta** | Muestra solo las líneas de esa cuenta. Solo aparecen las cuentas de movimiento. Se elige una. |
@@ -69,6 +70,21 @@ La consulta no muestra totales en la pantalla. Si necesita sumas, use el Excel o
 
 ![Resultado de la consulta](recursos/img/movimiento-contable/01-resultado.png)
 
+### Vista: Agrupado o Detallado
+
+Encima de la tabla, la opción **Vista** tiene dos valores:
+
+- **Agrupado** (es la vista por defecto): dentro de cada documento, las líneas con igual cuenta, tercero, centro de costos y documento de referencia se suman en una sola fila. La fila indica cuántas líneas se fusionaron (por ejemplo, **3 líneas**).
+- **Detallado**: una fila por cada línea del asiento, tal como se registró.
+
+Al cambiar de vista, la pantalla vuelve a consultar desde la primera página con los filtros que ya tiene aplicados. Los filtros que cambió pero no consultó no se aplican.
+
+El **Excel usa la vista activa**: si está en **Agrupado**, el archivo trae las filas agrupadas; si está en **Detallado**, trae cada línea.
+
+![Vista agrupada](recursos/img/movimiento-contable/06-vista-agrupado.png)
+
+![Vista detallada](recursos/img/movimiento-contable/07-vista-detallado.png)
+
 ### Páginas
 
 La tabla muestra 25 filas por página. Puede cambiar a 10, 50 o 100 filas por página, y ver el total de filas y la página en la que está.
@@ -80,10 +96,12 @@ La tabla muestra 25 filas por página. Puede cambiar a 10, 50 o 100 filas por p�
 
 ## Consultar
 
-1. Elija las fechas de inicio y fin.
-2. Elija los filtros que necesite; los demás déjelos vacíos.
-3. Pulse **Consultar**. Mientras se consulta, la pantalla muestra **Consultando…**.
-4. Revise el resultado y cambie de página con los controles de abajo.
+1. Elija el **Período**.
+2. Elija las fechas de inicio y fin dentro de ese período.
+3. Elija los filtros que necesite; los demás déjelos vacíos.
+4. Elija la **Vista**: **Agrupado** (por defecto) o **Detallado**.
+5. Pulse **Consultar**. Mientras se consulta, la pantalla muestra **Consultando…**.
+6. Revise el resultado y cambie de página con los controles de abajo.
 
 Si cambia un filtro, pulse **Consultar** otra vez para ver el resultado nuevo.
 
@@ -96,7 +114,7 @@ Si la consulta falla, la pantalla muestra **No se pudo consultar** con el botón
 - Necesita permiso de **Exportar**.
 - Pulse **Exportar Excel**. Se descarga una hoja de Excel con el encabezado de la compañía, el título **Movimiento contable**, la fecha y hora de la exportación y el usuario que exporta.
 - La hoja tiene estas columnas: **Tipo de movimiento** (código y nombre), **Consecutivo**, **Cuenta contable** (código y nombre), **Fecha**, **Doc. referencia**, **Tercero**, **Centro de costos**, **Débitos**, **Créditos** y **Base tributaria**. Los importes se guardan como números.
-- La exportación usa los filtros que tiene puestos al pulsar el botón. Si cambió algún filtro, consulte otra vez antes de exportar.
+- La exportación usa los filtros que tiene puestos al pulsar el botón y la **Vista** activa (Agrupado o Detallado). Si cambió algún filtro, consulte otra vez antes de exportar.
 - El límite es de **50.000 filas**.
 
 ### Si el resultado es demasiado grande
@@ -122,6 +140,15 @@ Su usuario no tiene el permiso de **Exportar** sobre el Movimiento contable. Pid
 
 **¿Por qué no aparece la cuenta que busco en el filtro de cuenta?**
 El filtro solo muestra cuentas de movimiento, que son las que reciben registros contables. Las cuentas de mayor no aparecen en esta lista.
+
+**¿Por qué veo menos filas que líneas en el asiento?**
+Está en la vista **Agrupado**. Las líneas con igual cuenta, tercero, centro y documento de referencia dentro del mismo documento se suman en una fila. Cambie a **Detallado** para verlas una por una.
+
+**¿Por qué el Excel tiene menos filas que la vista Detallado?**
+El Excel usa la vista activa. Si exporta en **Agrupado**, el archivo trae las filas agrupadas.
+
+**¿Por qué no puedo consultar un rango que cruza dos períodos?**
+Cada consulta trabaja con un solo período. Si necesita dos períodos, consulte cada uno por separado.
 
 **¿Por qué no encuentro un documento de referencia que escribí?**
 El filtro busca el documento tal como lo escribió, hasta 20 caracteres. Revise que lo haya escrito igual que aparece en el movimiento.

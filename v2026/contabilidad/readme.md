@@ -30,8 +30,10 @@ Este manual no incluye imágenes porque la página de inicio no tiene todavía c
 Estos manuales describen pantallas de Contabilidad que se habilitan en esta etapa. Si una opción no aparece en su menú, su pantalla todavía no está disponible para su compañía.
 
 - **Consultas/Reportes**
-  - [Auxiliar contable](auxiliar-contable.md): movimientos y saldos por cuenta y tercero en un rango de fechas, con Excel y PDF.
-  - [Movimiento contable](movimiento-contable.md): líneas del libro por tipo de movimiento, tercero, cuenta, centro de costos y documento de referencia, con Excel.
+  - [Balance de prueba](balance-prueba.md): saldos por cuenta por período, en vista General, Por tercero o Por centros de costo, con Excel y PDF.
+  - [Auxiliar contable](auxiliar-contable.md): movimientos y saldos por cuenta y tercero, con fechas dentro de un período, con Excel y PDF.
+  - [Movimiento contable](movimiento-contable.md): líneas del libro por período, en vista Agrupado o Detallado, con filtros de tipo, tercero, cuenta, centro de costos y documento de referencia, con Excel.
+  - [Mis reportes](mis-reportes.md): bandeja de informes generados en segundo plano. Disponible cuando el administrador la habilite.
 - **Maestros**
   - [Comprobantes](comprobantes.md): tipos de comprobante contable de la compañía.
   - [Clasificación de estados financieros](clasificaciones-estados-financieros.md): clasificación de las cuentas en el Balance y en Pérdidas y ganancias.

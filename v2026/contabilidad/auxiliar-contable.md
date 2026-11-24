@@ -6,7 +6,7 @@
 
 ## Qué es
 
-El **Auxiliar contable** muestra los movimientos y los saldos de cada cuenta y de cada tercero en un rango de fechas. Sirve para revisar qué movió una cuenta, qué quedó a favor o en contra de cada tercero y en qué tipos de movimiento y centros de costo se registró.
+El **Auxiliar contable** muestra los movimientos y los saldos de cada cuenta y de cada tercero en un **período contable**. Dentro del período, usted elige las fechas de inicio y fin. Sirve para revisar qué movió una cuenta, qué quedó a favor o en contra de cada tercero y en qué tipos de movimiento y centros de costo se registró.
 
 La consulta no se ejecuta sola: usted elige los filtros y pulsa **Consultar**.
 
@@ -27,11 +27,12 @@ Sin **Exportar** o sin **Imprimir**, el botón correspondiente no está disponib
 
 ## Filtros
 
-Antes de consultar, elija los filtros. Las fechas son obligatorias; los demás son opcionales. Si un filtro se deja vacío, la consulta incluye todos sus valores.
+Antes de consultar, elija el período y las fechas. El período y las fechas son obligatorios; los demás filtros son opcionales. Si un filtro se deja vacío, la consulta incluye todos sus valores.
 
 | Filtro | Qué hace |
 |---|---|
-| **Fecha inicio** y **Fecha fin** | Rango de fechas de la consulta. Son obligatorias. Si falta una, o si la fecha inicio es posterior a la fecha fin, la pantalla lo indica y no consulta. |
+| **Período** | Período contable de la consulta. Es obligatorio. La lista muestra cada período con su estado, **Abierto** o **Cerrado**, y tiene **Buscar período**. Si la lista no carga o no hay períodos, la pantalla lo indica con **Reintentar** o con el aviso **No hay períodos configurados**. |
+| **Fecha inicio** y **Fecha fin** | Rango de fechas dentro del período elegido. Son obligatorias y se habilitan al elegir el período. Al elegirlo, se llenan con su primer y último día, y usted puede acotarlas. Si una fecha queda fuera del período, o si la fecha inicio es posterior a la fecha fin, la pantalla lo indica y no consulta. |
 | **Tipos de movimiento** | Muestra solo los movimientos de los tipos elegidos. |
 | **Terceros** | Muestra solo los saldos y movimientos de los terceros elegidos. |
 | **Nivel** | Va de 0 a 100. Vacío o 0 muestra todo. Con un nivel, la consulta muestra solo los saldos de las cuentas hasta ese nivel y los saldos por tercero, sin las líneas de movimiento. |
@@ -40,11 +41,14 @@ Antes de consultar, elija los filtros. Las fechas son obligatorias; los demás s
 
 Reglas que conviene conocer:
 
+- Las dos fechas deben caer **dentro del mismo período**. Si no, la pantalla muestra: **La fecha debe estar dentro del período ({inicio} a {fin}).** Si el servidor rechaza el rango, muestra: **Las fechas deben estar dentro de un mismo período. Ajústalas o elija otro período.** En ambos casos, ajuste las fechas o elija otro período.
 - Si filtra por **tipo de movimiento** o por **centro de costos**, la consulta muestra solo las líneas de movimiento que cumplen el filtro. **No muestra saldos** ni filas de cuentas.
 - Si filtra por **tercero**, solo aparecen las filas de esos terceros.
 - **Limpiar filtros** deja las fechas y los demás filtros vacíos.
 
 ![Filtro por tipo de movimiento](recursos/img/auxiliar-contable/02-filtro-tipo.png)
+
+![Período y fechas dentro del período](recursos/img/auxiliar-contable/03-periodo.png)
 
 ## Cómo se lee el resultado
 
@@ -88,10 +92,11 @@ Esta sección explica cómo se calculan los saldos. Es la parte que más pregunt
 
 ## Consultar
 
-1. Elija las fechas de inicio y fin.
-2. Elija los filtros que necesite; los demás déjelos vacíos.
-3. Pulse **Consultar**. Mientras se consulta, la pantalla muestra **Consultando…**.
-4. Revise el resultado y cambie de página con los controles de abajo.
+1. Elija el **Período**.
+2. Elija las fechas de inicio y fin dentro de ese período.
+3. Elija los filtros que necesite; los demás déjelos vacíos.
+4. Pulse **Consultar**. Mientras se consulta, la pantalla muestra **Consultando…**.
+5. Revise el resultado y cambie de página con los controles de abajo.
 
 Si cambia un filtro, el resultado anterior no se actualiza: pulse **Consultar** otra vez. Lo mismo ocurre si otro usuario registra movimientos mientras usted consulta.
 
@@ -135,6 +140,12 @@ Porque el saldo inicial es el neto del mes anterior cerrado, no el acumulado his
 
 **¿Por qué el saldo inicial cambió si consulto otro día?**
 Cambia el mes que se toma como referencia. Para el saldo del mes anterior, empiece la consulta el día 1 del mes.
+
+**¿Por qué no puedo consultar un rango que cruza dos períodos?**
+Cada consulta trabaja con un solo período. Si necesita dos períodos, consulte cada uno por separado.
+
+**¿Por qué las fechas están bloqueadas?**
+Hasta que elija el período, las fechas no se habilitan. Al elegirlo, puede ajustar las fechas solo dentro de ese período.
 
 **¿Por qué no veo saldos cuando filtro por tipo de movimiento o por centro de costos?**
 Con esos filtros la consulta muestra solo las líneas de movimiento. Los saldos y las filas de cuentas no aparecen.
