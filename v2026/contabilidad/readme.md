@@ -25,6 +25,11 @@ Contabilidad reúne el trabajo contable de la compañía: el plan de cuentas, lo
 
 Este manual no incluye imágenes porque la página de inicio no tiene todavía contenido que mostrar.
 
+## Procesos
+
+- [Cuadrar descuadres](cuadrar-descuadres.md): revisar los documentos descuadrados, cuadrar los ajustables y revertir un ajuste. Es el primer paso del cierre del mes.
+- [Reconstruir contabilidad](reconstruir.md): volver a generar la contabilidad de documentos ya registrados. Es un último recurso, con comprobación previa y confirmación.
+
 ## Manuales de pantallas en preparación
 
 Estos manuales describen pantallas de Contabilidad que se habilitan en esta etapa. Si una opción no aparece en su menú, su pantalla todavía no está disponible para su compañía.
