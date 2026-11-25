@@ -108,6 +108,8 @@ Al terminar, la pantalla muestra:
 
 Un documento de un **período cerrado** se **omite para todos los usuarios**, sin excepciones. La pantalla lo cuenta y muestra la lista de períodos.
 
+![Aviso de períodos cerrados](recursos/img/reconstruir/06-solo-periodos-cerrados.png)
+
 Si necesita reconstruir esos documentos, siga esta guía:
 
 1. Abra el período en el menú **Seguridad**, opción **Períodos**.

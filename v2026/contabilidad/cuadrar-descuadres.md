@@ -114,9 +114,8 @@ Los filtros por **Clasificación**, **Período**, **Origen** y **Tipo de movimie
 
 Cada fila tiene un enlace para ver el documento:
 
-- **Abrir origen**: disponible para los documentos de Tesorería y de Compras.
-- **Asientos**: abre el asiento del documento en Asientos contables.
-- **Abrir desde Asientos**: cuando no hay ruta directa al módulo de origen.
+- **Abrir documento**: disponible para los documentos de Tesorería y de Compras. Si el documento no tiene ruta al módulo de origen, el botón aparece deshabilitado y la pantalla indica el motivo.
+- **Asientos**: abre el asiento del documento en Asientos contables. Siempre está disponible.
 
 ---
 
@@ -178,7 +177,9 @@ Cada documento muestra débitos y créditos **antes → después** y la diferenc
 
 ### Revertir ajustes
 
-**Revertir ajustes** deshace un proceso de aplicación. Solo quita las líneas **AJUSTE CUADRE** de ese proceso, documento por documento. No toca otras líneas. Requiere el permiso de **Actualizar** y la función de escritura activa. Haga clic en **Revertir ajustes** y escriba el número de documentos, igual que al aplicar.
+**Revertir ajustes** deshace un proceso de aplicación. Solo quita las líneas **AJUSTE CUADRE** de ese proceso, documento por documento. No toca otras líneas. Requiere el permiso de **Actualizar** y la función de escritura activa.
+
+Puede revertir **todos** los documentos del proceso o solo **los documentos seleccionados**. Marque los documentos en la tabla y elija **Revertir seleccionados**; para todos, use **Revertir ajustes**. En ambos casos escriba el número de documentos, igual que al aplicar.
 
 ![Confirmar reversión](recursos/img/cuadrar-descuadres/13-confirmar-reversion.png)
 
@@ -192,7 +193,7 @@ En **Procesos recientes** aparecen los procesos de los últimos **15 días**, co
 
 Esta sección es la guía del contador. **Esta pantalla nunca abre ni cierra períodos ni años, ni modifica un período cerrado.** Usted hace cada paso en la pantalla que corresponda.
 
-**Mientras un año tenga cierre anual, no se deben reabrir sus períodos.** Primero anule el cierre anual del año y solo después reabra el período.
+**Mientras un año tenga cierre anual, la opción de períodos no permite reabrir sus períodos ni sus opciones.** Si lo intenta, la pantalla le pide **anular primero el cierre anual**. El orden es obligatorio: primero anule el cierre anual (CEA y CEAN) del año y solo después reabra el período.
 
 ![Solo períodos cerrados](recursos/img/cuadrar-descuadres/06-solo-periodos-cerrados.png)
 
@@ -210,12 +211,12 @@ El documento sale **Bloqueado** con el motivo **Período cerrado**. Siga estos p
 
 Si el año tiene **cierre anual** (documentos de cierre de diciembre y de enero), el documento sale **Bloqueado** con el motivo **Año con cierre anual**. Siga este orden:
 
-1. **Anule primero el cierre anual** del año: el documento de cierre del 31 de diciembre (CEA) y el de cierre del 1 de enero siguiente (CEAN). Se anulan con la anulación normal de documentos y el permiso de anular; si la pantalla de Asientos de su compañía no permite anularlos, hágalo donde lo hace hoy. Tenga en cuenta que anularlos **cambia los saldos de apertura del año siguiente**.
+1. **Anule primero el cierre anual** del año: el documento de cierre del 31 de diciembre (CEA) y el de cierre del 1 de enero siguiente (CEAN). Hoy esa anulación se hace por el medio disponible actualmente para su compañía (el sistema anterior). Tenga en cuenta que anularlos **cambia los saldos de apertura del año siguiente**.
 2. Siga los pasos de **período cerrado** (reabrir el período, cuadrar, conciliar, cerrar opciones y período).
 3. **Recalcule los saldos** con **Recálculo de saldos (285)**, incluido el año siguiente.
 4. **Vuelva a generar el cierre anual** con **Cierre anual (306)**.
 
-> **Nota:** mientras el año tenga cierre anual, esta opción sigue bloqueando sus documentos aunque el período esté abierto. Hoy la opción de períodos todavía no impide reabrir un período de un año con cierre anual, así que respete este orden.
+> **Nota:** mientras el año tenga cierre anual, esta opción sigue bloqueando sus documentos aunque el período esté abierto. Si anula el cierre anual y luego reabre el período, el documento deja de salir como **Año con cierre anual**.
 
 Si la selección es solo de documentos bloqueados por el año, la pantalla no permite aplicar.
 
