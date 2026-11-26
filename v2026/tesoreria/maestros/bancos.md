@@ -46,7 +46,7 @@ En esta pantalla puede **consultar, crear, editar, eliminar, exportar e importar
 | **Importar** | Crea o actualiza bancos desde un archivo de Excel. Ver [Importar bancos desde Excel](bancos-importar.md). |
 | **Exportar a Excel** | Descarga el listado con el filtro y el orden que tenga en pantalla, incluidas todas sus páginas. |
 | **Lápiz** / **Papelera** | Editar o eliminar el banco de esa fila. Siempre están en la **primera columna**. |
-| **Columnas** | Código, Código alterno, Nombre y Última modificación. |
+| **Columnas** | Código, Código alterno, Nombre, Código PAB y Última modificación. Ver [Banco PAB](#-banco-pab-archivo-de-pagos-a-banco). |
 | **Encabezados** | Un clic ordena de forma ascendente, el segundo descendente y el tercero quita el orden. |
 | **Filas por página** y paginación | Cambian cuántos bancos ve y la página. |
 
@@ -76,6 +76,7 @@ En esta pantalla puede **consultar, crear, editar, eliminar, exportar e importar
 | **Código** | ✅ | Hasta 5 caracteres: letras, números y guion. Se guarda **siempre en MAYÚSCULAS**. No se puede repetir en la compañía. | `BNO` |
 | **Código alterno** | | Opcional, hasta 15 caracteres. También se guarda en mayúsculas. | `NORTE-01` |
 | **Nombre** | ✅ | Hasta 40 caracteres, sin comas ni punto y coma. | `Banco Norte` |
+| **Banco PAB** | | Opcional. Código del banco en el archivo de pagos a banco. Solo lo cambia quien tiene el permiso **Actualizar**; ver [Banco PAB](#-banco-pab-archivo-de-pagos-a-banco). | `1007 - Banco Demo` |
 
 Al guardar verá el mensaje **"Banco … creado."** y el banco aparece en el listado.
 
@@ -122,6 +123,28 @@ Si otro usuario eliminó el banco mientras lo editaba, al guardar aparece el avi
 
 ---
 
+## 🔗 Banco PAB (archivo de pagos a banco)
+
+El **Banco PAB** es el código con el que el banco reconoce a cada entidad en el **archivo de pagos a banco** (ver [Archivo de pagos a banco](../movimientos/archivo-banco.md)). Es opcional para guardar el banco, pero **sin él, los proveedores de ese banco salen con error** cuando valida el archivo.
+
+- En **crear** o **editar**, el campo **Banco PAB** busca en el catálogo de bancos del archivo por código o por nombre. Se muestra como *Código - Nombre*.
+- Solo lo cambia quien tiene el permiso **Actualizar**. Con **Consultar** lo ve de solo lectura.
+- Para quitarlo, deje el campo vacío y guarde. Antes verá el aviso *Quitará la equivalencia PAB de este banco*.
+- En el listado, la columna **Código PAB** muestra el código del banco. Si el banco no tiene uno, aparece *Sin equivalencia*.
+
+![Banco con Banco PAB asignado](../recursos/img/bancos/17-editar-con-banco-pab.png)
+
+![Quitar el Banco PAB](../recursos/img/bancos/18-quitar-banco-pab.png)
+
+| Mensaje | Qué hacer |
+|---------|-----------|
+| *El banco PAB elegido ya no existe. Elige otro.* | Busque de nuevo y elija otro código. |
+| *Aún no se puede guardar la equivalencia PAB en este entorno.* | Vuelva a guardar más tarde. Si sigue igual, consulte a su administrador. |
+
+![Columna Código PAB en el listado](../recursos/img/bancos/19-columna-codigo-pab.png)
+
+---
+
 ## 🗑️ Eliminar un banco
 
 1. Haga clic en la **papelera** del banco.
@@ -141,7 +164,7 @@ Cuando esto ocurre, el botón **Eliminar banco** no aparece. Para dejar de usarl
 
 ## 📤 Exportar a Excel
 
-Haga clic en **Exportar a Excel**. Se descarga un archivo de Excel con **todos** los bancos del filtro actual (no solo la página visible), con el encabezado fijo y filtros de Excel. Las fechas quedan como fechas de Excel.
+Haga clic en **Exportar a Excel**. Se descarga un archivo de Excel con **todos** los bancos del filtro actual (no solo la página visible), con el encabezado fijo y filtros de Excel. Las fechas quedan como fechas de Excel. El archivo incluye la columna **Código PAB**.
 
 ---
 
@@ -177,6 +200,9 @@ Si estaba por confirmar la eliminación de un banco que otro ya eliminó, el di�
 ---
 
 ## ❓ Preguntas frecuentes
+
+**¿Para qué sirve el Banco PAB?**
+Es el código del banco que usa el archivo de pagos a banco. Sin él, los proveedores de ese banco no pasan la validación del archivo. Puede dejarlo vacío para los bancos que no pagan con ese archivo.
 
 **¿Para qué sirve el código alterno?**
 Es un código adicional y opcional para identificar el banco por otra referencia. No reemplaza al código principal, no es obligatorio y también se busca desde el buscador.

@@ -11,3 +11,5 @@ Manuales de las pantallas de Configuración en la nueva versión.
 ## Seguridad
 
 - [Usuarios conectados](seguridad/usuarios-conectados.md)
+- [Períodos](seguridad/periodos.md)
+- [Cierres de saldos](seguridad/cierres-saldos.md)
