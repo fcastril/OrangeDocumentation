@@ -17,13 +17,13 @@ Contabilidad reúne el trabajo contable de la compañía: el plan de cuentas, lo
 
 ## Qué verá hoy
 
-- **Inicio de Contabilidad**: es la página de bienvenida. Muestra el título del módulo, una breve descripción y un estado vacío, porque todavía no hay indicadores ni datos para mostrar.
+- **Financiero**: es la primera pantalla de Contabilidad cuando está habilitada en su compañía. Muestra los indicadores financieros con su fecha de corte. Consulte el manual en [Financiero](dashboard-financiero.md). Si no está habilitada, Contabilidad muestra su página de bienvenida.
 - **Menú del módulo**: hoy tiene las opciones **Maestros > Terceros** y **Maestros > Plan de cuentas**. Los grupos **Movimientos**, **Consultas/Reportes** y **Procesos** aparecen cuando se habilita su primera pantalla.
 - **Terceros**: el listado de personas y empresas de la compañía, con su ficha, su importación desde Excel y la consulta de su movimiento contable por período. Consulte el manual en [Terceros](terceros.md).
 - **Plan de cuentas**: el listado de cuentas contables, con su vista en lista o en árbol, su ficha, sus consultas y su importación desde Excel. Consulte el manual en [Plan de cuentas](plan-cuentas.md) y, para cargar cuentas desde Excel, [Importar el plan de cuentas](plan-cuentas-importar.md).
 - **Ayuda**: el botón **?** junto al título abre este manual sin salir de la pantalla.
 
-Este manual no incluye imágenes porque la página de inicio no tiene todavía contenido que mostrar.
+Este manual no incluye imágenes: cada pantalla tiene su propio manual, con sus imágenes.
 
 ## Procesos
 
@@ -53,7 +53,7 @@ Las siguientes pantallas se habilitarán en el orden que indique la compañía. 
 3. **Diferidos y activos fijos**: según lo que se decida para la compañía.
 4. **Consultas y reportes**: auxiliar contable, movimiento contable y balance de prueba.
 5. **Procesos**: importaciones, exportaciones, recálculos y el cierre contable.
-6. **Resumen gerencial y medios magnéticos**: indicadores financieros y formatos para la información exógena de la DIAN.
+6. **Medios magnéticos**: formatos para la información exógena de la DIAN. El resumen gerencial ya está disponible en Financiero.
 
 ## Preguntas frecuentes
 
