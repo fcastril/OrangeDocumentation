@@ -21,6 +21,7 @@ Contabilidad reúne el trabajo contable de la compañía: el plan de cuentas, lo
 - **Menú del módulo**: hoy tiene las opciones **Maestros > Terceros** y **Maestros > Plan de cuentas**. Los grupos **Movimientos**, **Consultas/Reportes** y **Procesos** aparecen cuando se habilita su primera pantalla.
 - **Terceros**: el listado de personas y empresas de la compañía, con su ficha, su importación desde Excel y la consulta de su movimiento contable por período. Consulte el manual en [Terceros](terceros.md).
 - **Plan de cuentas**: el listado de cuentas contables, con su vista en lista o en árbol, su ficha, sus consultas y su importación desde Excel. Consulte el manual en [Plan de cuentas](plan-cuentas.md) y, para cargar cuentas desde Excel, [Importar el plan de cuentas](plan-cuentas-importar.md).
+- **Asientos contables**: los comprobantes contables manuales de la compañía, con sus líneas de débito y crédito, sus adjuntos y su cierre. Consulte el manual en [Asientos contables](asientos-contables.md). Crear o cambiar asientos solo funciona en las compañías donde la escritura esté habilitada.
 - **Ayuda**: el botón **?** junto al título abre este manual sin salir de la pantalla.
 
 Este manual no incluye imágenes: cada pantalla tiene su propio manual, con sus imágenes.
